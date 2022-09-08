@@ -1,0 +1,14 @@
+#landing-page {
+  background-image: url("../../../site-resources/site-images/IMG_4651.jpeg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  text-align: center;
+  height: 100vh;
+  opacity: 0.75;
+  width: 100vw;
+}
+
+#landing-page-header {
+  font-size: 7.4rem;
+  padding-top: 1.6rem;
+}

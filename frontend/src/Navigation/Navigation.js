@@ -13,7 +13,7 @@ const Navigation = () => {
   useEffect(() => {
     if (!showMenu) return;
 
-    const navigationButton = document.querySelector(".navigation-button");
+    const navigationButton = document.querySelector(".navigation-menu-button");
     const lineOne = document.querySelector(".line-one");
     const lineTwo = document.querySelector(".line-two");
     const navigationContainer = document.querySelector(".navigation-container");
@@ -42,7 +42,7 @@ const Navigation = () => {
   }, [showMenu]);
 
   useEffect(() => {
-    const navigationButton = document.querySelector(".navigation-button");
+    const navigationButton = document.querySelector(".navigation-menu-button");
     const lineOne = document.querySelector(".line-one");
     const lineTwo = document.querySelector(".line-two");
     const navigationContainer = document.querySelector(".navigation-container");
@@ -58,7 +58,9 @@ const Navigation = () => {
   }, [linkClicked]);
 
   function scrollSmoothlyTo(elementId) {
-    setLinkedClicked(true);
+    if (elementId !== "hero-section") {
+      setLinkedClicked(true);
+    }
     const element = document.getElementById(elementId);
     element.scrollIntoView({
       block: "start",
@@ -68,10 +70,20 @@ const Navigation = () => {
 
   return (
     <>
-      <button onClick={openMenu} className="navigation-button">
+      <button onClick={openMenu} className="navigation-menu-button">
         <span className="line-one"></span>
         <span className="line-two"></span>
       </button>
+
+      <button
+        className="navigation-home-button"
+        onClick={() => {
+          scrollSmoothlyTo("hero-section");
+        }}
+      >
+        museDuo
+      </button>
+
       <nav
         className="navigation-container"
         onClick={(e) => e.stopPropagation()}

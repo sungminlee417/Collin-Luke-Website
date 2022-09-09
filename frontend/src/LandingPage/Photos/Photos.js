@@ -19,33 +19,55 @@ const Photos = () => {
     setCurrent(current === 0 ? length - 1 : current - 1);
   };
 
+  const selectImage = (index) => {
+    setCurrent(index);
+  };
+
   return (
     <section id="photos-section">
       <div id="photos-carousel-container">
         <button className="carousel-button left-button" onClick={prevSlide}>
-          <i className="fa-solid fa-chevron-left"></i>
+          <i className="fa-solid fa-chevron-left fa-2x"></i>
         </button>
-        <img
-          src={images[current]}
-          className="carousel-image"
-          alt="collin-and-luke"
-        />
-        {/* <ul id="carousel-track">
+        {images.map((image, i) => {
+          return (
+            <div
+              key={i}
+              className={
+                i === current ? "carousel-slide active" : "carousel-slide "
+              }
+            >
+              {i === current && (
+                <img
+                  className="carousel-image"
+                  src={images[current]}
+                  alt="collin-and-luke"
+                />
+              )}
+            </div>
+          );
+        })}
+        <button className="carousel-button right-button" onClick={nextSlide}>
+          <i className="fa-solid fa-chevron-right fa-2x"></i>
+        </button>
+        <ul id="images-slider">
           {images.map((image, i) => {
             return (
-              <li key={i} className="carousel-image-container">
-                <img
-                  src={image}
-                  alt="collin-and-luke"
-                  className="carousel-image"
-                />
+              <li key={i} className="images-slider-image-container">
+                <button
+                  onClick={() => selectImage(i)}
+                  className={
+                    i === current
+                      ? "images-slide-button active"
+                      : "images-slide-button"
+                  }
+                >
+                  <img className="images-slider-image" src={images[i]} />
+                </button>
               </li>
             );
           })}
-        </ul> */}
-        <button className="carousel-button right-button" onClick={nextSlide}>
-          <i className="fa-solid fa-chevron-right"></i>
-        </button>
+        </ul>
       </div>
     </section>
   );

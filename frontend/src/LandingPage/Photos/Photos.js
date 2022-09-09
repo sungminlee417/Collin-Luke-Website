@@ -23,6 +23,8 @@ const Photos = () => {
     setCurrent(index);
   };
 
+  const openPhotoPage = (index) => {};
+
   return (
     <section id="photos-section">
       <div id="photos-carousel-container">
@@ -31,11 +33,12 @@ const Photos = () => {
         </button>
         {images.map((image, i) => {
           return (
-            <div
+            <button
               key={i}
               className={
                 i === current ? "carousel-slide active" : "carousel-slide "
               }
+              onClick={(i) => openPhotoPage(i)}
             >
               {i === current && (
                 <img
@@ -44,7 +47,7 @@ const Photos = () => {
                   alt="collin-and-luke"
                 />
               )}
-            </div>
+            </button>
           );
         })}
         <button className="carousel-button right-button" onClick={nextSlide}>

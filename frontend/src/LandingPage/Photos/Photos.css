@@ -10,15 +10,20 @@
 }
 
 .carousel-slide {
+  background-color: none;
+  border: none;
   opacity: 0;
   transition-duration: all 1s ease;
+  width: fit-content;
 }
 
 .carousel-slide.active {
   height: 100%;
-  position: absolute;
-  width: 100%;
+  left: 0;
+  margin: 0 auto;
   opacity: 1;
+  position: absolute;
+  right: 0;
   transform: scale(1.08);
   transition-duration: 1s;
 }
@@ -26,22 +31,27 @@
 .carousel-image {
   height: 100%;
   object-fit: contain;
-  width: 100%;
 }
 
 .carousel-button {
   background-color: white;
   border: none;
+  color: #373b3e;
   position: absolute;
   top: 50%;
+  transition: 0.2s;
+}
+
+.carousel-button:hover {
+  color: black;
 }
 
 .left-button {
-  left: -6rem;
+  left: -4.8rem;
 }
 
 .right-button {
-  right: -6rem;
+  right: -4.8rem;
 }
 
 /****************************/

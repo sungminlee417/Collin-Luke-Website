@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
 import "./Navigation.css";
 
 const Navigation = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const [linkClicked, setLinkedClicked] = useState(false);
 
   const openMenu = (e) => {
     if (showMenu) return;
@@ -26,10 +26,10 @@ const Navigation = () => {
     }
 
     const closeMenu = (e) => {
-      navigationButton.classList.remove("navigation-button-clicked");
-      lineOne.classList.remove("line-one-changed");
-      lineTwo.classList.remove("line-two-changed");
-      navigationContainer.classList.remove("show-navigation-container");
+      navigationButton.classList.toggle("navigation-button-clicked");
+      lineOne.classList.toggle("line-one-changed");
+      lineTwo.classList.toggle("line-two-changed");
+      navigationContainer.classList.toggle("show-navigation-container");
 
       setShowMenu(false);
     };
@@ -41,6 +41,31 @@ const Navigation = () => {
     };
   }, [showMenu]);
 
+  useEffect(() => {
+    const navigationButton = document.querySelector(".navigation-button");
+    const lineOne = document.querySelector(".line-one");
+    const lineTwo = document.querySelector(".line-two");
+    const navigationContainer = document.querySelector(".navigation-container");
+
+    if (linkClicked) {
+      navigationButton.classList.toggle("navigation-button-clicked");
+      lineOne.classList.toggle("line-one-changed");
+      lineTwo.classList.toggle("line-two-changed");
+      navigationContainer.classList.toggle("show-navigation-container");
+      setShowMenu(false);
+      setLinkedClicked(false);
+    }
+  }, [linkClicked]);
+
+  function scrollSmoothlyTo(elementId) {
+    setLinkedClicked(true);
+    const element = document.getElementById(elementId);
+    element.scrollIntoView({
+      block: "start",
+      behavior: "smooth",
+    });
+  }
+
   return (
     <>
       <button onClick={openMenu} className="navigation-button">
@@ -51,15 +76,22 @@ const Navigation = () => {
         className="navigation-container"
         onClick={(e) => e.stopPropagation()}
       >
-        <NavLink className="navigation-link" to="/">
+        <button
+          className="navigation-link"
+          onClick={() => {
+            scrollSmoothlyTo("about-section");
+          }}
+        >
           About
-        </NavLink>
-        <NavLink className="navigation-link" to="/">
+        </button>
+        <button
+          className="navigation-link"
+          onClick={() => scrollSmoothlyTo("recordings-section")}
+        >
           Recordings
-        </NavLink>
-        <NavLink className="navigation-link" to="/">
-          Contact
-        </NavLink>
+        </button>
+
+        <button className="navigation-link">Contact</button>
       </nav>
     </>
   );

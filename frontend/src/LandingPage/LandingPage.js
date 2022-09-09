@@ -1,6 +1,7 @@
 import About from "./About";
 import Hero from "./Hero";
 import "./LandingPage.css";
+import Photos from "./Photos";
 import Recordings from "./Recordings";
 
 const LandingPage = () => {
@@ -9,6 +10,7 @@ const LandingPage = () => {
       <Hero />
       <About />
       <Recordings />
+      <Photos />
     </section>
   );
 };

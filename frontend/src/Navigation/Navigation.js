@@ -76,22 +76,37 @@ const Navigation = () => {
         className="navigation-container"
         onClick={(e) => e.stopPropagation()}
       >
-        <button
-          className="navigation-link"
-          onClick={() => {
-            scrollSmoothlyTo("about-section");
-          }}
-        >
-          About
-        </button>
-        <button
-          className="navigation-link"
-          onClick={() => scrollSmoothlyTo("recordings-section")}
-        >
-          Recordings
-        </button>
-
-        <button className="navigation-link">Contact</button>
+        <ul id="navigation-links">
+          <li className="navigation-link-container">
+            <button
+              className="navigation-link"
+              onClick={() => {
+                scrollSmoothlyTo("about-section");
+              }}
+            >
+              About
+            </button>
+          </li>
+          <li className="navigation-link-container">
+            <button
+              className="navigation-link"
+              onClick={() => scrollSmoothlyTo("recordings-section")}
+            >
+              Recordings
+            </button>
+          </li>
+          <li className="navigation-link-container">
+            <button
+              className="navigation-link"
+              onClick={() => scrollSmoothlyTo("photos-section")}
+            >
+              Photos
+            </button>
+          </li>
+          <li className="navigation-link-container">
+            <button className="navigation-link">Contact</button>
+          </li>
+        </ul>
       </nav>
     </>
   );

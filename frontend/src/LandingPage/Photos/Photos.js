@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import image1 from "../../images/IMG_4645.jpg";
 import image2 from "../../images/IMG_4650.jpeg";
 import image3 from "../../images/IMG_4651.jpeg";
@@ -9,10 +9,7 @@ const images = [image1, image2, image3, image4];
 
 const Photos = () => {
   const [current, setCurrent] = useState(0);
-  const [prev, setPrev] = useState(current - 1);
   const length = images.length;
-
-  console.log(prev);
 
   const nextSlide = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
@@ -25,14 +22,6 @@ const Photos = () => {
   const selectImage = (index) => {
     setCurrent(index);
   };
-
-  useEffect(() => {
-    if (current === 0) {
-      setPrev(length - 1);
-    } else {
-      setPrev(current - 1);
-    }
-  }, [current, prev]);
 
   return (
     <section id="photos-section">
@@ -79,7 +68,11 @@ const Photos = () => {
                       : "images-slide-button"
                   }
                 >
-                  <img className="images-slider-image" src={images[index]} />
+                  <img
+                    className="images-slider-image"
+                    src={images[index]}
+                    alt="collin-and-luke"
+                  />
                 </button>
               </li>
             );

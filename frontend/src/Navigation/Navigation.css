@@ -5,6 +5,7 @@
 .navigation-menu-button {
   background-color: transparent;
   border: none;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
@@ -75,6 +76,7 @@
   background: none;
   border: none;
   color: #494e53;
+  cursor: pointer;
   font-family: inherit;
   font-size: 4vw;
   text-align: start;
@@ -92,6 +94,7 @@
   background-color: transparent;
   border: none;
   color: #373b3e;
+  cursor: pointer;
   font-family: inherit;
   font-size: 3.6rem;
   left: 0;

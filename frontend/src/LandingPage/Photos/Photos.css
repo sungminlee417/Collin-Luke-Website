@@ -1,28 +1,61 @@
-/****************************/
-/* IMAGES CAROUSEL */
-/****************************/
 #photos-section {
   align-items: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  padding-top: 8rem;
   width: 100%;
 }
 
+/****************************/
+/* IMAGES CAROUSEL */
+/****************************/
 #photos-carousel-container {
   align-items: center;
   display: flex;
-  height: 50rem;
-  justify-content: center;
+  flex-direction: column;
+  gap: 0.8rem;
   position: relative;
-  width: 50%;
+  width: 71%;
+}
+
+#photos-carousel-content {
+  display: flex;
+  gap: 3.2rem;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#photos-carousel-images {
+  align-items: center;
+  display: flex;
+  position: relative;
+  height: 55rem;
+}
+
+.carousel-slide {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.7s ease-in-out;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+}
+
+.carousel-image {
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
 }
 
 .carousel-button {
   background-color: white;
   border: none;
   color: #373b3e;
-  position: absolute;
+  cursor: pointer;
   top: 50%;
   transition: 0.2s;
 }
@@ -31,33 +64,23 @@
   color: black;
 }
 
-.left-button {
-  left: -6.4rem;
-}
-
-.right-button {
-  right: -6.4rem;
-}
-
 /****************************/
 /* IMAGES SLIDER */
 /****************************/
 
 #images-slider {
-  bottom: -10rem;
+  bottom: -15%;
   display: flex;
   gap: 1.2rem;
   height: 6rem;
   justify-content: center;
-  left: 0;
   list-style: none;
   position: absolute;
-  right: 0;
-  width: 100%;
 }
 
 .images-slide-button {
   border: none;
+  cursor: pointer;
   height: 100%;
   opacity: 50%;
   transition: all 1s ease;
@@ -71,6 +94,4 @@
 .images-slider-image {
   height: 100%;
   object-fit: cover;
-  object-position: 0 30%;
-  width: 100%;
 }

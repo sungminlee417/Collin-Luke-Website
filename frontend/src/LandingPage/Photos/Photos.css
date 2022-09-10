@@ -1,36 +1,21 @@
 /****************************/
 /* IMAGES CAROUSEL */
 /****************************/
+#photos-section {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding-top: 8rem;
+  width: 100%;
+}
 
 #photos-carousel-container {
-  height: 40rem;
-  margin: 0 auto;
+  align-items: center;
+  display: flex;
+  height: 50rem;
+  justify-content: center;
   position: relative;
   width: 50%;
-}
-
-.carousel-slide {
-  background-color: none;
-  border: none;
-  opacity: 0;
-  transition-duration: all 1s ease;
-  width: fit-content;
-}
-
-.carousel-slide.active {
-  height: 100%;
-  left: 0;
-  margin: 0 auto;
-  opacity: 1;
-  position: absolute;
-  right: 0;
-  transform: scale(1.08);
-  transition-duration: 1s;
-}
-
-.carousel-image {
-  height: 100%;
-  object-fit: contain;
 }
 
 .carousel-button {
@@ -47,11 +32,11 @@
 }
 
 .left-button {
-  left: -4.8rem;
+  left: -6.4rem;
 }
 
 .right-button {
-  right: -4.8rem;
+  right: -6.4rem;
 }
 
 /****************************/

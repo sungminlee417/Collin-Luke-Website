@@ -1,47 +1,42 @@
 /****************************/
 /* IMAGES CAROUSEL */
 /****************************/
+#photos-section {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding-top: 8rem;
+  width: 100%;
+}
 
 #photos-carousel-container {
-  height: 40rem;
-  margin: 0 auto;
+  align-items: center;
+  display: flex;
+  height: 50rem;
+  justify-content: center;
   position: relative;
   width: 50%;
-}
-
-.carousel-slide {
-  opacity: 0;
-  transition-duration: all 1s ease;
-}
-
-.carousel-slide.active {
-  height: 100%;
-  position: absolute;
-  width: 100%;
-  opacity: 1;
-  transform: scale(1.08);
-  transition-duration: 1s;
-}
-
-.carousel-image {
-  height: 100%;
-  object-fit: contain;
-  width: 100%;
 }
 
 .carousel-button {
   background-color: white;
   border: none;
+  color: #373b3e;
   position: absolute;
   top: 50%;
+  transition: 0.2s;
+}
+
+.carousel-button:hover {
+  color: black;
 }
 
 .left-button {
-  left: -6rem;
+  left: -6.4rem;
 }
 
 .right-button {
-  right: -6rem;
+  right: -6.4rem;
 }
 
 /****************************/

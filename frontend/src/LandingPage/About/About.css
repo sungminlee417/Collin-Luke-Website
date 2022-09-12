@@ -3,38 +3,62 @@
 /*************************/
 
 #about-section {
-  height: 1000px;
+  height: 100vh;
   background-color: #f7f1e5;
   margin-bottom: 1000px;
+}
+.about-duo-section{
+  width:auto;
 }
 
 #about-section-header {
   font-size: 2rem;
-  padding-left: 8rem;
-  padding-top: 18rem;
+  padding-left: 8.5rem;
+  padding-top: 8rem;
 }
 
 #about-large-text {
   font-size: 7.7rem;
   padding-left: 60rem;
   padding-right: 3rem;
+<<<<<<< HEAD
   padding-top: 7rem;
+=======
+  padding-top: 6rem;
+
+>>>>>>> refs/remotes/origin/dev
 }
 
 #about-small-text {
   font-size: 2rem;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: lighter;
+  line-height: 3rem;
   padding-left: 60rem;
-  padding-right: 3rem;
+  padding-right: 8.5rem;
   padding-top: 3rem;
 }
 
+<<<<<<< HEAD
 #box-behind-duo {
+=======
+<<<<<<< HEAD
+
+.about-image-duo{
+  max-width: 25%;
+  max-height: auto;
+  margin: -27rem 9rem;
+}
+
+#box-behind-duo{
+>>>>>>> refs/remotes/origin/dev
   margin: -12rem 9rem;
-  height: 40rem;
-  width: 30rem;
+  height: 50rem;
+  width: 35.72rem;
   background-color: #967e76;
 }
 
+<<<<<<< HEAD
 .about-image-duo {
   width: auto;
   text-align: center;
@@ -42,9 +66,39 @@
 }
 img {
   max-width: 30%;
+=======
+=======
+
+.about-image-duo{
+  max-width: 25%;
+>>>>>>> refs/remotes/origin/dev
   max-height: auto;
+  margin-top: -30.5rem;
+  margin-left: -33rem;
 }
 
+<<<<<<< HEAD
 /*********************************/
 /* ABOUT SECTION FOR INDIVIDUALS */
 /*********************************/
+=======
+#box-behind-duo{
+  float: left;
+  margin-top: -33rem;
+  margin-left: 8.5rem;
+  padding-top: 10rem;
+  height: 53.76rem;
+  width: 35.72rem;
+  background-color: #967e76;
+}
+
+>>>>>>> about
+/*********************************/
+/* ABOUT SECTION FOR INDIVIDUALS */
+/*********************************/
+/* #about-divider{
+  margin: 5rem 5rem;
+  background-color: #494e53;
+}
+*/
+>>>>>>> refs/remotes/origin/dev

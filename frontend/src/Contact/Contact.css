@@ -1,0 +1,10 @@
+#contact-section {
+    height: 100vh;
+    margin-top: 40rem;
+
+}
+
+.email-container {
+    display:flex;
+    gap: 10rem;
+}

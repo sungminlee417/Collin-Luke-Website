@@ -13,11 +13,13 @@
 
 #about-section-header {
   font-size: 2rem;
+  color: #373b3e;
   padding-left: 8.5rem;
   padding-top: 8rem;
 }
 
 #about-large-text {
+  color: #373b3e;
   font-size: 7.7rem;
   padding-left: 60rem;
   padding-right: 3rem;
@@ -29,28 +31,13 @@
   font-size: 2rem;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: lighter;
+  color: #373b3e;;
   line-height: 3rem;
   padding-left: 60rem;
   padding-right: 8.5rem;
   padding-top: 3rem;
 }
 
-<<<<<<< HEAD
-
-.about-image-duo{
-  max-width: 25%;
-  max-height: auto;
-  margin: -27rem 9rem;
-}
-
-#box-behind-duo{
-  margin: -12rem 9rem;
-  height: 50rem;
-  width: 35.72rem;
-  background-color: #967e76;
-}
-
-=======
 
 .about-image-duo{
   max-width: 25%;
@@ -69,7 +56,6 @@
   background-color: #967e76;
 }
 
->>>>>>> about
 /*********************************/
 /* ABOUT SECTION FOR INDIVIDUALS */
 /*********************************/

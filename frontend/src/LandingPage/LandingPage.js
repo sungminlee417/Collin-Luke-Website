@@ -3,6 +3,7 @@ import Hero from "./Hero";
 import "./LandingPage.css";
 import Photos from "./Photos";
 import Recordings from "./Recordings";
+import Contact from "./Contact";
 
 const LandingPage = () => {
   return (
@@ -11,6 +12,7 @@ const LandingPage = () => {
       <About />
       <Recordings />
       <Photos />
+      <Contact />
     </section>
   );
 };

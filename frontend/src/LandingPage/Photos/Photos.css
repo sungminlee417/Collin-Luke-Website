@@ -1,97 +1,54 @@
 #photos-section {
-  align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  width: 100%;
+  margin: 0 auto;
+  width: 85%;
 }
 
 /****************************/
 /* IMAGES CAROUSEL */
 /****************************/
-#photos-carousel-container {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  position: relative;
-  width: 71%;
-}
-
-#photos-carousel-content {
-  display: flex;
-  gap: 3.2rem;
-  justify-content: space-between;
+.photos-carousel-images {
+  height: 60rem;
+  object-fit: contain;
   width: 100%;
 }
 
 #photos-carousel-images {
-  align-items: center;
-  display: flex;
-  position: relative;
-  height: 55rem;
+  width: 100%;
 }
 
 .carousel-slide {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 0.7s ease-in-out;
+  align-items: center;
+  display: flex;
+  object-fit: cover;
+  width: 100%;
 }
 
-.carousel-slide.active {
-  opacity: 1;
-}
-
-.carousel-image {
+.carousel-image,
+.slider-image {
   height: 100%;
   object-fit: contain;
   width: 100%;
 }
 
-.carousel-button {
-  background-color: white;
-  border: none;
-  color: #373b3e;
-  cursor: pointer;
-  top: 50%;
-  transition: 0.2s;
-}
-
-.carousel-button:hover {
-  color: black;
-}
-
 /****************************/
 /* IMAGES SLIDER */
 /****************************/
-
-#images-slider {
-  bottom: -15%;
-  display: flex;
-  gap: 1.2rem;
-  height: 6rem;
-  justify-content: center;
-  list-style: none;
-  position: absolute;
+.images-slider {
+  height: 20%;
+  padding: 10px 0;
+  width: 50rem;
 }
 
-.images-slide-button {
-  border: none;
-  cursor: pointer;
-  height: 100%;
-  opacity: 50%;
-  transition: all 1s ease;
+.slider-slide {
+  height: 10rem;
 }
 
-.images-slide-button.active {
+.images-slider .swiper-slide {
+  opacity: 0.4;
+}
+
+.images-slider .swiper-slide-thumb-active {
   opacity: 1;
-  transform: scale(1.08);
-}
-
-.images-slider-image {
-  height: 100%;
-  object-fit: cover;
 }

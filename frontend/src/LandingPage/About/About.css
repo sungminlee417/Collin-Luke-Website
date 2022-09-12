@@ -7,8 +7,8 @@
   background-color: #f7f1e5;
   margin-bottom: 1000px;
 }
-.about-duo-section{
-  width:auto;
+.about-duo-section {
+  width: auto;
 }
 
 #about-section-header {
@@ -21,17 +21,12 @@
   font-size: 7.7rem;
   padding-left: 60rem;
   padding-right: 3rem;
-<<<<<<< HEAD
-  padding-top: 7rem;
-=======
   padding-top: 6rem;
-
->>>>>>> refs/remotes/origin/dev
 }
 
 #about-small-text {
   font-size: 2rem;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   font-weight: lighter;
   line-height: 3rem;
   padding-left: 60rem;
@@ -39,50 +34,14 @@
   padding-top: 3rem;
 }
 
-<<<<<<< HEAD
-#box-behind-duo {
-=======
-<<<<<<< HEAD
-
-.about-image-duo{
-  max-width: 25%;
-  max-height: auto;
-  margin: -27rem 9rem;
-}
-
-#box-behind-duo{
->>>>>>> refs/remotes/origin/dev
-  margin: -12rem 9rem;
-  height: 50rem;
-  width: 35.72rem;
-  background-color: #967e76;
-}
-
-<<<<<<< HEAD
 .about-image-duo {
-  width: auto;
-  text-align: center;
-  padding: 15rem;
-}
-img {
-  max-width: 30%;
-=======
-=======
-
-.about-image-duo{
   max-width: 25%;
->>>>>>> refs/remotes/origin/dev
   max-height: auto;
   margin-top: -30.5rem;
   margin-left: -33rem;
 }
 
-<<<<<<< HEAD
-/*********************************/
-/* ABOUT SECTION FOR INDIVIDUALS */
-/*********************************/
-=======
-#box-behind-duo{
+#box-behind-duo {
   float: left;
   margin-top: -33rem;
   margin-left: 8.5rem;
@@ -92,7 +51,6 @@ img {
   background-color: #967e76;
 }
 
->>>>>>> about
 /*********************************/
 /* ABOUT SECTION FOR INDIVIDUALS */
 /*********************************/
@@ -101,4 +59,3 @@ img {
   background-color: #494e53;
 }
 */
->>>>>>> refs/remotes/origin/dev

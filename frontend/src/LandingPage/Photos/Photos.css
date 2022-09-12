@@ -19,6 +19,7 @@
 }
 
 #photos-carousel-content {
+  align-items: center;
   display: flex;
   gap: 3.2rem;
   justify-content: space-between;
@@ -56,6 +57,7 @@
   border: none;
   color: #373b3e;
   cursor: pointer;
+  height: fit-content;
   top: 50%;
   transition: 0.2s;
 }

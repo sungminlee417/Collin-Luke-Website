@@ -57,11 +57,11 @@ const Navigation = () => {
     }
   }, [linkClicked]);
 
-  function scrollSmoothlyTo(elementId) {
-    if (elementId !== "hero-section") {
+  function scrollSmoothlyTo(className) {
+    if (className !== "hero-section") {
       setLinkedClicked(true);
     }
-    const element = document.getElementById(elementId);
+    const element = document.querySelector(`.${className}`);
     element.scrollIntoView({
       block: "start",
       behavior: "smooth",

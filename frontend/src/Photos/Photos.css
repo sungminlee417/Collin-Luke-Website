@@ -36,12 +36,12 @@
 /****************************/
 .images-slider {
   height: 20%;
-  padding: 10px 0;
-  width: 50rem;
+  padding: 1rem 0;
+  width: 35%;
 }
 
 .slider-slide {
-  height: 10rem;
+  height: 8rem;
 }
 
 .images-slider .swiper-slide {

@@ -79,7 +79,15 @@ body {
   font-family: "DM Serif Display", serif;
   line-height: 1;
   font-weight: 400;
+  height: 100vh;
   overflow-x: hidden;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+  justify-content: space-between;
 }
 
 h3 {
@@ -91,5 +99,5 @@ h3 {
 /*************************/
 
 .content-margin {
-  margin: 8rem;
+  margin: 14rem 8rem;
 }

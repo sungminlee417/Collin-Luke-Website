@@ -13,8 +13,9 @@ const recordingsURL = [recordingOne, recordingTwo];
 const Recordings = () => {
   return (
     <section className="recordings-section content-margin">
+      <h3>(2) Recordings</h3>
       <ul className="recordings-video-container">
-        {recordingsURL.map((recording) => {
+        {recordingsURL.map((recording, index) => {
           return (
             <iframe
               width="560"
@@ -22,9 +23,9 @@ const Recordings = () => {
               src={recording.url}
               title="YouTube video player"
               frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
               className="recordings-video"
+              key={index}
             ></iframe>
           );
         })}

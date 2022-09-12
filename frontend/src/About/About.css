@@ -1,0 +1,47 @@
+/*************************/
+/* ABOUT SECTION FOR DUO */
+/*************************/
+
+.about-section {
+  align-items: center;
+  display: flex;
+  gap: 6rem;
+  height: 100vh;
+  justify-content: space-between;
+}
+
+#about-section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10rem;
+}
+
+.about-image-duo {
+  background-color: #967e76;
+  width: 90%;
+}
+
+.about-duo-section {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+}
+
+#about-large-text {
+  font-size: 7.7rem;
+}
+
+#about-small-text {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: lighter;
+  line-height: 3rem;
+}
+
+/*********************************/
+/* ABOUT SECTION FOR INDIVIDUALS */
+/*********************************/
+/* #about-divider{
+  margin: 5rem 5rem;
+  background-color: #494e53;
+}
+*/

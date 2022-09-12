@@ -59,6 +59,10 @@ Medium: 11px;
 2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
 */
 
+/*************************/
+/* GLOBAL STYLINGS */
+/*************************/
+
 * {
   margin: 0;
   padding: 0;
@@ -71,8 +75,21 @@ html {
 }
 
 body {
+  background-color: #f7f1e5;
   font-family: "DM Serif Display", serif;
   line-height: 1;
   font-weight: 400;
   overflow-x: hidden;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+/*************************/
+/* REUSABLE STYLINGS */
+/*************************/
+
+.content-margin {
+  margin: 8rem;
 }

@@ -12,7 +12,7 @@ const recordingsURL = [recordingOne, recordingTwo];
 
 const Recordings = () => {
   return (
-    <section id="recordings-section">
+    <section className="recordings-section content-margin">
       <ul className="recordings-video-container">
         {recordingsURL.map((recording) => {
           return (

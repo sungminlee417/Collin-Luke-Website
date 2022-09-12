@@ -7,10 +7,10 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
-import image1 from "../../images/IMG_4645.jpg";
-import image2 from "../../images/IMG_4650.jpeg";
-import image3 from "../../images/IMG_4651.jpeg";
-import image4 from "../../images/IMG_4655.jpeg";
+import image1 from "../images/IMG_4645.jpg";
+import image2 from "../images/IMG_4650.jpeg";
+import image3 from "../images/IMG_4651.jpeg";
+import image4 from "../images/IMG_4655.jpeg";
 import "./Photos.css";
 
 const images = [image1, image2, image3, image4];
@@ -19,7 +19,7 @@ const Photos = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
-    <section id="photos-section">
+    <section className="photos-section content-margin">
       <Swiper
         style={{
           "--swiper-navigation-color": "#373b3e",

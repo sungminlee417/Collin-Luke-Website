@@ -1,0 +1,4 @@
+.recordings-video-container {
+  display: flex;
+  justify-content: space-between;
+}

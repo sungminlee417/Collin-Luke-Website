@@ -1,14 +1,19 @@
 #photos-section {
   display: flex;
   flex-direction: column;
+  height: 60rem;
   margin: 0 auto;
 }
 
 /****************************/
 /* IMAGES CAROUSEL */
 /****************************/
+.photos-carousel-container {
+  margin: 0 auto;
+  width: 75%;
+}
 .photos-carousel-images {
-  height: 60rem;
+  height: 80%;
   object-fit: contain;
   width: 100%;
 }
@@ -20,14 +25,11 @@
 .carousel-slide {
   align-items: center;
   display: flex;
-  object-fit: cover;
-  width: 100%;
 }
 
 .carousel-image,
 .slider-image {
   height: 100%;
-  object-fit: contain;
   width: 100%;
 }
 
@@ -35,13 +37,8 @@
 /* IMAGES SLIDER */
 /****************************/
 .images-slider {
-  height: 20%;
   padding: 1rem 0;
-  width: 35%;
-}
-
-.slider-slide {
-  height: 8rem;
+  width: 50%;
 }
 
 .images-slider .swiper-slide {

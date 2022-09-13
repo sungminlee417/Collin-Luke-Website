@@ -14,7 +14,7 @@ import image4 from "../images/IMG_4655.jpeg";
 import image5 from "../images/IMG_4647.jpeg";
 import "./Photos.css";
 
-const images = [image1, image2, image3, image4, image5];
+const images = [image1, image2, image3, image5];
 
 const Photos = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -37,11 +37,13 @@ const Photos = () => {
           {images.map((image, index) => {
             return (
               <SwiperSlide key={index} className={"carousel-slide"}>
-                <img
-                  className="carousel-image"
-                  src={image}
-                  alt="collin-and-luke"
-                />
+                <div className="image-container">
+                  <img
+                    className="carousel-image"
+                    src={image}
+                    alt="collin-and-luke"
+                  />
+                </div>
               </SwiperSlide>
             );
           })}

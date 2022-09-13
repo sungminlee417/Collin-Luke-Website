@@ -86,7 +86,7 @@ body {
 section {
   display: flex;
   flex-direction: column;
-  gap: 6rem;
+  gap: 8rem;
   justify-content: space-between;
 }
 

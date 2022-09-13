@@ -81,7 +81,7 @@ const Navigation = () => {
           scrollSmoothlyTo("hero-section");
         }}
       >
-        museDuo
+        Muse Duo
       </button>
 
       <nav

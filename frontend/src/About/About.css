@@ -17,7 +17,7 @@
 }
 
 .about-image-duo {
-  background-color: #967e76;
+  box-shadow: -3rem -3rem 0 #967e76;;
   width: 90%;
 }
 
@@ -28,7 +28,9 @@
 }
 
 #about-large-text {
-  font-size: 7.7rem;
+  font-size: 8rem;
+  margin-bottom: 2.3rem;
+  color: #373b3e;
 }
 
 #about-small-text {

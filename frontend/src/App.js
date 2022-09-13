@@ -3,6 +3,7 @@ import Hero from "./Hero";
 import About from "./About";
 import Recordings from "./Recordings";
 import Photos from "./Photos";
+import Contact from "./Contact";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <About />
       <Recordings />
       <Photos />
+      <Contact />
     </>
   );
 }

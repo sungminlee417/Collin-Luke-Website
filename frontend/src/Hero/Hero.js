@@ -1,11 +1,7 @@
 import "./Hero.css";
 
 const Hero = () => {
-  return (
-    <section id="hero-section">
-      {/* <header id="hero-header">Collin Holloway and Luke Benedict</header> */}
-    </section>
-  );
+  return <section className="hero-section"></section>;
 };
 
 export default Hero;

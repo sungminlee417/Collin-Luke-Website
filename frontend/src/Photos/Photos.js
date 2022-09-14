@@ -28,7 +28,7 @@ const Photos = () => {
             "--swiper-navigation-color": "#373b3e",
           }}
           loop={true}
-          spaceBetween={50}
+          spaceBetween={500}
           navigation={true}
           thumbs={{ swiper: thumbsSwiper }}
           modules={[FreeMode, Navigation, Thumbs]}

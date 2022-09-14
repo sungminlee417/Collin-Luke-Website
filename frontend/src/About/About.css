@@ -37,3 +37,17 @@
   background-color: #494e53;
 }
 */
+
+@media (max-width: 1024px) {
+  #about-section-content {
+    gap: 5rem;
+  }
+
+  #about-large-text {
+    font-size: 5rem;
+  }
+
+  #about-small-text {
+    font-size: 1.7rem;
+  }
+}

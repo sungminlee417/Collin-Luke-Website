@@ -40,18 +40,20 @@ const Recordings = () => {
     });
   };
 
+  const resizeVideo = (recordingId) => {
+    if (current === recordingId) {
+      recordingsURL.forEach((recordingData) => {
+        const recording = document.querySelector(
+          `.recordings-video-container-${recordingData.id}`
+        );
+        recording.classList.remove("shrink-video");
+        recording.classList.remove("enlarge-video");
+      });
+    }
+  };
+
   const onPause = (recordingId) => {
-    setTimeout(() => {
-      if (current === recordingId) {
-        recordingsURL.forEach((recordingData) => {
-          const recording = document.querySelector(
-            `.recordings-video-container-${recordingData.id}`
-          );
-          recording.classList.remove("shrink-video");
-          recording.classList.remove("enlarge-video");
-        });
-      }
-    }, 10000);
+    resizeVideo(recordingId);
   };
 
   return (

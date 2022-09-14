@@ -75,6 +75,7 @@ html {
 }
 
 body {
+  animation: fade-in 2s;
   background-color: #f7f1e5;
   font-family: "DM Serif Display", serif;
   line-height: 1;
@@ -100,4 +101,18 @@ h3 {
 
 .content-margin {
   margin: 15rem 10rem;
+}
+
+/*************************/
+/* KEYFRAMES */
+/*************************/
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

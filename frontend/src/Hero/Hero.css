@@ -1,7 +1,8 @@
 .hero-section {
   background-image: url("../images/IMG_4651.jpeg");
+  background-position: 50%;
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
   text-align: center;
   height: 100vh;
   opacity: 0.75;
@@ -11,4 +12,29 @@
 #hero-header {
   font-size: 7.4rem;
   padding-top: 1.6rem;
+}
+
+/****************************/
+/* MEDIA QUERIES */
+/****************************/
+
+@media (max-width: 1024px) {
+  .hero-section {
+    height: 77rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: 51rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    background-image: url("../images/IMG_4655.jpeg");
+    background-size: cover;
+    background-position: 50%;
+    height: 71rem;
+  }
 }

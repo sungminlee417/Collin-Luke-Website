@@ -14,8 +14,8 @@
   position: absolute;
   top: 4.8rem;
   z-index: 3;
-  width: 3.2rem;
-  height: 3.2rem;
+  width: 3.5rem;
+  height: 3.5rem;
 }
 
 .line-one,
@@ -100,4 +100,18 @@
   z-index: 2;
   width: fit-content;
   height: fit-content;
+}
+
+/****************************/
+/* MEDIA QUERIES */
+/****************************/
+
+@media (max-width: 768px) {
+  .navigation-home-button {
+    top: 2.4rem;
+  }
+
+  .navigation-menu-button {
+    top: 2.4rem;
+  }
 }

@@ -72,7 +72,7 @@ const Recordings = () => {
                 height="100%"
                 controls
                 playing={current === recording.id ? true : false}
-                className={`recordings-youtube-video-${recording.id}`}
+                className={`recordings-youtube-video recordings-youtube-video-${recording.id}`}
                 onPlay={() => onPlay(recording.id)}
                 onPause={() => onPause(recording.id)}
               />

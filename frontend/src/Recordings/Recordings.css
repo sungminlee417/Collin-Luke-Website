@@ -10,7 +10,7 @@
 .recordings-video-container {
   height: 100%;
   transition: all 0.7s ease-in;
-  width: 50%;
+  width: 100%;
 }
 
 .enlarge-video {
@@ -23,4 +23,68 @@
   height: 45%;
   transition: all 0.7s ease-in;
   width: 30%;
+}
+
+/****************************/
+/* MEDIA QUERIES */
+/****************************/
+
+@media (max-width: 1280px) {
+  .recordings-videos-container {
+    height: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .recordings-videos-container {
+    height: 32rem;
+  }
+
+  .enlarge-video {
+    /* height: 100%;
+    transition: all 0.7s ease-in;
+    width: 60%; */
+  }
+
+  .shrink-video {
+    /* height: 60%;
+    transition: all 0.7s ease-in;
+    width: 40%; */
+  }
+}
+
+@media (max-width: 768px) {
+  .recordings-videos-container {
+    flex-direction: column;
+    gap: 2rem;
+    height: 70rem;
+  }
+  .enlarge-video {
+    height: 70%;
+    transition: all 0.7s ease-in;
+    width: 100%;
+  }
+
+  .shrink-video {
+    height: 30%;
+    transition: all 0.7s ease-in;
+    width: 47%;
+  }
+}
+
+@media (max-width: 480px) {
+  .recordings-videos-container {
+    flex-direction: column;
+    gap: 2rem;
+    height: 50rem;
+  }
+
+  .enlarge-video {
+    height: 100%;
+  }
+
+  .shrink-video {
+    height: 100%;
+    width: 100%;
+  }
 }

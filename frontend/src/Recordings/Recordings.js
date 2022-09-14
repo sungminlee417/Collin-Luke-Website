@@ -19,6 +19,7 @@ const Recordings = () => {
 
   const onPlay = (recordingId) => {
     setCurrent(recordingId);
+
     const currentRecording = document.querySelector(
       `.recordings-video-container-${recordingId}`
     );
@@ -35,7 +36,6 @@ const Recordings = () => {
           `.recordings-video-container-${recording.id}`
         );
         pausedRecording.classList.add("shrink-video");
-        pausedRecording.setAttribute("playing", false);
       }
     });
   };

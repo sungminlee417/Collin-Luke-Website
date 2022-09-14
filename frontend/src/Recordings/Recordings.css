@@ -9,18 +9,18 @@
 
 .recordings-video-container {
   height: 100%;
-  transition: all 0.7s ease;
+  transition: all 0.7s ease-in;
   width: 50%;
 }
 
 .enlarge-video {
   height: 100%;
-  transition: all 0.7s ease;
+  transition: all 0.7s ease-in;
   width: 70%;
 }
 
 .shrink-video {
   height: 45%;
-  transition: all 0.7s ease;
+  transition: all 0.7s ease-in;
   width: 30%;
 }

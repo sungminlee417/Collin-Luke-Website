@@ -23,7 +23,7 @@
   background-color: #494e53;
   height: 0.2rem;
   transition: all 0.2s;
-  width: 3.2rem;
+  width: 3.5rem;
 }
 
 .navigation-button-clicked {
@@ -31,8 +31,8 @@
 }
 
 .line-one-changed {
-  background-color: #494e53;
   position: absolute;
+  background-color: #494e53;
   transform: rotate(135deg);
 }
 

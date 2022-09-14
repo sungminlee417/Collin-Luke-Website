@@ -1,5 +1,26 @@
-.recordings-video-container {
+.recordings-videos-container {
+  align-items: center;
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
+  height: 45rem;
+  width: 100%;
   justify-content: center;
+}
+
+.recordings-video-container {
+  height: 100%;
+  transition: all 0.7s ease;
+  width: 50%;
+}
+
+.enlarge-video {
+  height: 100%;
+  transition: all 0.7s ease;
+  width: 70%;
+}
+
+.shrink-video {
+  height: 45%;
+  transition: all 0.7s ease;
+  width: 30%;
 }

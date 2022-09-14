@@ -4,7 +4,7 @@ import image from "../images/IMG_4655.jpeg";
 const About = () => {
   return (
     <section className="about-section content-margin">
-      <h3 id="about-section-header">(1) About</h3>
+      <h3 id="about-section-header">About</h3>
       <div id="about-section-content">
         <img
           className="about-section-image"

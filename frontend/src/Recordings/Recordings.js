@@ -1,45 +1,65 @@
 import "./Recordings.css";
-import YouTube from "react-youtube";
+import ReactPlayer from "react-player";
+import { useState } from "react";
 
 const recordingOne = {
+  id: 1,
   name: "Cereusle",
-  url: "m_oA5_T2_UE",
+  url: "https://youtu.be/m_oA5_T2_UE",
 };
 const recordingTwo = {
+  id: 2,
   name: "A Sense of Loss",
-  url: "DuvWZ6DD7zc",
+  url: "https://youtu.be/DuvWZ6DD7zc",
 };
 const recordingsURL = [recordingOne, recordingTwo];
 
 const Recordings = () => {
+  const [current, setCurrent] = useState(0);
+
+  const onPlay = (recordingId) => {
+    setCurrent(recordingId);
+    const currentRecording = document.querySelector(
+      `.recordings-video-container-${recordingId}`
+    );
+    if (!currentRecording.classList.contains("enlarge-video")) {
+      currentRecording.classList.add("enlarge-video");
+    }
+    if (currentRecording.classList.contains("shrink-video")) {
+      currentRecording.classList.remove("shrink-video");
+    }
+
+    recordingsURL.forEach((recording) => {
+      if (recordingId !== recording.id) {
+        const pausedRecording = document.querySelector(
+          `.recordings-video-container-${recording.id}`
+        );
+        pausedRecording.classList.add("shrink-video");
+        pausedRecording.setAttribute("playing", false);
+      }
+    });
+  };
+
   return (
     <section className="recordings-section content-margin">
-      <h3>(2) Recordings</h3>
-      <ul className="recordings-video-container">
+      <h3>Recordings</h3>
+      <ul className="recordings-videos-container">
         {recordingsURL.map((recording, index) => {
-          const opts = {
-            height: "100%",
-            width: "100%",
-          };
           return (
-            <YouTube
-              videoId={recording.url}
-              opts={opts}
-              className="recordings-youtube-video"
-              // iframeClassName={string}          // defaults -> ''
-              // style={object}                    // defaults -> {}
-              // title={string}                    // defaults -> ''
-              // loading={string}                  // defaults -> undefined
-              // opts={obj}                        // defaults -> {}
-              // onReady={func}                    // defaults -> noop
-              // onPlay={func}                     // defaults -> noop
-              // onPause={func}                    // defaults -> noop
-              // onEnd={func}                      // defaults -> noop
-              // onError={func}                    // defaults -> noop
-              // onStateChange={func}              // defaults -> noop
-              // onPlaybackRateChange={func}       // defaults -> noop
-              // onPlaybackQualityChange={func}    // defaults -> noop
-            />
+            <div
+              key={index}
+              className={`recordings-video-container recordings-video-container-${recording.id}`}
+            >
+              <ReactPlayer
+                url={recording.url}
+                width="100%"
+                height="100%"
+                controls
+                playing={current === recording.id ? true : false}
+                className={`recordings-youtube-video-${recording.id}`}
+                onPlay={() => onPlay(recording.id)}
+              />
+            </div>
           );
         })}
       </ul>

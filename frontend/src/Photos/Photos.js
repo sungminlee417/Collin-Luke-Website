@@ -21,7 +21,7 @@ const Photos = () => {
 
   return (
     <section className="photos-section content-margin">
-      <h3>(3) Photos</h3>
+      <h3>Photos</h3>
       <div className="photos-carousel-container">
         <Swiper
           style={{

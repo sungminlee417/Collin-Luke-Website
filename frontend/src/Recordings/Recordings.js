@@ -40,6 +40,20 @@ const Recordings = () => {
     });
   };
 
+  const onPause = (recordingId) => {
+    setTimeout(() => {
+      if (current === recordingId) {
+        recordingsURL.forEach((recordingData) => {
+          const recording = document.querySelector(
+            `.recordings-video-container-${recordingData.id}`
+          );
+          recording.classList.remove("shrink-video");
+          recording.classList.remove("enlarge-video");
+        });
+      }
+    }, 10000);
+  };
+
   return (
     <section className="recordings-section content-margin">
       <h3>Recordings</h3>
@@ -58,6 +72,7 @@ const Recordings = () => {
                 playing={current === recording.id ? true : false}
                 className={`recordings-youtube-video-${recording.id}`}
                 onPlay={() => onPlay(recording.id)}
+                onPause={() => onPause(recording.id)}
               />
             </div>
           );

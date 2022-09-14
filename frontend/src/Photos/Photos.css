@@ -1,7 +1,5 @@
-#photos-section {
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
+.photos-section {
+  height: 70.2rem;
 }
 
 /****************************/

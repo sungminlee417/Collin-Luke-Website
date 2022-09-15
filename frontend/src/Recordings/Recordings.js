@@ -15,11 +15,10 @@ const recordingTwo = {
 const recordingsURL = [recordingOne, recordingTwo];
 
 const Recordings = () => {
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(null);
 
   const onPlay = (recordingId) => {
     setCurrent(recordingId);
-
     const currentRecording = document.querySelector(
       `.recordings-video-container-${recordingId}`
     );
@@ -40,22 +39,6 @@ const Recordings = () => {
     });
   };
 
-  const resizeVideo = (recordingId) => {
-    if (current === recordingId) {
-      recordingsURL.forEach((recordingData) => {
-        const recording = document.querySelector(
-          `.recordings-video-container-${recordingData.id}`
-        );
-        recording.classList.remove("shrink-video");
-        recording.classList.remove("enlarge-video");
-      });
-    }
-  };
-
-  const onPause = (recordingId) => {
-    resizeVideo(recordingId);
-  };
-
   return (
     <section className="recordings-section content-margin">
       <h3>Recordings</h3>
@@ -74,7 +57,6 @@ const Recordings = () => {
                 playing={current === recording.id ? true : false}
                 className={`recordings-youtube-video recordings-youtube-video-${recording.id}`}
                 onPlay={() => onPlay(recording.id)}
-                onPause={() => onPause(recording.id)}
               />
             </div>
           );

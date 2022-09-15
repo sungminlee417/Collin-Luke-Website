@@ -20,6 +20,7 @@
 }
 
 .slider-image {
+  cursor: pointer;
   object-fit: contain;
   height: 8rem;
   width: 100%;

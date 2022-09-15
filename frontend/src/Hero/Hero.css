@@ -4,7 +4,9 @@
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
+  height: 100vh;
   opacity: 0.75;
+  width: 100%;
 }
 
 #hero-header {

@@ -39,18 +39,6 @@
   .recordings-videos-container {
     height: 32rem;
   }
-
-  .enlarge-video {
-    /* height: 100%;
-    transition: all 0.7s ease-in;
-    width: 60%; */
-  }
-
-  .shrink-video {
-    /* height: 60%;
-    transition: all 0.7s ease-in;
-    width: 40%; */
-  }
 }
 
 @media (max-width: 768px) {

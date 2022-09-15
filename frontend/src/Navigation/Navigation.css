@@ -79,6 +79,7 @@
   cursor: pointer;
   font-family: inherit;
   font-size: 4vw;
+  letter-spacing: 0.11rem;
   text-align: start;
 }
 
@@ -94,6 +95,7 @@
   font-family: inherit;
   font-size: 3.6rem;
   left: 0;
+  letter-spacing: 0.05rem;
   margin: 0 auto;
   position: absolute;
   right: 0;

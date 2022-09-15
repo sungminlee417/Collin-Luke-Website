@@ -1,26 +1,8 @@
-.photos-section {
-  height: 70.2rem;
-}
-
 /****************************/
 /* IMAGES CAROUSEL */
 /****************************/
-.image-container {
-  display: flex;
-  justify-content: center;
-}
-
-.photos-carousel-container {
-  margin: 0 auto;
-  width: 80%;
-}
-
 .carousel-image {
-  height: 50rem;
-}
-
-.slider-image {
-  height: 8rem;
+  height: 75vh;
   object-fit: contain;
   width: 100%;
 }
@@ -29,8 +11,14 @@
 /* IMAGES SLIDER */
 /****************************/
 .images-slider {
-  padding: 1rem 0;
-  width: 60%;
+  padding: 1rem 0 0 0;
+  width: 45vw;
+}
+
+.slider-image {
+  object-fit: contain;
+  height: 10vh;
+  width: 100%;
 }
 
 .images-slider .swiper-slide {
@@ -44,14 +32,3 @@
 /****************************/
 /* MEDIA QUERIES */
 /****************************/
-
-@media (max-width: 1024px) {
-  .photos-carousel-container {
-    margin: 0 auto;
-    width: 100%;
-  }
-
-  .carousel-image {
-    height: 45rem;
-  }
-}

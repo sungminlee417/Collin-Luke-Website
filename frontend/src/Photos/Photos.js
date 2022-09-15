@@ -52,7 +52,7 @@ const Photos = () => {
           onSwiper={setThumbsSwiper}
           loop={true}
           spaceBetween={10}
-          slidesPerView={4}
+          slidesPerView={5}
           freeMode={true}
           watchSlidesProgress={true}
           modules={[FreeMode, Navigation, Thumbs]}

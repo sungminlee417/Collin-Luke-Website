@@ -116,7 +116,12 @@ const Navigation = () => {
             </button>
           </li>
           <li className="navigation-link-container">
-            <button className="navigation-link">Contact</button>
+            <button
+              className="navigation-link"
+              onClick={() => scrollSmoothlyTo("contact-section")}
+            >
+              Contact
+            </button>
           </li>
         </ul>
       </nav>

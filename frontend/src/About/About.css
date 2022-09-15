@@ -5,15 +5,22 @@
 .about-section {
   display: flex;
   flex-direction: row;
-  gap: 6rem;
-  height: 100vh;
-  justify-content: space-between; 
+  gap: 10rem;
+  height: fit-content;
+  justify-content: space-between;
 }
 
 #about-section-header {
   display: flex;
   flex-direction: column;
-  gap: 10rem;
+  gap: 9rem;
+}
+
+.about-image-duo {
+  gap: 6rem;
+  margin-left: 3rem;
+  box-shadow: -3rem -3rem 0 #967e76;
+  width: 100%;
 }
 
 .about-duo-section {
@@ -32,7 +39,8 @@
 
 
 #about-large-text {
-  font-size: 8rem;
+  font-size: 7.7rem;
+  letter-spacing: 0.23rem;
   margin-bottom: 2.3rem;
   color: #373b3e;
 
@@ -41,7 +49,7 @@
 #about-small-text {
   font-family: "Source Sans Pro", sans-serif;
   font-weight: lighter;
-  line-height: 3rem;
+  line-height: 3.7rem;
 }
 
 /*************************/

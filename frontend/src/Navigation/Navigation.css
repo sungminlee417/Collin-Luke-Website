@@ -21,7 +21,7 @@
 .line-one,
 .line-two {
   background-color: #494e53;
-  height: 0.2rem;
+  height: 0.3rem;
   transition: all 0.2s;
   width: 3.5rem;
 }

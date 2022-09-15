@@ -9,7 +9,7 @@
 
 .about-section-image {
   background-color: #967e76;
-  width: 30%;
+  width: 29.2%;
 }
 
 .about-duo-section {
@@ -21,12 +21,13 @@
 
 #about-large-text {
   font-size: 7.7rem;
+  letter-spacing: 0.23rem;
 }
 
 #about-small-text {
   font-family: "Source Sans Pro", sans-serif;
   font-weight: lighter;
-  line-height: 3rem;
+  line-height: 3.7rem;
 }
 
 /*********************************/

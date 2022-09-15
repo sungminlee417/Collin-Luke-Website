@@ -1,10 +1,9 @@
 /****************************/
 /* IMAGES CAROUSEL */
 /****************************/
-.photos-carousel-images {
-  width: 75%;
-}
 .carousel-image {
+  height: 75vh;
+  object-fit: contain;
   width: 100%;
 }
 
@@ -13,11 +12,12 @@
 /****************************/
 .images-slider {
   padding: 1rem 0 0 0;
-  width: 45%;
+  width: 45vw;
 }
 
 .slider-image {
   object-fit: contain;
+  height: 10vh;
   width: 100%;
 }
 

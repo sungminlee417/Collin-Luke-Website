@@ -14,7 +14,7 @@ import image4 from "../images/IMG_4655.jpeg";
 import image5 from "../images/IMG_4647.jpeg";
 import "./Photos.css";
 
-const images = [image1, image2, image3, image5];
+const images = [image1, image2, image3, image4, image5];
 
 const Photos = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -52,7 +52,7 @@ const Photos = () => {
           onSwiper={setThumbsSwiper}
           loop={true}
           spaceBetween={10}
-          slidesPerView={4}
+          slidesPerView={5}
           freeMode={true}
           watchSlidesProgress={true}
           modules={[FreeMode, Navigation, Thumbs]}

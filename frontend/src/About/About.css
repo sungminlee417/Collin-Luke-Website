@@ -1,26 +1,38 @@
 /*************************/
 /* ABOUT SECTION FOR DUO */
 /*************************/
-#about-section-content {
+
+.about-section {
   align-items: center;
   display: flex;
+  gap: 6rem;
+  height: 100vh;
+  justify-content: space-between;
+}
+
+#about-section-header {
+  display: flex;
+  flex-direction: column;
   gap: 10rem;
 }
 
-.about-section-image {
-  background-color: #967e76;
+.about-image-duo {
+  gap: 6rem;
+  margin-left: 3rem;
+  box-shadow: -3rem -3rem 0 #967e76;
   width: 30%;
 }
 
 .about-duo-section {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
   width: auto;
 }
 
 #about-large-text {
-  font-size: 7.7rem;
+  font-size: 8rem;
+  margin-bottom: 2.3rem;
+  color: #373b3e;
 }
 
 #about-small-text {
@@ -37,17 +49,3 @@
   background-color: #494e53;
 }
 */
-
-@media (max-width: 1024px) {
-  #about-section-content {
-    gap: 5rem;
-  }
-
-  #about-large-text {
-    font-size: 5rem;
-  }
-
-  #about-small-text {
-    font-size: 1.7rem;
-  }
-}

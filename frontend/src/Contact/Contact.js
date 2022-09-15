@@ -32,14 +32,15 @@ export const Contact = () => {
           setValidationErrors([error.text])
       });
     }
-
-
   };
 
   return (
     <section className="contact-section content-margin">
-      <h3 id="contact-section-header-text">(4) Contact </h3>
+      <h3 id="contact-section-header-text">Contact </h3>
+      <section className="email-box">
       <form ref={form} onSubmit={sendEmail}>
+        <div id="contact-section-header">Get in Touch</div>
+        <div id="contact-section-subheader">Send a message and we'll get back to you shortly.</div>
         <label>Name</label>
         <input type="text" name="user_name" value={name} onChange={(e) => setName(e.target.value)}/>
         <label>Email</label>
@@ -55,8 +56,9 @@ export const Contact = () => {
           })
         }
         </ul>}
+
     </section>
-    
+    </section>
   );
 };
 

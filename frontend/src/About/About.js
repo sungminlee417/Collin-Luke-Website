@@ -5,7 +5,7 @@ const About = () => {
   return (
     <section className="about-section content-margin">
       <header id="about-section-header">
-        <h3 id="about-section-header-text">(1) About</h3>
+        <h3 id="about-section-header-text">About</h3>
         <img className="about-image-duo" src={image} alt="Collin and Luke" />
       </header>
       <div className="about-duo-section">

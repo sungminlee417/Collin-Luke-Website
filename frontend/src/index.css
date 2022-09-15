@@ -82,6 +82,7 @@ body {
   font-weight: 400;
   height: 100vh;
   overflow-x: hidden;
+  position: relative;
 }
 
 section {

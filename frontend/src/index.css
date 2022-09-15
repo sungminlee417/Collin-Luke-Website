@@ -94,6 +94,7 @@ section {
 h3 {
   font-size: 2.2rem;
   letter-spacing: 0.05rem;
+  color: #373b3e;
 }
 
 /*************************/
@@ -139,18 +140,18 @@ h3 {
 }
 
 @media (max-width: 768px) {
-  section {
-    /* height: 70rem; */
-  }
+  /* section { */
+  /* height: 70rem; */
+  /* } */
   .content-margin {
     margin: 5rem 6rem;
   }
 }
 
 @media (max-width: 480px) {
-  section {
-    /* height: 60rem; */
-  }
+  /* section { */
+  /* height: 60rem; */
+  /* } */
   .content-margin {
     margin: 4rem 3rem;
   }

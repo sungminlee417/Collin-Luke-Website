@@ -3,7 +3,7 @@ import image from "../images/IMG_4655.jpeg";
 
 const About = () => {
   return (
-    <section className="about-section content-margin">
+    <section className="about-section content-padding">
       <header id="about-section-header">
         <h3 id="about-section-header-text">About</h3>
         <img className="about-image-duo" src={image} alt="Collin and Luke" />

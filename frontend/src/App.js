@@ -1,7 +1,7 @@
 import Navigation from "./Navigation";
 import Hero from "./Hero";
 import About from "./About";
-import Recordings from "./Recordings";
+import Recordings from "./Media";
 import Photos from "./Photos";
 import Contact from "./Contact";
 
@@ -12,7 +12,6 @@ function App() {
       <Hero />
       <About />
       <Recordings />
-      <Photos />
       <Contact />
     </>
   );

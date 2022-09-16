@@ -102,17 +102,9 @@ const Navigation = () => {
           <li className="navigation-link-container">
             <button
               className="navigation-link"
-              onClick={() => scrollSmoothlyTo("recordings-section")}
+              onClick={() => scrollSmoothlyTo("media-section")}
             >
-              Recordings
-            </button>
-          </li>
-          <li className="navigation-link-container">
-            <button
-              className="navigation-link"
-              onClick={() => scrollSmoothlyTo("photos-section")}
-            >
-              Photos
+              Media
             </button>
           </li>
           <li className="navigation-link-container">

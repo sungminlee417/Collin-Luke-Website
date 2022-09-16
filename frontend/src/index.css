@@ -76,7 +76,6 @@ html {
 
 body {
   animation: fade-in 2s;
-  background-color: #f7f1e5;
   font-family: "DM Serif Display", serif;
   line-height: 1;
   font-weight: 400;
@@ -102,8 +101,8 @@ h3 {
 /* REUSABLE STYLINGS */
 /*************************/
 
-.content-margin {
-  margin: 15rem 8rem;
+.content-padding {
+  padding: 8rem;
 }
 
 /*************************/

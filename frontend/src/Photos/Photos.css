@@ -16,7 +16,7 @@
 #photos-carousel-content {
   display: flex;
   gap: 4rem;
-  justify-content: center;
+  justify-content: space-between;
   height: 55rem;
 }
 

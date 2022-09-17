@@ -15,7 +15,8 @@
 
 #photos-carousel-content {
   display: flex;
-  justify-content: space-between;
+  gap: 4rem;
+  justify-content: center;
   height: 55rem;
 }
 
@@ -107,7 +108,7 @@
 /****************************/
 @media (max-width: 1024px) {
   #photos-carousel-content {
-    height: 40rem;
+    height: 38rem;
   }
 
   #images-slider {

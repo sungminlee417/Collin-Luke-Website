@@ -3,9 +3,10 @@ import image1 from "../images/IMG_4645.jpg";
 import image2 from "../images/IMG_4650.jpeg";
 import image3 from "../images/IMG_4651.jpeg";
 import image4 from "../images/IMG_4655.jpeg";
+import image5 from "../images/IMG_4647.jpeg";
 import "./Photos.css";
 
-const images = [image1, image2, image3, image4];
+const images = [image1, image2, image3, image4, image5];
 
 const Photos = () => {
   const [current, setCurrent] = useState(0);
@@ -35,11 +36,12 @@ const Photos = () => {
   }, [current, prev]);
 
   return (
-    <section id="photos-section">
+    <section className="photos-section content-margin">
+      <h3>Photos</h3>
       <div id="photos-carousel-container">
         <div id="photos-carousel-content">
           <button className="carousel-button left-button" onClick={prevSlide}>
-            <i className="fa-solid fa-chevron-left fa-2x"></i>
+            <i className="fa-solid fa-chevron-left fa-3x"></i>
           </button>
           <div id="photos-carousel-images">
             {images.map((image, index) => {
@@ -64,7 +66,7 @@ const Photos = () => {
             })}
           </div>
           <button className="carousel-button right-button" onClick={nextSlide}>
-            <i className="fa-solid fa-chevron-right fa-2x"></i>
+            <i className="fa-solid fa-chevron-right fa-3x"></i>
           </button>
         </div>
         <ul id="images-slider">

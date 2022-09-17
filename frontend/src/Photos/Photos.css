@@ -20,31 +20,23 @@
 }
 
 #photos-carousel-images {
-  display: flex;
+  overflow-x: hidden;
+  white-space: nowrap;
 }
 
 .carousel-slide {
+  align-items: center;
   background-color: transparent;
   border: none;
-  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
   height: 100%;
-  position: absolute;
-  opacity: 0;
-  transition: all 1s ease;
   width: 100%;
-}
-
-.carousel-slide.active {
-  left: 0;
-  opacity: 1;
-  position: static;
-  right: 0;
-  top: 0;
-  transition-duration: 1s;
-  width: 100%;
+  transition: transform 0.3s;
 }
 
 .carousel-image {
+  display: inline-flex;
   height: 100%;
   object-fit: contain;
   width: 100%;

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSwipeable } from "react-swipeable";
 import image1 from "../images/IMG_4645.jpg";
 import image2 from "../images/IMG_4650.jpeg";
 import image3 from "../images/IMG_4651.jpeg";
@@ -13,8 +14,6 @@ const Photos = () => {
   const [prev, setPrev] = useState(current - 1);
   const length = images.length;
 
-  console.log(prev);
-
   const nextSlide = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
   };
@@ -26,6 +25,11 @@ const Photos = () => {
   const selectImage = (index) => {
     setCurrent(index);
   };
+
+  const handlers = useSwipeable({
+    onSwipedLeft: () => prevSlide(),
+    onSwipedRight: () => nextSlide(),
+  });
 
   useEffect(() => {
     if (current === 0) {
@@ -43,24 +47,19 @@ const Photos = () => {
           <button className="carousel-button left-button" onClick={prevSlide}>
             <i className="fa-solid fa-chevron-left fa-3x"></i>
           </button>
-          <div id="photos-carousel-images">
+          <div {...handlers} id="photos-carousel-images">
             {images.map((image, index) => {
               return (
                 <button
                   key={index}
-                  className={
-                    index === current
-                      ? `image-slide-${index} carousel-slide active`
-                      : `image-slide-${index} carousel-slide `
-                  }
+                  className={`image-slide-${index} carousel-slide `}
+                  style={{ transform: `translateX(-${current * 100}%)` }}
                 >
-                  {/* {index === current && ( */}
                   <img
                     className="carousel-image"
                     src={image}
                     alt="collin-and-luke"
                   />
-                  {/* )} */}
                 </button>
               );
             })}

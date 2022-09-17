@@ -22,3 +22,9 @@
 /****************************/
 /* MEDIA QUERIES */
 /****************************/
+
+@media (max-width: 1024px) {
+  .recordings-videos-container {
+    padding: 0;
+  }
+}

@@ -1,12 +1,4 @@
-import { useState } from "react";
-import { FreeMode, Navigation, Thumbs } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
-
+import { useEffect, useState } from "react";
 import image1 from "../images/IMG_4645.jpg";
 import image2 from "../images/IMG_4650.jpeg";
 import image3 from "../images/IMG_4651.jpeg";
@@ -17,59 +9,88 @@ import "./Photos.css";
 const images = [image1, image2, image3, image4, image5];
 
 const Photos = () => {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [current, setCurrent] = useState(0);
+  const [prev, setPrev] = useState(current - 1);
+  const length = images.length;
+
+  console.log(prev);
+
+  const nextSlide = () => {
+    setCurrent(current === length - 1 ? 0 : current + 1);
+  };
+
+  const prevSlide = () => {
+    setCurrent(current === 0 ? length - 1 : current - 1);
+  };
+
+  const selectImage = (index) => {
+    setCurrent(index);
+  };
+
+  useEffect(() => {
+    if (current === 0) {
+      setPrev(length - 1);
+    } else {
+      setPrev(current - 1);
+    }
+  }, [length, current, prev]);
 
   return (
     <section className="photos-section content-margin">
       <h3>Photos</h3>
-      <div className="photos-carousel-container">
-        <Swiper
-          style={{
-            "--swiper-navigation-color": "#373b3e",
-          }}
-          loop={true}
-          spaceBetween={500}
-          navigation={true}
-          thumbs={{ swiper: thumbsSwiper }}
-          modules={[FreeMode, Navigation, Thumbs]}
-          className="photos-carousel-images"
-        >
-          {images.map((image, index) => {
-            return (
-              <SwiperSlide key={index} className={"carousel-slide"}>
-                <div className="image-container">
+      <div id="photos-carousel-container">
+        <div id="photos-carousel-content">
+          <button className="carousel-button left-button" onClick={prevSlide}>
+            <i className="fa-solid fa-chevron-left fa-3x"></i>
+          </button>
+          <div id="photos-carousel-images">
+            {images.map((image, index) => {
+              return (
+                <button
+                  key={index}
+                  className={
+                    index === current
+                      ? `image-slide-${index} carousel-slide active`
+                      : `image-slide-${index} carousel-slide `
+                  }
+                >
+                  {/* {index === current && ( */}
                   <img
                     className="carousel-image"
                     src={image}
                     alt="collin-and-luke"
                   />
-                </div>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-        <Swiper
-          onSwiper={setThumbsSwiper}
-          loop={true}
-          spaceBetween={10}
-          slidesPerView={5}
-          freeMode={true}
-          watchSlidesProgress={true}
-          modules={[FreeMode, Navigation, Thumbs]}
-          className="images-slider"
-        >
+                  {/* )} */}
+                </button>
+              );
+            })}
+          </div>
+          <button className="carousel-button right-button" onClick={nextSlide}>
+            <i className="fa-solid fa-chevron-right fa-3x"></i>
+          </button>
+        </div>
+        <ul id="images-slider">
           {images.map((image, index) => {
             return (
-              <SwiperSlide key={index} className={"slider-slide"}>
-                <img
-                  className="slider-image"
-                  src={image}
-                  alt="collin-and-luke"
-                />
-              </SwiperSlide>
+              <li key={index} className="images-slider-image-container">
+                <button
+                  onClick={() => selectImage(index)}
+                  className={
+                    index === current
+                      ? "images-slide-button active"
+                      : "images-slide-button"
+                  }
+                >
+                  <img
+                    className="images-slider-image"
+                    src={images[index]}
+                    alt="collin-and-luke"
+                  />
+                </button>
+              </li>
             );
           })}
-        </Swiper>
+        </ul>
       </div>
     </section>
   );

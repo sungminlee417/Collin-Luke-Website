@@ -1,39 +1,81 @@
 /****************************/
 /* IMAGES CAROUSEL */
 /****************************/
-.photos-carousel-images {
-  max-width: 100rem;
+#photos-section {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding-top: 8rem;
+  width: 100%;
+}
+
+#photos-carousel-container {
+  align-items: center;
+  display: flex;
+  height: 50rem;
+  justify-content: center;
+  position: relative;
+  width: 50%;
 }
 
 .carousel-image {
-  height: 75vh;
-  object-fit: contain;
+  height: 100%;
   width: 100%;
+}
+
+.carousel-button {
+  background-color: white;
+  border: none;
+  color: #373b3e;
+  position: absolute;
+  top: 50%;
+  transition: 0.2s;
+}
+
+.carousel-button:hover {
+  color: black;
+}
+
+.left-button {
+  left: -6.4rem;
+}
+
+.right-button {
+  right: -6.4rem;
 }
 
 /****************************/
 /* IMAGES SLIDER */
 /****************************/
-.images-slider {
-  padding: 1rem 0 0 0;
-  width: 65rem;
-}
 
-.slider-image {
-  cursor: pointer;
-  object-fit: contain;
-  height: 8rem;
+#images-slider {
+  bottom: -10rem;
+  display: flex;
+  gap: 1.2rem;
+  height: 6rem;
+  justify-content: center;
+  left: 0;
+  list-style: none;
+  position: absolute;
+  right: 0;
   width: 100%;
 }
 
-.images-slider .swiper-slide {
-  opacity: 0.4;
+.images-slide-button {
+  border: none;
+  height: 100%;
+  opacity: 50%;
+  transition: all 1s ease;
 }
 
-.images-slider .swiper-slide-thumb-active {
+.images-slide-button.active {
   opacity: 1;
+  transform: scale(1.08);
 }
 
-/****************************/
-/* MEDIA QUERIES */
-/****************************/
+.images-slider-image {
+  height: 100%;
+  object-fit: cover;
+  object-position: 0 30%;
+  width: 100%;
+}

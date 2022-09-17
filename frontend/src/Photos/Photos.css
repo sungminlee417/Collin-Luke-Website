@@ -19,20 +19,31 @@
   height: 55rem;
 }
 
+#photos-carousel-images {
+  display: flex;
+}
+
 .carousel-slide {
   background-color: transparent;
   border: none;
+  cursor: pointer;
+  height: 100%;
+  position: absolute;
   opacity: 0;
   transition: all 1s ease;
+  visibility: hidden;
+  width: 100%;
 }
 
 .carousel-slide.active {
-  height: 100%;
   left: 0;
   opacity: 1;
+  position: static;
   right: 0;
   top: 0;
   transition-duration: 1s;
+  visibility: visible;
+  width: 100%;
 }
 
 .carousel-image {
@@ -45,6 +56,7 @@
   background-color: transparent;
   border: none;
   color: #373b3e;
+  cursor: pointer;
   top: 50%;
   transition: 0.2s;
 }
@@ -68,6 +80,7 @@
 
 .images-slide-button {
   border: none;
+  cursor: pointer;
   height: 100%;
   opacity: 50%;
   transition: all 0.7s ease;
@@ -82,4 +95,85 @@
   height: 100%;
   object-fit: contain;
   width: 100%;
+}
+
+/****************************/
+/* MEDIA QUERIES */
+/****************************/
+@media (max-width: 1024px) {
+  #photos-carousel-content {
+    height: 40rem;
+  }
+
+  #images-slider {
+    height: 7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #photos-carousel-content {
+    height: 30rem;
+  }
+
+  #images-slider {
+    height: 7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #photos-carousel-container {
+    width: 100%;
+  }
+
+  #photos-carousel-content {
+    height: fit-content;
+  }
+
+  #photos-carousel-images {
+    display: grid;
+    gap: 1rem;
+    grid-template-areas:
+      "a b"
+      "c d"
+      "c e";
+    height: 100%;
+  }
+
+  .carousel-slide {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: static;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .carousel-slide:hover {
+  }
+
+  .carousel-image {
+    object-fit: cover;
+  }
+
+  .image-slide-1 {
+    grid-area: a;
+  }
+
+  .image-slide-2 {
+    grid-area: b;
+  }
+
+  .image-slide-3 {
+    grid-area: c;
+  }
+
+  .carousel-button {
+    display: none;
+    pointer-events: none;
+  }
+
+  #images-slider {
+    display: none;
+    pointer-events: none;
+  }
 }

@@ -33,7 +33,7 @@ const Photos = () => {
     } else {
       setPrev(current - 1);
     }
-  }, [current, prev]);
+  }, [length, current, prev]);
 
   return (
     <section className="photos-section content-margin">
@@ -50,17 +50,17 @@ const Photos = () => {
                   key={index}
                   className={
                     index === current
-                      ? "carousel-slide active"
-                      : "carousel-slide "
+                      ? `image-slide-${index} carousel-slide active`
+                      : `image-slide-${index} carousel-slide `
                   }
                 >
-                  {index === current && (
-                    <img
-                      className="carousel-image"
-                      src={images[current]}
-                      alt="collin-and-luke"
-                    />
-                  )}
+                  {/* {index === current && ( */}
+                  <img
+                    className="carousel-image"
+                    src={image}
+                    alt="collin-and-luke"
+                  />
+                  {/* )} */}
                 </button>
               );
             })}
@@ -81,7 +81,11 @@ const Photos = () => {
                       : "images-slide-button"
                   }
                 >
-                  <img className="images-slider-image" src={images[index]} />
+                  <img
+                    className="images-slider-image"
+                    src={images[index]}
+                    alt="collin-and-luke"
+                  />
                 </button>
               </li>
             );

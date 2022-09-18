@@ -1,34 +1,21 @@
-import React from 'react'
-import { Modal, Button } from 'react-bootstrap'
-import "./Modal.css"
+import "./Modal.css";
+import ReactDOM from "react-dom";
 
-function ModalDialog() {
-    const [isShow, invokeModal] = React.useState(false)
-    const initModal = () => {
-        return invokeModal(!false)
-    }
-    return (
-        <>
-        <Button variant="success" onClick={initModal}>
-          Open Modal
-        </Button>
-        <Modal show={isShow}>
-          <Modal.Header closeButton onClick={initModal}>
-            <Modal.Title>React Modal Popover Example</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="danger" onClick={initModal}>
-              Close
-            </Button>
-            <Button variant="dark" onClick={initModal}>
-              Store
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </>
-    )
-  }
-export default Modal
+const Modal = ({ showModal, onClose, children }) => {
+  if (!showModal) return null;
+
+  return ReactDOM.createPortal(
+    <>
+      <div id="modal-background" />
+      <div id="modal">
+        <div id="modal-content">{children}</div>
+      </div>
+      <button id="modal-exit-button" onClick={onClose}>
+        <i class="fa-solid fa-x fa-2x"></i>
+      </button>
+    </>,
+    document.getElementById("portal")
+  );
+};
+
+export default Modal;

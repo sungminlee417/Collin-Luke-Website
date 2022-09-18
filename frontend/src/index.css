@@ -74,6 +74,7 @@ html {
   overflow-x: hidden;
   overflow-y: hidden;
   height: -webkit-fill-available;
+  min-height: 100vh;
 }
 
 body {

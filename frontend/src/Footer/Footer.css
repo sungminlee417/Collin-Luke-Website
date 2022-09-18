@@ -1,0 +1,28 @@
+.footer-content {
+  align-items: center;
+  display: flex;
+  border-top: 0.5px solid #373b3e;
+  justify-content: space-between;
+  padding-top: 4rem;
+}
+
+.social-media-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.social-media-link {
+  background-color: transparent;
+  border: none;
+  color: #373b3e;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.social-media-link:hover {
+  color: black;
+}
+
+.footer-copyright {
+  font-size: 1.7rem;
+}

@@ -73,9 +73,7 @@ html {
   font-size: 62.5%;
   overflow-x: hidden;
   overflow-y: hidden;
-  min-height: -moz-available;
   min-height: -webkit-fill-available;
-  min-height: fill-available;
 }
 
 body {
@@ -87,9 +85,7 @@ body {
   height: 100vh;
   overflow-x: hidden;
   position: relative;
-  min-height: -moz-available;
   min-height: -webkit-fill-available;
-  min-height: fill-available;
 }
 
 section {

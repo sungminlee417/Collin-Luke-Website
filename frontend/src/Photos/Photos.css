@@ -32,7 +32,7 @@
   cursor: pointer;
   height: fit-content;
   top: 50%;
-  transition: 0.2s;
+  transition: all 0.2s ease-in-out;
 }
 
 .carousel-button:hover {
@@ -61,7 +61,7 @@
   cursor: pointer;
   height: 100%;
   opacity: 50%;
-  transition: all 0.7s ease;
+  transition: all 0.7s ease-in-out;
   width: 100%;
 }
 

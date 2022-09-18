@@ -56,9 +56,7 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(5px);
   display: flex;
-  /* min-height: -moz-available; */
   min-height: -webkit-fill-available;
-  /* min-height: fill-available; */
   height: 100%;
   justify-content: center;
   opacity: 0;
@@ -139,7 +137,6 @@
 @media (max-width: 480px) {
   .navigation-container {
     opacity: 0.96;
-    height: 100vh;
     justify-content: center;
     width: 100%;
   }

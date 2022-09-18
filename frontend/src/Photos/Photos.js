@@ -6,6 +6,7 @@ import image3 from "../images/IMG_4651.jpeg";
 import image4 from "../images/IMG_4655.jpeg";
 import image5 from "../images/IMG_4647.jpeg";
 import "./Photos.css";
+import PhotoModal from "./PhotoModal";
 
 const images = [image1, image2, image3, image4, image5];
 
@@ -50,22 +51,12 @@ const Photos = () => {
           <div id="photos-carousel-images" {...handlers}>
             {images.map((image, index) => {
               return (
-                <button
+                <PhotoModal
                   key={index}
-                  className={
-                    index === current
-                      ? `image-slide-${index} carousel-slide active`
-                      : `image-slide-${index} carousel-slide `
-                  }
-                >
-                  {/* {index === current && ( */}
-                  <img
-                    className="carousel-image"
-                    src={image}
-                    alt="collin-and-luke"
-                  />
-                  {/* )} */}
-                </button>
+                  index={index}
+                  image={image}
+                  current={current}
+                />
               );
             })}
           </div>

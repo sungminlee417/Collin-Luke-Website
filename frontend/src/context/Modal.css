@@ -22,7 +22,6 @@
 }
 
 .modal-content {
-  height: 80%;
-  position: absolute;
-  text-align: center;
+  height: 100%;
+  position: relative;
 }

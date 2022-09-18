@@ -73,9 +73,9 @@ html {
   font-size: 62.5%;
   overflow-x: hidden;
   overflow-y: hidden;
-  min-width: -moz-available;
-  min-width: -webkit-fill-available;
-  min-width: fill-available;
+  min-height: -moz-available;
+  min-height: -webkit-fill-available;
+  min-height: fill-available;
 }
 
 body {
@@ -87,9 +87,9 @@ body {
   height: 100vh;
   overflow-x: hidden;
   position: relative;
-  min-width: -moz-available;
-  min-width: -webkit-fill-available;
-  min-width: fill-available;
+  min-height: -moz-available;
+  min-height: -webkit-fill-available;
+  min-height: fill-available;
 }
 
 section {

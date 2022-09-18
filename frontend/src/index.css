@@ -83,8 +83,8 @@ body {
   font-family: "DM Serif Display", serif;
   line-height: 1;
   font-weight: 400;
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
+  height: 100vh;
+  height: -webkit-fill-available;
   overflow-x: hidden;
   position: relative;
 }

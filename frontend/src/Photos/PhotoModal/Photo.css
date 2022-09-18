@@ -4,3 +4,35 @@
   object-fit: contain;
   position: relative;
 }
+
+.modal-image-close-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  justify-content: center;
+  right: 3.6rem;
+  position: fixed;
+  top: 3.6rem;
+  z-index: 3;
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.modal-line-one,
+.modal-line-two {
+  background-color: white;
+  height: 0.3rem;
+  position: absolute;
+  width: 3.5rem;
+}
+
+.modal-line-one {
+  transform: rotate(135deg);
+}
+
+.modal-line-two {
+  transform: rotate(-135deg);
+}

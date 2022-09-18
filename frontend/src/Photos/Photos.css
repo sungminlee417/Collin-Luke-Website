@@ -24,34 +24,6 @@
   display: flex;
 }
 
-.carousel-slide {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  height: 100%;
-  position: absolute;
-  opacity: 0;
-  transition: opacity 1s ease;
-  visibility: hidden;
-  width: 100%;
-}
-
-.carousel-slide.active {
-  left: 0;
-  opacity: 1;
-  position: static;
-  right: 0;
-  top: 0;
-  visibility: visible;
-  width: 100%;
-}
-
-.carousel-image {
-  height: 100%;
-  object-fit: contain;
-  width: 100%;
-}
-
 .carousel-button {
   align-self: center;
   background-color: transparent;
@@ -127,24 +99,6 @@
 }
 
 @media (max-width: 480px) {
-  #photos-carousel-container {
-    width: 100%;
-  }
-
-  #photos-carousel-content {
-    height: fit-content;
-  }
-
-  #photos-carousel-images {
-    display: grid;
-    gap: 1rem;
-    grid-template-areas:
-      "a b"
-      "c d"
-      "c e";
-    height: 100%;
-  }
-
   .carousel-slide {
     background-color: transparent;
     border: none;
@@ -171,11 +125,6 @@
   }
 
   .carousel-button {
-    display: none;
-    pointer-events: none;
-  }
-
-  #images-slider {
     display: none;
     pointer-events: none;
   }

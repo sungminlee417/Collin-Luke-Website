@@ -1,0 +1,54 @@
+.carousel-slide {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  height: 100%;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 1s ease;
+  visibility: hidden;
+  width: 100%;
+}
+
+.carousel-slide.active {
+  left: 0;
+  opacity: 1;
+  position: static;
+  right: 0;
+  top: 0;
+  visibility: visible;
+  width: 100%;
+}
+
+.carousel-image {
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .carousel-slide {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: static;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .carousel-image {
+    object-fit: cover;
+  }
+
+  .image-slide-1 {
+    grid-area: a;
+  }
+
+  .image-slide-2 {
+    grid-area: b;
+  }
+
+  .image-slide-3 {
+    grid-area: c;
+  }
+}

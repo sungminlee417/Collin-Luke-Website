@@ -18,6 +18,10 @@
   height: 3.5rem;
 }
 
+.navigation-menu-button.hidden {
+  display: none;
+}
+
 .line-one,
 .line-two {
   background-color: #494e53;

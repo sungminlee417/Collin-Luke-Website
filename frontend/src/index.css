@@ -85,7 +85,6 @@ body {
   font-weight: 400;
   position: relative;
   /* min-height: -webkit-fill-available; */
-  height: 100vh;
   overflow-x: hidden;
 }
 

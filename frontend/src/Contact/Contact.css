@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .contact-section {
   gap: 6rem;
 }
@@ -20,3 +21,78 @@
   font-weight: lighter;
   margin: 0.75rem;
 }
+=======
+.email-header {
+    margin: 0 28rem;    
+}
+
+#contact-section-header {
+    text-align: center;
+    font-size: 5rem;
+    padding-bottom: 4rem;
+    color: #373b3e;
+}
+
+.contact-content {
+    display: flex;
+    gap: 9rem;
+    width: 100%;
+}
+
+.contact-image {
+    object-fit: contain;
+    width: 55rem;
+    height: auto;
+    
+}
+
+#contact-inputs {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+    line-height: 3rem;
+    width: 100%;
+}
+
+.contact-input { 
+    width: 100%;
+    height: 3rem;
+    margin-bottom: 2rem;
+}
+
+.submit-contact-form {
+    cursor: pointer;
+    background-color: #967e76;
+    width: 10rem;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* textarea {
+    width: 55rem;
+    height: 20rem;
+    margin-bottom: 2rem;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+textarea::-webkit-input-placeholder {
+    font-family: Arial;
+    padding-top: 0.5rem;
+    padding-left: 0.1rem;
+} */
+
+/****************************/
+/* MEDIA QUERIES */
+/****************************/
+
+@media (max-width: 1280px) {
+    .contact-section {
+      height: 100%;
+    }
+  }
+>>>>>>> f5caff47815f4df1647f89cbe7026e442cca88d6

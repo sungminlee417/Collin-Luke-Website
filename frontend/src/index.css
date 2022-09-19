@@ -71,9 +71,7 @@ Medium: 11px;
 
 html {
   font-size: 62.5%;
-  height: 100vh;
-  min-height: -webkit-fill-available;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 body {
@@ -82,8 +80,6 @@ body {
   font-family: "DM Serif Display", serif;
   line-height: 1;
   font-weight: 400;
-  position: relative;
-  height: 100%;
   overflow-x: hidden;
 }
 
@@ -91,7 +87,6 @@ section {
   display: flex;
   flex-direction: column;
   gap: 6rem;
-  height: fit-content;
 }
 
 h3 {
@@ -106,10 +101,6 @@ h3 {
 
 .content-margin {
   margin: 8rem 8rem 4rem 8rem;
-}
-
-.stop-scrolling {
-  overflow-y: hidden;
 }
 
 /*************************/

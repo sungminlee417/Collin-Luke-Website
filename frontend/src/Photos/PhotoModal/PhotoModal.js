@@ -14,6 +14,7 @@ const PhotoModal = ({ index, image, current }) => {
       navigationButton.classList.toggle("hidden");
     }
   }, [showModal]);
+
   return (
     <>
       <button

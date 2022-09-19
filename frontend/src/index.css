@@ -71,8 +71,7 @@ Medium: 11px;
 
 html {
   font-size: 62.5%;
-  height: 100vh;
-  min-height: -webkit-fill-available;
+  height: -webkit-fill-available;
   overflow-x: hidden;
 }
 
@@ -83,8 +82,9 @@ body {
   line-height: 1;
   font-weight: 400;
   position: relative;
+  height: 100vh;
+  height: -webkit-fill-available;
   overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 section {

@@ -6,7 +6,7 @@ import image from "../images/IMG_4650.jpeg";
 
 export const Contact = () => {
   const validEmail = new RegExp(
-    '^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$'
+    "^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$"
   );
   const form = useRef();
   const [email, setEmail] = useState("");
@@ -21,15 +21,16 @@ export const Contact = () => {
     if (!message) errors.push("message");
     setValidationErrors(errors);
   }, [email, name, message]);
-  
+
   const sendEmail = (e) => {
     e.preventDefault();
-    const nameElement = document.getElementById("error-name")
-    const emailElement = document.getElementById("error-email")
-    const messageElement = document.getElementById("error-message")
-    nameElement.classList.remove("show-error-message")
-    emailElement.classList.remove("show-error-message")
-    messageElement.classList.remove("show-error-message")
+    const errorElements = document.getElementsByClassName("error-message");
+
+    for (let i = 0; i < errorElements.length; i++) {
+      const error = errorElements[i];
+      error.classList.remove("show-error-message");
+    }
+
     setSubmitted(true);
     if (!validationErrors.length) {
       emailjs
@@ -50,11 +51,11 @@ export const Contact = () => {
             setValidationErrors([error.text]);
           }
         );
-    }
-    else {
-      nameElement.classList.add("show-error-message")
-      emailElement.classList.add("show-error-message")
-      messageElement.classList.add("show-error-message")
+    } else {
+      validationErrors.forEach((error) => {
+        const element = document.getElementById(`error-${error}`);
+        element.classList.add("show-error-message");
+      });
     }
   };
 
@@ -69,7 +70,7 @@ export const Contact = () => {
         <img className="contact-image" src={image} alt="Collin and Luke" />
         <form className="contact-form" ref={form} onSubmit={sendEmail}>
           <div id="contact-inputs">
-            <div className="input-container"> 
+            <div className="input-container">
               <input
                 className="contact-input"
                 placeholder="Name"
@@ -78,7 +79,9 @@ export const Contact = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
-              <p className="error-message" id="error-name">A valid name is required</p>
+              <p className="error-message" id="error-name">
+                A valid name is required
+              </p>
             </div>
             <div className="input-container">
               <input
@@ -89,7 +92,9 @@ export const Contact = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <p className="error-message" id="error-email">A valid email is required</p>
+              <p className="error-message" id="error-email">
+                A valid email is required
+              </p>
             </div>
             <div className="input-container">
               <textarea
@@ -99,21 +104,11 @@ export const Contact = () => {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               />
-              <p className="error-message" id="error-message">A valid message is required</p>
+              <p className="error-message" id="error-message">
+                A valid message is required
+              </p>
             </div>
           </div>
-          {submitted && validationErrors.length > 0 && (
-            <ul className="validation-errors">
-              {validationErrors.map((error, index) => {
-                return (
-                  <div className="error-icon">
-                    <ion-icon name="alert-circle-outline"></ion-icon>
-                    <li>{error}</li>
-                  </div>
-                );
-              })}
-            </ul>
-          )}
           <button className="submit-contact-form" type="submit">
             SUBMIT
           </button>

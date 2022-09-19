@@ -1,25 +1,22 @@
 .contact-section {
-    height: 100vh;
-    gap: 6rem;
+  gap: 6rem;
 }
 .email-box {
-    display: flex;
-    gap: 10rem;
-    background-color: #d7C0AE;
-    margin-left: 20rem;
-    margin-right: 20rem;
-    height:75vh;
+  display: flex;
+  gap: 10rem;
+  background-color: #d7c0ae;
+  margin-left: 20rem;
+  margin-right: 20rem;
 }
 
 #contact-section-header {
-    font-size: 5rem;
-    margin: 0.75rem;
+  font-size: 5rem;
+  margin: 0.75rem;
 }
 
 #contact-section-subheader {
-    font-size: 2rem;
-    font-family: "Source Sans Pro", sans-serif;
-    font-weight: lighter;
-    margin: 0.75rem;
+  font-size: 2rem;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: lighter;
+  margin: 0.75rem;
 }
-

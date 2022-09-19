@@ -15,45 +15,10 @@ const recordingTwo = {
 const recordingsURL = [recordingOne, recordingTwo];
 
 const Recordings = () => {
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(null);
 
   const onPlay = (recordingId) => {
     setCurrent(recordingId);
-
-    const currentRecording = document.querySelector(
-      `.recordings-video-container-${recordingId}`
-    );
-    if (!currentRecording.classList.contains("enlarge-video")) {
-      currentRecording.classList.add("enlarge-video");
-    }
-    if (currentRecording.classList.contains("shrink-video")) {
-      currentRecording.classList.remove("shrink-video");
-    }
-
-    recordingsURL.forEach((recording) => {
-      if (recordingId !== recording.id) {
-        const pausedRecording = document.querySelector(
-          `.recordings-video-container-${recording.id}`
-        );
-        pausedRecording.classList.add("shrink-video");
-      }
-    });
-  };
-
-  const resizeVideo = (recordingId) => {
-    if (current === recordingId) {
-      recordingsURL.forEach((recordingData) => {
-        const recording = document.querySelector(
-          `.recordings-video-container-${recordingData.id}`
-        );
-        recording.classList.remove("shrink-video");
-        recording.classList.remove("enlarge-video");
-      });
-    }
-  };
-
-  const onPause = (recordingId) => {
-    resizeVideo(recordingId);
   };
 
   return (
@@ -62,19 +27,15 @@ const Recordings = () => {
       <ul className="recordings-videos-container">
         {recordingsURL.map((recording, index) => {
           return (
-            <div
-              key={index}
-              className={`recordings-video-container recordings-video-container-${recording.id}`}
-            >
+            <div key={index} className={`recordings-video-container`}>
               <ReactPlayer
                 url={recording.url}
-                width="100%"
-                height="100%"
+                width="560"
+                height="315"
                 controls
                 playing={current === recording.id ? true : false}
                 className={`recordings-youtube-video recordings-youtube-video-${recording.id}`}
                 onPlay={() => onPlay(recording.id)}
-                onPause={() => onPause(recording.id)}
               />
             </div>
           );

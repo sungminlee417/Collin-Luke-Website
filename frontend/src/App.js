@@ -4,6 +4,7 @@ import About from "./About";
 import Recordings from "./Recordings";
 import Photos from "./Photos";
 import Contact from "./Contact";
+import Footer from "./Footer";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Recordings />
       <Photos />
       <Contact />
+      <Footer />
     </>
   );
 }

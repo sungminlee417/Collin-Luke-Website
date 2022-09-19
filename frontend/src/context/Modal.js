@@ -1,34 +1,35 @@
-import React from 'react'
-import { Modal, Button } from 'react-bootstrap'
-import "./Modal.css"
+import React, { useContext, useRef, useState, useEffect } from "react";
+import ReactDOM from "react-dom";
+import "./Modal.css";
 
-function ModalDialog() {
-    const [isShow, invokeModal] = React.useState(false)
-    const initModal = () => {
-        return invokeModal(!false)
-    }
-    return (
-        <>
-        <Button variant="success" onClick={initModal}>
-          Open Modal
-        </Button>
-        <Modal show={isShow}>
-          <Modal.Header closeButton onClick={initModal}>
-            <Modal.Title>React Modal Popover Example</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="danger" onClick={initModal}>
-              Close
-            </Button>
-            <Button variant="dark" onClick={initModal}>
-              Store
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </>
-    )
-  }
-export default Modal
+const ModalContext = React.createContext();
+
+export function ModalProvider({ children }) {
+  const modalRef = useRef();
+  const [value, setValue] = useState();
+
+  useEffect(() => {
+    setValue(modalRef.current);
+  }, []);
+
+  return (
+    <>
+      <ModalContext.Provider value={value}>{children}</ModalContext.Provider>
+      <div ref={modalRef} />
+    </>
+  );
+}
+
+export function Modal({ children, type }) {
+  const modalNode = useContext(ModalContext);
+
+  if (!modalNode) return null;
+
+  return ReactDOM.createPortal(
+    <div id="modal">
+      <div id="modal-background" />
+      <div className="modal-content">{children}</div>
+    </div>,
+    modalNode
+  );
+}

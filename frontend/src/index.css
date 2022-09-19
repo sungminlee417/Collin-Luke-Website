@@ -72,6 +72,8 @@ Medium: 11px;
 html {
   font-size: 62.5%;
   overflow-x: hidden;
+  overflow-y: hidden;
+  min-height: -webkit-fill-available;
 }
 
 body {
@@ -82,6 +84,8 @@ body {
   font-weight: 400;
   height: 100vh;
   overflow-x: hidden;
+  position: relative;
+  min-height: -webkit-fill-available;
 }
 
 section {
@@ -102,7 +106,7 @@ h3 {
 /*************************/
 
 .content-margin {
-  margin: 15rem 8rem;
+  margin: 8rem 8rem 4rem 8rem;
 }
 
 /*************************/

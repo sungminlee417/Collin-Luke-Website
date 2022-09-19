@@ -1,34 +1,125 @@
 /****************************/
 /* IMAGES CAROUSEL */
 /****************************/
-.carousel-image {
-  height: 75vh;
-  object-fit: contain;
-  width: 100%;
+.photos-section {
+  display: flex;
+}
+
+#photos-carousel-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0 auto;
+  width: 90%;
+}
+
+#photos-carousel-content {
+  display: flex;
+  gap: 4rem;
+  justify-content: space-between;
+  height: 55rem;
+}
+
+#photos-carousel-images {
+  display: flex;
+}
+
+.carousel-button {
+  align-self: center;
+  background-color: transparent;
+  border: none;
+  color: #373b3e;
+  cursor: pointer;
+  height: fit-content;
+  top: 50%;
+  transition: all 0.2s ease-in-out;
+}
+
+.carousel-button:hover {
+  color: black;
 }
 
 /****************************/
 /* IMAGES SLIDER */
 /****************************/
-.images-slider {
-  padding: 1rem 0 0 0;
-  width: 45vw;
-}
 
-.slider-image {
-  object-fit: contain;
-  height: 10vh;
+#images-slider {
+  display: flex;
+  gap: 1.2rem;
+  height: 8rem;
+  justify-content: center;
+  list-style: none;
   width: 100%;
 }
 
-.images-slider .swiper-slide {
-  opacity: 0.4;
+.images-slide-button {
+  border: none;
+  cursor: pointer;
+  height: 100%;
+  opacity: 50%;
+  transition: all 0.7s ease-in-out;
+  width: 100%;
 }
 
-.images-slider .swiper-slide-thumb-active {
+.images-slide-button.active {
   opacity: 1;
+}
+
+.images-slider-image {
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
 }
 
 /****************************/
 /* MEDIA QUERIES */
 /****************************/
+@media (max-width: 1024px) {
+  #photos-carousel-content {
+    height: 38rem;
+  }
+
+  #images-slider {
+    height: 7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #photos-carousel-content {
+    height: 30rem;
+  }
+
+  #images-slider {
+    height: 7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #photos-carousel-container {
+    width: 100%;
+  }
+
+  #photos-carousel-content {
+    height: fit-content;
+  }
+
+  #photos-carousel-images {
+    display: grid;
+    gap: 1rem;
+    grid-template-areas:
+      "a b"
+      "c d"
+      "c e";
+    height: 100%;
+  }
+
+  .carousel-button {
+    display: none;
+    pointer-events: none;
+  }
+
+  #images-slider {
+    display: none;
+    pointer-events: none;
+  }
+}

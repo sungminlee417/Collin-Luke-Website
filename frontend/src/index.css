@@ -69,10 +69,21 @@ Medium: 11px;
   box-sizing: border-box;
 }
 
-html {
+:root {
+  --app-height: 100%;
+}
+
+html,
+body {
   font-size: 62.5%;
+  padding: 0;
+  margin: 0;
+  width: 100vw;
   height: 100vh;
-  min-height: -webkit-fill-available;
+  height: var(--app-height);
+}
+
+html {
   overflow-x: hidden;
 }
 
@@ -83,9 +94,8 @@ body {
   line-height: 1;
   font-weight: 400;
   position: relative;
-  /* min-height: -webkit-fill-available; */
-  overflow-x: hidden;
-  overflow-y: hidden;
+  /* overflow-x: hidden; */
+  /* overflow-y: hidden; */
 }
 
 section {

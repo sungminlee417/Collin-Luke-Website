@@ -83,7 +83,7 @@ body {
   line-height: 1;
   font-weight: 400;
   position: relative;
-  /* height: 100vh; */
+  height: 100vh;
   height: -webkit-fill-available;
   overflow-x: hidden;
 }

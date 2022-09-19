@@ -1,68 +1,100 @@
 import { useEffect, useState } from "react";
 import "./Contact.css";
-import React, { useRef } from 'react';
-import emailjs from '@emailjs/browser';
+import React, { useRef } from "react";
+import emailjs from "@emailjs/browser";
 import image from "../images/IMG_4650.jpeg";
 
 export const Contact = () => {
   const form = useRef();
-  const [email,setEmail] = useState("")
-  const [name, setName] = useState("")
-  const [message, setMessage] = useState("")
-  const [validationErrors, setValidationErrors] = useState([])
-  const [submitted, setSubmitted] = useState(false)
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+  const [validationErrors, setValidationErrors] = useState([]);
+  const [submitted, setSubmitted] = useState(false);
   useEffect(() => {
-    const errors = []
-    if (!name) errors.push("A valid name is required.")
-    if (!message) errors.push("A valid message is required.")
-    setValidationErrors(errors)
-
-  }, [email, name, message])
+    const errors = [];
+    if (!name) errors.push("A valid name is required.");
+    if (!message) errors.push("A valid message is required.");
+    setValidationErrors(errors);
+  }, [email, name, message]);
 
   const sendEmail = (e) => {
     e.preventDefault();
-    setSubmitted(true)
+    setSubmitted(true);
     if (!validationErrors.length) {
-      emailjs.sendForm('service_vuw3xhj', 'template_x2714ql', form.current, 'eMlZzUFZjzRtC_BAp')
-      .then((result) => {
-          setEmail("")
-          setName("")
-          setMessage("")
-          setSubmitted(false)
-      }, (error) => {
-          setValidationErrors([error.text])
-      });
+      emailjs
+        .sendForm(
+          "service_vuw3xhj",
+          "template_x2714ql",
+          form.current,
+          "eMlZzUFZjzRtC_BAp"
+        )
+        .then(
+          (result) => {
+            setEmail("");
+            setName("");
+            setMessage("");
+            setSubmitted(false);
+          },
+          (error) => {
+            setValidationErrors([error.text]);
+          }
+        );
     }
   };
 
   return (
-    
     <section className="contact-section content-margin">
       <h3 id="contact-section-header-text">Contact </h3>
       <div className="email-header">
         <div id="contact-section-header">Get In Touch</div>
         <hr id="contact-section-header-underline"></hr>
       </div>
-      <div className="contact-content"> 
+      <div className="contact-content">
         <img className="contact-image" src={image} alt="Collin and Luke" />
-        <form ref={form} onSubmit={sendEmail}>
+        <form className="contact-form" ref={form} onSubmit={sendEmail}>
           <div id="contact-inputs">
-              <input className="contact-input" placeholder="Name" type="text" name="user_name" value={name} onChange={(e) => setName(e.target.value)}/>
-              <input className="contact-input" placeholder="Email" type="email" name="user_email" value={email} onChange={(e) => setEmail(e.target.value)} />
-              <textarea className="contact-input" placeholder="Message" name="message" value={message} onChange={(e) => setMessage(e.target.value)}/>          
+            <input
+              className="contact-input"
+              placeholder="Name"
+              type="text"
+              name="user_name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <input
+              className="contact-input"
+              placeholder="Email"
+              type="email"
+              name="user_email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <textarea
+              className="contact-input"
+              placeholder="Message"
+              name="message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
           </div>
-          {submitted && validationErrors.length > 0 && <ul>
-          {
-            validationErrors.map((error, index) => {
-              return <li>{error}</li>
-            })
-          }
-          </ul>}
-          <button className="submit-contact-form" type="submit" value="SUBMIT"/>         
+          {submitted && validationErrors.length > 0 && (
+            <ul className="validation-errors">
+              {validationErrors.map((error, index) => {
+                return (
+                  <div className="error">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <li>{error}</li>
+                  </div>
+                );
+              })}
+            </ul>
+          )}
+          <button className="submit-contact-form" type="submit">
+            SUBMIT
+          </button>
         </form>
       </div>
-      
-
     </section>
   );
 };

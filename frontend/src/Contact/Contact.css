@@ -1,83 +1,69 @@
-<<<<<<< HEAD
-.contact-section {
-  gap: 6rem;
-}
-.email-box {
-  display: flex;
-  gap: 10rem;
-  background-color: #d7c0ae;
-  margin-left: 20rem;
-  margin-right: 20rem;
-}
-
-#contact-section-header {
-  font-size: 5rem;
-  margin: 0.75rem;
-}
-
-#contact-section-subheader {
-  font-size: 2rem;
-  font-family: "Source Sans Pro", sans-serif;
-  font-weight: lighter;
-  margin: 0.75rem;
-}
-=======
 .email-header {
-    margin: 0 28rem;    
+  margin: 0 28rem;
 }
 
 #contact-section-header {
-    text-align: center;
-    font-size: 5rem;
-    padding-bottom: 4rem;
-    color: #373b3e;
+  text-align: center;
+  font-size: 5rem;
+  padding-bottom: 4rem;
+  color: #373b3e;
 }
 
 .contact-content {
-    display: flex;
-    gap: 9rem;
-    width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 9rem;
+  width: 100%;
 }
 
 .contact-image {
-    object-fit: contain;
-    width: 55rem;
-    height: auto;
-    
+  object-fit: contain;
+  width: 45%;
+  height: auto;
+}
+
+.contact-form {
+  width: 55%;
 }
 
 #contact-inputs {
-    display: flex;
-    flex-direction: column;
-    font-size: 1.5rem;
-    line-height: 3rem;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+  line-height: 3rem;
+  width: 100%;
 }
 
-.contact-input { 
-    width: 100%;
-    height: 3rem;
-    margin-bottom: 2rem;
+.contact-input {
+  border: none;
+  border-radius: 0.2rem;
+  width: 100%;
+  height: 3rem;
+  margin-bottom: 2rem;
 }
 
 .submit-contact-form {
-    cursor: pointer;
-    background-color: #967e76;
-    width: 10rem;
+  cursor: pointer;
+  background-color: #967e76;
+  border: none;
+  border-radius: 0.2rem;
+  height: 5rem;
+  width: 100%;
 }
 
-input:focus {
-    outline: none;
+.validation-errors {
+  list-style: none;
+}
+
+.error {
+  display: flex;
 }
 
 /* textarea {
     width: 55rem;
     height: 20rem;
     margin-bottom: 2rem;
-}
-
-textarea:focus {
-    outline: none;
 }
 
 textarea::-webkit-input-placeholder {
@@ -91,8 +77,7 @@ textarea::-webkit-input-placeholder {
 /****************************/
 
 @media (max-width: 1280px) {
-    .contact-section {
-      height: 100%;
-    }
+  .contact-section {
+    height: 100%;
   }
->>>>>>> f5caff47815f4df1647f89cbe7026e442cca88d6
+}

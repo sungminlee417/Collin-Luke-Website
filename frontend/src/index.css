@@ -95,6 +95,12 @@ h3 {
   color: #373b3e;
 }
 
+input:focus,
+textarea:focus {
+  border: none;
+  outline: none;
+}
+
 /*************************/
 /* REUSABLE STYLINGS */
 /*************************/

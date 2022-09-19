@@ -83,8 +83,12 @@
     display: none;
   }
 
+  #about-large-text {
+    font-size: 4.5rem;
+  }
+
   #about-small-text {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     line-height: 3.2rem;
   }
 }

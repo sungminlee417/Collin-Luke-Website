@@ -58,6 +58,7 @@
   height: 100%;
   opacity: 50%;
   transition: all 0.7s ease-in-out;
+  width: 100%;
 }
 
 .images-slide-button.active {

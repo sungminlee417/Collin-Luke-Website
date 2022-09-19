@@ -64,28 +64,22 @@ const Photos = () => {
             <i className="fa-solid fa-chevron-right fa-3x"></i>
           </button>
         </div>
-        <ul id="images-slider">
+        <div id="images-slider">
           {images.map((image, index) => {
             return (
-              <li key={index} className="images-slider-image-container">
-                <button
-                  onClick={() => selectImage(index)}
-                  className={
-                    index === current
-                      ? "images-slide-button active"
-                      : "images-slide-button"
-                  }
-                >
-                  <img
-                    className="images-slider-image"
-                    src={images[index]}
-                    alt="collin-and-luke"
-                  />
-                </button>
-              </li>
+              <button
+                onClick={() => selectImage(index)}
+                className={
+                  index === current
+                    ? "images-slide-button active"
+                    : "images-slide-button"
+                }
+                style={{ backgroundImage: `url(${image}` }}
+                key={index}
+              />
             );
           })}
-        </ul>
+        </div>
       </div>
     </section>
   );

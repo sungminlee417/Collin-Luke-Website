@@ -1,5 +1,8 @@
 .carousel-slide {
   background-color: transparent;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
   border: none;
   cursor: pointer;
   height: 100%;
@@ -22,24 +25,15 @@
   width: 100%;
 }
 
-.carousel-image {
-  height: 100%;
-  object-fit: contain;
-  width: 100%;
-}
-
 @media (max-width: 480px) {
   .carousel-slide {
     background-color: transparent;
+    background-size: cover;
     border: none;
     cursor: pointer;
     position: static;
     opacity: 1;
     visibility: visible;
-  }
-
-  .carousel-image {
-    object-fit: cover;
   }
 
   .image-slide-1 {

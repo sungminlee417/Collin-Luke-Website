@@ -24,9 +24,8 @@ const PhotoModal = ({ index, image, current }) => {
             : `image-slide-${index} carousel-slide `
         }
         onClick={() => setShowModal(true)}
-      >
-        <img className="carousel-image" src={image} alt="collin-and-luke" />
-      </button>
+        style={{ backgroundImage: `url(${image}` }}
+      />
       {showModal && (
         <Modal showModal={showModal}>
           <Photo image={image} onClose={() => setShowModal(false)} />

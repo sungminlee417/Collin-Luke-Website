@@ -18,10 +18,12 @@
   gap: 4rem;
   justify-content: space-between;
   height: 55rem;
+  width: 100%;
 }
 
 #photos-carousel-images {
   display: flex;
+  width: 100%;
 }
 
 .carousel-button {
@@ -49,13 +51,18 @@
   height: 8rem;
   justify-content: center;
   list-style: none;
+  margin: 0 auto;
+  width: 60%;
 }
-/*
+
 .images-slide-button {
-  background-color: red;
+  background-color: transparent;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
   border: none;
+  border-radius: none;
   cursor: pointer;
-  height: 100%;
   opacity: 50%;
   transition: all 0.7s ease-in-out;
   width: 100%;
@@ -63,13 +70,6 @@
 
 .images-slide-button.active {
   opacity: 1;
-}
-*/
-
-.images-slider-image {
-  height: 100%;
-  object-fit: contain;
-  width: 100%;
 }
 
 /****************************/
@@ -81,27 +81,26 @@
   }
 
   #images-slider {
-    height: 7rem;
+    gap: 1.5rem;
+    height: 9rem;
+    width: 90%;
   }
 }
 
 @media (max-width: 768px) {
   #photos-carousel-content {
-    height: 34rem;
+    height: 32rem;
   }
 
   #images-slider {
-    height: 7rem;
+    gap: 1.5rem;
+    height: 7.5rem;
   }
 }
 
 @media (max-width: 480px) {
   #photos-carousel-container {
     width: 100%;
-  }
-
-  #photos-carousel-content {
-    height: fit-content;
   }
 
   #photos-carousel-images {
@@ -111,7 +110,6 @@
       "a b"
       "c d"
       "c e";
-    height: 100%;
   }
 
   .carousel-button {

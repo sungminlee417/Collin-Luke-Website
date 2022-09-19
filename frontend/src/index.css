@@ -125,37 +125,24 @@ h3 {
 /*************************/
 /* MEDIA QUERIES */
 /*************************/
-
-/* @media (max-width: 1280px) {
-  section {
-    height: 65rem;
-  }
-} */
-
 @media (max-width: 1024px) {
-  /* section {
-    /* height: 45rem; */
-  /* } */
-
   .content-margin {
     margin: 10rem;
   }
 }
 
 @media (max-width: 768px) {
-  /* section { */
-  /* height: 70rem; */
-  /* } */
   .content-margin {
     margin: 5rem 6rem;
   }
 }
 
 @media (max-width: 480px) {
-  /* section { */
-  /* height: 60rem; */
-  /* } */
   .content-margin {
     margin: 4rem 3rem;
+  }
+
+  section {
+    gap: 5.2rem;
   }
 }

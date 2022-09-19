@@ -12,7 +12,7 @@
   justify-content: center;
   right: 3.6rem;
   position: fixed;
-  top: 3.6rem;
+  top: 4.3rem;
   z-index: 3;
   width: 3.5rem;
   height: 3.5rem;
@@ -123,17 +123,6 @@
 /****************************/
 /* MEDIA QUERIES */
 /****************************/
-
-@media (max-width: 768px) {
-  .navigation-home-button {
-    top: 2.4rem;
-  }
-
-  .navigation-menu-button {
-    top: 2.4rem;
-  }
-}
-
 @media (max-width: 480px) {
   .navigation-container {
     opacity: 0.96;

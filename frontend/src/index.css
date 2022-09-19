@@ -138,16 +138,24 @@ h3 {
 
 @media (max-width: 768px) {
   .content-margin {
-    margin: 5rem 6rem;
+    margin: 5rem 4rem 4rem 4rem;
+  }
+
+  section {
+    gap: 5rem;
   }
 }
 
 @media (max-width: 480px) {
   .content-margin {
-    margin: 4rem 3rem;
+    margin: 4rem 3rem 3rem 3rem;
   }
 
   section {
-    gap: 5.2rem;
+    gap: 4rem;
+  }
+
+  h3 {
+    font-size: 2rem;
   }
 }

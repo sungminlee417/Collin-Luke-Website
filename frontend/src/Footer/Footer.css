@@ -26,3 +26,25 @@
 .footer-copyright {
   font-size: 1.7rem;
 }
+
+@media (max-width: 768px) {
+  .footer-content {
+    padding-top: 4rem;
+  }
+
+  .social-media-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-content {
+    padding-top: 3rem;
+  }
+
+  .social-media-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+}

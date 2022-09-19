@@ -95,11 +95,21 @@ h3 {
   color: #373b3e;
 }
 
+textarea{
+  resize: none;
+}
 input:focus,
 textarea:focus {
   border: none;
   outline: none;
 }
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  font-family: Arial;
+  padding-top: 0.5rem;
+  padding-left: 0.5rem;
+} 
 
 /*************************/
 /* REUSABLE STYLINGS */

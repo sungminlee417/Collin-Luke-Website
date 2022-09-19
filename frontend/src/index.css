@@ -142,17 +142,13 @@ h3 {
   }
 
   section {
-    gap: 5rem;
+    gap: 5.5rem;
   }
 }
 
 @media (max-width: 480px) {
   .content-margin {
     margin: 4rem 3rem 3rem 3rem;
-  }
-
-  section {
-    gap: 4rem;
   }
 
   h3 {

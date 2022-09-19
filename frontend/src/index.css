@@ -84,6 +84,7 @@ body {
   font-weight: 400;
   position: relative;
   min-height: -webkit-fill-available;
+  overflow-x: hidden;
   overflow-y: hidden;
 }
 

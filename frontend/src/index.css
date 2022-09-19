@@ -81,9 +81,6 @@ body {
   width: 100vw;
   height: 100vh;
   height: var(--app-height);
-}
-
-html {
   overflow-x: hidden;
 }
 
@@ -94,8 +91,6 @@ body {
   line-height: 1;
   font-weight: 400;
   position: relative;
-  overflow-x: hidden;
-  /* overflow-y: hidden; */
 }
 
 section {

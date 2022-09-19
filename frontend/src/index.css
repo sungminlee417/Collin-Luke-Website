@@ -83,10 +83,9 @@ body {
   line-height: 1;
   font-weight: 400;
   position: relative;
-  height: 100vh;
   min-height: -webkit-fill-available;
   overflow-x: hidden;
-  /* overflow-y: hidden; */
+  overflow-y: hidden;
 }
 
 section {

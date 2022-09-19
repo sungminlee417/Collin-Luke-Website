@@ -9,18 +9,20 @@ const Footer = () => {
         <div className="footer-copyright">&copy; {year} Muse Duo</div>
         <div className="social-media-links">
           <a
+            rel="noopener noreferrer"
             target="_blank"
             href="https://www.youtube.com/channel/UCx_i6ym655rtGxqCg6d27ew"
             className="social-media-link"
           >
-            <i class="fa-brands fa-youtube fa-3x"></i>
+            <i className="fa-brands fa-youtube fa-3x"></i>
           </a>
           <a
+            rel="noopener noreferrer"
             target="_blank"
             href="https://www.instagram.com/muse__duo/"
             className="social-media-link"
           >
-            <i class="fa-brands fa-instagram fa-3x"></i>
+            <i className="fa-brands fa-instagram fa-3x"></i>
           </a>
         </div>
       </div>

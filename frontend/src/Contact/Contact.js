@@ -69,7 +69,7 @@ export const Contact = () => {
       <div className="contact-content">
         <img className="contact-image" src={image} alt="Collin and Luke" />
         <form className="contact-form" ref={form} onSubmit={sendEmail}>
-          <div id="contact-inputs">
+          <div id="contact-input-section">
             <div className="input-container">
               <input
                 className="contact-input"

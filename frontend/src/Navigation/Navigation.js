@@ -3,10 +3,12 @@ import "./Navigation.css";
 
 const Navigation = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const [linkClicked, setLinkedClicked] = useState(false);
+  const [linkClicked, setLinkClicked] = useState(false);
+  const html = document.querySelector("html");
 
   const openMenu = (e) => {
     if (showMenu) return;
+    html.classList.add("stop-scrolling");
     setShowMenu(true);
   };
 
@@ -26,6 +28,7 @@ const Navigation = () => {
     }
 
     const closeMenu = (e) => {
+      html.classList.remove("stop-scrolling");
       navigationButton.classList.toggle("navigation-button-clicked");
       lineOne.classList.toggle("line-one-changed");
       lineTwo.classList.toggle("line-two-changed");
@@ -48,18 +51,19 @@ const Navigation = () => {
     const navigationContainer = document.querySelector(".navigation-container");
 
     if (linkClicked) {
+      html.classList.remove("stop-scrolling");
       navigationButton.classList.toggle("navigation-button-clicked");
       lineOne.classList.toggle("line-one-changed");
       lineTwo.classList.toggle("line-two-changed");
       navigationContainer.classList.toggle("show-navigation-container");
       setShowMenu(false);
-      setLinkedClicked(false);
+      setLinkClicked(false);
     }
   }, [linkClicked]);
 
   function scrollSmoothlyTo(className) {
     if (className !== "hero-section") {
-      setLinkedClicked(true);
+      setLinkClicked(true);
     }
     const element = document.querySelector(`.${className}`);
     element.scrollIntoView({

@@ -109,6 +109,10 @@ h3 {
   margin: 8rem 8rem 4rem 8rem;
 }
 
+.stop-scrolling {
+  overflow-y: hidden;
+}
+
 /*************************/
 /* KEYFRAMES */
 /*************************/

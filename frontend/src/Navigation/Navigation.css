@@ -64,6 +64,7 @@
   pointer-events: none;
   position: fixed;
   right: 0;
+  top: 0;
   transition: all 0.2s ease-in-out;
   transform: translateX(100%);
   visibility: hidden;
@@ -82,7 +83,6 @@
 .show-navigation-container {
   opacity: 1;
   pointer-events: auto;
-  right: 0;
   transform: translateX(0);
   visibility: visible;
 }

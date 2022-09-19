@@ -1,5 +1,11 @@
 .email-header {
   margin: 0 28rem;
+  width: 100%;
+  align-self:center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #contact-section-header {
@@ -7,6 +13,11 @@
   font-size: 5rem;
   padding-bottom: 4rem;
   color: #373b3e;
+}
+
+#contact-section-header-underline {
+    width: 50%;
+
 }
 
 .contact-content {

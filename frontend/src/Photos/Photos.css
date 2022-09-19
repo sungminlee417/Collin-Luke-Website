@@ -53,6 +53,7 @@
 }
 
 .images-slide-button {
+  background-color: transparent;
   border: none;
   cursor: pointer;
   height: 100%;

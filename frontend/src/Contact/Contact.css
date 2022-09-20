@@ -93,9 +93,8 @@
 /****************************/
 
 @media (max-width: 1024px) {
-  #contact-section-header {
-    margin: 5rem;
-    width: 70%;
+  .contact-section-content {
+    gap: 5rem;
   }
 
   .contact-content {
@@ -103,30 +102,31 @@
   }
 
   .contact-image {
-    width: 50%;
+    width: 48%;
   }
 
   .contact-form {
-    width: 50%;
+    width: 52%;
   }
 }
 @media (max-width: 768px) {
+  #contact-section-header {
+    font-size: 5.5rem;
+  }
+
+  .contact-section-breakline {
+    width: 75%;
+  }
+
   .contact-image {
     display: none;
   }
+
   .contact-content {
-    justify-content: center;
-    display: flex;
     width: 100%;
   }
   .contact-form {
     width: 100%;
-  }
-
-  #contact-section-header {
-    font-size: 4rem;
-    padding-bottom: 2rem;
-    width: 65%;
   }
 
   .error-message {
@@ -135,8 +135,15 @@
 }
 
 @media (max-width: 480px) {
+  .contact-section-content {
+    gap: 4.5rem;
+  }
+
   #contact-section-header {
-    font-size: 3.5rem;
-    width: 100%;
+    font-size: 5rem;
+  }
+
+  .contact-section-breakline {
+    width: 85%;
   }
 }

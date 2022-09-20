@@ -5,16 +5,16 @@ import emailjs from "@emailjs/browser";
 import image from "../images/IMG_4650.jpeg";
 
 export const Contact = () => {
-  const validEmail = new RegExp(
-    "^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$"
-  );
   const form = useRef();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [validationErrors, setValidationErrors] = useState([]);
-  const [submitted, setSubmitted] = useState(false);
+
   useEffect(() => {
+    const validEmail = new RegExp(
+      "^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$"
+    );
     const errors = [];
     if (!name) errors.push("name");
     if (!validEmail.test(email)) errors.push("email");
@@ -31,7 +31,6 @@ export const Contact = () => {
       error.classList.remove("show-error-message");
     }
 
-    setSubmitted(true);
     if (!validationErrors.length) {
       emailjs
         .sendForm(
@@ -45,7 +44,6 @@ export const Contact = () => {
             setEmail("");
             setName("");
             setMessage("");
-            setSubmitted(false);
           },
           (error) => {
             setValidationErrors([error.text]);
@@ -92,7 +90,7 @@ export const Contact = () => {
                 A valid email is required
               </p>
               <textarea
-                className="contact-message-input"
+                className="contact-input contact-message-input"
                 placeholder="Message"
                 name="message"
                 value={message}

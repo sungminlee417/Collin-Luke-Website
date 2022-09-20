@@ -69,6 +69,8 @@
 @media (max-width: 768px) {
   .about-image-duo {
     height: 32rem;
+    margin-left: 2rem;
+    box-shadow: -2rem -2rem 0 #967e76;
   }
 
   .about-duo-section {

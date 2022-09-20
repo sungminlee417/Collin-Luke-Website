@@ -68,7 +68,10 @@
 .submit-contact-form {
   cursor: pointer;
   background-color: #967e76;
+  color: #FFFF;
   border: none;
+  font-size: 1.5rem;
+  letter-spacing: 0.04rem;
   border-radius: 0.2rem;
   height: 5rem;
   width: 100%;
@@ -77,6 +80,7 @@
 .error-message {
   font-family: "Source Sans Pro", sans-serif;
   font-weight: lighter;
+  font-size: 1.3rem;
   color: #bf0000;
   opacity: 0;
 }
@@ -89,8 +93,28 @@
 /* MEDIA QUERIES */
 /****************************/
 
-@media (max-width: 1280px) {
-  .contact-section {
-    height: 100%;
-  }
+@media (max-width: 768px) {
+    .contact-image {
+        width: 50%;
+    }
+
+    .contact-content {
+        gap: 3rem;
+    }
+
 }
+
+@media (max-width: 480px) {
+    .contact-image {
+      display: none;
+    }
+
+    .contact-content {
+        justify-content: center;
+        display: flex;
+        width: 100%;
+    }
+    .contact-form{
+        width:100%;
+    }
+  }

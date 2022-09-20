@@ -61,52 +61,53 @@ export const Contact = () => {
 
   return (
     <section className="contact-section content-margin">
-      <h3 id="contact-section-header-text">Contact </h3>
-      <div className="email-header">
-        <div id="contact-section-header">Get In Touch</div>
-        <hr id="contact-section-header-underline"></hr>
-      </div>
-      <div className="contact-content">
-        <img className="contact-image" src={image} alt="Collin and Luke" />
-        <form className="contact-form" ref={form} onSubmit={sendEmail}>
-          <div id="contact-input-section">
-            <input
-              className="contact-input"
-              placeholder="Name"
-              type="text"
-              name="user_name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <p className="error-message" id="error-name">
-              A valid name is required
-            </p>
-            <input
-              className="contact-input"
-              placeholder="Email"
-              type="text"
-              name="user_email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <p className="error-message" id="error-email">
-              A valid email is required
-            </p>
-            <textarea
-              className="contact-message-input"
-              placeholder="Message"
-              name="message"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-            />
-            <p className="error-message" id="error-message">
-              A valid message is required
-            </p>
-            <button className="submit-contact-form" type="submit">
-              SUBMIT
-            </button>
-          </div>
-        </form>
+      <div className="contact-section-content">
+        <h3 id="contact-section-header-text">Contact </h3>
+        <div className="email-header">
+          <div id="contact-section-header">Get In Touch</div>
+        </div>
+        <div className="contact-content">
+          <img className="contact-image" src={image} alt="Collin and Luke" />
+          <form className="contact-form" ref={form} onSubmit={sendEmail}>
+            <div id="contact-input-section">
+              <input
+                className="contact-input"
+                placeholder="Name"
+                type="text"
+                name="user_name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              <p className="error-message" id="error-name">
+                A valid name is required
+              </p>
+              <input
+                className="contact-input"
+                placeholder="Email"
+                type="text"
+                name="user_email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <p className="error-message" id="error-email">
+                A valid email is required
+              </p>
+              <textarea
+                className="contact-message-input"
+                placeholder="Message"
+                name="message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
+              <p className="error-message" id="error-message">
+                A valid message is required
+              </p>
+              <button className="submit-contact-form" type="submit">
+                SUBMIT
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
   );

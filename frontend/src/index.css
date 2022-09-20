@@ -97,26 +97,21 @@ h3 {
 
 input {
   padding-left: 0.5rem;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 textarea {
   resize: none;
   padding-top: 0.5rem;
   padding-left: 0.5rem;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 input:focus,
 textarea:focus {
   border: none;
   outline: none;
-  font-family: Arial;
 }
-
-input::-webkit-input-placeholder,
-textarea::-webkit-input-placeholder,
-.form-textarea {
-  font-family: Arial;
-} 
 
 /*************************/
 /* REUSABLE STYLINGS */

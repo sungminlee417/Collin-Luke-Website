@@ -70,48 +70,42 @@ export const Contact = () => {
         <img className="contact-image" src={image} alt="Collin and Luke" />
         <form className="contact-form" ref={form} onSubmit={sendEmail}>
           <div id="contact-input-section">
-            <div className="input-container">
-              <input
-                className="contact-input"
-                placeholder="Name"
-                type="text"
-                name="user_name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-              <p className="error-message" id="error-name">
-                A valid name is required
-              </p>
-            </div>
-            <div className="input-container">
-              <input
-                className="contact-input"
-                placeholder="Email"
-                type="text"
-                name="user_email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <p className="error-message" id="error-email">
-                A valid email is required
-              </p>
-            </div>
-            <div className="input-container">
-              <textarea
-                className="contact-message-input"
-                placeholder="Message"
-                name="message"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-              />
-              <p className="error-message" id="error-message">
-                A valid message is required
-              </p>
-            </div>
+            <input
+              className="contact-input"
+              placeholder="Name"
+              type="text"
+              name="user_name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <p className="error-message" id="error-name">
+              A valid name is required
+            </p>
+            <input
+              className="contact-input"
+              placeholder="Email"
+              type="text"
+              name="user_email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <p className="error-message" id="error-email">
+              A valid email is required
+            </p>
+            <textarea
+              className="contact-message-input"
+              placeholder="Message"
+              name="message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+            <p className="error-message" id="error-message">
+              A valid message is required
+            </p>
+            <button className="submit-contact-form" type="submit">
+              SUBMIT
+            </button>
           </div>
-          <button className="submit-contact-form" type="submit">
-            SUBMIT
-          </button>
         </form>
       </div>
     </section>

@@ -19,6 +19,7 @@
   color: #373b3e;
   letter-spacing: 0.1rem;
   border-bottom: 1px solid #373b3e;
+  width: 55%;
 }
 
 #contact-section-header-underline {
@@ -102,6 +103,7 @@
 @media (max-width: 1024px) {
   #contact-section-header {
     margin: 5rem;
+    width: 70%;
   }
 
   .contact-content {
@@ -132,6 +134,7 @@
   #contact-section-header {
     font-size: 4rem;
     padding-bottom: 2rem;
+    width: 65%;
   }
 
   .error-message {
@@ -141,7 +144,7 @@
 
 @media (max-width: 480px) {
   #contact-section-header {
-    font-size: 3.7rem;
+    font-size: 3.6rem;
     width: 100%;
   }
 }

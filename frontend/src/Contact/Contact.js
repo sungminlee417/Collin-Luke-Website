@@ -58,6 +58,7 @@ export const Contact = () => {
       });
     }
   };
+  // <img className="contact-image" src={image} alt="Collin and Luke" />
 
   return (
     <section className="contact-section content-margin">
@@ -67,7 +68,10 @@ export const Contact = () => {
         <hr id="contact-section-header-underline"></hr>
       </div>
       <div className="contact-content">
-        <img className="contact-image" src={image} alt="Collin and Luke" />
+        <div
+          className="contact-image"
+          style={{ backgroundImage: `url(${image})` }}
+        ></div>
         <form className="contact-form" ref={form} onSubmit={sendEmail}>
           <div id="contact-input-section">
             <input

@@ -29,9 +29,11 @@
 }
 
 .contact-image {
-  object-fit: contain;
-  width: 45%;
-  height: auto;
+  background-position: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 55%;
+  height: 50rem;
 }
 
 .contact-form {
@@ -69,7 +71,7 @@
 .submit-contact-form {
   cursor: pointer;
   background-color: #967e76;
-  color: #FFFF;
+  color: #ffff;
   border: none;
   font-size: 1.5rem;
   letter-spacing: 0.04rem;
@@ -95,31 +97,29 @@
 /****************************/
 
 @media (max-width: 1024px) {
-    .contact-image {
-        width: 50%;
-    }
-
+  .contact-image {
+    width: 50%;
+  }
 }
 @media (max-width: 768px) {
-    .contact-image {
-        display: none;
-    }
-    .contact-content {
-        justify-content: center;
-        display: flex;
-        width: 100%;
-    }
-    .contact-form{
-        width:100%;
-    }
-    
-    #contact-section-header {
-        font-size: 4rem;
-        padding-bottom: 2rem;
-    }
+  .contact-image {
+    display: none;
+  }
+  .contact-content {
+    justify-content: center;
+    display: flex;
+    width: 100%;
+  }
+  .contact-form {
+    width: 100%;
+  }
 
-    .error-message {
-        font-size: 1.15rem;
-    }
+  #contact-section-header {
+    font-size: 4rem;
+    padding-bottom: 2rem;
+  }
+
+  .error-message {
+    font-size: 1.15rem;
+  }
 }
-

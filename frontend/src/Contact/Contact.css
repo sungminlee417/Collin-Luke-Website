@@ -13,6 +13,7 @@
   font-size: 5rem;
   padding-bottom: 4rem;
   color: #373b3e;
+  letter-spacing: 0.1rem;
 }
 
 #contact-section-header-underline {
@@ -40,7 +41,7 @@
 #contact-input-section {
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
+  gap: 0.5rem;
 }
 
 #contact-inputs {
@@ -80,7 +81,7 @@
 .error-message {
   font-family: "Source Sans Pro", sans-serif;
   font-weight: lighter;
-  font-size: 1.3rem;
+  font-size: 1.22rem;
   color: #bf0000;
   opacity: 0;
 }
@@ -93,22 +94,16 @@
 /* MEDIA QUERIES */
 /****************************/
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .contact-image {
         width: 50%;
     }
 
-    .contact-content {
-        gap: 3rem;
-    }
-
 }
-
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .contact-image {
-      display: none;
+        display: none;
     }
-
     .contact-content {
         justify-content: center;
         display: flex;
@@ -117,4 +112,14 @@
     .contact-form{
         width:100%;
     }
-  }
+    
+    #contact-section-header {
+        font-size: 4rem;
+        padding-bottom: 2rem;
+    }
+
+    .error-message {
+        font-size: 1.15rem;
+    }
+}
+

@@ -10,6 +10,7 @@ export const Contact = () => {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [validationErrors, setValidationErrors] = useState([]);
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     const validEmail = new RegExp(
@@ -41,6 +42,10 @@ export const Contact = () => {
         )
         .then(
           (result) => {
+            setSubmitted(true);
+            setTimeout(() => {
+              setSubmitted(false);
+            }, 15000);
             setEmail("");
             setName("");
             setMessage("");
@@ -59,11 +64,10 @@ export const Contact = () => {
 
   return (
     <section className="contact-section content-margin">
+      <h3>Contact</h3>
       <div className="contact-section-content">
-        <h3 id="contact-section-header-text">Contact </h3>
-        <div className="email-header">
-          <div id="contact-section-header">Get In Touch</div>
-        </div>
+        <div id="contact-section-header">Get In Touch</div>
+        <div className="contact-section-breakline"></div>
         <div className="contact-content">
           <img className="contact-image" src={image} alt="Collin and Luke" />
           <form className="contact-form" ref={form} onSubmit={sendEmail}>
@@ -103,6 +107,11 @@ export const Contact = () => {
               <button className="submit-contact-form" type="submit">
                 SUBMIT
               </button>
+              {submitted && (
+                <div className="successful-message">
+                  Thank you! Your submission has been received.
+                </div>
+              )}
             </div>
           </form>
         </div>

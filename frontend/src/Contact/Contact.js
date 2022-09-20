@@ -61,11 +61,10 @@ export const Contact = () => {
 
   return (
     <section className="contact-section content-margin">
-      <div className="contact-section-content">
-        <h3 id="contact-section-header-text">Contact </h3>
-        <div className="email-header">
-          <div id="contact-section-header">Get In Touch</div>
-        </div>
+      <h3>Contact </h3>
+      <div className="contact-section-container">
+        <div id="contact-content-header">Get In Touch</div>
+        <div className="contact-content-break-line" />
         <div className="contact-content">
           <img className="contact-image" src={image} alt="Collin and Luke" />
           <form className="contact-form" ref={form} onSubmit={sendEmail}>

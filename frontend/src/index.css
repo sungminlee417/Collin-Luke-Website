@@ -109,6 +109,7 @@ input:focus,
 textarea:focus {
   border: none;
   outline: none;
+  font-family: Arial;
 }
 
 input::-webkit-input-placeholder,

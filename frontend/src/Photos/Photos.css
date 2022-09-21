@@ -77,3 +77,14 @@
     height: 5.2rem;
   }
 }
+
+@media (max-width: 400px) {
+  .photos-carousel-images {
+    height: 21rem;
+  }
+
+  .images-slider {
+    width: 100%;
+    height: 5.2rem;
+  }
+}

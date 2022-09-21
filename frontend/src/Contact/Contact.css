@@ -64,14 +64,10 @@
 }
 
 .successful-message {
-  background-color: rgb(179, 224, 179);
-  border: 0.2rem solid rgb(0, 90, 0);
-  border-radius: 0.2rem;
   font-family: "Source Sans Pro", sans-serif;
   font-size: 1.5rem;
   font-weight: lighter;
   margin-top: 1rem;
-  padding: 1rem;
   text-align: center;
 }
 

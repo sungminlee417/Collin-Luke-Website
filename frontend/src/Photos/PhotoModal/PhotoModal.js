@@ -17,14 +17,11 @@ const PhotoModal = ({ index, image, current }) => {
 
   return (
     <>
-      <button
-        className={
-          index === current
-            ? `image-slide-${index} carousel-slide active`
-            : `image-slide-${index} carousel-slide `
-        }
+      <div
+        className="carousel-image"
+        style={{ backgroundImage: `url(${image})` }}
+        alt="collin-and-luke"
         onClick={() => setShowModal(true)}
-        style={{ backgroundImage: `url(${image}` }}
       />
       {showModal && (
         <Modal showModal={showModal}>

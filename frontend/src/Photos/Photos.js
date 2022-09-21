@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { FreeMode, Navigation, Thumbs } from "swiper";
+import { Zoom, FreeMode, Navigation, Thumbs } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
+import "swiper/css/zoom";
 
 import image1 from "../images/IMG_4645.jpg";
 import image2 from "../images/IMG_4650.jpeg";
@@ -25,14 +26,16 @@ const Photos = () => {
       <h3>Photos</h3>
       <div className="photos-content">
         <Swiper
+          zoom={true}
           style={{
             "--swiper-navigation-color": "#373b3e",
           }}
+          autoHeight={true}
           loop={true}
           spaceBetween={10}
           navigation={true}
           thumbs={{ swiper: thumbsSwiper }}
-          modules={[FreeMode, Navigation, Thumbs]}
+          modules={[Zoom, FreeMode, Navigation, Thumbs]}
           className="photos-carousel-images"
         >
           {images.map((image, index) => {

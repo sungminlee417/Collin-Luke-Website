@@ -34,9 +34,9 @@ const Photos = () => {
         {images.map((image, index) => {
           return (
             <SwiperSlide key={index} className={"carousel-slide"}>
-              <img
+              <div
                 className="carousel-image"
-                src={image}
+                style={{ backgroundImage: `url(${image})` }}
                 alt="collin-and-luke"
               />
             </SwiperSlide>
@@ -56,7 +56,11 @@ const Photos = () => {
         {images.map((image, index) => {
           return (
             <SwiperSlide key={index} className={"slider-slide"}>
-              <img className="slider-image" src={image} alt="collin-and-luke" />
+              <div
+                className="carousel-image"
+                style={{ backgroundImage: `url(${image})` }}
+                alt="collin-and-luke"
+              />
             </SwiperSlide>
           );
         })}

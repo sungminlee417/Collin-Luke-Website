@@ -1,7 +1,4 @@
 #photos-section {
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
   width: 85%;
 }
 
@@ -10,7 +7,7 @@
 /****************************/
 .photos-carousel-images {
   height: 60rem;
-  object-fit: contain;
+  object-fit: cover;
   width: 100%;
 }
 
@@ -25,10 +22,15 @@
   width: 100%;
 }
 
+.carousel-image {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50%;
+}
+
 .carousel-image,
 .slider-image {
-  height: 100%;
-  object-fit: contain;
+  height: 50%;
   width: 100%;
 }
 

@@ -11,26 +11,19 @@
 .about-image-duo {
   box-shadow: -3rem -3rem 0 #967e76;
   height: 50rem;
-}
-
-.about-image-duo {
   margin-left: 3rem;
-  box-shadow: -3rem -3rem 0 #967e76;
-  width: 90%;
 }
 
 .about-duo-section {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 3rem;
 }
 
 #about-large-text {
   font-size: 7.7rem;
   letter-spacing: 0.23rem;
-  margin-bottom: 2.3rem;
   color: #373b3e;
-  width: 100%;
 }
 
 #about-small-text {
@@ -53,7 +46,7 @@
   }
 
   .about-duo-section {
-    gap: 0.7rem;
+    gap: 2rem;
   }
 
   #about-large-text {
@@ -74,12 +67,11 @@
   }
 
   .about-duo-section {
-    gap: 0.5rem;
+    gap: 1.5rem;
   }
 
   #about-large-text {
     font-size: 5rem;
-    margin-bottom: 1.5rem;
   }
 
   #about-small-text {
@@ -91,10 +83,6 @@
 @media (max-width: 480px) {
   .about-image-duo {
     display: none;
-  }
-
-  .about-duo-section {
-    gap: 0.2rem;
   }
 
   #about-large-text {

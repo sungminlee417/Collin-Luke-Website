@@ -1,11 +1,10 @@
 .hero-section {
-  background-image: url("../images/IMG_4651.jpeg");
+  background-image: url("../images/IMG_4647.jpeg");
   background-position: 50% 40%;
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
   height: 80rem;
-  opacity: 0.75;
   width: 100%;
 }
 

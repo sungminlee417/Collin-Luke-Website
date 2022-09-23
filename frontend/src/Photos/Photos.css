@@ -21,6 +21,7 @@
 
 .carousel-image,
 .slider-image {
+  cursor: pointer;
   height: 100%;
   width: 100%;
 }

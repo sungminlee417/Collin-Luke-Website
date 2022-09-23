@@ -9,9 +9,9 @@ import "swiper/css/thumbs";
 
 import image1 from "../images/IMG_4645.jpg";
 import image2 from "../images/IMG_4650.jpeg";
-import image3 from "../images/IMG_4651.jpeg";
-import image4 from "../images/IMG_4655.jpeg";
-import image5 from "../images/IMG_4647.jpeg";
+import image3 from "../images/IMG_4655.jpeg";
+import image4 from "../images/IMG_4647.jpeg";
+import image5 from "../images/IMG_4649.jpeg";
 import "./Photos.css";
 import PhotoModal from "./PhotoModal/PhotoModal";
 

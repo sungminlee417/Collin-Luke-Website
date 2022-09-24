@@ -22,7 +22,7 @@ const Recordings = () => {
   };
 
   return (
-    <section className="recordings-section content-margin">
+    <section className="recordings-section content-padding">
       <h3>Recordings</h3>
       <ul className="recordings-videos-container">
         {recordingsURL.map((recording, index) => {

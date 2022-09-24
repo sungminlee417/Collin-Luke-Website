@@ -1,8 +1,12 @@
 .contact-section-content {
+  background-color: #fdf6ec;
+  border-radius: 1rem;
   align-items: center;
   display: flex;
   flex-direction: column;
   gap: 6rem;
+  margin: 5rem;
+  padding: 5rem;
 }
 
 #contact-section-header {

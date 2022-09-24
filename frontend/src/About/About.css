@@ -18,12 +18,16 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  background-color: #fdf6ec;
+  border-radius: 2rem;
+  padding: 3rem;
 }
 
 #about-large-text {
   font-size: 7.7rem;
   letter-spacing: 0.23rem;
   color: #373b3e;
+  position: relative;
 }
 
 #about-small-text {

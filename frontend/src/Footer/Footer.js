@@ -4,7 +4,7 @@ const Footer = () => {
   const date = new Date();
   const year = date.getFullYear();
   return (
-    <section className="footer-section content-margin">
+    <section className="footer-section content-padding">
       <div className="footer-content">
         <div className="footer-copyright">&copy; {year} Muse Duo</div>
         <div className="social-media-links">

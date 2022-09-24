@@ -21,7 +21,7 @@ const Photos = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
-    <section className="photos-section content-margin">
+    <section className="photos-section content-padding">
       <h3>Photos</h3>
       <div className="photos-content">
         <Swiper

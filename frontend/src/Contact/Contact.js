@@ -63,8 +63,7 @@ export const Contact = () => {
   };
 
   return (
-    <section className="contact-section content-margin">
-      <h3>Contact</h3>
+    <section className="contact-section">
       <div className="contact-section-content">
         <div id="contact-section-header">Get In Touch</div>
         <div className="contact-section-breakline"></div>

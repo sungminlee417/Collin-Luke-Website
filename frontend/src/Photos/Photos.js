@@ -12,10 +12,11 @@ import image2 from "../images/IMG_4650.jpeg";
 import image3 from "../images/IMG_4655.jpeg";
 import image4 from "../images/IMG_4647.jpeg";
 import image5 from "../images/IMG_4649.jpeg";
+import image6 from "../images/IMG_4657.jpeg";
 import "./Photos.css";
 import PhotoModal from "./PhotoModal/PhotoModal";
 
-const images = [image1, image2, image3, image4, image5];
+const images = [image1, image2, image3, image4, image5, image6];
 
 const Photos = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);

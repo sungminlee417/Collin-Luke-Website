@@ -12,9 +12,9 @@
 }
 
 .social-media-link {
+  color: #00165a;
   background-color: transparent;
   border: none;
-  color: #373b3e;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
@@ -24,7 +24,6 @@
 }
 
 .footer-copyright {
-  color: #373b3e;
   font-size: 1.7rem;
 }
 

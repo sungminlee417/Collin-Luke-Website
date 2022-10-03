@@ -23,7 +23,6 @@
 #about-large-text {
   font-size: 7.7rem;
   letter-spacing: 0.23rem;
-  color: #373b3e;
 }
 
 #about-small-text {
@@ -50,7 +49,7 @@
   }
 
   #about-large-text {
-    font-family: 'Cardo', serif;
+    font-family: "Cardo", serif;
     font-weight: 700;
     font-size: 6.8rem;
   }

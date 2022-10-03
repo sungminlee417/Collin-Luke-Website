@@ -24,7 +24,7 @@
 
 .line-one,
 .line-two {
-  background-color: #494e53;
+  background-color: #00165a;
   height: 0.3rem;
   transition: all 0.2s ease-in-out;
   width: 3.5rem;
@@ -36,12 +36,12 @@
 
 .line-one-changed {
   position: absolute;
-  background-color: #494e53;
+  background-color: #00165a;
   transform: rotate(135deg);
 }
 
 .line-two-changed {
-  background-color: #494e53;
+  background-color: #00165a;
   position: absolute;
   transform: rotate(-135deg);
 }
@@ -90,7 +90,7 @@
 .navigation-link {
   background: none;
   border: none;
-  color: #494e53;
+  color: #27285c;
   cursor: pointer;
   font-family: inherit;
   font-size: 4vw;
@@ -105,7 +105,7 @@
 .navigation-home-button {
   background-color: transparent;
   border: none;
-  color: #373b3e;
+  color: #27285c;
   cursor: pointer;
   font-family: inherit;
   font-size: 3.6rem;

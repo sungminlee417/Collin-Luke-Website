@@ -1,5 +1,5 @@
 # Muse Duo Website
-[Live Link](themuseduo.com)
+[Live Link](https://themuseduo.com/)
 ## About
 This is a static React App that serves as a personal portfolio site for an instrumental duo. 
 ![LandingPageScreen]()

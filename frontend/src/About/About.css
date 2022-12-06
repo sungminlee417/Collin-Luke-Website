@@ -26,8 +26,12 @@
 }
 
 #about-small-text {
+  display: flex;
+  flex-direction: column;
   font-family: "Source Sans Pro", sans-serif;
+  font-size: 1.8rem;
   font-weight: lighter;
+  gap: 1rem;
   line-height: 3.7rem;
 }
 
@@ -37,11 +41,11 @@
 
 @media (max-width: 1024px) {
   .about-section-content {
-    gap: 6rem;
+    gap: 4rem;
   }
 
   .about-image-duo {
-    height: 40rem;
+    height: 42rem;
   }
 
   .about-duo-section {
@@ -55,20 +59,20 @@
   }
 
   #about-small-text {
-    font-size: 1.7rem;
-    line-height: 3.5rem;
+    font-size: 1.4rem;
+    line-height: 3rem;
   }
 }
 
 @media (max-width: 768px) {
   .about-image-duo {
-    height: 32rem;
+    height: 33rem;
     margin-left: 2rem;
     box-shadow: -2rem -2rem 0 #967e76;
   }
 
   .about-duo-section {
-    gap: 1.5rem;
+    gap: 1.3rem;
   }
 
   #about-large-text {
@@ -76,8 +80,8 @@
   }
 
   #about-small-text {
-    font-size: 1.3rem;
-    line-height: 2.9rem;
+    font-size: 1.2rem;
+    line-height: 2.2rem;
   }
 }
 
@@ -91,7 +95,7 @@
   }
 
   #about-small-text {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     line-height: 3.2rem;
   }
 }

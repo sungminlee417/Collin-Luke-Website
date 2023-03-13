@@ -1,0 +1,93 @@
+.contact-image {
+  object-fit: contain;
+  width: 45%;
+  height: auto;
+}
+
+.contact-form {
+  width: 55%;
+}
+
+.successful-message {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1.5rem;
+  font-weight: lighter;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.error-message {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: lighter;
+  font-size: 1.22rem;
+  color: #bf0000;
+  opacity: 0;
+}
+
+.show-error-message {
+  opacity: 1;
+}
+
+/****************************/
+/* MEDIA QUERIES */
+/****************************/
+
+@media (max-width: 1024px) {
+  .contact-section-content {
+    gap: 5rem;
+  }
+
+  .contact-content {
+    gap: 3rem;
+  }
+
+  .contact-image {
+    width: 48%;
+  }
+
+  .contact-form {
+    width: 52%;
+  }
+
+  #contact-input-section {
+    gap: 0.6rem;
+  }
+}
+@media (max-width: 768px) {
+  #contact-section-header {
+    font-size: 5.5rem;
+  }
+
+  .contact-section-breakline {
+    width: 75%;
+  }
+
+  .contact-image {
+    display: none;
+  }
+
+  .contact-content {
+    width: 100%;
+  }
+  .contact-form {
+    width: 100%;
+  }
+
+  .error-message {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-section-content {
+    gap: 4.5rem;
+  }
+
+  #contact-section-header {
+    font-size: 5rem;
+  }
+
+  .contact-section-breakline {
+    width: 90%;
+  }
+}

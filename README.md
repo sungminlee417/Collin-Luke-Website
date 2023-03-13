@@ -2,7 +2,7 @@
 [Live Link](https://themuseduo.com/)
 ## About
 This is a static React App that serves as a personal portfolio site for an instrumental duo. 
-![LandingPageScreen]()
+![landing-page-screen](./readme-resources/Screen%20Shot%202023-01-30%20at%209.14.00%20PM.png)
 ## Setup
 In order to start the React App, type `npm install` in the terminal in order to obtain necessary dependencies. To serve the app, type `npm start` in the terminal. 
 ## Packages 

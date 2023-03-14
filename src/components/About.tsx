@@ -25,18 +25,19 @@ const About = () => {
               Just months after playing together for the first time, the duo
               embarked on a tour throughout the United States. Since then, the
               Muse Duo has performed in various venues and festivals, including
-              a tour of the midwest United States, the “Lynn New Music Festival”
-              and “Shellpoint Young Artist Series”. In July of 2022, the Duo
-              traveled to New York to record their debut album, consisting of
-              works composed by Luke, which will be released in the Spring of
-              2023.
+              a tour of the United States, the “Lynn New Music Festival” and the
+              “Shellpoint Young Artist Series”.
             </div>
             <div>
               The Muse Duo strives to champion new compositions for the unique
               ensemble. Their repertoire primarily consists of Luke’s original
-              works, where he composes music tailored for the duo. These works
-              are melodically focused and neo-classically inspired, while
-              engaging audiences through it’s modernistic rhythmic drive.
+              works, where he composes music tailored for the duo. In July of
+              2022, the Duo traveled to New York to record their debut album,
+              entitled “Experiments”. The album consists of entirely original
+              music, composed by Luke. These works are melodically focused and
+              neo-classically inspired, while engaging audiences through it’s
+              modernistic rhythmic drive. “Experiments” will be released April
+              8th, 2023.
             </div>
             <div>
               Through unique instrumentation, a convincing blend of musical

@@ -1,9 +1,10 @@
+import React from "react";
 import Navigation from "./components/Navigation";
-import Hero from "./Hero/Hero";
+import Hero from "./components/Hero";
 import About from "./components/About";
-import Recordings from "./Recordings";
+import Recordings from "./components/Recordings";
 import Photos from "./Photos";
-import Contact from "./Contact";
+import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
 function App() {

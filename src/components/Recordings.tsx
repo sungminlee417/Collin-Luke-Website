@@ -1,5 +1,4 @@
 import React from "react";
-import "./Recordings.css";
 import ReactPlayer from "react-player";
 import { useState } from "react";
 
@@ -27,17 +26,17 @@ const Recordings = () => {
   return (
     <section className="recordings-section flex flex-col gap-14 md:m-20 m-12">
       <h3>Recordings</h3>
-      <ul className="recordings-videos-container">
+      <ul className="flex flex-col gap-10 py-12">
         {recordingsURL.map((recording, index) => {
           return (
-            <div key={index} className={`recordings-video-container`}>
+            <div key={index} className="relative h-0 lg:pb-208 md:pb-160 pb-96">
               <ReactPlayer
                 url={recording.url}
                 width="560"
                 height="315"
                 controls
                 playing={current === recording.id ? true : false}
-                className={`recordings-youtube-video recordings-youtube-video-${recording.id}`}
+                className="absolute top-0 left-0 w-full h-full"
                 onPlay={() => onPlay(recording.id)}
               />
             </div>

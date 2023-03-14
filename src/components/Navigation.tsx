@@ -90,6 +90,16 @@ const Navigation = () => {
           <li>
             <button
               className="lg:text-8xl text-7xl"
+              onClick={() => {
+                scrollSmoothlyTo("concerts-section");
+              }}
+            >
+              Concerts
+            </button>
+          </li>
+          <li>
+            <button
+              className="lg:text-8xl text-7xl"
               onClick={() => scrollSmoothlyTo("recordings-section")}
             >
               Recordings

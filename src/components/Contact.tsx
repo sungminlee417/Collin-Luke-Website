@@ -37,7 +37,7 @@ export const Contact = () => {
                 const { subject, message } = values;
                 window.location.href = `mailto:${"themuseduo@gmail.com"}?subject=${
                   subject || ""
-                }}&body=${message || ""}`;
+                }&body=${message || ""}`;
                 actions.setSubmitting(false);
               }}
             >

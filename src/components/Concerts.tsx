@@ -4,10 +4,10 @@ const Concerts = () => {
   return (
     <section className="concerts-section flex flex-col gap-14 md:m-20 m-12">
       <h2 className="text-4xl">Concerts</h2>
-      <ul className="flex flex-col gap-10 py-12 m-12">
-        <li className="bg-white p-12 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg cursor-pointer">
+      <ul className="flex flex-col gap-10 lg:py-12 md:py-10 lg:m-12">
+        <li className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg cursor-pointer">
           <a
-            className="flex gap-20"
+            className="flex md:flex-row md:gap-20 gap-10 flex-col"
             href="https://www.eventbrite.com/e/muse-duo-experiments-2023-album-release-tour-tickets-579064626887?aff=odcleoeventsincollection"
             rel="noopener noreferrer"
             target="_blank"
@@ -16,16 +16,16 @@ const Concerts = () => {
               <div>08</div>
               <div>April</div>
             </div>
-            <div className="flex flex-col gap-4 flex-grow">
+            <div className="flex flex-col md:gap-4 gap-8 flex-grow">
               <div className="text-5xl">
                 Muse Duo: Experiments, 2023 Album Release Tour
               </div>
-              <div className="flex gap-4">
-                <div className="flex gap-1 items-center">
+              <div className="flex gap-6">
+                <div className="flex md:gap-2 gap-4 items-center">
                   <i className="fa-solid fa-clock"></i>
-                  <div className="text-xl">2:00 PM EDT</div>
+                  <div className="text-xl">2:00PM EDT</div>
                 </div>
-                <div className="flex gap-1 items-center">
+                <div className="flex md:gap-2 gap-4 items-center">
                   <i className="fa-solid fa-location-dot"></i>
                   <div className="text-xl">
                     <strong>Snyder Sanctuary</strong> North Military Trail Boca
@@ -35,7 +35,7 @@ const Concerts = () => {
               </div>
             </div>
             <a
-              className="self-center justify-self-end text-2xl text-white bg-orange-500 px-8 py-4 rounded-md"
+              className="md:self-center self-start justify-self-end text-2xl text-white bg-orange-500 px-8 py-4 rounded-md"
               href="https://www.eventbrite.com/e/muse-duo-experiments-2023-album-release-tour-tickets-579064626887?aff=odcleoeventsincollection"
               rel="noopener noreferrer"
               target="_blank"
@@ -44,9 +44,9 @@ const Concerts = () => {
             </a>
           </a>
         </li>
-        <li className="bg-white p-12 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg cursor-pointer">
+        <li className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg cursor-pointer">
           <a
-            className="flex gap-20"
+            className="flex md:flex-row md:gap-20 gap-10 flex-col"
             href="https://www.eventbrite.com/e/copy-of-muse-duo-experiments-2023-album-release-tour-tickets-587682944507?aff=odcleoeventsincollection"
             rel="noopener noreferrer"
             target="_blank"
@@ -55,16 +55,16 @@ const Concerts = () => {
               <div>15</div>
               <div>April</div>
             </div>
-            <div className="flex flex-col gap-4 flex-grow">
+            <div className="flex flex-col md:gap-4 gap-8 flex-grow">
               <div className="text-5xl">
                 Muse Duo: Experiments, 2023 Album Release Tour
               </div>
-              <div className="flex gap-4">
-                <div className="flex gap-1 items-center">
+              <div className="flex gap-6">
+                <div className="flex md:gap-2 gap-4 items-center">
                   <i className="fa-solid fa-clock"></i>
-                  <div className="text-xl">2:00 PM EDT</div>
+                  <div className="text-xl">2:00PM EDT</div>
                 </div>
-                <div className="flex gap-1 items-center">
+                <div className="flex md:gap-2 gap-4 items-center">
                   <i className="fa-solid fa-location-dot"></i>
                   <div className="text-xl">
                     <strong>Snyder Sanctuary</strong> North Military Trail Boca
@@ -74,7 +74,7 @@ const Concerts = () => {
               </div>
             </div>
             <a
-              className="self-center justify-self-end text-2xl text-white bg-orange-500 px-8 py-4 rounded-md"
+              className="md:self-center self-start justify-self-end text-2xl text-white bg-orange-500 px-8 py-4 rounded-md"
               href="https://www.eventbrite.com/e/copy-of-muse-duo-experiments-2023-album-release-tour-tickets-587682944507?aff=odcleoeventsincollection"
               rel="noopener noreferrer"
               target="_blank"
@@ -83,9 +83,9 @@ const Concerts = () => {
             </a>
           </a>
         </li>
-        <li className="bg-white p-12 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg cursor-pointer">
+        <li className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg cursor-pointer">
           <a
-            className="flex gap-20"
+            className="flex md:flex-row md:gap-20 gap-10 flex-col"
             href="https://www.eventbrite.com/e/sunshine-cathedral-center-for-the-performing-arts-presents-muse-duo-tickets-538604740277"
             rel="noopener noreferrer"
             target="_blank"
@@ -94,17 +94,17 @@ const Concerts = () => {
               <div>20</div>
               <div>May</div>
             </div>
-            <div className="flex flex-col gap-4 flex-grow">
+            <div className="flex flex-col md:gap-4 gap-8 flex-grow">
               <div className="text-5xl">
                 Sunshine Cathedral Center for the Performing Arts presents Muse
                 Duo
               </div>
-              <div className="flex gap-4">
-                <div className="flex gap-1 items-center">
+              <div className="flex gap-6">
+                <div className="flex md:gap-2 gap-4 items-center">
                   <i className="fa-solid fa-clock"></i>
-                  <div className="text-xl">8:00 PM EDT</div>
+                  <div className="text-xl">8:00PM EDT</div>
                 </div>
-                <div className="flex gap-1 items-center">
+                <div className="flex md:gap-2 gap-4 items-center">
                   <i className="fa-solid fa-location-dot"></i>
                   <div className="text-xl">
                     <strong>1480 SW 9th Ave </strong> 1480 Southwest 9th Avenue
@@ -114,7 +114,7 @@ const Concerts = () => {
               </div>
             </div>
             <a
-              className="self-center justify-self-end text-2xl text-white bg-orange-500 px-8 py-4 rounded-md"
+              className="md:self-center self-start justify-self-end text-2xl text-white bg-orange-500 px-8 py-4 rounded-md"
               href="https://www.eventbrite.com/e/sunshine-cathedral-center-for-the-performing-arts-presents-muse-duo-tickets-538604740277"
               rel="noopener noreferrer"
               target="_blank"

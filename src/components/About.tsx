@@ -13,7 +13,7 @@ const About = () => {
         />
         <div className="flex flex-col md:gap-14 gap-10">
           <div className="lg:text-9xl md:text-7xl text-6xl">The Muse Duo</div>
-          <div className="flex flex-col font-source md:text-3xl text-xl gap-7">
+          <div className="flex flex-col font-source lg:text-4xl md:text-3xl text-2xl gap-7">
             <div>
               Originally formed at the Eastman School of Music, the Muse Duo is
               a one-of-a-kind ensemble in the world of classical music.

@@ -10,12 +10,7 @@ const Concerts = () => {
       <div className="flex items-center">
         <ul className="flex flex-col gap-12 lg:mx-12 first">
           <li className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg cursor-pointer">
-            <a
-              className="flex md:flex-row md:gap-20 gap-10 flex-col"
-              // href="https://www.eventbrite.com/e/muse-duo-experiments-2023-album-release-tour-tickets-579064626887?aff=odcleoeventsincollection"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
+            <div className="flex md:flex-row md:gap-20 gap-10 flex-col">
               <div className="text-4xl">
                 <div>08</div>
                 <div>April</div>
@@ -53,15 +48,10 @@ const Concerts = () => {
               >
                 Tickets
               </a> */}
-            </a>
+            </div>
           </li>
           <li className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg cursor-pointer">
-            <a
-              className="flex md:flex-row md:gap-20 gap-10 flex-col"
-              // href="https://www.eventbrite.com/e/copy-of-muse-duo-experiments-2023-album-release-tour-tickets-587682944507?aff=odcleoeventsincollection"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
+            <div className="flex md:flex-row md:gap-20 gap-10 flex-col">
               <div className="text-4xl">
                 <div>15</div>
                 <div>April</div>
@@ -99,15 +89,10 @@ const Concerts = () => {
               >
                 Tickets
               </a> */}
-            </a>
+            </div>
           </li>
           <li className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg cursor-pointer">
-            <a
-              className="flex md:flex-row md:gap-20 gap-10 flex-col"
-              href="https://www.eventbrite.com/e/sunshine-cathedral-center-for-the-performing-arts-presents-muse-duo-tickets-538604740277"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
+            <div className="flex md:flex-row md:gap-20 gap-10 flex-col">
               <div className="text-4xl">
                 <div>20</div>
                 <div>May</div>
@@ -146,7 +131,7 @@ const Concerts = () => {
               >
                 Tickets
               </a>
-            </a>
+            </div>
           </li>
         </ul>
       </div>

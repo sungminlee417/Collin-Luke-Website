@@ -1,6 +1,11 @@
 import React from "react";
 
 const Concerts = () => {
+  const openMap = () => {
+    window.open(
+      "https://www.google.com/maps/place/Snyder+Sanctuary/@26.3837724,-80.1245195,17z/data=!3m1!4b1!4m6!3m5!1s0x88d91e6a9dc43fe7:0xcca1a0c62aed3b33!8m2!3d26.3837676!4d-80.1223308!16s%2Fg%2F11c55jc9g7"
+    );
+  };
   return (
     <section className="concerts-section flex flex-col gap-14 md:m-20 m-12">
       <h2 className="text-4xl">Concerts</h2>
@@ -28,7 +33,7 @@ const Concerts = () => {
                   </div>
                   <div className="flex md:gap-2 gap-4 items-center">
                     <i className="fa-solid fa-location-dot"></i>
-                    <div className="text-xl">
+                    <div className="text-xl" onClick={openMap}>
                       <strong>Snyder Sanctuary</strong> North Military Trail
                       Boca Raton, FL 33431
                     </div>

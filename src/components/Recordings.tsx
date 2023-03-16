@@ -26,7 +26,7 @@ const Recordings = () => {
   return (
     <section className="recordings-section flex flex-col gap-14 md:m-20 m-12">
       <h3>Recordings</h3>
-      <ul className="flex flex-col h-fit lg:gap-16 gap-10 lg:mx-40 mx-0">
+      <ul className="md:grid grid-cols-2 flex flex-col lg:gap-16 gap-10 mx-0">
         {recordingsURL.map((recording, index) => {
           return (
             <div key={recording.id}>

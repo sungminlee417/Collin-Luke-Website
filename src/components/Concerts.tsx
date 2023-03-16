@@ -9,7 +9,7 @@ const Concerts = () => {
           <li className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg cursor-pointer">
             <a
               className="flex md:flex-row md:gap-20 gap-10 flex-col"
-              href="https://www.eventbrite.com/e/muse-duo-experiments-2023-album-release-tour-tickets-579064626887?aff=odcleoeventsincollection"
+              // href="https://www.eventbrite.com/e/muse-duo-experiments-2023-album-release-tour-tickets-579064626887?aff=odcleoeventsincollection"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -35,20 +35,20 @@ const Concerts = () => {
                   </div>
                 </div>
               </div>
-              <a
+              {/* <a
                 className="md:self-center self-start justify-self-end text-2xl text-white bg-orange-500 px-8 py-4 rounded-md"
                 href="https://www.eventbrite.com/e/muse-duo-experiments-2023-album-release-tour-tickets-579064626887?aff=odcleoeventsincollection"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 Tickets
-              </a>
+              </a> */}
             </a>
           </li>
           <li className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg cursor-pointer">
             <a
               className="flex md:flex-row md:gap-20 gap-10 flex-col"
-              href="https://www.eventbrite.com/e/copy-of-muse-duo-experiments-2023-album-release-tour-tickets-587682944507?aff=odcleoeventsincollection"
+              // href="https://www.eventbrite.com/e/copy-of-muse-duo-experiments-2023-album-release-tour-tickets-587682944507?aff=odcleoeventsincollection"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -74,14 +74,14 @@ const Concerts = () => {
                   </div>
                 </div>
               </div>
-              <a
+              {/* <a
                 className="md:self-center self-start justify-self-end text-2xl text-white bg-orange-500 px-8 py-4 rounded-md"
                 href="https://www.eventbrite.com/e/copy-of-muse-duo-experiments-2023-album-release-tour-tickets-587682944507?aff=odcleoeventsincollection"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 Tickets
-              </a>
+              </a> */}
             </a>
           </li>
           <li className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg cursor-pointer">

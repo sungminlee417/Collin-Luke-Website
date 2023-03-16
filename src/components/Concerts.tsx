@@ -1,10 +1,8 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 
 const Concerts = () => {
-  const openMap = () => {
-    window.open(
-      "https://www.google.com/maps/place/Snyder+Sanctuary/@26.3837724,-80.1245195,17z/data=!3m1!4b1!4m6!3m5!1s0x88d91e6a9dc43fe7:0xcca1a0c62aed3b33!8m2!3d26.3837676!4d-80.1223308!16s%2Fg%2F11c55jc9g7"
-    );
+  const openMap = (addressURL: string): void => {
+    window.open(addressURL);
   };
   return (
     <section className="concerts-section flex flex-col gap-14 md:m-20 m-12">
@@ -33,7 +31,14 @@ const Concerts = () => {
                   </div>
                   <div className="flex md:gap-2 gap-4 items-center">
                     <i className="fa-solid fa-location-dot"></i>
-                    <div className="text-xl" onClick={openMap}>
+                    <div
+                      className="text-xl underline decoration-dotted underline-offset-2"
+                      onClick={() =>
+                        openMap(
+                          "https://www.google.com/maps/place/Snyder+Sanctuary/@26.3837724,-80.1245195,17z/data=!3m1!4b1!4m6!3m5!1s0x88d91e6a9dc43fe7:0xcca1a0c62aed3b33!8m2!3d26.3837676!4d-80.1223308!16s%2Fg%2F11c55jc9g7"
+                        )
+                      }
+                    >
                       <strong>Snyder Sanctuary</strong> North Military Trail
                       Boca Raton, FL 33431
                     </div>
@@ -72,7 +77,14 @@ const Concerts = () => {
                   </div>
                   <div className="flex md:gap-2 gap-4 items-center">
                     <i className="fa-solid fa-location-dot"></i>
-                    <div className="text-xl">
+                    <div
+                      className="text-xl underline decoration-dotted underline-offset-2"
+                      onClick={() =>
+                        openMap(
+                          "https://www.google.com/maps/place/Snyder+Sanctuary/@26.3837724,-80.1245195,17z/data=!3m1!4b1!4m6!3m5!1s0x88d91e6a9dc43fe7:0xcca1a0c62aed3b33!8m2!3d26.3837676!4d-80.1223308!16s%2Fg%2F11c55jc9g7"
+                        )
+                      }
+                    >
                       <strong>Snyder Sanctuary</strong> North Military Trail
                       Boca Raton, FL 33431
                     </div>
@@ -112,7 +124,14 @@ const Concerts = () => {
                   </div>
                   <div className="flex md:gap-2 gap-4 items-center">
                     <i className="fa-solid fa-location-dot"></i>
-                    <div className="text-xl">
+                    <div
+                      className="text-xl"
+                      onClick={() =>
+                        openMap(
+                          "https://www.google.com/maps/place/Sunshine+Cathedral+MCC/@26.1033971,-80.1550231,17z/data=!3m2!4b1!5s0x88d9008d6d986b25:0xf8a9f6d227cc987b!4m6!3m5!1s0x88d9008d0d6d3729:0xc7337a9ff83af3d9!8m2!3d26.1033923!4d-80.1528344!16s%2Fg%2F113hfcjh6"
+                        )
+                      }
+                    >
                       <strong>1480 SW 9th Ave </strong> 1480 Southwest 9th
                       Avenue Fort Lauderdale, FL 33315
                     </div>

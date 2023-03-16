@@ -13,12 +13,14 @@ function App() {
     <>
       <Navigation />
       <Hero />
-      <About />
-      <Concerts />
-      <Recordings />
-      <Photos />
-      <Contact />
-      <Footer />
+      <div className="flex flex-col gap-10">
+        <About />
+        <Concerts />
+        <Recordings />
+        <Photos />
+        <Contact />
+        <Footer />
+      </div>
     </>
   );
 }

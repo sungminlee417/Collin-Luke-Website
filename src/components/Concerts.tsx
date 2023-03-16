@@ -29,9 +29,7 @@ const Concerts = () => {
                     <div
                       className="text-xl underline decoration-dotted underline-offset-2 cursor-pointer"
                       onClick={() =>
-                        openMap(
-                          "https://www.google.com/maps/place/Snyder+Sanctuary/@26.3837724,-80.1245195,17z/data=!3m1!4b1!4m6!3m5!1s0x88d91e6a9dc43fe7:0xcca1a0c62aed3b33!8m2!3d26.3837676!4d-80.1223308!16s%2Fg%2F11c55jc9g7"
-                        )
+                        openMap("https://goo.gl/maps/hmGK1jE8WBgUU1zh8")
                       }
                     >
                       <strong>Snyder Sanctuary</strong> North Military Trail
@@ -70,9 +68,7 @@ const Concerts = () => {
                     <div
                       className="text-xl underline decoration-dotted underline-offset-2 cursor-pointer"
                       onClick={() =>
-                        openMap(
-                          "https://www.google.com/maps/place/Snyder+Sanctuary/@26.3837724,-80.1245195,17z/data=!3m1!4b1!4m6!3m5!1s0x88d91e6a9dc43fe7:0xcca1a0c62aed3b33!8m2!3d26.3837676!4d-80.1223308!16s%2Fg%2F11c55jc9g7"
-                        )
+                        openMap("https://goo.gl/maps/hmGK1jE8WBgUU1zh8")
                       }
                     >
                       <strong>Snyder Sanctuary</strong> North Military Trail
@@ -125,7 +121,7 @@ const Concerts = () => {
               </div>
               <a
                 className="md:self-center self-start justify-self-end text-2xl text-white bg-orange-500 px-8 py-4 rounded-md"
-                href="https://www.eventbrite.com/e/sunshine-cathedral-center-for-the-performing-arts-presents-muse-duo-tickets-538604740277"
+                href="https://goo.gl/maps/mBJce7jXoDmN7SXv5"
                 rel="noopener noreferrer"
                 target="_blank"
               >

@@ -5,7 +5,7 @@ const About = () => {
   return (
     <section className="about-section flex flex-col gap-14 md:m-20 m-12">
       <h2 className="text-4xl">About</h2>
-      <body className="flex items-center gap-20">
+      <div className="flex items-center gap-20">
         <img
           className="lg:h-208 lg:block hidden"
           src={image}
@@ -46,7 +46,7 @@ const About = () => {
             </div>
           </div>
         </div>
-      </body>
+      </div>
     </section>
   );
 };

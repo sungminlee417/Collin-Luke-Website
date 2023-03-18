@@ -1,5 +1,4 @@
-import React, { MouseEventHandler } from "react";
-
+import React from "react";
 const Concerts = () => {
   const openMap = (addressURL: string): void => {
     window.open(addressURL);

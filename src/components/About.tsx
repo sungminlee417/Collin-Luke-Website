@@ -12,7 +12,7 @@ const About = () => {
           alt="collin and luke"
         />
         <div className="flex flex-col md:gap-14 gap-10">
-          <div className="lg:text-9xl md:text-7xl text-6xl">The Muse Duo</div>
+          <h1 className="lg:text-9xl md:text-7xl text-6xl">The Muse Duo</h1>
           <div className="flex flex-col font-source lg:text-4xl md:text-3xl text-2xl gap-7">
             <div>
               Originally formed at the Eastman School of Music, the Muse Duo is

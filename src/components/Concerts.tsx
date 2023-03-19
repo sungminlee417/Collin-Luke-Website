@@ -4,6 +4,7 @@ const Concerts = () => {
   const openMap = (addressURL: string): void => {
     window.open(addressURL);
   };
+
   return (
     <section className="concerts-section flex flex-col gap-14 md:m-20 m-12">
       <h2 className="text-4xl">Concerts</h2>

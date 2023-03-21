@@ -27,39 +27,16 @@ body {
   overflow-x: hidden;
 }
 
-h3 {
-  font-size: 2.2rem;
-  letter-spacing: 0.05rem;
-}
-
-input {
-  padding-left: 0.5rem;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-textarea {
-  resize: none;
-  padding-top: 0.5rem;
-  padding-left: 0.5rem;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-input:focus,
-textarea:focus {
-  border: none;
-  outline: none;
-}
-
 .hero-section {
   background-image: url("./images/IMG_4647.jpeg");
 }
 
-/*************************/
-/* REUSABLE STYLINGS */
-/*************************/
+.images-slider .swiper-slide {
+  opacity: 0.5;
+}
 
-.content-margin {
-  margin: 8rem 8rem 4rem 8rem;
+.images-slider .swiper-slide-thumb-active {
+  opacity: 1;
 }
 
 /*************************/
@@ -79,31 +56,8 @@ textarea:focus {
 /*************************/
 /* MEDIA QUERIES */
 /*************************/
-@media (max-width: 1024px) {
-  .content-margin {
-    margin: 10rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .content-margin {
-    margin: 5rem 4rem 4rem 4rem;
-  }
-
-  section {
-    gap: 5.5rem;
-  }
-}
 
 @media (max-width: 480px) {
-  .content-margin {
-    margin: 4rem 3rem 3rem 3rem;
-  }
-
-  h3 {
-    font-size: 2rem;
-  }
-
   .hero-section {
     background-image: url("./images/IMG_4655.jpeg");
   }

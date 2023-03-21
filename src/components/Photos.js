@@ -13,8 +13,8 @@ import image3 from "../images/IMG_4655.jpeg";
 import image4 from "../images/IMG_4647.jpeg";
 import image5 from "../images/IMG_4649.jpeg";
 import image6 from "../images/IMG_4657.jpeg";
-import "./Photos.css";
-import PhotoModal from "./PhotoModal/PhotoModal";
+
+import PhotoModal from "./PhotoModal";
 
 const images = [image1, image2, image3, image4, image5, image6];
 
@@ -23,8 +23,8 @@ const Photos = () => {
 
   return (
     <section className="photos-section flex flex-col gap-14 md:m-20 m-12">
-      <h3>Photos</h3>
-      <div className="photos-content">
+      <h2 className="text-4xl">Photos</h2>
+      <div className="flex flex-col gap-10">
         <Swiper
           style={{
             "--swiper-navigation-color": "#373b3e",
@@ -34,11 +34,11 @@ const Photos = () => {
           navigation={true}
           thumbs={{ swiper: thumbsSwiper }}
           modules={[FreeMode, Navigation, Thumbs]}
-          className="photos-carousel-images"
+          className="lg:h-224 md:h-144 h-96 object-contain w-full"
         >
           {images.map((image, index) => {
             return (
-              <SwiperSlide key={index} className={"carousel-slide"}>
+              <SwiperSlide key={index}>
                 <PhotoModal image={image} />
               </SwiperSlide>
             );
@@ -52,16 +52,22 @@ const Photos = () => {
           freeMode={true}
           watchSlidesProgress={true}
           modules={[FreeMode, Navigation, Thumbs]}
-          className="images-slider"
+          className="images-slider w-full lg:h-36 md:h-28 h-16"
         >
           {images.map((image, index) => {
             return (
-              <SwiperSlide key={index} className={"slider-slide"}>
+              <SwiperSlide key={index} className="swiper-slide">
                 <div
-                  className="carousel-image"
+                  className="h-full cursor-pointer"
                   style={{ backgroundImage: `url(${image})` }}
                   alt="collin-and-luke"
-                />
+                >
+                  <img
+                    alt="collin and luke"
+                    src={image}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
               </SwiperSlide>
             );
           })}

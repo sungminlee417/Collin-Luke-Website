@@ -4,7 +4,7 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import Concerts from "./components/Concerts";
 import Recordings from "./components/Recordings";
-import Photos from "./Photos";
+import Photos from "./components/Photos";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 

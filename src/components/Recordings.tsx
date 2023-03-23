@@ -27,8 +27,8 @@ const Recordings = () => {
   return (
     <section className="recordings-section flex flex-col gap-14 md:m-20 m-12">
       <h2 className="text-4xl">Recordings</h2>
-      <div className="flex flex-col items-center gap-20">
-        <ul className="lg:grid grid-cols-2 lg:gap-16 gap-10 mx-0 items-center w-full">
+      <div className="flex flex-col gap-20">
+        <ul className="lg:grid grid-cols-2 flex flex-col lg:gap-16 gap-10 mx-0">
           {recordingsURL.map((recording, index) => {
             return (
               <div key={recording.id}>
@@ -45,7 +45,7 @@ const Recordings = () => {
             );
           })}
         </ul>
-        <img src={album} className="shadow-lg w-[50%]" />
+        <img src={album} className="shadow-lg md:w-[50%] self-center" />
       </div>
     </section>
   );

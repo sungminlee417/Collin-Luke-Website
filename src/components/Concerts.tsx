@@ -10,7 +10,7 @@ const Concerts = () => {
     <section className="concerts-section flex flex-col gap-14 md:m-20 m-12">
       <h2 className="text-4xl">Concerts</h2>
       <div className="flex items-center">
-        <ul className="grid gap-12 lg:mx-12">
+        <ul className="grid gap-12 lg:mx-12 w-full">
           <li className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg">
             <div className="flex md:flex-row md:gap-20 gap-10 flex-col">
               <div className="text-4xl">

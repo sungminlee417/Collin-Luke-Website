@@ -1,4 +1,5 @@
 import React from "react";
+import image from "../images/IMG_6786.jpg";
 
 const Concerts = () => {
   const openMap = (addressURL: string): void => {
@@ -9,7 +10,7 @@ const Concerts = () => {
     <section className="concerts-section flex flex-col gap-14 md:m-20 m-12">
       <h2 className="text-4xl">Concerts</h2>
       <div className="flex items-center">
-        <ul className="flex flex-col gap-12 lg:mx-12 first">
+        <ul className="grid gap-12 lg:mx-12">
           <li className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg">
             <div className="flex md:flex-row md:gap-20 gap-10 flex-col">
               <div className="text-4xl">
@@ -18,7 +19,7 @@ const Concerts = () => {
               </div>
               <div className="flex flex-col md:gap-4 gap-8 flex-grow">
                 <div className="text-5xl">
-                  Muse Duo: Experiments, 2023 Album Release Tour
+                  The Muse Duo: Experiments, 2023 Album Release Tour
                 </div>
                 <div className="flex gap-6">
                   <div className="flex md:gap-2 gap-4 items-center">
@@ -33,20 +34,20 @@ const Concerts = () => {
                         openMap("https://goo.gl/maps/hmGK1jE8WBgUU1zh8")
                       }
                     >
-                      <strong>Snyder Sanctuary</strong> North Military Trail
+                      <strong>Snyder Sanctuary </strong>North Military Trail
                       Boca Raton, FL 33431
                     </div>
                   </div>
                 </div>
               </div>
-              {/* <a
+              <a
                 className="md:self-center self-start justify-self-end text-2xl text-white bg-orange-500 px-8 py-4 rounded-md"
-                href="https://www.eventbrite.com/e/muse-duo-experiments-2023-album-release-tour-tickets-579064626887?aff=odcleoeventsincollection"
+                href="https://www.eventbrite.com/e/the-muse-duo-experiments-2023-album-release-tour-tickets-579064626887"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 Tickets
-              </a> */}
+              </a>
             </div>
           </li>
           <li className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg">
@@ -57,7 +58,7 @@ const Concerts = () => {
               </div>
               <div className="flex flex-col md:gap-4 gap-8 flex-grow">
                 <div className="text-5xl">
-                  Muse Duo: Experiments, 2023 Album Release Tour
+                  The Muse Duo: Experiments, 2023 Album Release Tour
                 </div>
                 <div className="flex gap-6">
                   <div className="flex md:gap-2 gap-4 items-center">
@@ -78,14 +79,53 @@ const Concerts = () => {
                   </div>
                 </div>
               </div>
-              {/* <a
+              <a
                 className="md:self-center self-start justify-self-end text-2xl text-white bg-orange-500 px-8 py-4 rounded-md"
-                href="https://www.eventbrite.com/e/copy-of-muse-duo-experiments-2023-album-release-tour-tickets-587682944507?aff=odcleoeventsincollection"
+                href="https://www.eventbrite.com/e/the-muse-duo-experiments-2023-album-release-tour-tickets-597008086257"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 Tickets
-              </a> */}
+              </a>
+            </div>
+          </li>
+          <li className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg">
+            <div className="flex md:flex-row md:gap-20 gap-10 flex-col">
+              <div className="text-4xl">
+                <div>6</div>
+                <div>May</div>
+              </div>
+              <div className="flex flex-col md:gap-4 gap-8 flex-grow">
+                <div className="text-5xl">
+                  The Muse Duo: Experiments, 2023 Album Release Tour
+                </div>
+                <div className="flex gap-6">
+                  <div className="flex md:gap-2 gap-4 items-center">
+                    <i className="fa-solid fa-clock"></i>
+                    <div className="text-xl">3:00PM EDT</div>
+                  </div>
+                  <div className="flex md:gap-2 gap-4 items-center">
+                    <i className="fa-solid fa-location-dot"></i>
+                    <div
+                      className="text-xl underline decoration-dotted underline-offset-2 cursor-pointer"
+                      onClick={() =>
+                        openMap("https://goo.gl/maps/UGYN9jSgw8yZaF6EA")
+                      }
+                    >
+                      <strong> Schmidt Vocal Arts Center</strong> 412 Rose St,
+                      Lexington, KY 40508 Kentucky, KY 40508
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a
+                className="md:self-center self-start justify-self-end text-2xl text-white bg-orange-500 px-8 py-4 rounded-md"
+                href="https://www.eventbrite.com/e/the-muse-duo-experiments-2023-album-release-tour-tickets-597129489377"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Tickets
+              </a>
             </div>
           </li>
           <li className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg">
@@ -114,15 +154,130 @@ const Concerts = () => {
                         )
                       }
                     >
-                      <strong>1480 SW 9th Ave </strong> 1480 Southwest 9th
-                      Avenue Fort Lauderdale, FL 33315
+                      <strong>1480 SW 9th Ave </strong> Fort Lauderdale, FL
+                      33315
                     </div>
                   </div>
                 </div>
               </div>
               <a
                 className="md:self-center self-start justify-self-end text-2xl text-white bg-orange-500 px-8 py-4 rounded-md"
-                href="https://goo.gl/maps/mBJce7jXoDmN7SXv5"
+                href="https://www.eventbrite.com/e/sunshine-cathedral-center-for-the-performing-arts-presents-muse-duo-tickets-538604740277?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=cp&aff=escb"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Tickets
+              </a>
+            </div>
+          </li>
+          <li className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg">
+            <div className="flex md:flex-row md:gap-20 gap-10 flex-col">
+              <div className="text-4xl">
+                <div>26</div>
+                <div>May</div>
+              </div>
+              <div className="flex flex-col md:gap-4 gap-8 flex-grow">
+                <div className="text-5xl">
+                  The Muse Duo: Experiments, 2023 Album Release Tour
+                </div>
+                <div className="flex gap-6">
+                  <div className="flex md:gap-2 gap-4 items-center">
+                    <i className="fa-solid fa-clock"></i>
+                    <div className="text-xl">3:00PM CDT</div>
+                  </div>
+                  <div className="flex md:gap-2 gap-4 items-center">
+                    <i className="fa-solid fa-location-dot"></i>
+                    <div
+                      className="text-xl underline decoration-dotted underline-offset-2 cursor-pointer"
+                      onClick={() =>
+                        openMap("https://goo.gl/maps/NWUbpSpGp1WMVcF17")
+                      }
+                    >
+                      <strong>ARTSPACE at Untitled </strong> 1 NE 3rd St,
+                      Oklahoma City, OK 73104
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a
+                className="md:self-center self-start justify-self-end text-2xl text-white bg-orange-500 px-8 py-4 rounded-md"
+                href="https://www.eventbrite.com/e/the-muse-duo-experiments-2023-album-release-tour-tickets-597032589547"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Tickets
+              </a>
+            </div>
+          </li>
+          <li className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg">
+            <div className="flex md:flex-row md:gap-20 gap-10 flex-col">
+              <div className="text-4xl">
+                <div>28</div>
+                <div>May</div>
+              </div>
+              <div className="flex flex-col md:gap-4 gap-8 flex-grow">
+                <div className="text-5xl">
+                  The Muse Duo: Experiments, 2023 Album Release Tour
+                </div>
+                <div className="flex gap-6">
+                  <div className="flex md:gap-2 gap-4 items-center">
+                    <i className="fa-solid fa-clock"></i>
+                    <div className="text-xl">3:00PM CDT</div>
+                  </div>
+                  <div className="flex md:gap-2 gap-4 items-center">
+                    <i className="fa-solid fa-location-dot"></i>
+                    <div
+                      className="text-xl underline decoration-dotted underline-offset-2 cursor-pointer"
+                      onClick={() =>
+                        openMap("https://goo.gl/maps/ahdXvYYNg1BiSjna6")
+                      }
+                    >
+                      <strong>First Presbyterian Church </strong> 1001 NW 25
+                      Street Oklahoma CIty, OK 73106
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a
+                className="md:self-center self-start justify-self-end text-2xl text-white bg-orange-500 px-8 py-4 rounded-md"
+                href="https://www.eventbrite.com/e/the-muse-duo-experiments-2023-album-release-tour-tickets-597247522417"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Tickets
+              </a>
+            </div>
+          </li>
+          <li className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg">
+            <div className="flex md:flex-row md:gap-20 gap-10 flex-col">
+              <div className="text-4xl">
+                <div>25</div>
+                <div>June</div>
+              </div>
+              <div className="flex flex-col md:gap-4 gap-8 flex-grow">
+                <div className="text-5xl">Boca Museum of Art</div>
+                <div className="flex gap-6">
+                  <div className="flex md:gap-2 gap-4 items-center">
+                    <i className="fa-solid fa-clock"></i>
+                    <div className="text-xl">8:00PM EDT</div>
+                  </div>
+                  <div className="flex md:gap-2 gap-4 items-center">
+                    <i className="fa-solid fa-location-dot"></i>
+                    <div
+                      className="text-xl underline decoration-dotted underline-offset-2 cursor-pointer"
+                      onClick={() =>
+                        openMap("https://goo.gl/maps/rehnB1psGYtQYnte6")
+                      }
+                    >
+                      <strong>Boca Raton Museum of Art </strong> 501 Plaza Real,
+                      Boca Raton, FL 33432
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a
+                className="md:self-center self-start justify-self-end text-2xl text-white bg-orange-500 px-8 py-4 rounded-md"
+                href="https://bocamuseum.org/visit/events"
                 rel="noopener noreferrer"
                 target="_blank"
               >

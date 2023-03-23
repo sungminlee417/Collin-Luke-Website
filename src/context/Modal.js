@@ -19,7 +19,7 @@ export function ModalProvider({ children }) {
   );
 }
 
-export function Modal({ children, type }) {
+export function Modal({ children }) {
   const modalNode = useContext(ModalContext);
 
   useEffect(() => {

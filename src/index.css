@@ -27,6 +27,10 @@ body {
   overflow-x: hidden;
 }
 
+/*************************/
+/* COMPONENT STYLINGS */
+/*************************/
+
 .hero-section {
   background-image: url("./images/IMG_4647.jpeg");
 }

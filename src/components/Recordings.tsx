@@ -29,7 +29,7 @@ const Recordings = () => {
       <h2 className="text-4xl">Recordings</h2>
       <div className="flex flex-col gap-20">
         <ul className="lg:grid grid-cols-2 flex flex-col lg:gap-16 gap-10 mx-0">
-          {recordingsURL.map((recording, index) => {
+          {recordingsURL.map((recording) => {
             return (
               <div key={recording.id}>
                 <ReactPlayer
@@ -38,7 +38,7 @@ const Recordings = () => {
                   width="100%"
                   height="100%"
                   playing={current === recording.id ? true : false}
-                  className="aspect-video"
+                  className="aspect-video before:pt-[56.25%]"
                   onPlay={() => onPlay(recording.id)}
                 />
               </div>

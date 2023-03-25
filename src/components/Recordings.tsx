@@ -36,9 +36,8 @@ const Recordings = () => {
                   url={recording.url}
                   controls
                   width="100%"
-                  height="100%"
                   playing={current === recording.id ? true : false}
-                  className="aspect-video before:pt-[56.25%]"
+                  className="aspect-video"
                   onPlay={() => onPlay(recording.id)}
                 />
               </div>

@@ -1,14 +1,18 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 
-const ModalContext = React.createContext();
+type ModalProviderProps = {
+  children: React.ReactNode;
+};
 
-export function ModalProvider({ children }) {
-  const modalRef = useRef();
-  const [value, setValue] = useState();
+const ModalContext = React.createContext<HTMLElement | null>(null);
+
+export function ModalProvider({ children }: ModalProviderProps) {
+  const modalRef = useRef<HTMLDivElement>(null);
+  const [value, setValue] = useState<null | HTMLElement>(null);
 
   useEffect(() => {
-    setValue(modalRef.current);
+    setValue(modalRef.current || null);
   }, []);
 
   return (
@@ -19,14 +23,8 @@ export function ModalProvider({ children }) {
   );
 }
 
-export function Modal({ children }) {
+export function Modal({ children }: ModalProviderProps) {
   const modalNode = useContext(ModalContext);
-
-  useEffect(() => {
-    const html = document.querySelector("html");
-    html.style.overflow = "hidden";
-    return () => (html.style.overflow = "auto");
-  }, []);
 
   if (!modalNode) return null;
 

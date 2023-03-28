@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 
 type ModalProviderProps = {
   children: React.ReactNode;
+  showModal?: boolean;
 };
 
 const ModalContext = React.createContext<HTMLElement | null>(null);

@@ -1,17 +1,17 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Modal } from "../context/Modal";
 import Photo from "./Photo";
 
-const PhotoModal = ({ image }) => {
+interface Image {
+  image: string;
+}
+
+const PhotoModal = ({ image }: Image) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      <div
-        className="h-full cursor-pointer"
-        alt="collin-and-luke"
-        onClick={() => setShowModal(true)}
-      >
+      <div className="h-full cursor-pointer" onClick={() => setShowModal(true)}>
         <img
           alt="collin and luke"
           src={image}

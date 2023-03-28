@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { FreeMode, Navigation, Thumbs } from "swiper";
+import React, { useState } from "react";
+import SwiperCore, { FreeMode, Navigation, Thumbs } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
@@ -16,24 +15,27 @@ import image6 from "../images/IMG_4657.jpeg";
 
 import PhotoModal from "./PhotoModal";
 
+SwiperCore.use([FreeMode, Navigation, Thumbs]);
+
 const images = [image1, image2, image3, image4, image5, image6];
 
 const Photos = () => {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore | null>(null);
 
   return (
     <section className="photos-section flex flex-col gap-14 md:m-20 m-12">
       <h2 className="text-4xl">Photos</h2>
       <div className="flex flex-col gap-10">
         <Swiper
-          style={{
-            "--swiper-navigation-color": "#373b3e",
-          }}
+          style={
+            {
+              "--swiper-navigation-color": "#373b3e",
+            } as React.CSSProperties
+          }
           loop={true}
           spaceBetween={10}
           navigation={true}
           thumbs={{ swiper: thumbsSwiper }}
-          modules={[FreeMode, Navigation, Thumbs]}
           className="lg:h-224 md:h-144 h-96 object-contain w-full"
         >
           {images.map((image, index) => {
@@ -45,13 +47,12 @@ const Photos = () => {
           })}
         </Swiper>
         <Swiper
-          onSwiper={setThumbsSwiper}
+          onSwiper={(swiper: SwiperCore) => setThumbsSwiper(swiper)}
           loop={true}
           spaceBetween={10}
           slidesPerView={5}
           freeMode={true}
           watchSlidesProgress={true}
-          modules={[FreeMode, Navigation, Thumbs]}
           className="images-slider w-full lg:h-36 md:h-28 h-16"
         >
           {images.map((image, index) => {
@@ -60,7 +61,6 @@ const Photos = () => {
                 <div
                   className="h-full cursor-pointer"
                   style={{ backgroundImage: `url(${image})` }}
-                  alt="collin-and-luke"
                 >
                   <img
                     alt="collin and luke"

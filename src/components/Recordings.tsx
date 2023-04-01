@@ -31,11 +31,12 @@ const Recordings = () => {
         <ul className="lg:grid grid-cols-2 flex flex-col lg:gap-16 gap-10 mx-0">
           {recordingsURL.map((recording) => {
             return (
-              <div key={recording.id}>
+              <div key={recording.id} className="h-fit">
                 <ReactPlayer
                   url={recording.url}
                   controls
                   width="100%"
+                  height="100%"
                   playing={current === recording.id ? true : false}
                   className="aspect-video"
                   onPlay={() => onPlay(recording.id)}
@@ -44,7 +45,19 @@ const Recordings = () => {
             );
           })}
         </ul>
-        <img src={album} className="shadow-lg md:w-[50%] self-center" />
+        <div className="flex flex-col gap-20 items-center">
+          <img src={album} className="shadow-lg md:w-1/2" />
+          <ul className="self-center m-auto">
+            <li>
+              <a
+                href="https://open.spotify.com/track/4nCA0nHmffLYkKEPsN8bdV?si=Ei4nk2g_SNy8Zycua5pZbQ&dd=1&nd=1"
+                className="text-white bg-[#1db954] px-16 py-8 text-3xl rounded-full hover:shadow-lg transition ease-in-out cursor-pointer"
+              >
+                Listen on Spotify
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
   );

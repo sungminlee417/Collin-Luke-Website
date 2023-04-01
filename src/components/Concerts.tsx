@@ -6,10 +6,12 @@ const Concerts = () => {
   };
 
   return (
-    <section className="concerts-section flex flex-col gap-14 md:m-20 m-12">
-      <h2 className="text-4xl">Concerts</h2>
+    <section className="concerts-section flex flex-col gap-20 md:m-20 m-12">
+      <h2 className="lg:text-7xl text-center text-6xl">
+        Experiments, 2023 Album Release Tour
+      </h2>
       <div className="flex items-center">
-        <ul className="grid gap-12 lg:mx-12 w-full">
+        <ul className="grid gap-12 lg:mx-10 w-full">
           <li className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg">
             <div className="flex md:flex-row md:gap-20 gap-10 flex-col">
               <div className="text-4xl">
@@ -17,9 +19,7 @@ const Concerts = () => {
                 <div>April</div>
               </div>
               <div className="flex flex-col md:gap-4 gap-8 flex-grow">
-                <div className="text-5xl">
-                  The Muse Duo: Experiments, 2023 Album Release Tour
-                </div>
+                <div className="text-5xl">Snyder Sanctuary</div>
                 <div className="flex gap-6">
                   <div className="flex md:gap-2 gap-4 items-center">
                     <i className="fa-solid fa-clock"></i>
@@ -33,8 +33,7 @@ const Concerts = () => {
                         openMap("https://goo.gl/maps/hmGK1jE8WBgUU1zh8")
                       }
                     >
-                      <strong>Snyder Sanctuary </strong>North Military Trail
-                      Boca Raton, FL 33431
+                      North Military Trail Boca Raton, FL 33431
                     </div>
                   </div>
                 </div>
@@ -56,9 +55,7 @@ const Concerts = () => {
                 <div>April</div>
               </div>
               <div className="flex flex-col md:gap-4 gap-8 flex-grow">
-                <div className="text-5xl">
-                  The Muse Duo: Experiments, 2023 Album Release Tour
-                </div>
+                <div className="text-5xl">Snyder Sanctuary</div>
                 <div className="flex gap-6">
                   <div className="flex md:gap-2 gap-4 items-center">
                     <i className="fa-solid fa-clock"></i>
@@ -72,8 +69,7 @@ const Concerts = () => {
                         openMap("https://goo.gl/maps/hmGK1jE8WBgUU1zh8")
                       }
                     >
-                      <strong>Snyder Sanctuary</strong> North Military Trail
-                      Boca Raton, FL 33431
+                      North Military Trail Boca Raton, FL 33431
                     </div>
                   </div>
                 </div>
@@ -95,9 +91,7 @@ const Concerts = () => {
                 <div>May</div>
               </div>
               <div className="flex flex-col md:gap-4 gap-8 flex-grow">
-                <div className="text-5xl">
-                  The Muse Duo: Experiments, 2023 Album Release Tour
-                </div>
+                <div className="text-5xl">Schmidt Vocal Arts Center</div>
                 <div className="flex gap-6">
                   <div className="flex md:gap-2 gap-4 items-center">
                     <i className="fa-solid fa-clock"></i>
@@ -111,8 +105,7 @@ const Concerts = () => {
                         openMap("https://goo.gl/maps/UGYN9jSgw8yZaF6EA")
                       }
                     >
-                      <strong> Schmidt Vocal Arts Center</strong> 412 Rose St,
-                      Lexington, KY 40508 Kentucky, KY 40508
+                      412 Rose St, Lexington, KY 40508 Kentucky, KY 40508
                     </div>
                   </div>
                 </div>
@@ -135,8 +128,7 @@ const Concerts = () => {
               </div>
               <div className="flex flex-col md:gap-4 gap-8 flex-grow">
                 <div className="text-5xl">
-                  Sunshine Cathedral Center for the Performing Arts presents
-                  Muse Duo
+                  Sunshine Cathedral Center for the Performing Arts
                 </div>
                 <div className="flex gap-6">
                   <div className="flex md:gap-2 gap-4 items-center">
@@ -153,8 +145,7 @@ const Concerts = () => {
                         )
                       }
                     >
-                      <strong>1480 SW 9th Ave </strong> Fort Lauderdale, FL
-                      33315
+                      1480 SW 9th Ave Fort Lauderdale, FL 33315
                     </div>
                   </div>
                 </div>
@@ -176,9 +167,7 @@ const Concerts = () => {
                 <div>May</div>
               </div>
               <div className="flex flex-col md:gap-4 gap-8 flex-grow">
-                <div className="text-5xl">
-                  The Muse Duo: Experiments, 2023 Album Release Tour
-                </div>
+                <div className="text-5xl">ARTSPACE at Untitled</div>
                 <div className="flex gap-6">
                   <div className="flex md:gap-2 gap-4 items-center">
                     <i className="fa-solid fa-clock"></i>
@@ -192,8 +181,7 @@ const Concerts = () => {
                         openMap("https://goo.gl/maps/NWUbpSpGp1WMVcF17")
                       }
                     >
-                      <strong>ARTSPACE at Untitled </strong> 1 NE 3rd St,
-                      Oklahoma City, OK 73104
+                      1 NE 3rd St, Oklahoma City, OK 73104
                     </div>
                   </div>
                 </div>
@@ -215,9 +203,7 @@ const Concerts = () => {
                 <div>May</div>
               </div>
               <div className="flex flex-col md:gap-4 gap-8 flex-grow">
-                <div className="text-5xl">
-                  The Muse Duo: Experiments, 2023 Album Release Tour
-                </div>
+                <div className="text-5xl">First Presbyterian Church</div>
                 <div className="flex gap-6">
                   <div className="flex md:gap-2 gap-4 items-center">
                     <i className="fa-solid fa-clock"></i>
@@ -231,8 +217,7 @@ const Concerts = () => {
                         openMap("https://goo.gl/maps/ahdXvYYNg1BiSjna6")
                       }
                     >
-                      <strong>First Presbyterian Church </strong> 1001 NW 25
-                      Street Oklahoma CIty, OK 73106
+                      1001 NW 25 Street Oklahoma CIty, OK 73106
                     </div>
                   </div>
                 </div>
@@ -268,8 +253,7 @@ const Concerts = () => {
                         openMap("https://goo.gl/maps/rehnB1psGYtQYnte6")
                       }
                     >
-                      <strong>Boca Raton Museum of Art </strong> 501 Plaza Real,
-                      Boca Raton, FL 33432
+                      501 Plaza Real, Boca Raton, FL 33432
                     </div>
                   </div>
                 </div>

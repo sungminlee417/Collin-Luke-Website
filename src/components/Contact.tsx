@@ -12,7 +12,7 @@ export const Contact = () => {
 
   return (
     <section className="contact-section flex flex-col gap-14 md:m-20 m-12">
-      <h2 className="text-4xl">Contact</h2>
+      {/* <h2 className="text-4xl">Contact</h2> */}
       <div className="flex flex-col divide-y-[1px] divide-gray-400 gap-14">
         <div className="text-center text-7xl">Get In Touch</div>
         <div className="flex justify-between items-center gap-10 pt-14">

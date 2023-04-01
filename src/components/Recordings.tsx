@@ -51,7 +51,7 @@ const Recordings = () => {
             <li>
               <a
                 href="https://open.spotify.com/track/4nCA0nHmffLYkKEPsN8bdV?si=Ei4nk2g_SNy8Zycua5pZbQ&dd=1&nd=1"
-                className="text-white bg-[#1db954] px-16 py-8 text-3xl rounded-full hover:shadow-lg transition ease-in-out cursor-pointer"
+                className="text-white bg-[#967e76] px-16 py-6 text-3xl rounded-full hover:shadow-lg transition ease-in-out cursor-pointer"
               >
                 Listen on Spotify
               </a>

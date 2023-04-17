@@ -15,42 +15,6 @@ const Concerts = () => {
           <li className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg">
             <div className="flex md:flex-row md:gap-20 gap-10 flex-col">
               <div className="text-4xl">
-                <div>15</div>
-                <div>April</div>
-              </div>
-              <div className="flex flex-col md:gap-4 gap-8 flex-grow">
-                <div className="text-5xl">Snyder Sanctuary</div>
-                <div className="flex gap-6">
-                  <div className="flex md:gap-2 gap-4 items-center">
-                    <i className="fa-solid fa-clock"></i>
-                    <div className="text-xl">2:00PM EDT</div>
-                  </div>
-                  <div className="flex md:gap-2 gap-4 items-center">
-                    <i className="fa-solid fa-location-dot"></i>
-                    <div
-                      className="text-xl underline decoration-dotted underline-offset-2 cursor-pointer"
-                      onClick={() =>
-                        openMap("https://goo.gl/maps/hmGK1jE8WBgUU1zh8")
-                      }
-                    >
-                      North Military Trail Boca Raton, FL 33431
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <a
-                className="md:self-center self-start justify-self-end text-2xl text-white bg-orange-500 px-8 py-4 rounded-md"
-                href="https://www.eventbrite.com/e/the-muse-duo-experiments-2023-album-release-tour-tickets-597008086257"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Tickets
-              </a>
-            </div>
-          </li>
-          <li className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg">
-            <div className="flex md:flex-row md:gap-20 gap-10 flex-col">
-              <div className="text-4xl">
                 <div>7</div>
                 <div>May</div>
               </div>

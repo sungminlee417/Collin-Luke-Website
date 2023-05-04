@@ -196,6 +196,78 @@ const Concerts = () => {
               </a>
             </div>
           </li>
+          <li className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg">
+            <div className="flex md:flex-row md:gap-20 gap-10 flex-col">
+              <div className="text-4xl">
+                <div>23</div>
+                <div>July</div>
+              </div>
+              <div className="flex flex-col md:gap-4 gap-8 flex-grow">
+                <div className="text-5xl">St. Mary's Episcopal Church</div>
+                <div className="flex gap-6">
+                  <div className="flex md:gap-2 gap-4 items-center">
+                    <i className="fa-solid fa-clock"></i>
+                    <div className="text-xl">TBA</div>
+                  </div>
+                  <div className="flex md:gap-2 gap-4 items-center">
+                    <i className="fa-solid fa-location-dot"></i>
+                    <div
+                      className="text-xl underline decoration-dotted underline-offset-2 cursor-pointer"
+                      onClick={() =>
+                        openMap("https://goo.gl/maps/WNFeZaH8ZmVv6FNc7")
+                      }
+                    >
+                      623 E Ocean Blvd, Stuart, FL, 34994
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a
+                className="md:self-center self-start justify-self-end text-2xl text-white bg-orange-500 px-8 py-4 rounded-md"
+                href="https://stmarys-stuart.org/"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                More Info
+              </a>
+            </div>
+          </li>
+          <li className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg">
+            <div className="flex md:flex-row md:gap-20 gap-10 flex-col">
+              <div className="text-4xl">
+                <div>6-9</div>
+                <div>July</div>
+              </div>
+              <div className="flex flex-col md:gap-4 gap-8 flex-grow">
+                <div className="text-5xl">Off The Dock Chamber Festival</div>
+                <div className="flex gap-6">
+                  {/* <div className="flex md:gap-2 gap-4 items-center">
+                    <i className="fa-solid fa-clock"></i>
+                    <div className="text-xl">TBA</div>
+                  </div>
+                  <div className="flex md:gap-2 gap-4 items-center">
+                    <i className="fa-solid fa-location-dot"></i>
+                    <div
+                      className="text-xl underline decoration-dotted underline-offset-2 cursor-pointer"
+                      onClick={() =>
+                        openMap("https://goo.gl/maps/WNFeZaH8ZmVv6FNc7")
+                      }
+                    >
+                      623 E Ocean Blvd, Stuart, FL, 34994
+                    </div>
+                  </div> */}
+                </div>
+              </div>
+              <a
+                className="md:self-center self-start justify-self-end text-2xl text-white bg-orange-500 px-8 py-4 rounded-md"
+                href="https://offthedockchamber.com/"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                More Info
+              </a>
+            </div>
+          </li>
         </ul>
       </div>
     </section>

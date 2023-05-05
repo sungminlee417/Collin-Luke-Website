@@ -31,7 +31,10 @@ const Concerts = ({ concerts }: ConcertsProps) => {
     <ul className="grid gap-12 lg:mx-10 w-full">
       {concerts.map((concert) => {
         return (
-          <li className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg">
+          <li
+            key={`${concert.startDate.day}-${concert.startDate.month}`}
+            className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg"
+          >
             <div className="flex md:flex-row md:gap-20 gap-10 flex-col">
               <div className="text-4xl">
                 <div>

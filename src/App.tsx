@@ -8,6 +8,8 @@ import Photos from "./components/Photos";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
+import concerts from "./data/concerts";
+
 function App() {
   return (
     <>
@@ -15,7 +17,7 @@ function App() {
       <Hero />
       <div className="flex flex-col gap-10">
         <About />
-        <Concerts />
+        <Concerts concerts={concerts} />
         <Recordings />
         <Photos />
         <Contact />

@@ -1,4 +1,3 @@
-import { Dom7Array } from 'dom7';
 import { CSSSelector } from '../shared';
 import Swiper from '../swiper-class';
 
@@ -9,11 +8,11 @@ export interface PaginationMethods {
   el: HTMLElement;
 
   /**
-   * Dom7 array-like collection of pagination bullets
+   * Array of pagination bullets
    * HTML elements. To get specific slide HTMLElement
    * use `swiper.pagination.bullets[1]`.
    */
-  bullets: Dom7Array;
+  bullets: HTMLElement[];
 
   /**
    * Render pagination layout
@@ -148,7 +147,7 @@ export interface PaginationOptions {
    * });
    * ```
    */
-  renderBullet?: (index: number, className: string) => void;
+  renderBullet?: (index: number, className: string) => string;
 
   /**
    * This parameter allows to customize "fraction" pagination html. Only for `'fraction'` pagination type
@@ -167,7 +166,7 @@ export interface PaginationOptions {
    * });
    * ```
    */
-  renderFraction?: (currentClass: string, totalClass: string) => void;
+  renderFraction?: (currentClass: string, totalClass: string) => string;
 
   /**
    * This parameter allows to customize "progress" pagination. Only for `'progress'` pagination type
@@ -184,7 +183,7 @@ export interface PaginationOptions {
    * });
    * ```
    */
-  renderProgressbar?: (progressbarFillClass: string) => void;
+  renderProgressbar?: (progressbarFillClass: string) => string;
 
   /**
    * This parameter is required for `'custom'` pagination type where you have to specify
@@ -202,7 +201,7 @@ export interface PaginationOptions {
    * });
    * ```
    */
-  renderCustom?: (swiper: Swiper, current: number, total: number) => void;
+  renderCustom?: (swiper: Swiper, current: number, total: number) => string;
 
   /**
    * CSS class name of single pagination bullet

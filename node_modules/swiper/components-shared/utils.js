@@ -1,7 +1,6 @@
 function isObject(o) {
   return typeof o === 'object' && o !== null && o.constructor && Object.prototype.toString.call(o).slice(8, -1) === 'Object';
 }
-
 function extend(target, src) {
   const noExtend = ['__proto__', 'constructor', 'prototype'];
   Object.keys(src).filter(key => noExtend.indexOf(key) < 0).forEach(key => {
@@ -12,36 +11,16 @@ function extend(target, src) {
     }
   });
 }
-
-function needsNavigation(params) {
-  if (params === void 0) {
-    params = {};
-  }
-
+function needsNavigation(params = {}) {
   return params.navigation && typeof params.navigation.nextEl === 'undefined' && typeof params.navigation.prevEl === 'undefined';
 }
-
-function needsPagination(params) {
-  if (params === void 0) {
-    params = {};
-  }
-
+function needsPagination(params = {}) {
   return params.pagination && typeof params.pagination.el === 'undefined';
 }
-
-function needsScrollbar(params) {
-  if (params === void 0) {
-    params = {};
-  }
-
+function needsScrollbar(params = {}) {
   return params.scrollbar && typeof params.scrollbar.el === 'undefined';
 }
-
-function uniqueClasses(classNames) {
-  if (classNames === void 0) {
-    classNames = '';
-  }
-
+function uniqueClasses(classNames = '') {
   const classes = classNames.split(' ').map(c => c.trim()).filter(c => !!c);
   const unique = [];
   classes.forEach(c => {
@@ -49,5 +28,12 @@ function uniqueClasses(classNames) {
   });
   return unique.join(' ');
 }
-
-export { isObject, extend, needsNavigation, needsPagination, needsScrollbar, uniqueClasses };
+function attrToProp(attrName = '') {
+  return attrName.replace(/-[a-z]/g, l => l.toUpperCase().replace('-', ''));
+}
+function wrapperClass(className = '') {
+  if (!className) return 'swiper-wrapper';
+  if (!className.includes('swiper-wrapper')) return `swiper-wrapper ${className}`;
+  return className;
+}
+export { isObject, extend, needsNavigation, needsPagination, needsScrollbar, uniqueClasses, attrToProp, wrapperClass };

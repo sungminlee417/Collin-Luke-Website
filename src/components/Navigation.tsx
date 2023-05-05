@@ -4,17 +4,18 @@ const Navigation = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [linkClicked, setLinkClicked] = useState(false);
 
+  console.log(showMenu);
+
   const openMenu = (): void => {
     if (showMenu) return;
     setShowMenu(true);
   };
+  const closeMenu = (): void => {
+    setShowMenu(false);
+  };
 
   useEffect(() => {
     if (!showMenu) return;
-
-    const closeMenu = (): void => {
-      setShowMenu(false);
-    };
 
     document.addEventListener("click", closeMenu);
 
@@ -43,7 +44,10 @@ const Navigation = () => {
 
   return (
     <>
-      <div className="fixed flex items-center justify-between left-0 right-0 m-14 z-40">
+      <div
+        className="fixed flex items-center justify-between left-0 right-0 m-14 z-40"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="w-14"></div>
         <button
           className="bg-transparent border-none cursor-pointer text-6xl"
@@ -54,7 +58,7 @@ const Navigation = () => {
           Muse Duo
         </button>
         <button
-          onClick={openMenu}
+          onClick={!showMenu ? openMenu : closeMenu}
           className="bg-transparent border-none cursor-pointer flex flex-col gap-3 w-14 justify-self-end"
         >
           <span

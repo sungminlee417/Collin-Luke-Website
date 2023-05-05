@@ -1,9 +1,9 @@
 export default function removeClasses() {
   const swiper = this;
   const {
-    $el,
+    el,
     classNames
   } = swiper;
-  $el.removeClass(classNames.join(' '));
+  el.classList.remove(...classNames);
   swiper.emitContainerClasses();
 }

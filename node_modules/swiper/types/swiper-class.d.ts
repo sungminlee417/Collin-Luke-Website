@@ -1,4 +1,3 @@
-import { Dom7Array } from 'dom7';
 import { SwiperOptions } from './swiper-options';
 import { CSSSelector, SwiperModule } from './shared';
 import { SwiperEvents } from './swiper-events';
@@ -15,7 +14,6 @@ import { CardsEffectMethods } from './modules/effect-cards';
 import { HashNavigationMethods } from './modules/hash-navigation';
 import { HistoryMethods } from './modules/history';
 import { KeyboardMethods } from './modules/keyboard';
-import { LazyMethods } from './modules/lazy';
 import { MousewheelMethods } from './modules/mousewheel';
 import { NavigationMethods } from './modules/navigation';
 import { PaginationMethods } from './modules/pagination';
@@ -52,19 +50,9 @@ interface Swiper extends SwiperClass<SwiperEvents> {
   originalParams: SwiperOptions;
 
   /**
-   * Dom7 element with slider container HTML element. To get vanilla HTMLElement use `swiper.el`
-   */
-  $el: Dom7Array;
-
-  /**
    * Slider container HTML element
    */
   el: HTMLElement;
-
-  /**
-   * Dom7 element with slider wrapper HTML element. To get vanilla HTMLElement use `swiper.wrapperEl`
-   */
-  $wrapperEl: Dom7Array;
 
   /**
    * Wrapper HTML element
@@ -72,9 +60,9 @@ interface Swiper extends SwiperClass<SwiperEvents> {
   wrapperEl: HTMLElement;
 
   /**
-   * Dom7 array-like collection of slides HTML elements. To get specific slide HTMLElement use `swiper.slides[1]`
+   * Array of slides HTML elements. To get specific slide HTMLElement use `swiper.slides[1]`
    */
-  slides: Dom7Array;
+  slides: HTMLElement[];
 
   /**
    * !INTERNAL
@@ -104,12 +92,12 @@ interface Swiper extends SwiperClass<SwiperEvents> {
   /**
    * Index number of currently active slide
    *
-   * @note Note, that in loop mode active index value will be always shifted on a number of looped/duplicated slides
+   * @note Note, that in loop mode active index value will be always shifted on a number of looped slides
    */
   activeIndex: number;
 
   /**
-   * Index number of currently active slide considering duplicated slides in loop mode
+   * Index number of currently active slide considering rearranged slides in loop mode
    */
   realIndex: number;
 
@@ -137,6 +125,11 @@ interface Swiper extends SwiperClass<SwiperEvents> {
    * `true` if slider on most "right"/"bottom" position
    */
   isEnd: boolean;
+
+  /**
+   * `true` if slide is "locked" (by `watchOverflow`) and slides can not be, e.g. when amount of slides is less that slides per view
+   */
+  isLocked: boolean;
 
   /**
    * `true` if swiper is in transition
@@ -184,6 +177,11 @@ interface Swiper extends SwiperClass<SwiperEvents> {
    * Disable / enable ability move slider by grabbing it with mouse or by touching it with finger (on touch screens) by assigning `false` / `true` to this property
    */
   allowTouchMove: boolean;
+
+  /**
+   * Direction of sliding
+   */
+  swipeDirection: 'prev' | 'next';
 
   /**
    * !INTERNAL
@@ -443,7 +441,6 @@ interface Swiper extends SwiperClass<SwiperEvents> {
   hashNavigation: HashNavigationMethods;
   history: HistoryMethods;
   keyboard: KeyboardMethods;
-  lazy: LazyMethods;
   mousewheel: MousewheelMethods;
   navigation: NavigationMethods;
   pagination: PaginationMethods;

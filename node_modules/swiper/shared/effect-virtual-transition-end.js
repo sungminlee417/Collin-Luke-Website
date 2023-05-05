@@ -1,36 +1,44 @@
-export default function effectVirtualTransitionEnd(_ref) {
-  let {
-    swiper,
-    duration,
-    transformEl,
-    allSlides
-  } = _ref;
+import { elementTransitionEnd } from './utils.js';
+export default function effectVirtualTransitionEnd({
+  swiper,
+  duration,
+  transformElements,
+  allSlides
+}) {
   const {
-    slides,
-    activeIndex,
-    $wrapperEl
+    activeIndex
   } = swiper;
-
+  const getSlide = el => {
+    if (!el.parentElement) {
+      // assume shadow root
+      const slide = swiper.slides.filter(slideEl => slideEl.shadowEl && slideEl.shadowEl === el.parentNode)[0];
+      return slide;
+    }
+    return el.parentElement;
+  };
   if (swiper.params.virtualTranslate && duration !== 0) {
     let eventTriggered = false;
-    let $transitionEndTarget;
-
+    let transitionEndTarget;
     if (allSlides) {
-      $transitionEndTarget = transformEl ? slides.find(transformEl) : slides;
+      transitionEndTarget = transformElements;
     } else {
-      $transitionEndTarget = transformEl ? slides.eq(activeIndex).find(transformEl) : slides.eq(activeIndex);
+      transitionEndTarget = transformElements.filter(transformEl => {
+        const el = transformEl.classList.contains('swiper-slide-transform') ? getSlide(transformEl) : transformEl;
+        return swiper.getSlideIndex(el) === activeIndex;
+      });
     }
-
-    $transitionEndTarget.transitionEnd(() => {
-      if (eventTriggered) return;
-      if (!swiper || swiper.destroyed) return;
-      eventTriggered = true;
-      swiper.animating = false;
-      const triggerEvents = ['webkitTransitionEnd', 'transitionend'];
-
-      for (let i = 0; i < triggerEvents.length; i += 1) {
-        $wrapperEl.trigger(triggerEvents[i]);
-      }
+    transitionEndTarget.forEach(el => {
+      elementTransitionEnd(el, () => {
+        if (eventTriggered) return;
+        if (!swiper || swiper.destroyed) return;
+        eventTriggered = true;
+        swiper.animating = false;
+        const evt = new window.CustomEvent('transitionend', {
+          bubbles: true,
+          cancelable: true
+        });
+        swiper.wrapperEl.dispatchEvent(evt);
+      });
     });
   }
 }

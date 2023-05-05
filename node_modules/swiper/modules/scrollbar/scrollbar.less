@@ -1,9 +1,21 @@
-/* Scrollbar */
+:root {
+  /*
+  --swiper-scrollbar-border-radius: 10px;
+  --swiper-scrollbar-top: auto;
+  --swiper-scrollbar-bottom: 4px;
+  --swiper-scrollbar-left: auto;
+  --swiper-scrollbar-right: 4px;
+  --swiper-scrollbar-sides-offset: 1%;
+  --swiper-scrollbar-bg-color: rgba(0, 0, 0, 0.1);
+  --swiper-scrollbar-drag-bg-color: rgba(0, 0, 0, 0.5);
+  --swiper-scrollbar-size: 4px;
+  */
+}
 .swiper-scrollbar {
-  border-radius: 10px;
+  border-radius: var(--swiper-scrollbar-border-radius, 10px);
   position: relative;
   -ms-touch-action: none;
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--swiper-scrollbar-bg-color, rgba(0, 0, 0, 0.1));
   .swiper-scrollbar-disabled > &,
   &.swiper-scrollbar-disabled {
     display: none !important;
@@ -11,28 +23,30 @@
   .swiper-horizontal > &,
   &.swiper-scrollbar-horizontal {
     position: absolute;
-    left: 1%;
-    bottom: 3px;
+    left: var(--swiper-scrollbar-sides-offset, 1%);
+    bottom: var(--swiper-scrollbar-bottom, 4px);
+    top: var(--swiper-scrollbar-top, auto);
     z-index: 50;
-    height: 5px;
-    width: 98%;
+    height: var(--swiper-scrollbar-size, 4px);
+    width: calc(100% - 2 * var(--swiper-scrollbar-sides-offset, 1%));
   }
   .swiper-vertical > &,
   &.swiper-scrollbar-vertical {
     position: absolute;
-    right: 3px;
-    top: 1%;
+    left: var(--swiper-scrollbar-left, auto);
+    right: var(--swiper-scrollbar-right, 4px);
+    top: var(--swiper-scrollbar-sides-offset, 1%);
     z-index: 50;
-    width: 5px;
-    height: 98%;
+    width: var(--swiper-scrollbar-size, 4px);
+    height: calc(100% - 2 * var(--swiper-scrollbar-sides-offset, 1%));
   }
 }
 .swiper-scrollbar-drag {
   height: 100%;
   width: 100%;
   position: relative;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
+  background: var(--swiper-scrollbar-drag-bg-color, rgba(0, 0, 0, 0.5));
+  border-radius: var(--swiper-scrollbar-border-radius, 10px);
   left: 0;
   top: 0;
 }

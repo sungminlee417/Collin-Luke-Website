@@ -1,16 +1,7 @@
 import Swiper from 'swiper';
 import { isObject, extend } from './utils.js';
 import { paramsList } from './params-list.js';
-
-function getParams(obj, splitEvents) {
-  if (obj === void 0) {
-    obj = {};
-  }
-
-  if (splitEvents === void 0) {
-    splitEvents = true;
-  }
-
+function getParams(obj = {}, splitEvents = true) {
   const params = {
     on: {}
   };
@@ -25,7 +16,6 @@ function getParams(obj, splitEvents) {
   const plainObj = Object.assign({}, obj);
   Object.keys(plainObj).forEach(key => {
     if (typeof obj[key] === 'undefined') return;
-
     if (allowedParams.indexOf(key) >= 0) {
       if (isObject(obj[key])) {
         params[key] = {};
@@ -57,5 +47,4 @@ function getParams(obj, splitEvents) {
     events
   };
 }
-
 export { getParams };

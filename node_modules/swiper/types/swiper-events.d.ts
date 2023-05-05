@@ -13,7 +13,6 @@ import { CardsEffectEvents } from './modules/effect-cards';
 import { HashNavigationEvents } from './modules/hash-navigation';
 import { HistoryEvents } from './modules/history';
 import { KeyboardEvents } from './modules/keyboard';
-import { LazyEvents } from './modules/lazy';
 import { MousewheelEvents } from './modules/mousewheel';
 import { NavigationEvents } from './modules/navigation';
 import { PaginationEvents } from './modules/pagination';
@@ -148,11 +147,6 @@ export interface SwiperEvents {
    * Event will be fired when user double tap on Swiper's container. Receives `touchend` event as an arguments
    */
   doubleTap: (swiper: Swiper, event: MouseEvent | TouchEvent | PointerEvent) => void;
-
-  /**
-   * Event will be fired right after all inner images are loaded. updateOnImagesReady should be also enabled
-   */
-  imagesReady: (swiper: Swiper) => void;
 
   /**
    * Event will be fired when Swiper progress is changed, as an arguments it receives progress that is always from 0 to 1
@@ -350,7 +344,6 @@ interface SwiperEvents extends CardsEffectEvents {}
 interface SwiperEvents extends HashNavigationEvents {}
 interface SwiperEvents extends HistoryEvents {}
 interface SwiperEvents extends KeyboardEvents {}
-interface SwiperEvents extends LazyEvents {}
 interface SwiperEvents extends MousewheelEvents {}
 interface SwiperEvents extends NavigationEvents {}
 interface SwiperEvents extends PaginationEvents {}

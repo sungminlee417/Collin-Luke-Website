@@ -1,6 +1,7 @@
 export default {
   init: true,
   direction: 'horizontal',
+  oneWayMovement: false,
   touchEventsTarget: 'wrapper',
   initialSlide: 0,
   speed: 300,
@@ -31,6 +32,7 @@ export default {
   // Effects
   effect: 'slide',
   // 'slide' or 'fade' or 'cube' or 'coverflow' or 'flip'
+
   // Breakpoints
   breakpoints: undefined,
   breakpointsBase: 'window',
@@ -62,7 +64,7 @@ export default {
   longSwipesMs: 300,
   followFinger: true,
   allowTouchMove: true,
-  threshold: 0,
+  threshold: 5,
   touchMoveStopPropagation: false,
   touchStartPreventDefault: true,
   touchStartForcePreventDefault: false,
@@ -80,16 +82,10 @@ export default {
   preventClicks: true,
   preventClicksPropagation: true,
   slideToClickedSlide: false,
-  // Images
-  preloadImages: true,
-  updateOnImagesReady: true,
   // loop
   loop: false,
-  loopAdditionalSlides: 0,
   loopedSlides: null,
-  loopedSlidesLimit: true,
-  loopFillGroupWithBlank: false,
-  loopPreventsSlide: true,
+  loopPreventsSliding: true,
   // rewind
   rewind: false,
   // Swiping/no swiping
@@ -107,16 +103,13 @@ export default {
   containerModifierClass: 'swiper-',
   // NEW
   slideClass: 'swiper-slide',
-  slideBlankClass: 'swiper-slide-invisible-blank',
   slideActiveClass: 'swiper-slide-active',
-  slideDuplicateActiveClass: 'swiper-slide-duplicate-active',
   slideVisibleClass: 'swiper-slide-visible',
-  slideDuplicateClass: 'swiper-slide-duplicate',
   slideNextClass: 'swiper-slide-next',
-  slideDuplicateNextClass: 'swiper-slide-duplicate-next',
   slidePrevClass: 'swiper-slide-prev',
-  slideDuplicatePrevClass: 'swiper-slide-duplicate-prev',
   wrapperClass: 'swiper-wrapper',
+  lazyPreloaderClass: 'swiper-lazy-preloader',
+  lazyPreloadPrevNext: 0,
   // Callbacks
   runCallbacksOnInit: true,
   // Internals

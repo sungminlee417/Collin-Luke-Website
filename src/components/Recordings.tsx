@@ -46,7 +46,7 @@ const Recordings = () => {
           })}
         </ul>
         <div className="flex flex-col gap-20 items-center">
-          <img src={album} className="shadow-lg md:w-1/2" />
+          <img src={album} alt="album cover" className="shadow-lg md:w-1/2" />
           <ul className="self-center m-auto">
             <li>
               <a

@@ -27,7 +27,7 @@ const concerts = [
       month: "May",
     },
     venue: "ARTSPACE at Untitled",
-    time: "3:00PM CDT",
+    time: "7:30PM CDT",
     location: "1 NE 3rd St, Oklahoma City, OK 73104",
     ticketUrl:
       "https://www.eventbrite.com/e/the-muse-duo-experiments-2023-album-release-tour-tickets-597032589547",
@@ -63,7 +63,8 @@ const concerts = [
       month: "July",
     },
     venue: "Off The Dock Chamber Festival",
-    location: "623 E Ocean Blvd, Stuart, FL 34996, United States",
+    location:
+      "First Presbyterian Church of Skaneateles - 97 East Genesee Street Skaneateles, NY 13152",
     moreInfoUrl: "https://offthedockchamber.com/",
   },
   {

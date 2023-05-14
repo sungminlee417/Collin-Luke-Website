@@ -14,14 +14,21 @@ const Footer = () => {
             target="_blank"
             href="https://www.youtube.com/channel/UCx_i6ym655rtGxqCg6d27ew"
           >
-            <i className="fa-brands fa-youtube fa-3x"></i>
+            <i className="fa-brands fa-youtube fa-3x" />
           </a>
           <a
             rel="noopener noreferrer"
             target="_blank"
             href="https://www.instagram.com/muse__duo/"
           >
-            <i className="fa-brands fa-instagram fa-3x"></i>
+            <i className="fa-brands fa-instagram fa-3x" />
+          </a>
+          <a
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://twitter.com/themuseduo?s=11"
+          >
+            <i className="fa-brands fa-twitter fa-3x" />
           </a>
         </div>
       </div>

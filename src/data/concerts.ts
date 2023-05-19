@@ -1,28 +1,6 @@
 const concerts = [
   {
     startDate: {
-      day: 7,
-      month: "May",
-    },
-    venue: "Schmidt Vocal Arts Center",
-    time: "3:00PM EDT",
-    location: "412 Rose St, Lexington, KY 40508 Kentucky, KY 40508",
-    ticketUrl:
-      "https://www.eventbrite.com/e/the-muse-duo-experiments-2023-album-release-tour-tickets-597129489377",
-  },
-  {
-    startDate: {
-      day: 20,
-      month: "May",
-    },
-    venue: "Sunshine Cathedral Center for the Performing Arts",
-    time: "8:00PM EDT",
-    location: "1480 SW 9th Ave Fort Lauderdale, FL 33315",
-    ticketUrl:
-      "https://www.eventbrite.com/e/sunshine-cathedral-center-for-the-performing-arts-presents-muse-duo-tickets-538604740277?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=cp&aff=escb",
-  },
-  {
-    startDate: {
       day: 26,
       month: "May",
     },

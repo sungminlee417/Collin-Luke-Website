@@ -52,6 +52,8 @@ const Recordings = () => {
               <a
                 href="https://open.spotify.com/album/06Q4h44XDIYrpE0EbGAFMy"
                 className="text-white bg-[#967e76] px-16 py-6 text-3xl rounded-full hover:shadow-lg transition ease-in-out cursor-pointer"
+                rel="noopener noreferrer"
+                target="_blank"
               >
                 Listen on Spotify
               </a>

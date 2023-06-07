@@ -1,28 +1,6 @@
 const concerts = [
   {
     startDate: {
-      day: 26,
-      month: "May",
-    },
-    venue: "ARTSPACE at Untitled",
-    time: "7:30PM CDT",
-    location: "1 NE 3rd St, Oklahoma City, OK 73104",
-    ticketUrl:
-      "https://www.eventbrite.com/e/the-muse-duo-experiments-2023-album-release-tour-tickets-597032589547",
-  },
-  {
-    startDate: {
-      day: 28,
-      month: "May",
-    },
-    venue: "First Presbyterian Church",
-    time: "3:00PM CDT",
-    location: "1001 NW 25th St, Oklahoma City, OK 73106, United States",
-    ticketUrl:
-      "https://www.eventbrite.com/e/the-muse-duo-experiments-2023-album-release-tour-tickets-597247522417",
-  },
-  {
-    startDate: {
       day: 25,
       month: "June",
     },

@@ -50,7 +50,7 @@ const Recordings = () => {
           <ul className="self-center m-auto">
             <li>
               <a
-                href="https://open.spotify.com/track/4nCA0nHmffLYkKEPsN8bdV?si=Ei4nk2g_SNy8Zycua5pZbQ&dd=1&nd=1"
+                href="https://open.spotify.com/album/06Q4h44XDIYrpE0EbGAFMy"
                 className="text-white bg-[#967e76] px-16 py-6 text-3xl rounded-full hover:shadow-lg transition ease-in-out cursor-pointer"
               >
                 Listen on Spotify

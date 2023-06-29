@@ -80,9 +80,7 @@ const Concerts = ({ concerts }: ConcertsProps) => {
 
   return (
     <section className="concerts-section flex flex-col gap-20 md:m-20 m-12">
-      <h2 className="lg:text-7xl text-center text-6xl">
-        Experiments, 2023 Album Release Tour
-      </h2>
+      <h2 className="lg:text-7xl text-center text-6xl">Upcoming Concerts</h2>
       <div className="flex items-center">{renderedConcerts}</div>
     </section>
   );

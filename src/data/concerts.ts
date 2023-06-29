@@ -1,16 +1,6 @@
 const concerts = [
   {
     startDate: {
-      day: 25,
-      month: "June",
-    },
-    venue: "Boca Museum of Art",
-    time: "8:00PM EDT",
-    location: "501 Plaza Real, Boca Raton, FL 33432, United States",
-    ticketUrl: "https://bocamuseum.org/visit/events",
-  },
-  {
-    startDate: {
       day: 6,
       month: "July",
     },

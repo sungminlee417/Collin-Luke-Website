@@ -25,8 +25,8 @@ const About = () => {
               Just months after playing together for the first time, the duo
               embarked on a tour throughout the United States. Since then, the
               Muse Duo has performed in various venues and festivals, including
-              a tour of the United States, the “Lynn New Music Festival” and the
-              “Shellpoint Young Artist Series”.
+              the “Lynn New Music Festival”, “Off the Dock Chamber Festival”,
+              and the “Shellpoint Young Artist Series”.
             </div>
             <div>
               The Muse Duo strives to champion new compositions for the unique
@@ -36,8 +36,7 @@ const About = () => {
               entitled “Experiments”. The album consists of entirely original
               music, composed by Luke. These works are melodically focused and
               neo-classically inspired, while engaging audiences through it’s
-              modernistic rhythmic drive. “Experiments” will be released April
-              8th, 2023.
+              modernistic rhythmic drive.
             </div>
             <div>
               Through unique instrumentation, a convincing blend of musical

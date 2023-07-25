@@ -5,7 +5,7 @@ const concerts = [
       month: "July",
     },
     venue: "St. Mary's Episcopal Church",
-    time: "3:00PM",
+    time: "TBA",
     location: "623 E Ocean Blvd, Stuart, FL, 34994",
     moreInfoUrl: "https://stmarys-stuart.org/",
   },

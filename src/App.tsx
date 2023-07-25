@@ -13,9 +13,9 @@ import concerts from "./data/concerts";
 function App() {
   return (
     <>
-      <Navigation />
-      <Hero />
-      <div className="flex flex-col gap-10">
+      {/* <Navigation /> */}
+      <div className="flex flex-col gap-10 lg:m-10">
+        <Hero />
         <About />
         <Concerts concerts={concerts} />
         <Recordings />

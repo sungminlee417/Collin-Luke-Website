@@ -2,38 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+Gray: #888888
+*/
+
 /*************************/
 /* GLOBAL STYLINGS */
 /*************************/
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 62.5%;
-  overflow-x: hidden;
-}
-
 body {
   animation: fade-in 2s;
-  background-color: #f7f1e5;
-  color: #00165a;
-  font-family: "DM Serif Display", serif;
-  line-height: 1;
-  font-weight: 400;
+  color: #660000;
   overflow-x: hidden;
 }
 
 /*************************/
 /* COMPONENT STYLINGS */
 /*************************/
-
-.hero-section {
-  background-image: url("./images/IMG_4647.jpeg");
-}
 
 .images-slider .swiper-slide {
   opacity: 0.5;

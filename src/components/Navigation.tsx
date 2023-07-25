@@ -4,8 +4,6 @@ const Navigation = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [linkClicked, setLinkClicked] = useState(false);
 
-  console.log(showMenu);
-
   const openMenu = (): void => {
     if (showMenu) return;
     setShowMenu(true);
@@ -48,26 +46,17 @@ const Navigation = () => {
         className="fixed flex items-center justify-between left-0 right-0 m-14 z-40"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="w-14"></div>
-        <button
-          className="bg-transparent border-none cursor-pointer text-6xl"
-          onClick={() => {
-            scrollSmoothlyTo("hero-section");
-          }}
-        >
-          Muse Duo
-        </button>
         <button
           onClick={!showMenu ? openMenu : closeMenu}
           className="bg-transparent border-none cursor-pointer flex flex-col gap-3 w-14 justify-self-end"
         >
           <span
-            className={`bg-[#00165a] h-2 w-14 transition ${
+            className={`bg-[#660000] h-1 w-10 transition ${
               showMenu ? "absolute rotate-135" : ""
             }`}
           ></span>
           <span
-            className={`bg-[#00165a] h-2 w-14 transition  ${
+            className={`bg-[#660000] h-1 w-10 transition  ${
               showMenu ? "absolute rotate-neg-135" : ""
             }`}
           ></span>

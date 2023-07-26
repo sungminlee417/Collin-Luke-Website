@@ -14,7 +14,9 @@ export const Contact = () => {
     <section className="contact-section flex flex-col gap-14 md:m-20 m-12">
       {/* <h2 className="text-4xl">Contact</h2> */}
       <div className="flex flex-col divide-y-[1px] divide-gray-400 gap-14">
-        <div className="text-center text-7xl">Get In Touch</div>
+        <div className="text-3xl font-bold tracking-tight sm:text-4xl text-center">
+          Get In Touch
+        </div>
         <div className="flex justify-between items-center gap-10 pt-14">
           <img
             className="lg:w-5/12 lg:block hidden object-contain h-2/5"
@@ -22,7 +24,7 @@ export const Contact = () => {
             alt="Collin and Luke"
           />
           <div className="flex flex-col w-full gap-6">
-            <div className="text-3xl flex gap-2">
+            <div className="text-sm flex gap-2">
               <span>Email:</span>
               <a
                 className=" decoration-dotted decoration-inherit underline underline-offset-4"
@@ -46,18 +48,18 @@ export const Contact = () => {
                   id="subject"
                   name="subject"
                   placeholder="Subject"
-                  className="border-none rounded-md h-12 p-4"
+                  className="border-none rounded-md h-8 p-4"
                 />
                 <Field
                   as="textarea"
                   id="message"
                   name="message"
                   placeholder="Message"
-                  className="border-none rounded-md h-96 p-4"
+                  className="border-none rounded-md h-72 p-4"
                 />
                 <button
                   type="submit"
-                  className="cursor-pointer bg-[#967e76] text-white text-center border-none text-2xl tracking-wider rounded-md px-16 py-4 w-full"
+                  className="cursor-pointer bg-[#660000] text-white text-center border-none text-lg tracking-wider rounded-md px-16 py-2 w-full"
                 >
                   SUBMIT
                 </button>

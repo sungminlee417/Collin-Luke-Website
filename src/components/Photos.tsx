@@ -24,7 +24,7 @@ const Photos = () => {
 
   return (
     <section className="photos-section flex flex-col gap-14 md:m-20 m-12">
-      <h2 className="text-4xl">Photos</h2>
+      <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Photos</h2>
       <div className="flex flex-col gap-10">
         <Swiper
           style={

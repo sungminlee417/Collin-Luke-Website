@@ -4,6 +4,7 @@ interface Concert {
   startDate: {
     day: number;
     month: string;
+    year?: number;
   };
   endDate?: {
     day: number;
@@ -28,60 +29,67 @@ const Concerts = ({ concerts }: ConcertsProps) => {
   };
 
   const renderedConcerts = (
-    <ul className="grid gap-12 lg:mx-10 w-full">
+    <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
       {concerts.map((concert) => {
         return (
-          <li
-            key={`${concert.startDate.day}-${concert.startDate.month}`}
-            className="bg-white lg:p-12 p-10 shadow-sm hover:shadow-md hover:translate-x-1 transition rounded-lg"
-          >
-            <div className="flex md:flex-row md:gap-20 gap-10 flex-col">
-              <div className="text-4xl">
-                <div>
-                  {concert.startDate.day}
-                  {concert.endDate ? `-${concert.endDate.day}` : ""}
-                </div>
-                <div>{concert.startDate.month}</div>
-              </div>
-              <div className="flex flex-col md:gap-4 gap-8 flex-grow">
-                <div className="text-5xl">{concert.venue}</div>
-                <div className="flex gap-6">
-                  <div className="flex md:gap-2 gap-4 items-center">
-                    <i className="fa-solid fa-clock"></i>
-                    <div className="text-xl">{concert.time}</div>
-                  </div>
-                  <div className="flex md:gap-2 gap-4 items-center">
-                    <i className="fa-solid fa-location-dot"></i>
-                    <div
-                      className="text-xl underline decoration-dotted underline-offset-2 cursor-pointer"
-                      onClick={() => openMap(concert.location)}
-                    >
-                      {concert.location}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <a
-                className="md:self-center self-start justify-self-end text-2xl text-white bg-orange-500 px-8 py-4 rounded-md"
-                href={
-                  concert.ticketUrl ? concert.ticketUrl : concert.moreInfoUrl
-                }
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                {concert.ticketUrl ? "Tickets" : "More Info"}
-              </a>
+          <article className="flex bg-white transition hover:shadow-xl rounded-md">
+            <div className="rotate-180 p-2 [writing-mode:_vertical-lr]">
+              <time className="flex items-center justify-between gap-4 text-xs font-bold uppercase text-gray-900">
+                <span>{concert.startDate.year}</span>
+                <span className="w-px flex-1 bg-gray-900/10"></span>
+                <span>
+                  {concert.startDate.month} {concert.startDate.day}
+                </span>
+              </time>
             </div>
-          </li>
+
+            <div className="flex flex-1 flex-col justify-between">
+              <div className="border-s border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
+                <a href="#">
+                  <h3 className="font-bold uppercase text-gray-900">
+                    {concert.venue}
+                  </h3>
+                </a>
+
+                <p
+                  className="mt-2 line-clamp-3 text-sm/relaxed text-gray-700 hover:underline cursor-pointer decoration-dotted"
+                  onClick={() => openMap(concert.location)}
+                >
+                  {concert.location}
+                </p>
+              </div>
+
+              <div className="sm:flex sm:items-end sm:justify-end">
+                <a
+                  href={
+                    concert.ticketUrl ? concert.ticketUrl : concert.moreInfoUrl
+                  }
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="block bg-[#660000] px-5 py-3 text-center text-xs font-bold uppercase text-white transition-all hover:bg-[#990000] rounded-br-md "
+                >
+                  {concert.ticketUrl ? "Purchase Tickets" : "More Info"}
+                </a>
+              </div>
+            </div>
+          </article>
         );
       })}
-    </ul>
+    </div>
   );
 
   return (
-    <section className="concerts-section flex flex-col gap-20 md:m-20 m-12">
-      <h2 className="lg:text-7xl text-center text-6xl">Upcoming Concerts</h2>
-      <div className="flex items-center">{renderedConcerts}</div>
+    <section>
+      <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:py-16 lg:px-8">
+        <div className="mx-auto max-w-lg text-center">
+          <h2 className="text-3xl font-bold sm:text-4xl">Upcoming Concerts</h2>
+
+          <p className="mt-4 text-gray-600">
+            Come and join us for one of our live performances!
+          </p>
+        </div>
+        {renderedConcerts}
+      </div>
     </section>
   );
 };

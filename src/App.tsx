@@ -14,15 +14,13 @@ function App() {
   return (
     <>
       {/* <Navigation /> */}
-      <div className="flex flex-col gap-10 lg:m-10">
-        <Hero />
-        <About />
-        <Concerts concerts={concerts} />
-        <Recordings />
-        <Photos />
-        <Contact />
-        <Footer />
-      </div>
+      <Hero />
+      <About />
+      <Concerts concerts={concerts} />
+      <Recordings />
+      <Photos />
+      <Contact />
+      <Footer />
     </>
   );
 }

@@ -1,13 +1,15 @@
 const concerts = [
   {
     startDate: {
-      day: 23,
-      month: "July",
+      day: 14,
+      month: "October",
+      year: 2023,
     },
-    venue: "St. Mary's Episcopal Church",
-    time: "TBA",
-    location: "623 E Ocean Blvd, Stuart, FL, 34994",
-    moreInfoUrl: "https://stmarys-stuart.org/",
+    venue: "Sunshine Cathedral Center",
+    time: "8pm",
+    location: "1480 Southwest 9th Avenue Fort Lauderdale, FL 33315",
+    ticketUrl:
+      "https://www.eventbrite.com/e/sunshine-cathedral-center-for-the-performing-arts-presents-muse-duo-tickets-646170512397?aff=oddtdtcreator",
   },
 ];
 

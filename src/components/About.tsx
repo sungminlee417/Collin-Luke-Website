@@ -1,5 +1,4 @@
 import React from "react";
-import image from "../images/IMG_4655.jpeg";
 
 const About = () => {
   return (
@@ -22,7 +21,7 @@ const About = () => {
             <div className="p-8 sm:p-16 lg:p-24">
               <h2 className="text-2xl font-bold sm:text-3xl">The Muse Duo</h2>
 
-              <p className="mt-4 text-gray-600 flex flex-col gap-2">
+              <p className="mt-4 text-gray-600 flex flex-col gap-2 h-96 overflow-auto">
                 <span>
                   Originally formed at the Eastman School of Music, the Muse Duo
                   is a one-of-a-kind ensemble in the world of classical music.
@@ -55,13 +54,6 @@ const About = () => {
                   music.
                 </span>
               </p>
-
-              <a
-                href="#"
-                className="mt-8 inline-block rounded border border-[#660000] bg-[#660000] px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
-              >
-                Get in Touch
-              </a>
             </div>
           </div>
         </div>

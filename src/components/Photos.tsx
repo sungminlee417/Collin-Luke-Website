@@ -14,7 +14,6 @@ import image5 from "../images/IMG_4649.jpeg";
 import image6 from "../images/IMG_4657.jpeg";
 
 import PhotoModal from "./PhotoModal";
-
 SwiperCore.use([FreeMode, Navigation, Thumbs]);
 
 const images = [image1, image2, image3, image4, image5, image6];

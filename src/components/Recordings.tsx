@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import ReactPlayer from "react-player";
-import { useRef } from "react";
 import album from "../images/IMG_6718.jpg";
 import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { FreeMode, Navigation, Thumbs } from "swiper";
+
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
+
+SwiperCore.use([FreeMode, Navigation, Thumbs]);
 
 const recordingOne = {
   id: 1,
@@ -23,6 +26,7 @@ const recordingTwo = {
 const recordingsURL = [recordingOne, recordingTwo];
 
 const Recordings = () => {
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore | null>(null);
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
@@ -84,24 +88,21 @@ const Recordings = () => {
             </div>
           </div>
 
-          <div className="-mx-6 lg:col-span-2 lg:mx-0">
-            <div className="swiper-container !overflow-hidden">
+          <div className="lg:col-span-2 lg:mx-0">
+            <div>
               <Swiper
-                className="swiper-wrapper"
                 loop={true}
-                spaceBetween={10}
                 navigation={{
                   prevEl: prevRef.current,
                   nextEl: nextRef.current,
                 }}
-                pagination={{
-                  clickable: true,
-                }}
+                thumbs={{ swiper: thumbsSwiper }}
+                slidesPerView={1}
               >
                 {recordingsURL.map((recording) => {
                   return (
                     <SwiperSlide>
-                      <div className="flex h-144 flex-col justify-center bg-white p-12 my-4 gap-4">
+                      <div className="flex h-144 flex-col justify-center bg-white sm:p-12 p-4 my-4 gap-4">
                         <p className="text-2xl font-bold text-[#660000] sm:text-3xl">
                           {recording.name}
                         </p>
@@ -119,15 +120,15 @@ const Recordings = () => {
                   );
                 })}
                 <SwiperSlide>
-                  <div className="flex h-144 justify-center bg-white p-12 my-4 gap-8 items-center">
+                  <div className="flex flex-col md:flex-row h-144 justify-center bg-white sm:p-8 p-12 my-4 gap-8 items-center">
                     <img
                       src={album}
                       alt="album cover"
-                      className="shadow-lg md:w-7/12"
+                      className="shadow-lg sm:w-7/12 w-11/12"
                     />
                     <a
                       href="https://open.spotify.com/album/06Q4h44XDIYrpE0EbGAFMy"
-                      className="block w-full rounded bg-[#660000] px-12 py-3 text-sm font-medium text-white shadow hover:bg-[#880000] focus:outline-none focus:ring active:bg-[#990000] sm:w-auto"
+                      className="block w-full rounded px-12 py-3 text-sm font-medium bg-[#660000] hover:bg-[#880000] shadow focus:outline-none focus:ring text-white sm:w-auto text-center"
                       rel="noopener noreferrer"
                       target="_blank"
                     >
@@ -142,6 +143,7 @@ const Recordings = () => {
 
         <div className="mt-8 flex justify-center gap-4 lg:hidden">
           <button
+            ref={prevRef}
             aria-label="Previous slide"
             className="prev-button rounded-full border border-[#660000] p-3 text-[#660000] hover:bg-[#660000] hover:text-white"
           >
@@ -162,6 +164,7 @@ const Recordings = () => {
           </button>
 
           <button
+            ref={nextRef}
             aria-label="Next slide"
             className="next-button rounded-full border border-[#660000] p-3 text-[#660000] hover:bg-[#660000] hover:text-white"
           >

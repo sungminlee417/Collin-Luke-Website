@@ -1,15 +1,13 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import ReactPlayer from "react-player";
 import album from "../images/IMG_6718.jpg";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { FreeMode, Navigation, Thumbs } from "swiper";
+import { Swiper as SwiperType } from "swiper/types";
 
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-
-SwiperCore.use([FreeMode, Navigation, Thumbs]);
 
 const recordingOne = {
   id: 1,
@@ -26,9 +24,11 @@ const recordingTwo = {
 const recordingsURL = [recordingOne, recordingTwo];
 
 const Recordings = () => {
-  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore | null>(null);
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
+  const swiper = useRef<SwiperType | null>(null);
+
+  const handleSwiperInit = (swiperInstance: SwiperType) => {
+    swiper.current = swiperInstance;
+  };
 
   return (
     <section className="bg-gray-100">
@@ -45,8 +45,8 @@ const Recordings = () => {
 
             <div className="hidden lg:mt-8 lg:flex lg:gap-4">
               <button
-                ref={prevRef}
-                className="prev-button rounded-full border border-[#660000] p-3 text-[#660000] hover:bg-[#660000] hover:text-white"
+                className="rounded-full border border-[#660000] p-3 text-[#660000] hover:bg-[#660000] hover:text-white"
+                onClick={() => swiper.current?.slidePrev()}
               >
                 <span className="sr-only">Previous Slide</span>
                 <svg
@@ -66,8 +66,8 @@ const Recordings = () => {
               </button>
 
               <button
-                ref={nextRef}
-                className="next-button rounded-full border border-[#660000] p-3 text-[#660000] hover:bg-[#660000] hover:text-white"
+                className="rounded-full border border-[#660000] p-3 text-[#660000] hover:bg-[#660000] hover:text-white"
+                onClick={() => swiper.current?.slideNext()}
               >
                 <span className="sr-only">Next Slide</span>
                 <svg
@@ -92,12 +92,8 @@ const Recordings = () => {
             <div>
               <Swiper
                 loop={true}
-                navigation={{
-                  prevEl: prevRef.current,
-                  nextEl: nextRef.current,
-                }}
-                thumbs={{ swiper: thumbsSwiper }}
                 slidesPerView={1}
+                onInit={handleSwiperInit} // If you want to do additional setup during initialization
               >
                 {recordingsURL.map((recording) => {
                   return (
@@ -143,9 +139,9 @@ const Recordings = () => {
 
         <div className="mt-8 flex justify-center gap-4 lg:hidden">
           <button
-            ref={prevRef}
             aria-label="Previous slide"
             className="prev-button rounded-full border border-[#660000] p-3 text-[#660000] hover:bg-[#660000] hover:text-white"
+            onClick={() => swiper.current?.slidePrev()}
           >
             <svg
               className="h-5 w-5 -rotate-180 transform"
@@ -164,9 +160,9 @@ const Recordings = () => {
           </button>
 
           <button
-            ref={nextRef}
             aria-label="Next slide"
             className="next-button rounded-full border border-[#660000] p-3 text-[#660000] hover:bg-[#660000] hover:text-white"
+            onClick={() => swiper.current?.slideNext()}
           >
             <svg
               className="h-5 w-5"

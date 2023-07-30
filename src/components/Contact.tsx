@@ -1,74 +1,78 @@
-import React from "react";
-import { Formik, Form, Field } from "formik";
-import image from "../images/IMG_4650.jpeg";
-
-interface MyFormValues {
-  subject: string;
-  message: string;
-}
+import React, { FormEvent, useState } from "react";
 
 export const Contact = () => {
-  const initialValues: MyFormValues = { subject: "", message: "" };
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSendMailSubmit = (e: FormEvent): void => {
+    e.preventDefault();
+    window.location.href = `mailto:${"themuseduo@gmail.com"}?subject=${
+      subject || ""
+    }&body=${message || ""}`;
+  };
 
   return (
-    <section className="contact-section flex flex-col gap-14 md:m-20 m-12">
-      {/* <h2 className="text-4xl">Contact</h2> */}
-      <div className="flex flex-col divide-y-[1px] divide-gray-400 gap-14">
-        <div className="text-3xl font-bold tracking-tight sm:text-4xl text-center">
-          Get In Touch
-        </div>
-        <div className="flex justify-between items-center gap-10 pt-14">
-          <img
-            className="lg:w-5/12 lg:block hidden object-contain h-2/5"
-            src={image}
-            alt="Collin and Luke"
-          />
-          <div className="flex flex-col w-full gap-6">
-            <div className="text-sm flex gap-2">
-              <span>Email:</span>
-              <a
-                className=" decoration-dotted decoration-inherit underline underline-offset-4"
-                href={`mailto:${"themuseduo@gmail.com"}`}
-              >
-                themuseduo@gmail.com
-              </a>
-            </div>
-            <Formik
-              initialValues={initialValues}
-              onSubmit={(values, actions) => {
-                const { subject, message } = values;
-                window.location.href = `mailto:${"themuseduo@gmail.com"}?subject=${
-                  subject || ""
-                }&body=${message || ""}`;
-                actions.setSubmitting(false);
-              }}
+    <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-lg">
+        <h1 className="text-center text-2xl font-bold text-[#660000] sm:text-3xl">
+          Connect with us!
+        </h1>
+
+        <form
+          onSubmit={handleSendMailSubmit}
+          className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
+        >
+          <p className="text-center text-lg font-medium">
+            <a
+              className=" decoration-dotted decoration-inherit underline underline-offset-4"
+              href={`mailto:${"themuseduo@gmail.com"}`}
             >
-              <Form className="w-full flex flex-col gap-6">
-                <Field
-                  id="subject"
-                  name="subject"
-                  placeholder="Subject"
-                  className="border-none rounded-md h-8 p-4"
-                />
-                <Field
-                  as="textarea"
-                  id="message"
-                  name="message"
-                  placeholder="Message"
-                  className="border-none rounded-md h-72 p-4"
-                />
-                <button
-                  type="submit"
-                  className="cursor-pointer bg-[#660000] text-white text-center border-none text-lg tracking-wider rounded-md px-16 py-2 w-full"
-                >
-                  SUBMIT
-                </button>
-              </Form>
-            </Formik>
+              themuseduo@gmail.com
+            </a>
+          </p>
+
+          <div>
+            <label htmlFor="subject" className="sr-only">
+              Subject
+            </label>
+
+            <div className="relative">
+              <input
+                id="subject"
+                className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                placeholder="Subject"
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
+              />
+            </div>
           </div>
-        </div>
+
+          <div>
+            <label htmlFor="message" className="sr-only">
+              Message
+            </label>
+
+            <div className="relative">
+              <textarea
+                id="message"
+                className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm resize-none"
+                placeholder="Message"
+                rows={8}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="block w-full rounded-lg bg-[#660000] px-5 py-3 text-sm font-medium text-white"
+          >
+            SUBMIT
+          </button>
+        </form>
       </div>
-    </section>
+    </div>
   );
 };
 

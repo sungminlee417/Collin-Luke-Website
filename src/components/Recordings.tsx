@@ -90,11 +90,7 @@ const Recordings = () => {
 
           <div className="lg:col-span-2 lg:mx-0">
             <div>
-              <Swiper
-                loop={true}
-                slidesPerView={1}
-                onInit={handleSwiperInit} // If you want to do additional setup during initialization
-              >
+              <Swiper loop={true} slidesPerView={1} onInit={handleSwiperInit}>
                 {recordingsURL.map((recording) => {
                   return (
                     <SwiperSlide>

@@ -11,11 +11,14 @@ const PhotoModal = ({ image }: Image) => {
 
   return (
     <>
-      <div className="h-full cursor-pointer" onClick={() => setShowModal(true)}>
+      <div
+        className="h-96 cursor-pointer overflow-hidden mx-auto"
+        onClick={() => setShowModal(true)}
+      >
         <img
           alt="collin and luke"
           src={image}
-          className="object-cover h-full m-auto"
+          className="h-full w-full object-cover hover:scale-105 transition"
         />
       </div>
       {showModal && (

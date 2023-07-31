@@ -8,9 +8,9 @@ const About = () => {
           <div className="relative z-10 lg:py-16">
             <div className="relative h-64 sm:h-80 lg:h-full">
               <img
-                alt="House"
+                alt="The Muse Duo"
                 src="https://the-muse-duo.s3.us-west-1.amazonaws.com/duo-without-instruments.jpeg"
-                className="absolute inset-0 h-full w-full object-cover"
+                className="absolute inset-0 h-full w-full object-cover object-top"
               />
             </div>
           </div>

@@ -13,7 +13,7 @@ import concerts from "./data/concerts";
 function App() {
   return (
     <>
-      {/* <Navigation /> */}
+      <Navigation />
       <Hero />
       <About />
       <Concerts concerts={concerts} />

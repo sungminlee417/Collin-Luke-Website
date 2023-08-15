@@ -33,7 +33,7 @@ const Recordings: React.FC = () => {
   };
 
   return (
-    <section className="bg-gray-100">
+    <section className="recordings-section bg-gray-100 px-8">
       <div className="mx-auto max-w-[1340px] px-4 py-16 sm:px-6 sm:py-24 lg:px-0 lg:py-8">
         <div className="grid grid-cols-1 gap-y-8 lg:grid-cols-3 lg:items-center lg:gap-x-16">
           <div className="max-w-xl text-center sm:text-left">
@@ -90,40 +90,35 @@ const Recordings: React.FC = () => {
             </div>
           </div>
 
-          <div className="lg:col-span-2 lg:mx-0 h-160">
+          <div className="lg:col-span-2 lg:mx-0 sm:h-160 h-144">
             <div className="relative">
-  {currentSlide === 0 && (
-    <div
-    >
-      <Recording recording={recordingsURL[0]} />
-    </div>
-  )}
-  {currentSlide === 1 && (
-    <div
-    >
-      <Recording recording={recordingsURL[1]} />
-    </div>
-  )}
-  {currentSlide === 2 && (
-   <div
-      className="transition duration-200 flex flex-col md:flex-row h-144 justify-center bg-white sm:p-8 p-12 my-4 gap-8 items-center absolute"
-    >
-      <img
-        src={album}
-        alt="album cover"
-        className="shadow-lg sm:w-7/12 w-11/12"
-      />
-      <a
-        href="https://open.spotify.com/album/06Q4h44XDIYrpE0EbGAFMy"
-        className="block w-full rounded px-12 py-3 text-sm font-medium bg-[#660000] hover:bg-[#880000] shadow focus:outline-none focus:ring text-white sm:w-auto text-center"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        Listen on Spotify
-      </a>
-    </div>
-  )}
-
+              {currentSlide === 0 && (
+                <div>
+                  <Recording recording={recordingsURL[0]} />
+                </div>
+              )}
+              {currentSlide === 1 && (
+                <div>
+                  <Recording recording={recordingsURL[1]} />
+                </div>
+              )}
+              {currentSlide === 2 && (
+                <div className="transition duration-200 flex flex-col md:flex-row sm:h-144 h-128 justify-center bg-white sm:p-8 p-12 my-4 gap-8 items-center absolute w-full">
+                  <img
+                    src={album}
+                    alt="album cover"
+                    className="shadow-lg sm:w-7/12 w-11/12"
+                  />
+                  <a
+                    href="https://open.spotify.com/album/06Q4h44XDIYrpE0EbGAFMy"
+                    className="block w-full rounded sm:px-12 py-3 text-sm font-medium bg-[#660000] hover:bg-[#880000] shadow focus:outline-none focus:ring text-white sm:w-auto text-center"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    Listen on Spotify
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         </div>

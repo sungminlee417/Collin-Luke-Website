@@ -43,36 +43,46 @@ const Navigation = () => {
   return (
     <>
       <div
-        className="fixed flex items-center justify-between left-0 right-0 m-14 z-40"
+        className="fixed z-40 sm:top-12 sm:right-12 top-4 right-4"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={!showMenu ? openMenu : closeMenu}
-          className="bg-transparent border-none cursor-pointer flex flex-col gap-3 w-14 justify-self-end"
+          className="group bg-white border-none cursor-pointer flex flex-col justify-center items-center gap-3 justify-self-end md:h-20 h-10 sm:p-10 p-8 rounded-full shadow-lg hover:shadow-xl"
         >
           <span
-            className={`bg-[#660000] h-1 w-10 transition ${
-              showMenu ? "absolute rotate-135" : ""
+            className={`bg-[#555] h-0.5 sm:w-10 w-9 absolute mb-6 group-hover:mb-7 transition-all ${
+              showMenu ? "opacity-0" : "opacity-1"
             }`}
           ></span>
           <span
-            className={`bg-[#660000] h-1 w-10 transition  ${
-              showMenu ? "absolute rotate-neg-135" : ""
+            className={`bg-[#555] h-0.5 sm:w-10 w-9 transition absolute ${
+              showMenu ? "rotate-135" : ""
+            }`}
+          ></span>
+          <span
+            className={`bg-[#555] h-0.5 sm:w-10 w-9 transition absolute ${
+              showMenu ? "rotate-neg-135" : ""
+            }`}
+          ></span>
+          <span
+            className={`bg-[#555] h-0.5 sm:w-10 w-9 absolute mt-6 group-hover:mt-7 transition-all ${
+              showMenu ? "opacity-0" : "opacity-1"
             }`}
           ></span>
         </button>
       </div>
 
       <nav
-        className={`fixed flex bg-[#becad4] justify-center items-center h-full right-0 p-16 z-30 md:w-4/12 w-full transition-all ease-in duration-150 md:opacity-100 opacity-95 ${
+        className={`text-white fixed flex bg-[#550000] justify-center items-center h-screen right-0 p-12 z-30 md:w-4/12 w-full transition-all ease-in duration-150 md:opacity-100 opacity-95 top-0 font-semibold ${
           showMenu ? "translate-x-0" : "translate-x-full"
         }`}
         onClick={(e) => e.stopPropagation()}
       >
-        <ul className="flex flex-col gap-20 justify-center md:items-start items-center">
+        <ul className="flex flex-col gap-16 justify-center md:items-start items-center">
           <li>
             <button
-              className="lg:text-8xl text-7xl"
+              className="xl:text-7xl lg:text-6xl text-4xl"
               onClick={() => {
                 scrollSmoothlyTo("about-section");
               }}
@@ -82,7 +92,7 @@ const Navigation = () => {
           </li>
           <li>
             <button
-              className="lg:text-8xl text-7xl"
+              className="xl:text-7xl lg:text-6xl text-4xl"
               onClick={() => {
                 scrollSmoothlyTo("concerts-section");
               }}
@@ -92,7 +102,7 @@ const Navigation = () => {
           </li>
           <li>
             <button
-              className="lg:text-8xl text-7xl"
+              className="xl:text-7xl lg:text-6xl text-4xl"
               onClick={() => scrollSmoothlyTo("recordings-section")}
             >
               Recordings
@@ -100,15 +110,15 @@ const Navigation = () => {
           </li>
           <li>
             <button
-              className="lg:text-8xl text-7xl"
+              className="xl:text-7xl lg:text-6xl text-4xl"
               onClick={() => scrollSmoothlyTo("photos-section")}
             >
-              Photos
+              Gallery
             </button>
           </li>
           <li>
             <button
-              className="lg:text-8xl text-7xl"
+              className="xl:text-7xl lg:text-6xl text-4xl"
               onClick={() => scrollSmoothlyTo("contact-section")}
             >
               Contact

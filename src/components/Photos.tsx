@@ -1,13 +1,11 @@
 import React from "react";
 import PhotoModal from "./PhotoModal";
-import SwiperCore, { FreeMode, Navigation, Thumbs } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-
-SwiperCore.use([FreeMode, Navigation, Thumbs]);
 
 const image1 =
   "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-1.jpeg";
@@ -81,6 +79,7 @@ const Photos = () => {
               spaceBetween: 50,
             },
           }}
+          spaceBetween={10}
           className="object-contain w-full"
         >
           {images.map((image, index) => {

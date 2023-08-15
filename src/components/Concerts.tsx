@@ -45,11 +45,9 @@ const Concerts = ({ concerts }: ConcertsProps) => {
 
             <div className="flex flex-1 flex-col justify-between">
               <div className="border-s border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
-                <a href="#">
-                  <h3 className="font-bold uppercase text-gray-900">
-                    {concert.venue}
-                  </h3>
-                </a>
+                <h3 className="font-bold uppercase text-gray-900">
+                  {concert.venue}
+                </h3>
 
                 <p
                   className="mt-2 line-clamp-3 text-sm/relaxed text-gray-700 hover:underline cursor-pointer decoration-dotted"

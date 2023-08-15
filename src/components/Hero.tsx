@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import BouncingArrow from "../ui/BouncingArrow";
 
 const Hero = () => {
-  const [showArrow, setShowArrow] = useState(false);
+  // const [showArrow, setShowArrow] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => setShowArrow(true), 4000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => setShowArrow(true), 4000);
+  // }, []);
 
   return (
     <section className="relative bg-[url(https://the-muse-duo.s3.us-west-1.amazonaws.com/landing.jpeg)] bg-cover bg-center bg-no-repeat lg:h-[90vh] lg:m-10">
@@ -14,30 +14,9 @@ const Hero = () => {
       <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
         <div className="max-w-xl sm:text-left text-center">
           <h1 className="text-3xl font-extrabold sm:text-5xl">Muse Duo</h1>
-
-          {/* <p className="mt-4 max-w-lg sm:text-xl/relaxed italic">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt
-            illo tenetur fuga ducimus numquam ea!
-          </p>
-
-          <div className="mt-8 flex flex-wrap gap-4 text-center">
-            <a
-              href="#"
-              className="block w-full rounded bg-[#660000] px-12 py-3 text-sm font-medium text-white shadow hover:bg-[#880000] focus:outline-none focus:ring active:bg-[#990000] sm:w-auto"
-            >
-              Get Started
-            </a>
-
-            <a
-              href="#"
-              className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-[#660000] shadow hover:text-[#880000] focus:outline-none focus:ring active:text-[#990000] sm:w-auto"
-            >
-              Learn More
-            </a>
-          </div> */}
         </div>
       </div>
-      <BouncingArrow showArrow={showArrow} />
+      {/* <BouncingArrow showArrow={showArrow} /> */}
     </section>
   );
 };

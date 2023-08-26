@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
+import { Navigation } from "swiper";
 
 const image1 =
   "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-1.jpeg";
@@ -58,6 +59,7 @@ const Photos = () => {
       </h2>
       <div className="flex flex-col gap-2">
         <Swiper
+          modules={[Navigation]}
           style={
             {
               "--swiper-navigation-color": "#66000",

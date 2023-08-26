@@ -10,12 +10,12 @@ interface RecordingItem {
 
 const recordingsURL: RecordingItem[] = [
   {
-    id: 0,
+    id: 1,
     name: "Cereusle",
     url: "https://youtu.be/m_oA5_T2_UE",
   },
   {
-    id: 1,
+    id: 2,
     name: "A Sense of Loss",
     url: "https://youtu.be/DuvWZ6DD7zc",
   },
@@ -92,17 +92,17 @@ const Recordings: React.FC = () => {
 
           <div className="lg:col-span-2 lg:mx-0 sm:h-160 h-144">
             <div className="relative">
-              {currentSlide === 0 && (
+              {currentSlide === 1 && (
                 <div>
                   <Recording recording={recordingsURL[0]} />
                 </div>
               )}
-              {currentSlide === 1 && (
+              {currentSlide === 2 && (
                 <div>
                   <Recording recording={recordingsURL[1]} />
                 </div>
               )}
-              {currentSlide === 2 && (
+              {currentSlide === 0 && (
                 <div className="transition duration-200 flex flex-col md:flex-row sm:h-144 h-128 justify-center bg-white sm:p-8 p-12 my-4 gap-8 items-center absolute w-full">
                   <img
                     src={album}

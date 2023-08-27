@@ -59,7 +59,7 @@ const images = [
 
 const Photos = () => {
   return (
-    <section className="photos-section flex flex-col gap-2 md:m-20 m-12">
+    <section className="photos-section flex flex-col gap-6 md:m-20 m-12">
       <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-center">
         Gallery
       </h2>

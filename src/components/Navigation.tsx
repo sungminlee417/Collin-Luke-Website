@@ -82,7 +82,7 @@ const Navigation = () => {
         <ul className="flex flex-col gap-16 justify-center md:items-start items-center">
           <li>
             <button
-              className="xl:text-7xl lg:text-6xl text-4xl"
+              className="xl:text-7xl lg:text-6xl text-4xl md:hover:translate-x-3 transition hover:-translate-y-2"
               onClick={() => {
                 scrollSmoothlyTo("about-section");
               }}
@@ -92,7 +92,7 @@ const Navigation = () => {
           </li>
           <li>
             <button
-              className="xl:text-7xl lg:text-6xl text-4xl"
+              className="xl:text-7xl lg:text-6xl text-4xl md:hover:translate-x-3 transition hover:-translate-y-2"
               onClick={() => {
                 scrollSmoothlyTo("concerts-section");
               }}
@@ -102,7 +102,7 @@ const Navigation = () => {
           </li>
           <li>
             <button
-              className="xl:text-7xl lg:text-6xl text-4xl"
+              className="xl:text-7xl lg:text-6xl text-4xl md:hover:translate-x-3 transition hover:-translate-y-2"
               onClick={() => scrollSmoothlyTo("recordings-section")}
             >
               Recordings
@@ -110,7 +110,7 @@ const Navigation = () => {
           </li>
           <li>
             <button
-              className="xl:text-7xl lg:text-6xl text-4xl"
+              className="xl:text-7xl lg:text-6xl text-4xl md:hover:translate-x-3 transition hover:-translate-y-2"
               onClick={() => scrollSmoothlyTo("photos-section")}
             >
               Gallery
@@ -118,7 +118,7 @@ const Navigation = () => {
           </li>
           <li>
             <button
-              className="xl:text-7xl lg:text-6xl text-4xl"
+              className="xl:text-7xl lg:text-6xl text-4xl md:hover:translate-x-3 transition hover:-translate-y-2"
               onClick={() => scrollSmoothlyTo("contact-section")}
             >
               Contact

@@ -34,21 +34,27 @@ const image12 =
   "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-12.jpeg";
 const image13 =
   "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-13.jpeg";
+  const image14 =
+  "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-14.jpg";
+  const image15 =
+  "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-15.jpg";
 
 const images = [
   image1,
-  image2,
-  image3,
+  // image2,
+  // image3,
   image4,
-  image5,
+  // image5,
   image6,
   image7,
   image8,
-  image9,
+  // image9,
   image10,
   image11,
   image12,
   image13,
+  image14,
+  image15
 ];
 
 const Photos = () => {

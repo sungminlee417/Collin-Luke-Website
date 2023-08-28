@@ -16,7 +16,7 @@ const Photo = ({ image, onClose }: Props) => {
       />
       <button
         onClick={onClose}
-        className="bg-transparent border-none cursor-pointer flex flex-col gap-10 justify-center right-14 fixed top-14 z-20 w-2 h-2"
+        className="bg-transparent border-none cursor-pointer flex flex-col gap-10 justify-center right-8 fixed top-8 z-20 w-12 h-12"
       >
         <span className="bg-white h-1 absolute w-12 rotate-135"></span>
         <span className="bg-white h-1 absolute w-12 rotate-neg-135"></span>

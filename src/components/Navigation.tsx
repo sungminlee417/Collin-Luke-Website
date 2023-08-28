@@ -83,7 +83,7 @@ const Navigation = () => {
       </div>
 
       <nav
-        className={`text-white fixed flex bg-[#550000] justify-center items-center h-screen right-0 p-12 z-30 md:w-4/12 w-full transition-all ease-in duration-150 md:opacity-100 opacity-95 top-0 font-semibold ${
+        className={`text-white fixed flex bg-[#550000] justify-center items-center h-screen right-0 p-12 z-20 md:w-4/12 w-full transition-all ease-in duration-150 md:opacity-100 opacity-95 top-0 font-semibold ${
           showMenu ? "translate-x-0" : "translate-x-full"
         }`}
         onClick={(e) => e.stopPropagation()}

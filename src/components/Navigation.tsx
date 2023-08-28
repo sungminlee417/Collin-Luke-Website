@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from "react";
 
+const SECTIONS = [
+  {sectionName: "About", containerName: "about"},
+  {sectionName: "Concerts", containerName: "concerts"},
+  {sectionName: "Music", containerName: "recordings"},
+  {sectionName: "Gallery", containerName: "photos"},
+  {sectionName: "Contact", containerName: "contact"},
+
+]
+
 const Navigation = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [linkClicked, setLinkClicked] = useState(false);
@@ -43,7 +52,7 @@ const Navigation = () => {
   return (
     <>
       <div
-        className="fixed z-40 sm:top-12 sm:right-12 top-4 right-4"
+        className="fixed z-30 sm:top-12 sm:right-12 top-4 right-4"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -80,50 +89,16 @@ const Navigation = () => {
         onClick={(e) => e.stopPropagation()}
       >
         <ul className="flex flex-col gap-16 justify-center md:items-start items-center">
-          <li>
+          {SECTIONS.map(section => <li>
             <button
-              className="xl:text-7xl lg:text-6xl text-4xl md:hover:translate-x-3 transition hover:-translate-y-2"
+              className="xl:text-7xl lg:text-6xl text-4xl md:hover:translate-x-3 transition hover:-translate-y-2 md:hover:-translate-y-0"
               onClick={() => {
-                scrollSmoothlyTo("about-section");
+                scrollSmoothlyTo(`${section.containerName}-section`);
               }}
-            >
-              About
+            >{section.sectionName}
             </button>
           </li>
-          <li>
-            <button
-              className="xl:text-7xl lg:text-6xl text-4xl md:hover:translate-x-3 transition hover:-translate-y-2"
-              onClick={() => {
-                scrollSmoothlyTo("concerts-section");
-              }}
-            >
-              Concerts
-            </button>
-          </li>
-          <li>
-            <button
-              className="xl:text-7xl lg:text-6xl text-4xl md:hover:translate-x-3 transition hover:-translate-y-2"
-              onClick={() => scrollSmoothlyTo("recordings-section")}
-            >
-              Recordings
-            </button>
-          </li>
-          <li>
-            <button
-              className="xl:text-7xl lg:text-6xl text-4xl md:hover:translate-x-3 transition hover:-translate-y-2"
-              onClick={() => scrollSmoothlyTo("photos-section")}
-            >
-              Gallery
-            </button>
-          </li>
-          <li>
-            <button
-              className="xl:text-7xl lg:text-6xl text-4xl md:hover:translate-x-3 transition hover:-translate-y-2"
-              onClick={() => scrollSmoothlyTo("contact-section")}
-            >
-              Contact
-            </button>
-          </li>
+          )}
         </ul>
       </nav>
     </>

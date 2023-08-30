@@ -5,6 +5,7 @@ module.exports = {
   theme: {
     fontFamily: {
       source: ["Source Sans Pro"],
+      bebas: ["Bebas Neue", "sans-serif"],
     },
     extend: {
       spacing: {

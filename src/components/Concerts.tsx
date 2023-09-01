@@ -32,43 +32,59 @@ const Concerts = ({ concerts }: ConcertsProps) => {
     <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
       {concerts.map((concert) => {
         return (
-          <article className="flex bg-white transition hover:shadow-xl rounded-md">
-            <div className="rotate-180 p-2 [writing-mode:_vertical-lr]">
-              <time className="flex items-center justify-between gap-4 text-xs font-bold uppercase text-gray-900">
-                <span>{concert.startDate.year}</span>
-                <span className="w-px flex-1 bg-gray-900/10"></span>
-                <span>
-                  {concert.startDate.month} {concert.startDate.day}
-                </span>
-              </time>
-            </div>
-
-            <div className="flex flex-1 flex-col justify-between">
-              <div className="border-s border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
-                <h3 className="font-bold uppercase text-gray-900">
-                  {concert.venue}
+          <article className="rounded-xl border-2 border-gray-100 bg-white">
+            <div className="flex items-start gap-4 p-4 sm:p-6 lg:p-8">
+              <div>
+                <h3 className="font-medium sm:text-lg">
+                  <a
+                    href={
+                      concert.ticketUrl
+                        ? concert.ticketUrl
+                        : concert.moreInfoUrl
+                    }
+                    className="hover:underline"
+                  >
+                    {concert.venue}
+                  </a>
                 </h3>
-
                 <p
                   className="mt-2 line-clamp-3 text-sm/relaxed text-gray-700 hover:underline cursor-pointer decoration-dotted"
                   onClick={() => openMap(concert.location)}
                 >
                   {concert.location}
                 </p>
-              </div>
 
-              <div className="sm:flex sm:items-end sm:justify-end">
+                <div className="mt-2 sm:flex sm:items-center sm:gap-2">
+                  <div className="flex items-center gap-1 text-gray-500">
+                    <p className="text-xs">
+                      {concert.startDate.month} {concert.startDate.day}
+                    </p>
+                  </div>
+
+                  <span className="hidden sm:block" aria-hidden="true">
+                    &middot;
+                  </span>
+
+                  <p className="hidden sm:block sm:text-xs sm:text-gray-500">
+                    {concert.startDate.year}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex justify-end">
+              <strong className="-mb-[2px] -me-[2px] inline-flex items-center gap-1 rounded-ee-xl rounded-ss-xl bg-[#660000] hover:bg-[#990000] px-4 py-2 text-white">
                 <a
                   href={
                     concert.ticketUrl ? concert.ticketUrl : concert.moreInfoUrl
                   }
                   rel="noopener noreferrer"
                   target="_blank"
-                  className="block bg-[#660000] px-5 py-3 text-center text-xs font-bold uppercase text-white transition-all hover:bg-[#990000] rounded-br-md "
+                  className="block text-center text-xs font-bold uppercase text-white transition-all  rounded-br-md "
                 >
                   {concert.ticketUrl ? "Purchase Tickets" : "More Info"}
                 </a>
-              </div>
+              </strong>
             </div>
           </article>
         );

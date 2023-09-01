@@ -1,5 +1,10 @@
 import React, { FormEvent, useState } from "react";
 
+const pianoIMG =
+  "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-12.jpeg";
+const guitarIMG =
+  "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-13.jpeg";
+
 export const Contact = () => {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
@@ -12,17 +17,12 @@ export const Contact = () => {
   };
 
   return (
-    <div className="contact-section mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-lg">
-        <h1 className="text-center text-2xl font-bold text-[#660000] sm:text-3xl">
-          Connect with us!
-        </h1>
+    <section className="relative flex flex-wrap lg:h-screen lg:items-center">
+      <div className="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
+        <div className="mx-auto max-w-lg text-center">
+          <h1 className="text-2xl font-bold sm:text-3xl">Connect with us!</h1>
 
-        <form
-          onSubmit={handleSendMailSubmit}
-          className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
-        >
-          <p className="text-center text-lg font-medium">
+          <p className="mt-4 text-gray-500">
             <a
               className=" decoration-dotted decoration-inherit underline underline-offset-4"
               href={`mailto:${"themuseduo@gmail.com"}`}
@@ -30,49 +30,62 @@ export const Contact = () => {
               themuseduo@gmail.com
             </a>
           </p>
+        </div>
 
+        <form
+          className="mx-auto mb-0 mt-8 max-w-md space-y-4 rounded-lg p-4 shadow-lg "
+          onSubmit={handleSendMailSubmit}
+        >
           <div>
-            <label htmlFor="subject" className="sr-only">
+            <label htmlFor="email" className="sr-only">
               Subject
             </label>
 
             <div className="relative">
               <input
-                id="subject"
-                className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                placeholder="Subject"
-                value={subject}
                 onChange={(e) => setSubject(e.target.value)}
+                type="subject"
+                className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                placeholder="Enter subject"
               />
             </div>
           </div>
 
           <div>
-            <label htmlFor="message" className="sr-only">
-              Message
+            <label htmlFor="password" className="sr-only">
+              Password
             </label>
 
             <div className="relative">
               <textarea
-                id="message"
-                className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm resize-none"
-                placeholder="Message"
-                rows={8}
-                value={message}
                 onChange={(e) => setMessage(e.target.value)}
+                rows={8}
+                className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm resize-none"
+                placeholder="Enter password"
               />
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="block w-full rounded-lg bg-[#660000] px-5 py-3 text-sm font-medium text-white"
-          >
-            SUBMIT
-          </button>
+          <div className="flex items-center justify-between">
+            <div></div>
+            <button
+              type="submit"
+              className="inline-block rounded-lg bg-[#660000] px-5 py-3 text-sm font-medium text-white"
+            >
+              Submit
+            </button>
+          </div>
         </form>
       </div>
-    </div>
+
+      <div className="relative h-64 w-full sm:h-96 lg:h-full lg:w-1/2">
+        <img
+          alt="Piano"
+          src={pianoIMG}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      </div>
+    </section>
   );
 };
 

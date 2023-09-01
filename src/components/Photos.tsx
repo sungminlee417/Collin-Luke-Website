@@ -30,10 +30,6 @@ const image10 =
   "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-10.jpeg";
 const image11 =
   "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-11.jpeg";
-const image12 =
-  "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-12.jpeg";
-const image13 =
-  "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-13.jpeg";
 const image14 =
   "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-14.jpg";
 const image15 =
@@ -51,8 +47,8 @@ const images = [
   // image9,
   // image10,
   image11,
-  image12,
-  image13,
+  // image12,
+  // image13,
   image14,
   image15,
 ];

@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 
 const SECTIONS = [
-  {sectionName: "About", containerName: "about"},
-  {sectionName: "Concerts", containerName: "concerts"},
-  {sectionName: "Music", containerName: "recordings"},
-  {sectionName: "Gallery", containerName: "photos"},
-  {sectionName: "Contact", containerName: "contact"},
-
-]
+  { sectionName: "About", containerName: "about" },
+  { sectionName: "Concerts", containerName: "concerts" },
+  { sectionName: "Music", containerName: "recordings" },
+  { sectionName: "Gallery", containerName: "photos" },
+  { sectionName: "Contact", containerName: "contact" },
+];
 
 const Navigation = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -89,16 +88,18 @@ const Navigation = () => {
         onClick={(e) => e.stopPropagation()}
       >
         <ul className="flex flex-col gap-16 justify-center md:items-start items-center">
-          {SECTIONS.map(section => <li>
-            <button
-              className="xl:text-7xl lg:text-6xl text-4xl md:hover:translate-x-3 transition hover:-translate-y-2 md:hover:-translate-y-0"
-              onClick={() => {
-                scrollSmoothlyTo(`${section.containerName}-section`);
-              }}
-            >{section.sectionName}
-            </button>
-          </li>
-          )}
+          {SECTIONS.map((section) => (
+            <li>
+              <button
+                className="xl:text-7xl lg:text-6xl text-4xl md:hover:translate-x-3 transition hover:-translate-y-2 md:hover:-translate-y-0"
+                onClick={() => {
+                  scrollSmoothlyTo(`${section.containerName}-section`);
+                }}
+              >
+                {section.sectionName}
+              </button>
+            </li>
+          ))}
         </ul>
       </nav>
     </>

@@ -1,6 +1,33 @@
 const concerts = [
   {
     startDate: {
+      day: 8,
+      month: "April",
+      year: 2023,
+    },
+    venue: "Snyder Sanctuary",
+    location: "N Military Trl, Boca Raton, FL 33431",
+  },
+  {
+    startDate: {
+      day: 15,
+      month: "April",
+      year: 2023,
+    },
+    venue: "Snyder Sanctuary",
+    location: "N Military Trl, Boca Raton, FL 33431",
+  },
+  {
+    startDate: {
+      day: 24,
+      month: "May",
+      year: 2023,
+    },
+    venue: "Epworth",
+    location: "14901 N Pennsylvania Ave, Oklahoma City, OK 73134",
+  },
+  {
+    startDate: {
       day: 7,
       month: "May",
       year: 2023,
@@ -90,6 +117,29 @@ const concerts = [
     location: "1480 Southwest 9th Avenue Fort Lauderdale, FL 33315",
     ticketUrl:
       "https://www.eventbrite.com/e/sunshine-cathedral-center-for-the-performing-arts-presents-muse-duo-tickets-646170512397?aff=oddtdtcreator",
+  },
+  {
+    startDate: {
+      day: 16,
+      month: "November",
+      year: 2023,
+    },
+    venue: `"from the floor" Premiere`,
+    location: "1480 Southwest 9th Avenue Fort Lauderdale, FL 33315",
+    moreInfoUrl:
+      "https://www.okcu.edu/admissions/events/music",
+  },
+  {
+    startDate: {
+      day: 21,
+      month: "January",
+      year: 2024,
+    },
+    venue: "Music at St. Pauls",
+    time: "3pm",
+    location: "1480 Southwest 9th Avenue Fort Lauderdale, FL 33315",
+    moreInfoUrl:
+      "https://musicstpauls.org/",
   },
 ];
 

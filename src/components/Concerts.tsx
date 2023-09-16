@@ -98,17 +98,21 @@ const Concerts = ({ concerts }: ConcertsProps) => {
                 <div className="mt-2 sm:flex sm:items-center sm:gap-2">
                   <div className="flex items-center gap-1 text-gray-500">
                     <p className="text-xs">
-                      {concert.startDate.month} {concert.startDate.day}
+                      {concert.startDate.month} {concert.startDate.day} {concert.startDate.year}
                     </p>
                   </div>
+
+                  {selectedConcerts === "Upcoming Concerts" && concert.time && <>
 
                   <span className="hidden sm:block" aria-hidden="true">
                     &middot;
                   </span>
 
                   <p className="hidden sm:block sm:text-xs sm:text-gray-500">
-                    {concert.startDate.year}
+                    {concert.time}
                   </p>
+                  </>
+                  }
                 </div>
               </div>
             </div>

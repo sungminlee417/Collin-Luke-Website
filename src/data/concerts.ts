@@ -125,7 +125,7 @@ const concerts = [
       year: 2023,
     },
     venue: `"from the floor" Premiere`,
-    location: "1480 Southwest 9th Avenue Fort Lauderdale, FL 33315",
+    location: "2501 N Blackwelder Ave, Oklahoma City, OK 73106",
     moreInfoUrl:
       "https://www.okcu.edu/admissions/events/music",
   },
@@ -137,7 +137,7 @@ const concerts = [
     },
     venue: "Music at St. Pauls",
     time: "3pm",
-    location: "1480 Southwest 9th Avenue Fort Lauderdale, FL 33315",
+    location: "188 S Swinton Ave, Delray Beach, FL 33444",
     moreInfoUrl:
       "https://musicstpauls.org/",
   },

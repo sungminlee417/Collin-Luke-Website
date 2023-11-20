@@ -1,4 +1,5 @@
 import React from "react";
+import icon from '../images/icon.jpg'
 
 const About = () => {
   return (
@@ -15,13 +16,14 @@ const About = () => {
             </div>
           </div>
 
-          <div className="relative flex items-center bg-gray-100">
-            <span className="hidden lg:absolute lg:inset-y-0 lg:-start-16 lg:block lg:w-16 lg:bg-gray-100"></span>
+          <div className="relative flex items-center bg-[#F1F1F1]">
+            <span className="hidden lg:absolute lg:inset-y-0 lg:-start-16 lg:block lg:w-16 lg:bg-[#F1F1F1]"></span>
 
             <div className="p-8 sm:p-16 lg:p-24">
+              <img src={icon} alt="Muse Duo Icon" className="h-28 absolute top-5 right-5" />
               <h2 className="text-2xl font-bold sm:text-3xl">The Muse Duo</h2>
 
-              <p className="mt-4 text-gray-600 flex flex-col gap-2 h-96 overflow-auto">
+              <p className="mt-4 text-[#071E22] flex flex-col gap-2 h-96 overflow-auto">
                 <span>
                   Originally formed at the Eastman School of Music, the Muse Duo
                   is a one-of-a-kind ensemble in the world of classical music.

@@ -2,8 +2,6 @@ import React, { FormEvent, useState } from "react";
 
 const pianoIMG =
   "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-12.jpeg";
-const guitarIMG =
-  "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-13.jpeg";
 
 export const Contact = () => {
   const [subject, setSubject] = useState("");
@@ -53,7 +51,7 @@ export const Contact = () => {
 
           <div>
             <label htmlFor="password" className="sr-only">
-              Password
+              Message
             </label>
 
             <div className="relative">
@@ -61,7 +59,7 @@ export const Contact = () => {
                 onChange={(e) => setMessage(e.target.value)}
                 rows={8}
                 className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm resize-none"
-                placeholder="Enter password"
+                placeholder="Enter message"
               />
             </div>
           </div>

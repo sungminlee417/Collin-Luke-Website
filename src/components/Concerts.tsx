@@ -108,7 +108,7 @@ const Concerts = ({ concerts }: ConcertsProps) => {
                     &middot;
                   </span>
 
-                  <p className="hidden sm:block sm:text-xs sm:text-gray-500">
+                  <p className="hidden sm:block sm:text-xs sm:text-[#071E22]">
                     {concert.time}
                   </p>
                   </>
@@ -120,7 +120,7 @@ const Concerts = ({ concerts }: ConcertsProps) => {
             {/* Conditionally render the ticket purchase or more info link */}
             {selectedConcerts === "Upcoming Concerts" && (
               <div className="flex justify-end">
-                <strong className="-mb-[2px] -me-[2px] inline-flex items-center gap-1 rounded-ee-xl rounded-ss-xl bg-[#660000] hover:bg-[#990000] px-4 py-2 text-white">
+                <strong className="-mb-[2px] -me-[2px] inline-flex items-center gap-1 rounded-ee-xl rounded-ss-xl bg-[#660000] hover:bg-[#990000] px-4 py-2 text-[#F1F1F1]">
                   <a
                     href={
                       concert.ticketUrl
@@ -129,7 +129,7 @@ const Concerts = ({ concerts }: ConcertsProps) => {
                     }
                     rel="noopener noreferrer"
                     target="_blank"
-                    className="block text-center text-xs font-bold uppercase text-white transition-all  rounded-br-md "
+                    className="block text-center text-xs font-bold uppercase text-[#F1F1F1] transition-all  rounded-br-md "
                   >
                     {concert.ticketUrl ? "Purchase Tickets" : "More Info"}
                   </a>

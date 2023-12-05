@@ -19,9 +19,9 @@ const About = () => {
           <div className="relative flex items-center bg-[#F1F1F1]">
             <span className="hidden lg:absolute lg:inset-y-0 lg:-start-16 lg:block lg:w-16 lg:bg-[#F1F1F1]"></span>
 
-            <div className="p-8 sm:p-16 lg:p-24">
-              <img src={icon} alt="Muse Duo Icon" className="h-28 absolute top-5 right-5" />
-              <h2 className="text-2xl font-bold sm:text-3xl">The Muse Duo</h2>
+            <div className="p-8 sm:p-16 lg:p-24 flex flex-col justify-center">
+              <img src={icon} alt="Muse Duo Icon" className="h-28 object-contain lg:absolute top-5 right-5" />
+              <h2 className="text-2xl sm:text-3xl">The Muse Duo</h2>
 
               <p className="mt-4 text-[#071E22] flex flex-col gap-2 h-96 overflow-auto">
                 <span>

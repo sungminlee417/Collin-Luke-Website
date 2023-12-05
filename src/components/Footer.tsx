@@ -1,4 +1,5 @@
 import React from "react";
+import logoIcon from '../images/icon.png';
 
 const Footer = () => {
   const date = new Date();
@@ -8,7 +9,10 @@ const Footer = () => {
     <footer className="bg-white">
       <div className="mx-auto max-w-screen-xl px-4 pb-8 pt-16 sm:px-6 lg:px-8 lg:pt-2">
         <div className="mt-12 border-t border-gray-100 pt-8 flex flex-col-reverse gap-4 sm:flex-row items-center sm:items-center sm:justify-between">
-          <span className="text-gray-500 text-xs">&copy; {year} Muse Duo</span>
+          <div className="flex items-center">
+            <img className="h-10" src={logoIcon} alt="Muse Duo Icon" />
+            <span className="text-gray-500 text-xs">&copy; {year} Muse Duo</span>
+          </div>
 
           <ul className="mt-8 flex justify-center gap-6 sm:mt-0 lg:justify-end">
             <li>

@@ -120,7 +120,7 @@ const Concerts = ({ concerts }: ConcertsProps) => {
             {/* Conditionally render the ticket purchase or more info link */}
             {selectedConcerts === "Upcoming Concerts" && (
               <div className="flex justify-end">
-                <strong className="-mb-[2px] -me-[2px] inline-flex items-center gap-1 rounded-ee-xl rounded-ss-xl bg-[#660000] hover:bg-[#990000] px-4 py-2 text-[#F1F1F1]">
+                <strong className="-mb-[2px] -me-[2px] inline-flex items-center gap-1 rounded-ee-xl rounded-ss-xl bg-[#EE2E31] hover:bg-[#FF6B6E] px-4 py-2 text-[#F1F1F1]">
                   <a
                     href={
                       concert.ticketUrl
@@ -129,7 +129,7 @@ const Concerts = ({ concerts }: ConcertsProps) => {
                     }
                     rel="noopener noreferrer"
                     target="_blank"
-                    className="block text-center text-xs font-bold uppercase text-[#F1F1F1] transition-all  rounded-br-md "
+                    className="block text-center text-xs uppercase text-[#F1F1F1] transition-all  rounded-br-md "
                   >
                     {concert.ticketUrl ? "Purchase Tickets" : "More Info"}
                   </a>
@@ -148,7 +148,7 @@ const Concerts = ({ concerts }: ConcertsProps) => {
         <div className="mx-auto max-w-lg text-center">
           <details className="relative group [&_summary::-webkit-details-marker]:hidden">
             <summary className="flex cursor-pointer items-center justify-center gap-2 pb-1">
-              <h2 className="text-3xl font-bold sm:text-4xl">
+              <h2 className="text-3xl sm:text-4xl">
                 {selectedConcerts}
               </h2>
 

@@ -91,7 +91,7 @@ const Navigation = () => {
           {SECTIONS.map((section) => (
             <li>
               <button
-                className="tracking-wide font-thin text-[#F1F1F1] xl:text-7xl lg:text-6xl text-4xl md:hover:translate-x-3 transition hover:-translate-y-2 md:hover:-translate-y-0"
+                className="tracking-wide text-[#F1F1F1] xl:text-7xl lg:text-6xl text-4xl md:hover:translate-x-3 transition hover:-translate-y-2 md:hover:-translate-y-0"
                 onClick={() => {
                   scrollSmoothlyTo(`${section.containerName}-section`);
                 }}

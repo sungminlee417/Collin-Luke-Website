@@ -37,7 +37,7 @@ const Recordings: React.FC = () => {
       <div className="mx-auto max-w-[1340px] px-4 py-16 sm:px-6 sm:py-24 lg:px-0 lg:py-8">
         <div className="grid grid-cols-1 gap-y-8 lg:grid-cols-3 lg:items-center lg:gap-x-16">
           <div className="max-w-xl text-center sm:text-left">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="text-3xl sm:text-4xl">
               Music
             </h2>
 
@@ -47,7 +47,7 @@ const Recordings: React.FC = () => {
 
             <div className="hidden lg:mt-8 lg:flex lg:gap-4">
               <button
-                className="rounded-full border border-[#660000] p-3 text-[#660000] hover:bg-[#660000] hover:text-white"
+                className="rounded-full border border-[#EE2E31] p-3 text-[#EE2E31] hover:bg-[#EE2E31] hover:text-white"
                 onClick={handlePreviousSlide}
               >
                 <span className="sr-only">Previous Slide</span>
@@ -68,7 +68,7 @@ const Recordings: React.FC = () => {
               </button>
 
               <button
-                className="rounded-full border border-[#660000] p-3 text-[#660000] hover:bg-[#660000] hover:text-white"
+                className="rounded-full border border-[#EE2E31] p-3 text-[#EE2E31] hover:bg-[#EE2E31] hover:text-white"
                 onClick={handleNextSlide}
               >
                 <span className="sr-only">Next Slide</span>
@@ -111,7 +111,7 @@ const Recordings: React.FC = () => {
                   />
                   <a
                     href="https://open.spotify.com/album/06Q4h44XDIYrpE0EbGAFMy"
-                    className="block w-full rounded sm:px-12 py-3 text-sm font-medium bg-[#660000] hover:bg-[#880000] shadow focus:outline-none focus:ring text-white sm:w-auto text-center"
+                    className="block w-full rounded sm:px-12 py-3 text-sm font-medium bg-[#EE2E31] hover:bg-[#FF6B6E] shadow focus:outline-none focus:ring text-white sm:w-auto text-center"
                     rel="noopener noreferrer"
                     target="_blank"
                   >
@@ -126,7 +126,7 @@ const Recordings: React.FC = () => {
         <div className="mt-8 flex justify-center gap-4 lg:hidden">
           <button
             aria-label="Previous slide"
-            className="prev-button rounded-full border border-[#660000] p-3 text-[#660000] hover:bg-[#660000] hover:text-white"
+            className="prev-button rounded-full border border-[#EE2E31] p-3 text-[#EE2E31] hover:bg-[#EE2E31] hover:text-white"
             onClick={handlePreviousSlide}
           >
             <svg
@@ -147,7 +147,7 @@ const Recordings: React.FC = () => {
 
           <button
             aria-label="Next slide"
-            className="next-button rounded-full border border-[#660000] p-3 text-[#660000] hover:bg-[#660000] hover:text-white"
+            className="next-button rounded-full border border-[#EE2E31] p-3 text-[#EE2E31] hover:bg-[#EE2E31] hover:text-white"
             onClick={handleNextSlide}
           >
             <svg

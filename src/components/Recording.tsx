@@ -14,7 +14,7 @@ interface RecordingProps {
 const Recording = ({ recording }: RecordingProps) => {
   return (
     <div className="duration-200 flex sm:h-144 h-128 flex-col justify-center bg-white sm:p-12 p-4 my-4 gap-4 absolute w-full">
-      <p className="text-2xl font-bold text-[#660000] sm:text-3xl">
+      <p className="text-2xl text-[#EE2E31] sm:text-3xl">
         {recording.name}
       </p>
       <div className="h-fit">

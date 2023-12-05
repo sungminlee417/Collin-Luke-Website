@@ -1,5 +1,5 @@
 import React from "react";
-import icon from '../images/icon.jpg'
+import icon from '../images/icon.png'
 
 const About = () => {
   return (

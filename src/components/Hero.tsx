@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import landingImage from '../images/landing-logo.png';
 
 const Hero = () => {
   return (
@@ -6,7 +7,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-white/50 sm:bg-transparent sm:from-white/25 sm:to-white/25 sm:bg-gradient-to-r"></div>
       <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
         <div className="max-w-xl sm:text-left text-center">
-          <h1 className="font-bebas text-4xl sm:text-6xl">Muse Duo</h1>
+          <img src={landingImage} className="h-44 sm:h-52" alt="Muse Duo Logo" />
         </div>
       </div>
     </section>

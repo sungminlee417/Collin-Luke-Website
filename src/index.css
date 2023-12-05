@@ -10,10 +10,16 @@ Gray: #888888
 /* GLOBAL STYLINGS */
 /*************************/
 
+@font-face {
+  font-family: 'Candu-Condensed';
+  src: url('/fonts/Candu-Condensed.otf') format('woff2'),
+}
+
 body {
   animation: fade-in 2s;
   color: #EE2E31;
   overflow-x: hidden;
+  font-family: 'Candu-Condensed';
 }
 
 /*************************/

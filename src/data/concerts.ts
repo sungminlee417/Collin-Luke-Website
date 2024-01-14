@@ -126,8 +126,7 @@ const concerts = [
     },
     venue: `"from the floor" Premiere`,
     location: "2501 N Blackwelder Ave, Oklahoma City, OK 73106",
-    moreInfoUrl:
-      "https://www.okcu.edu/admissions/events/music",
+    moreInfoUrl: "https://www.okcu.edu/admissions/events/music",
   },
   {
     startDate: {
@@ -138,8 +137,41 @@ const concerts = [
     venue: "Music at St. Pauls",
     time: "3pm",
     location: "188 S Swinton Ave, Delray Beach, FL 33444",
+    moreInfoUrl: "https://musicstpauls.org/",
+  },
+  {
+    startDate: {
+      day: 28,
+      month: "January",
+      year: 2024,
+    },
+    venue: "Sydney Carbo & Muse Duo: ‘Grafico de Petenera’",
+    time: "4pm",
+    location: "Palm City Presbyterian Church, Palm City, FL",
+    moreInfoUrl: "https://palmcitypres.org/upcoming-events",
+  },
+  {
+    startDate: {
+      day: 24,
+      month: "February",
+      year: 2024,
+    },
+    venue: "Sydney Carbo & Muse Duo: ‘Grafico de Petenera’",
+    time: "7:30pm",
+    location: "Lynn Conservatory of Music, Boca Raton, FL",
+    moreInfoUrl: "https://www.lynn.edu/events/live-at-lynn",
+  },
+  {
+    startDate: {
+      day: 18,
+      month: "April",
+      year: 2024,
+    },
+    venue: "Sydney Carbo & Muse Duo: ‘Grafico de Petenera’",
+    time: "12:00pm",
+    location: "Music at St. Mary's, Stuart, FL",
     moreInfoUrl:
-      "https://musicstpauls.org/",
+      "https://onrealm.org/stmarys/PublicRegistrations/Event?linkString=YzU5MjUwYTUtMDBkNS00ZmQ4LWE1ODctYjA4ZjAxM2ZiZGYy",
   },
 ];
 

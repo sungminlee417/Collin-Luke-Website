@@ -88,8 +88,8 @@ const Navigation = () => {
         onClick={(e) => e.stopPropagation()}
       >
         <ul className="flex flex-col gap-16 justify-center md:items-start items-center">
-          {SECTIONS.map((section) => (
-            <li>
+          {SECTIONS.map((section, i) => (
+            <li key={i}>
               <button
                 className="tracking-wide text-[#F1F1F1] xl:text-7xl lg:text-6xl text-4xl md:hover:translate-x-3 transition hover:-translate-y-2 md:hover:-translate-y-0"
                 onClick={() => {

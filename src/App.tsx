@@ -8,15 +8,13 @@ import Photos from "./components/Photos";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
-import concerts from "./data/concerts";
-
 function App() {
   return (
     <>
       <Navigation />
       <Hero />
       <About />
-      <Concerts concerts={concerts} />
+      <Concerts />
       <Recordings />
       <Photos />
       <Contact />

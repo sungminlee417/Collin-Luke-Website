@@ -35,7 +35,7 @@ const renderComponent = () => {
     },
   ];
 
-  render(<Concerts concerts={concerts} />);
+  render(<Concerts />);
 
   return { concerts };
 };

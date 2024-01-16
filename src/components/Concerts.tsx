@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { collection, onSnapshot } from "firebase/firestore";
+import { db } from "..";
 
 interface Concert {
   startDate: {
@@ -17,11 +19,8 @@ interface Concert {
   moreInfoUrl?: string;
 }
 
-interface ConcertsProps {
-  concerts: Concert[];
-}
-
-const Concerts = ({ concerts }: ConcertsProps) => {
+const Concerts = () => {
+  const [concerts, setConcerts] = useState<Concert[]>([]);
   const [selectedConcerts, setSelectedConcerts] = useState("Upcoming Concerts");
 
   const openMap = (address: string): void => {
@@ -69,11 +68,42 @@ const Concerts = ({ concerts }: ConcertsProps) => {
           return concertDate <= currentDate;
         });
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const docRef = collection(db, "concerts/");
+      onSnapshot(docRef, (querySnapshot) => {
+        const concerts = querySnapshot.docs.map((doc) => {
+          const data = doc.data() as Concert;
+          return data;
+        });
+        concerts.sort((a, b) => {
+          const dateA = new Date(
+            a.startDate.year || 0,
+            monthToIndex(a.startDate.month),
+            a.startDate.day || 1
+          );
+          const dateB = new Date(
+            b.startDate.year || 0,
+            monthToIndex(b.startDate.month),
+            b.startDate.day || 1
+          );
+          return dateA.getTime() - dateB.getTime();
+        });
+        setConcerts(concerts);
+      });
+    };
+
+    fetchData();
+  }, []);
+
   const renderedConcerts = (
     <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {filteredConcerts.map((concert) => {
+      {filteredConcerts.map((concert, i) => {
         return (
-          <article className="rounded-xl border-2 border-gray-100 bg-white">
+          <article
+            className="rounded-xl border-2 border-gray-100 bg-white"
+            key={i}
+          >
             <div className="flex items-start gap-4 p-4 sm:p-6 lg:p-8">
               <div>
                 <h3 className="font-medium sm:text-lg">
@@ -98,21 +128,22 @@ const Concerts = ({ concerts }: ConcertsProps) => {
                 <div className="mt-2 sm:flex sm:items-center sm:gap-2">
                   <div className="flex items-center gap-1 text-gray-500">
                     <p className="text-xs">
-                      {concert.startDate.month} {concert.startDate.day} {concert.startDate.year}
+                      {concert.startDate.month} {concert.startDate.day}{" "}
+                      {concert.startDate.year}
                     </p>
                   </div>
 
-                  {selectedConcerts === "Upcoming Concerts" && concert.time && <>
+                  {selectedConcerts === "Upcoming Concerts" && concert.time && (
+                    <>
+                      <span className="hidden sm:block" aria-hidden="true">
+                        &middot;
+                      </span>
 
-                  <span className="hidden sm:block" aria-hidden="true">
-                    &middot;
-                  </span>
-
-                  <p className="hidden sm:block sm:text-xs sm:text-[#071E22]">
-                    {concert.time}
-                  </p>
-                  </>
-                  }
+                      <p className="hidden sm:block sm:text-xs sm:text-[#071E22]">
+                        {concert.time}
+                      </p>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
@@ -148,9 +179,7 @@ const Concerts = ({ concerts }: ConcertsProps) => {
         <div className="mx-auto max-w-lg text-center">
           <details className="relative group [&_summary::-webkit-details-marker]:hidden">
             <summary className="flex cursor-pointer items-center justify-center gap-2 pb-1">
-              <h2 className="text-3xl sm:text-4xl">
-                {selectedConcerts}
-              </h2>
+              <h2 className="text-3xl sm:text-4xl">{selectedConcerts}</h2>
 
               <span className="transition group-open:-rotate-180">
                 <svg

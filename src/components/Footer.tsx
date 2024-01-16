@@ -1,5 +1,5 @@
 import React from "react";
-import logoIcon from '../images/icon.png';
+import logoIcon from "../images/icon.png";
 
 const Footer = () => {
   const date = new Date();
@@ -11,7 +11,9 @@ const Footer = () => {
         <div className="mt-12 border-t border-gray-100 pt-8 flex flex-col-reverse gap-4 sm:flex-row items-center sm:items-center sm:justify-between">
           <div className="flex items-center">
             <img className="h-10" src={logoIcon} alt="Muse Duo Icon" />
-            <span className="text-gray-500 text-xs">&copy; {year} Muse Duo</span>
+            <span className="text-gray-500 text-xs">
+              &copy; {year} Muse Duo
+            </span>
           </div>
 
           <ul className="mt-8 flex justify-center gap-6 sm:mt-0 lg:justify-end">

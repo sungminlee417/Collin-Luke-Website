@@ -10,24 +10,10 @@ import { Navigation } from "swiper";
 
 const image1 =
   "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-1.jpeg";
-const image2 =
-  "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-2.jpeg";
-const image3 =
-  "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-3.jpeg";
-const image4 =
-  "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-4.jpeg";
-const image5 =
-  "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-5.jpeg";
-const image6 =
-  "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-6.jpeg";
 const image7 =
   "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-7.jpeg";
 const image8 =
   "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-8.jpeg";
-const image9 =
-  "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-9.jpeg";
-const image10 =
-  "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-10.jpeg";
 const image11 =
   "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-11.jpeg";
 const image14 =
@@ -37,18 +23,9 @@ const image15 =
 
 const images = [
   image1,
-  // image2,
-  // image3,
-  // image4,
-  // image5,
-  // image6,
   image7,
   image8,
-  // image9,
-  // image10,
   image11,
-  // image12,
-  // image13,
   image14,
   image15,
 ];

@@ -6,9 +6,6 @@
   <a href='https://www.npmjs.com/package/react-player'>
     <img src='https://img.shields.io/npm/v/react-player.svg' alt='Latest npm version'>
   </a>
-  <a href='https://travis-ci.org/CookPete/react-player'>
-    <img src='https://img.shields.io/travis/CookPete/react-player/master.svg' alt='Build Status'>
-  </a>
   <a href='https://codecov.io/gh/CookPete/react-player'>
     <img src='https://img.shields.io/codecov/c/github/cookpete/react-player.svg' alt='Test Coverage'>
   </a>
@@ -21,9 +18,11 @@
   A React component for playing a variety of URLs, including file paths, YouTube, Facebook, Twitch, SoundCloud, Streamable, Vimeo, Wistia, Mixcloud, DailyMotion and Kaltura. Not using React? <a href='#standalone-player'>No problem.</a>
 </p>
 
-### Migrating to ReactPlayer `v2.0`
+### ✨ The future of ReactPlayer
 
-ReactPlayer `v2.0` changes single player imports and adds lazy loading players. Support for `preload` has also been removed, plus some other changes. See [`MIGRATING.md`](/MIGRATING.md) for information.
+Maintenance of ReactPlayer is being taken over by [Mux](https://www.mux.com). The team at Mux have worked on many highly respected projects and are committed to improving video tooling for developers.
+
+ReactPlayer will remain open source, but with a higher rate of fixes and releases over time. Thanks to everyone in the community for your ongoing support.
 
 ### Usage
 
@@ -36,7 +35,7 @@ import React from 'react'
 import ReactPlayer from 'react-player'
 
 // Render a YouTube video player
-<ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' />
+<ReactPlayer url='https://www.youtube.com/watch?v=LXb3EKWsInQ' />
 ```
 
 By default, ReactPlayer supports [many different types](#supported-media) of `url`. If you only ever use one type, use imports such as `react-player/youtube` to reduce your bundle size. See [config keys](#config-prop) for all player keys.
@@ -46,7 +45,7 @@ import React from 'react'
 import ReactPlayer from 'react-player/youtube'
 
 // Only loads the YouTube player
-<ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' />
+<ReactPlayer url='https://www.youtube.com/watch?v=LXb3EKWsInQ' />
 ```
 
 If your build system supports `import()` statements, use `react-player/lazy` to lazy load the appropriate player for the `url` you pass in. This adds several `reactPlayer` chunks to your output, but reduces your main bundle size.
@@ -115,6 +114,7 @@ Prop | Description
 `onBufferEnd` | Called when media has finished buffering<br />&nbsp; ◦ &nbsp;Works for files, YouTube and Facebook
 `onSeek` | Called when media seeks with `seconds` parameter
 `onPlaybackRateChange` | Called when playback rate of the player changed<br />&nbsp; ◦ &nbsp;Only supported by YouTube, Vimeo ([if enabled](https://developer.vimeo.com/player/sdk/reference#playbackratechange)), Wistia, and file paths
+`onPlaybackQualityChange` | Called when playback quality of the player changed<br />&nbsp; ◦ &nbsp;Only supported by YouTube ([if enabled](https://developers.google.com/youtube/iframe_api_reference#Events))
 `onEnded` | Called when media finishes playing<br />&nbsp; ◦ &nbsp;Does not fire when `loop` is set to `true`
 `onError` | Called when an error occurs whilst attempting to play media
 `onClickPreview` | Called when user clicks the `light` mode preview
@@ -151,7 +151,7 @@ Key | Options
 `mixcloud` | `options`: Override the [default player options](https://www.mixcloud.com/developers/widget/#methods)
 `dailymotion` | `params`: Override the [default player vars](https://developer.dailymotion.com/player#player-parameters)
 `twitch` | `options`: Override the [default player options](https://dev.twitch.tv/docs/embed)<br />`playerId`: Override player ID for consistent server-side rendering (use with [`react-uid`](https://github.com/thearnica/react-uid))
-`file` | `attributes`: Apply [element attributes](https://developer.mozilla.org/en/docs/Web/HTML/Element/video#Attributes)<br />`forceVideo`: Always render a `<video>` element<br />`forceAudio`: Always render an `<audio>` element<br />`forceHLS`: Use [hls.js](https://github.com/video-dev/hls.js) for HLS streams<br />`forceSafariHLS`: Use [hls.js](https://github.com/video-dev/hls.js) for HLS streams, [even on Safari](https://github.com/cookpete/react-player/pull/1560)<br />`forceDASH`: Always use [dash.js](https://github.com/Dash-Industry-Forum/dash.js) for DASH streams<br />`forceFLV`: Always use [flv.js](https://github.com/Bilibili/flv.js)<br />`hlsOptions`: Override the [default `hls.js` options](https://github.com/video-dev/hls.js/blob/master/docs/API.md#fine-tuning)<br />`hlsVersion`: Override the [`hls.js`](https://github.com/video-dev/hls.js) version loaded from [`jsdelivr`](https://www.jsdelivr.com/package/npm/hls.js), default: `0.13.1`<br />`dashVersion`: Override the [`dash.js`](https://github.com/Dash-Industry-Forum/dash.js) version loaded from [`cdnjs`](https://cdnjs.com/libraries/dashjs), default: `2.9.2`<br />`flvVersion`: Override the [`flv.js`](https://github.com/Bilibili/flv.js) version loaded from [`jsdelivr`](https://www.jsdelivr.com/package/npm/flv.js), default: `1.5.0`
+`file` | `attributes`: Apply [element attributes](https://developer.mozilla.org/en/docs/Web/HTML/Element/video#Attributes)<br />`forceVideo`: Always render a `<video>` element<br />`forceAudio`: Always render an `<audio>` element<br />`forceHLS`: Use [hls.js](https://github.com/video-dev/hls.js) for HLS streams<br />`forceSafariHLS`: Use [hls.js](https://github.com/video-dev/hls.js) for HLS streams, [even on Safari](https://github.com/cookpete/react-player/pull/1560)<br />`forceDisableHLS`: Disable usage [hls.js](https://github.com/video-dev/hls.js) for HLS streams<br />`forceDASH`: Always use [dash.js](https://github.com/Dash-Industry-Forum/dash.js) for DASH streams<br />`forceFLV`: Always use [flv.js](https://github.com/Bilibili/flv.js)<br />`hlsOptions`: Override the [default `hls.js` options](https://github.com/video-dev/hls.js/blob/master/docs/API.md#fine-tuning)<br />`hlsVersion`: Override the [`hls.js`](https://github.com/video-dev/hls.js) version loaded from [`jsdelivr`](https://www.jsdelivr.com/package/npm/hls.js), default: `0.13.1`<br />`dashVersion`: Override the [`dash.js`](https://github.com/Dash-Industry-Forum/dash.js) version loaded from [`cdnjs`](https://cdnjs.com/libraries/dashjs), default: `2.9.2`<br />`flvVersion`: Override the [`flv.js`](https://github.com/Bilibili/flv.js) version loaded from [`jsdelivr`](https://www.jsdelivr.com/package/npm/flv.js), default: `1.5.0`
 
 ### Methods
 
@@ -166,7 +166,7 @@ Method | Description
 
 #### Instance Methods
 
-Use [`ref`](https://facebook.github.io/react/docs/refs-and-the-dom.html) to call instance methods on the player. See [the demo app](src/demo/App.js) for an example of this.
+Use [`ref`](https://facebook.github.io/react/docs/refs-and-the-dom.html) to call instance methods on the player. See [the demo app](examples/react/src/App.js) for an example of this.
 
 Method | Description
 ------ | -----------
@@ -322,6 +322,10 @@ You can also specify a `type` for each source by using objects with `src` and `t
   }}}
 />
 ```
+
+### Migrating to `v2.0`
+
+ReactPlayer `v2.0` changes single player imports and adds lazy loading players. Support for `preload` has also been removed, plus some other changes. See [`MIGRATING.md`](/MIGRATING.md) for information.
 
 ### Supported media
 

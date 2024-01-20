@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import album from "../images/IMG_6718.jpg";
 import Recording from "./Recording";
+import { collection, onSnapshot } from "firebase/firestore";
+import { db } from "..";
 
 interface RecordingItem {
   id: number;
@@ -8,38 +10,41 @@ interface RecordingItem {
   url: string;
 }
 
-const recordingsURL: RecordingItem[] = [
-  {
-    id: 1,
-    name: "Cereusle",
-    url: "https://youtu.be/m_oA5_T2_UE",
-  },
-  {
-    id: 2,
-    name: "A Sense of Loss",
-    url: "https://youtu.be/DuvWZ6DD7zc",
-  },
-];
-
 const Recordings: React.FC = () => {
+  const [recordings, setRecordings] = useState<RecordingItem[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const handlePreviousSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide === 0 ? 3 - 1 : prevSlide - 1));
+    setCurrentSlide((prevSlide) => (prevSlide === 0 ? recordings.length : prevSlide - 1));
   };
 
   const handleNextSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide === 3 - 1 ? 0 : prevSlide + 1));
+    setCurrentSlide((prevSlide) => (prevSlide === recordings.length ? 0 : prevSlide + 1));
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const docRef = collection(db, "video/");
+      onSnapshot(docRef, (querySnapshot) => {
+        const recordings = querySnapshot.docs.map((doc) => {
+          const data = doc.data() as RecordingItem;
+          return data;
+        });
+        setRecordings(recordings);
+      });
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(recordings);
 
   return (
     <section className="recordings-section bg-gray-100 px-8">
       <div className="mx-auto max-w-[1340px] px-4 py-16 sm:px-6 sm:py-24 lg:px-0 lg:py-8">
         <div className="grid grid-cols-1 gap-y-8 lg:grid-cols-3 lg:items-center lg:gap-x-16">
           <div className="max-w-xl text-center sm:text-left">
-            <h2 className="text-3xl sm:text-4xl">
-              Music
-            </h2>
+            <h2 className="text-3xl sm:text-4xl">Music</h2>
 
             <p className="mt-4 text-gray-500">
               Take a listen to some of our live performances and recordings!
@@ -92,16 +97,6 @@ const Recordings: React.FC = () => {
 
           <div className="lg:col-span-2 lg:mx-0 sm:h-160 h-144">
             <div className="relative">
-              {currentSlide === 1 && (
-                <div>
-                  <Recording recording={recordingsURL[0]} />
-                </div>
-              )}
-              {currentSlide === 2 && (
-                <div>
-                  <Recording recording={recordingsURL[1]} />
-                </div>
-              )}
               {currentSlide === 0 && (
                 <div className="transition duration-200 flex flex-col md:flex-row sm:h-144 h-128 justify-center bg-white sm:p-8 p-12 my-4 gap-8 items-center absolute w-full">
                   <img
@@ -119,6 +114,15 @@ const Recordings: React.FC = () => {
                   </a>
                 </div>
               )}
+              {recordings.map((recording, i) => (
+                <>
+                  {currentSlide === i + 1 && (
+                    <div key={recording.id}>
+                      <Recording recording={recording} />
+                    </div>
+                  )}
+                </>
+              ))}
             </div>
           </div>
         </div>

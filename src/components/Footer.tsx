@@ -19,7 +19,7 @@ const Footer = () => {
           <ul className="mt-8 flex justify-center gap-6 sm:mt-0 lg:justify-end">
             <li>
               <a
-                href="https://www.youtube.com/channel/UCx_i6ym655rtGxqCg6d27ew"
+                href="https://www.youtube.com/@TheMuseDuo"
                 rel="noreferrer"
                 target="_blank"
                 className="text-gray-700 transition hover:text-gray-700/75"

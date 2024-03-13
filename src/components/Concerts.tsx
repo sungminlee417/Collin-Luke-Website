@@ -109,27 +109,27 @@ const Concerts = () => {
                 <h3 className="font-medium sm:text-lg">
                   <a
                     href={
-                      concert.ticketUrl
-                        ? concert.ticketUrl
-                        : concert.moreInfoUrl
+                      (concert?.ticketUrl
+                        ? concert?.ticketUrl
+                        : concert?.moreInfoUrl) || ""
                     }
                     className="hover:underline"
                   >
-                    {concert.venue}
+                    {concert?.venue}
                   </a>
                 </h3>
                 <p
                   className="mt-2 line-clamp-3 text-sm/relaxed text-gray-700 hover:underline cursor-pointer decoration-dotted"
-                  onClick={() => openMap(concert.location)}
+                  onClick={() => openMap(concert?.location)}
                 >
-                  {concert.location}
+                  {concert?.location}
                 </p>
 
                 <div className="mt-2 sm:flex sm:items-center sm:gap-2">
                   <div className="flex items-center gap-1 text-gray-500">
                     <p className="text-xs">
-                      {concert.startDate.month} {concert.startDate.day}{" "}
-                      {concert.startDate.year}
+                      {concert?.startDate.month} {concert?.startDate.day}{" "}
+                      {concert?.startDate.year}
                     </p>
                   </div>
 
@@ -140,7 +140,7 @@ const Concerts = () => {
                       </span>
 
                       <p className="hidden sm:block sm:text-xs sm:text-[#071E22]">
-                        {concert.time}
+                        {concert?.time}
                       </p>
                     </>
                   )}
@@ -154,15 +154,15 @@ const Concerts = () => {
                 <strong className="-mb-[2px] -me-[2px] inline-flex items-center gap-1 rounded-ee-xl rounded-ss-xl bg-[#EE2E31] hover:bg-[#FF6B6E] px-4 py-2 text-[#F1F1F1]">
                   <a
                     href={
-                      concert.ticketUrl
-                        ? concert.ticketUrl
-                        : concert.moreInfoUrl
+                      (concert?.ticketUrl
+                        ? concert?.ticketUrl
+                        : concert?.moreInfoUrl) || ""
                     }
                     rel="noopener noreferrer"
                     target="_blank"
                     className="block text-center text-xs uppercase text-[#F1F1F1] transition-all  rounded-br-md "
                   >
-                    {concert.ticketUrl ? "Purchase Tickets" : "More Info"}
+                    {(concert?.ticketUrl ? "Purchase Tickets" : "More Info") || ""}
                   </a>
                 </strong>
               </div>

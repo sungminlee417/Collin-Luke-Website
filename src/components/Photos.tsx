@@ -1,6 +1,7 @@
 import React from "react";
 import PhotoModal from "./PhotoModal";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { InstagramEmbed } from "react-social-media-embed";
 
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -21,56 +22,57 @@ const image14 =
 const image15 =
   "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-15.jpg";
 
-const images = [
-  image1,
-  image7,
-  image8,
-  image11,
-  image14,
-  image15,
-];
+const images = [image1, image7, image8, image11, image14, image15];
 
 const Photos = () => {
   return (
-    <section className="photos-section flex flex-col gap-6 md:m-20 m-12">
-      <h2 className="text-3xl tracking-tight sm:text-4xl text-center">
-        Gallery
-      </h2>
-      <div className="flex flex-col gap-2">
-        <Swiper
-          modules={[Navigation]}
-          style={
-            {
-              "--swiper-navigation-color": "#66000",
-            } as React.CSSProperties
-          }
-          loop={true}
-          navigation={true}
-          breakpoints={{
-            640: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            768: {
-              slidesPerView: 3,
-              spaceBetween: 40,
-            },
-            1024: {
-              slidesPerView: 3,
-              spaceBetween: 50,
-            },
-          }}
-          spaceBetween={10}
-          className="object-contain w-full"
-        >
-          {images.map((image, index) => {
-            return (
-              <SwiperSlide key={index}>
-                <PhotoModal image={image} />
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
+    <section className="photos-section flex flex-col md:flex-row items-center md:m-20 m-12 gap-5 justify-between">
+      <div className="flex flex-col gap-6 w-3/5">
+        <h2 className="text-3xl tracking-tight sm:text-4xl text-center">
+          Gallery
+        </h2>
+        <div className="flex flex-col gap-2">
+          <Swiper
+            modules={[Navigation]}
+            style={
+              {
+                "--swiper-navigation-color": "#66000",
+              } as React.CSSProperties
+            }
+            loop={true}
+            navigation={true}
+            breakpoints={{
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 40,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 50,
+              },
+            }}
+            spaceBetween={10}
+            className="object-contain w-full"
+          >
+            {images.map((image, index) => {
+              return (
+                <SwiperSlide key={index}>
+                  <PhotoModal image={image} />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </div>
+      </div>
+      <div className="border-l border-gray-300 md:h-96 mx-4" />
+      <div className="flex flex-col gap-6">
+        <h2 className="text-3xl tracking-tight sm:text-4xl text-center">
+          Follow us on Instagram
+        </h2>
+        <InstagramEmbed
+          url="https://www.instagram.com/muse__duo/"
+          width='100%'
+        />
       </div>
     </section>
   );

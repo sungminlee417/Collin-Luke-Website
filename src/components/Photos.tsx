@@ -26,8 +26,8 @@ const images = [image1, image7, image8, image11, image14, image15];
 
 const Photos = () => {
   return (
-    <section className="photos-section flex flex-col md:flex-row items-center md:m-20 m-12 gap-5 justify-between">
-      <div className="flex flex-col gap-6 w-3/5">
+    <section className="photos-section flex flex-col xl:flex-row items-center md:m-20 m-12 gap-8 xl:gap-5 justify-between">
+      <div className="flex flex-col gap-6 xl:w-3/5 w-full">
         <h2 className="text-3xl tracking-tight sm:text-4xl text-center">
           Gallery
         </h2>
@@ -42,12 +42,8 @@ const Photos = () => {
             loop={true}
             navigation={true}
             breakpoints={{
-              768: {
-                slidesPerView: 2,
-                spaceBetween: 40,
-              },
               1024: {
-                slidesPerView: 3,
+                slidesPerView: 2,
                 spaceBetween: 50,
               },
             }}
@@ -64,7 +60,7 @@ const Photos = () => {
           </Swiper>
         </div>
       </div>
-      <div className="border-l border-gray-300 md:h-96 mx-4" />
+      <div className="border-l border-gray-300 xl:h-96 mx-4" />
       <div className="flex flex-col gap-6">
         <h2 className="text-3xl tracking-tight sm:text-4xl text-center">
           Follow us on Instagram

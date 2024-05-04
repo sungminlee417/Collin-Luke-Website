@@ -1,5 +1,5 @@
 import React from "react";
-import icon from '../images/icon.png'
+import icon from "../images/icon.png";
 
 const About = () => {
   return (
@@ -20,7 +20,11 @@ const About = () => {
             <span className="hidden lg:absolute lg:inset-y-0 lg:-start-16 lg:block lg:w-16 lg:bg-[#F1F1F1]"></span>
 
             <div className="p-8 sm:p-16 lg:p-24 flex flex-col justify-center">
-              <img src={icon} alt="Muse Duo Icon" className="h-28 object-contain lg:absolute top-5 right-5" />
+              <img
+                src={icon}
+                alt="Muse Duo Icon"
+                className="h-28 object-contain lg:absolute top-5 right-5"
+              />
               <h2 className="text-2xl sm:text-3xl">The Muse Duo</h2>
 
               <p className="mt-4 text-[#071E22] flex flex-col gap-2 h-96 overflow-auto">
@@ -47,13 +51,23 @@ const About = () => {
                   debut album, entitled “Experiments”. The album consists of
                   entirely original music, composed by Luke. These works are
                   melodically focused and neo-classically inspired, while
-                  engaging audiences through it’s modernistic rhythmic drive.
+                  engaging audiences through its modernistic rhythmic drive.
+                </span>
+                <span>
+                  A dynamic modern ensemble, the Muse Duo fosters the spirit of
+                  collaboration between themselves and like-minded musicians
+                  with the intent to innovate. This includes the premiere
+                  performances of Luke’s original compositions in collaboration
+                  with soprano, string quartet, guitar orchestra, and mixed
+                  ensembles. This versatility of the Duo contributes to the
+                  sentiment of chamber music in the purest and most modern
+                  sense. music.
                 </span>
                 <span>
                   Through unique instrumentation, a convincing blend of musical
                   personalities, and music which is experimental and accessible,
                   the Muse Duo brings an exciting new perspective to chamber
-                  music.
+                  music.{" "}
                 </span>
               </p>
             </div>

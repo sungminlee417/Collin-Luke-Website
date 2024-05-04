@@ -67,7 +67,7 @@ const About = () => {
                   Through unique instrumentation, a convincing blend of musical
                   personalities, and music which is experimental and accessible,
                   the Muse Duo brings an exciting new perspective to chamber
-                  music.{" "}
+                  music.
                 </span>
               </p>
             </div>

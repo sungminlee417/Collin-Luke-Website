@@ -61,7 +61,7 @@ const About = () => {
                   with soprano, string quartet, guitar orchestra, and mixed
                   ensembles. This versatility of the Duo contributes to the
                   sentiment of chamber music in the purest and most modern
-                  sense. music.
+                  sense music.
                 </span>
                 <span>
                   Through unique instrumentation, a convincing blend of musical

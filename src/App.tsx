@@ -7,6 +7,7 @@ import Recordings from "./components/Recordings";
 import Photos from "./components/Photos";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import Press from "./components/Press";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Concerts />
       <Recordings />
       <Photos />
+      <Press />
       <Contact />
       <Footer />
     </>

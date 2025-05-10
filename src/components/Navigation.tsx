@@ -5,6 +5,7 @@ const SECTIONS = [
   { sectionName: "Concerts", containerName: "concerts" },
   { sectionName: "Music", containerName: "recordings" },
   { sectionName: "Gallery", containerName: "photos" },
+  { sectionName: "Press", containerName: "press" },
   { sectionName: "Contact", containerName: "contact" },
 ];
 

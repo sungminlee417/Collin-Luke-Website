@@ -12,7 +12,7 @@ interface Article {
 const articles: Article[] = [
   {
     author: "Nancy E. McCarthy",
-    date: "2025-05-2",
+    date: "May 2, 2025",
     image: img1,
     link: "https://www.lifeinthefingerlakes.com/two-of-a-kind-the-muse-duo/",
     title: "Two of a Kind: The Muse Duo",
@@ -32,13 +32,7 @@ const Press = () => {
               </h3>
 
               {article.date && (
-                <p className="text-sm text-gray-500 mb-4">
-                  {new Date(article.date).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </p>
+                <p className="text-sm text-gray-500 mb-4">{article.date}</p>
               )}
 
               {article.author && (

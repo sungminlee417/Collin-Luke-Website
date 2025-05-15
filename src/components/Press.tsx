@@ -33,7 +33,7 @@ const Press = () => {
 
               {article.date && (
                 <p className="text-sm text-gray-500 mb-4">
-                  {new Date(article.date).toLocaleDateString(undefined, {
+                  {new Date(article.date).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "long",
                     day: "numeric",

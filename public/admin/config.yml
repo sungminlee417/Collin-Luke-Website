@@ -1,0 +1,88 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+
+# Uncomment below to enable drafts
+# publish_mode: editorial_workflow
+
+media_folder: public/images # Media files will be stored in the repo under public/images
+public_folder: /images # The src attribute for uploaded media will begin with /images
+
+collections:
+  - name: "concerts" # Used in routes, e.g., /admin/collections/concerts
+    label: "Concerts" # Used in the UI
+    folder: "content/concerts" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Venue", name: "venue", widget: "string"}
+      - {label: "Location", name: "location", widget: "string"}
+      - {label: "Time", name: "time", widget: "string", required: false}
+      - {label: "Ticket URL", name: "ticketUrl", widget: "string", required: false}
+      - {label: "Description", name: "body", widget: "markdown", required: false}
+      - {label: "Featured Image", name: "featuredImage", widget: "image", required: false}
+      - {label: "Status", name: "status", widget: "select", options: ["upcoming", "past"], default: "upcoming"}
+
+  - name: "gallery" # Used in routes, e.g., /admin/collections/gallery
+    label: "Gallery" # Used in the UI
+    folder: "content/gallery" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template
+    fields: # The fields for each document, usually in front matter
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Caption", name: "caption", widget: "text", required: false}
+      - {label: "Date Taken", name: "dateTaken", widget: "datetime", required: false}
+      - {label: "Order", name: "order", widget: "number", default: 0}
+
+  - name: "recordings" # Used in routes, e.g., /admin/collections/recordings
+    label: "Recordings" # Used in the UI
+    folder: "content/recordings" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template
+    fields: # The fields for each document, usually in front matter
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "YouTube URL", name: "url", widget: "string"}
+      - {label: "Description", name: "description", widget: "text", required: false}
+      - {label: "Date Recorded", name: "dateRecorded", widget: "datetime", required: false}
+      - {label: "Order", name: "order", widget: "number", default: 0}
+
+  - name: "press" # Used in routes, e.g., /admin/collections/press
+    label: "Press" # Used in the UI
+    folder: "content/press" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template
+    fields: # The fields for each document, usually in front matter
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publication", name: "publication", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "URL", name: "url", widget: "string", required: false}
+      - {label: "Quote/Excerpt", name: "excerpt", widget: "text", required: false}
+      - {label: "Image", name: "image", widget: "image", required: false}
+
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - label: "About"
+        name: "about"
+        file: "content/settings/about.md"
+        fields:
+          - {label: "Title", name: "title", widget: "string", default: "About"}
+          - {label: "Bio", name: "body", widget: "markdown"}
+          - {label: "Profile Image", name: "profileImage", widget: "image", required: false}
+      
+      - label: "Contact"
+        name: "contact" 
+        file: "content/settings/contact.md"
+        fields:
+          - {label: "Title", name: "title", widget: "string", default: "Contact"}
+          - {label: "Email", name: "email", widget: "string"}
+          - {label: "Phone", name: "phone", widget: "string", required: false}
+          - {label: "Social Media", name: "social", widget: "object", fields: [
+              {label: "Instagram", name: "instagram", widget: "string", required: false},
+              {label: "YouTube", name: "youtube", widget: "string", required: false},
+              {label: "Facebook", name: "facebook", widget: "string", required: false}
+            ]}
+          - {label: "Contact Image", name: "contactImage", widget: "image", required: false}

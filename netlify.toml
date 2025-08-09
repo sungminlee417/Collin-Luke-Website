@@ -5,6 +5,13 @@
 [build.environment]
   NODE_VERSION = "18.17.0"
 
+# Redirect for CMS admin
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200
+
+# SPA redirect for client-side routing
 [[redirects]]
   from = "/*"
   to = "/index.html"

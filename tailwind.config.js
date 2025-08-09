@@ -7,6 +7,7 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: ['class'],
   theme: {
     extend: {
       colors: {
@@ -14,9 +15,9 @@ module.exports = {
         'muse-gray': '#888888',
       },
       fontFamily: {
-        'candu': ['Candu-Condensed', 'sans-serif'],
-        'source': ["Source Sans Pro"],
-        'bebas': ["Bebas Neue", "sans-serif"],
+        'candu': ['Candu-Condensed', 'Impact', 'Arial Narrow', 'Arial', 'system-ui', 'sans-serif'],
+        'source': ["Source Sans Pro", 'system-ui', 'sans-serif'],
+        'bebas': ["Bebas Neue", 'Impact', 'Arial Black', 'system-ui', 'sans-serif'],
       },
       spacing: {
         128: "32rem",

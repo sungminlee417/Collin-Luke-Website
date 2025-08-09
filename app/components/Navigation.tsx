@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { ThemeToggle } from './ThemeToggle'
 
 const SECTIONS = [
   { sectionName: 'About', containerName: 'about' },
@@ -48,14 +49,23 @@ const Navigation = () => {
 
   return (
     <>
-      <motion.div
-        className={`fixed z-50 sm:top-8 sm:right-8 top-4 right-4 transition-all duration-300 ${
-          scrolled ? 'sm:top-6' : ''
-        }`}
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
+      <div className={`fixed z-50 sm:top-8 sm:right-8 top-4 right-4 transition-all duration-300 ${
+        scrolled ? 'sm:top-6' : ''
+      }`}>
+        <div className="flex gap-3 items-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <ThemeToggle />
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
         <button
           onClick={() => setShowMenu(!showMenu)}
           className={`group relative cursor-pointer flex flex-col justify-center items-center 
@@ -82,7 +92,9 @@ const Navigation = () => {
             />
           </div>
         </button>
-      </motion.div>
+          </motion.div>
+        </div>
+      </div>
 
       <AnimatePresence>
         {showMenu && (

@@ -50,9 +50,9 @@ const Hero = () => {
         >
           <div className="relative">
             <div className="absolute inset-0 bg-white/80 blur-xl rounded-full scale-150" />
-            <p className="relative text-gray-800 text-lg md:text-xl font-medium tracking-wider uppercase 
-                         bg-white/60 backdrop-blur-sm px-6 py-2 rounded-full border border-white/40 
-                         shadow-lg">
+            <p className="relative text-gray-800 dark:text-gray-200 text-lg md:text-xl font-medium tracking-wider uppercase 
+                         bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm px-6 py-2 rounded-full 
+                         border border-white/40 dark:border-gray-600/40 shadow-lg">
               Classical Music Ensemble
             </p>
           </div>

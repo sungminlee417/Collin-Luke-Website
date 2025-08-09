@@ -9,6 +9,7 @@
     font-weight: normal;
     font-style: normal;
     font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   }
 
   html {
@@ -16,8 +17,18 @@
   }
 
   body {
-    @apply text-muse-red font-candu overflow-x-hidden antialiased;
+    @apply text-muse-red dark:text-red-400 font-candu overflow-x-hidden antialiased
+           bg-white dark:bg-gray-900 transition-colors duration-300;
     animation: fade-in 2s;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Force font loading and prevent FOUT */
+  .font-candu {
+    font-family: 'Candu-Condensed', Impact, 'Arial Narrow', Arial, system-ui, sans-serif !important;
   }
 
   ::selection {
@@ -47,21 +58,23 @@
   }
 
   .btn-primary {
-    @apply px-8 py-3 bg-muse-red text-white rounded-full font-medium 
-           transition-all duration-300 hover:bg-red-700 hover:shadow-lg 
-           hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 
-           focus:ring-muse-red/30;
+    @apply px-8 py-3 bg-muse-red dark:bg-red-600 text-white rounded-full font-medium 
+           transition-all duration-300 hover:bg-red-700 dark:hover:bg-red-700 
+           hover:shadow-lg hover:scale-105 active:scale-95 focus:outline-none 
+           focus:ring-4 focus:ring-muse-red/30 dark:focus:ring-red-500/30;
   }
 
   .btn-secondary {
-    @apply px-8 py-3 border-2 border-muse-red text-muse-red rounded-full 
-           font-medium transition-all duration-300 hover:bg-muse-red 
+    @apply px-8 py-3 border-2 border-muse-red dark:border-red-400 
+           text-muse-red dark:text-red-400 rounded-full font-medium 
+           transition-all duration-300 hover:bg-muse-red dark:hover:bg-red-600 
            hover:text-white hover:shadow-lg hover:scale-105 active:scale-95 
-           focus:outline-none focus:ring-4 focus:ring-muse-red/30;
+           focus:outline-none focus:ring-4 focus:ring-muse-red/30 dark:focus:ring-red-500/30;
   }
 
   .card-modern {
-    @apply bg-white rounded-2xl shadow-lg hover:shadow-xl 
+    @apply bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl 
+           dark:shadow-gray-900/20 dark:hover:shadow-gray-900/40
            transition-all duration-300 overflow-hidden;
   }
 

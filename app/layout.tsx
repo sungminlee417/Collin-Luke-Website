@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
+import { ThemeProvider } from './components/ThemeProvider'
 
 export const metadata: Metadata = {
   title: 'The Muse Duo - Classical Music Ensemble',
@@ -19,6 +20,9 @@ export const metadata: Metadata = {
     title: 'The Muse Duo',
     description: 'Classical Music Ensemble',
   },
+  other: {
+    'preload-font': '/fonts/Candu-Condensed.otf',
+  },
 }
 
 export const viewport: Viewport = {
@@ -33,9 +37,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className="min-h-screen bg-gradient-to-br from-white to-gray-50">
-        {children}
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <body className="min-h-screen bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+        <ThemeProvider
+          defaultTheme="system"
+          storageKey="muse-duo-theme"
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )

@@ -19,7 +19,7 @@ const About = () => {
             <div className="relative h-[400px] md:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden group">
               <Image
                 src="https://the-muse-duo.s3.us-west-1.amazonaws.com/duo-without-instruments.jpeg"
-                alt="The Muse Duo"
+                alt="The Muse Duo professional portrait, showing both musicians in performance attire"
                 fill
                 className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -43,7 +43,8 @@ const About = () => {
               >
                 <Image
                   src="/images/icon.png"
-                  alt="Muse Duo Icon"
+                  alt=""
+                  aria-hidden="true"
                   fill
                   className="object-contain"
                 />

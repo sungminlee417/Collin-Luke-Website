@@ -20,10 +20,15 @@ const Hero = () => {
       </div>
 
       <motion.div 
-        className="relative z-10 text-center px-4"
+        className="relative z-10 text-center px-4 will-change-transform"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.2 }}
+        transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+        onAnimationComplete={() => {
+          // Remove will-change after animation completes for better performance
+          const element = document.querySelector('.will-change-transform');
+          if (element) element.classList.remove('will-change-transform');
+        }}
       >
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}

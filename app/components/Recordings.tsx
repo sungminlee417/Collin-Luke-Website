@@ -122,7 +122,7 @@ const Recordings: React.FC = () => {
                   </ul>
                 </div>
                 
-                <div className="flex gap-4">
+                <div className="flex gap-4 overflow-hidden">
                   <button
                     onClick={handlePreviousSlide}
                     className="flex-1 btn-secondary flex items-center justify-center gap-2"

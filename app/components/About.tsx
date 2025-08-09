@@ -128,7 +128,7 @@ const About = () => {
               </div>
 
               <motion.div
-                className="mt-8 flex gap-4"
+                className="mt-8 flex gap-4 overflow-hidden"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.7 }}

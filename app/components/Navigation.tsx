@@ -118,9 +118,9 @@ const Navigation = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="relative h-full flex items-center justify-center p-8">
-                <div className="absolute inset-0 opacity-10">
-                  <div className="absolute top-20 -right-20 w-60 h-60 bg-white rounded-full blur-3xl" />
-                  <div className="absolute bottom-20 -left-20 w-80 h-80 bg-white rounded-full blur-3xl" />
+                <div className="absolute inset-0 opacity-10 overflow-hidden">
+                  <div className="absolute top-20 -right-10 w-60 h-60 bg-white rounded-full blur-3xl" />
+                  <div className="absolute bottom-20 -left-10 w-80 h-80 bg-white rounded-full blur-3xl" />
                 </div>
                 
                 <ul className="relative flex flex-col gap-8 md:gap-10">

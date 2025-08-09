@@ -4,22 +4,76 @@
 /node_modules
 /.pnp
 .pnp.js
-.env
+.yarn/install-state.gz
 
 # testing
 /coverage
 
+# next.js
+/.next/
+/out/
+.next/
+out/
+next/
+.next*
+next-*
+.swc/
+
+# next.js trace and pack files
+*.trace
+*.pack.gz
+*.pack
+*pack.gz
+*pack
+trace-*
+*.tgz
+*.hot-update.js
+*.hot-update.json
+_buildManifest.js
+_ssgManifest.js
+
 # production
 /build
 
+# cache directories and files
+.cache/
+.parcel-cache/
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+.nyc_output
+.cache
+.temp
+.tmp
+*.cache
+*-cache/
+cache/
+.eslintcache
+.stylelintcache
+
 # misc
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-.eslintcache
+*.tsbuildinfo
 
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# IDE
+.vscode/
+.idea/
+
+# OS generated files
+Thumbs.db

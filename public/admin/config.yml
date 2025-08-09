@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: your-username/The_Muse_Duo_Portfolio # Replace with your actual GitHub repo
+  repo: sungminlee417/Collin-Luke-Website
   branch: main
   base_url: https://api.netlify.com
 

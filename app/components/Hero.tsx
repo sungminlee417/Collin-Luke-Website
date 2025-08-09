@@ -1,0 +1,93 @@
+'use client'
+
+import React from 'react'
+import Image from 'next/image'
+import { motion } from 'framer-motion'
+
+const Hero = () => {
+  return (
+    <section className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="https://the-muse-duo.s3.us-west-1.amazonaws.com/landing.jpeg"
+          alt="The Muse Duo Background"
+          fill
+          className="object-cover object-center"
+          priority
+          quality={90}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/20 to-white/40 backdrop-blur-[1px]" />
+      </div>
+
+      <motion.div 
+        className="relative z-10 text-center px-4"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.2 }}
+      >
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="relative"
+        >
+          <div className="absolute inset-0 bg-white/60 blur-3xl rounded-full -z-10 scale-150" />
+          <Image
+            src="/images/landing-logo.png"
+            alt="The Muse Duo Logo"
+            width={400}
+            height={200}
+            className="w-auto h-44 sm:h-52 md:h-60 lg:h-64 mx-auto drop-shadow-2xl"
+            priority
+          />
+        </motion.div>
+
+        <motion.div
+          className="mt-8 flex flex-col items-center gap-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+        >
+          <div className="relative">
+            <div className="absolute inset-0 bg-white/80 blur-xl rounded-full scale-150" />
+            <p className="relative text-gray-800 text-lg md:text-xl font-medium tracking-wider uppercase 
+                         bg-white/60 backdrop-blur-sm px-6 py-2 rounded-full border border-white/40 
+                         shadow-lg">
+              Classical Music Ensemble
+            </p>
+          </div>
+          <motion.button
+            onClick={() => {
+              document.querySelector('.about-section')?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+              })
+            }}
+            className="mt-4 p-3 rounded-full border-2 border-muse-red/50 text-muse-red 
+                     hover:bg-muse-red hover:text-white transition-all duration-300 
+                     hover:scale-110 active:scale-95"
+            whileHover={{ y: 5 }}
+            whileTap={{ scale: 0.9 }}
+            aria-label="Scroll down"
+          >
+            <svg
+              className="w-6 h-6 animate-bounce"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"
+              />
+            </svg>
+          </motion.button>
+        </motion.div>
+      </motion.div>
+    </section>
+  )
+}
+
+export default Hero

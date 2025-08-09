@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Candu-Condensed';
+    src: url('/fonts/Candu-Condensed.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply text-muse-red font-candu overflow-x-hidden antialiased;
+    animation: fade-in 2s;
+  }
+
+  ::selection {
+    @apply bg-muse-red text-white;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .heading-1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight;
+  }
+
+  .heading-2 {
+    @apply text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight;
+  }
+
+  .heading-3 {
+    @apply text-2xl md:text-3xl lg:text-4xl font-normal;
+  }
+
+  .btn-primary {
+    @apply px-8 py-3 bg-muse-red text-white rounded-full font-medium 
+           transition-all duration-300 hover:bg-red-700 hover:shadow-lg 
+           hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 
+           focus:ring-muse-red/30;
+  }
+
+  .btn-secondary {
+    @apply px-8 py-3 border-2 border-muse-red text-muse-red rounded-full 
+           font-medium transition-all duration-300 hover:bg-muse-red 
+           hover:text-white hover:shadow-lg hover:scale-105 active:scale-95 
+           focus:outline-none focus:ring-4 focus:ring-muse-red/30;
+  }
+
+  .card-modern {
+    @apply bg-white rounded-2xl shadow-lg hover:shadow-xl 
+           transition-all duration-300 overflow-hidden;
+  }
+
+  .glass-effect {
+    @apply backdrop-blur-md bg-white/80 border border-white/20;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-muse-red to-red-700 bg-clip-text text-transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thumb-muse-red\/30::-webkit-scrollbar-thumb {
+    background-color: rgba(238, 46, 49, 0.3);
+    border-radius: 3px;
+  }
+
+  .scrollbar-track-gray-100::-webkit-scrollbar-track {
+    background-color: #f5f5f5;
+    border-radius: 3px;
+  }
+
+  .images-slider .swiper-slide {
+    @apply opacity-50 transition-opacity duration-300;
+  }
+
+  .images-slider .swiper-slide-thumb-active {
+    @apply opacity-100;
+  }
+
+  .nav-link {
+    @apply relative text-muse-gray hover:text-muse-red transition-colors duration-300
+           after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 
+           after:bg-muse-red after:transition-all after:duration-300 
+           hover:after:w-full;
+  }
+
+  .input-modern {
+    @apply w-full px-4 py-3 rounded-lg border border-gray-300 
+           focus:border-muse-red focus:ring-2 focus:ring-muse-red/20 
+           transition-all duration-300 outline-none;
+  }
+
+  .textarea-modern {
+    @apply w-full px-4 py-3 rounded-lg border border-gray-300 
+           focus:border-muse-red focus:ring-2 focus:ring-muse-red/20 
+           transition-all duration-300 outline-none resize-none;
+  }
+
+  .instagram-embed-container {
+    @apply flex-1;
+  }
+
+  .instagram-embed-container iframe {
+    @apply w-full rounded-t-2xl;
+  }
+}
+
+@layer utilities {
+  .animate-on-scroll {
+    animation: slideUp 0.6s ease-out;
+  }
+
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-2;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    background-image: url("/images/IMG_4655.jpeg");
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,42 @@
+import type { Metadata, Viewport } from 'next'
+import './globals.css'
+
+export const metadata: Metadata = {
+  title: 'The Muse Duo - Classical Music Ensemble',
+  description: 'The Muse Duo is a classical music ensemble bringing exceptional performances to audiences worldwide.',
+  keywords: 'classical music, duo, ensemble, performance, concerts, recordings',
+  authors: [{ name: 'The Muse Duo' }],
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  openGraph: {
+    title: 'The Muse Duo',
+    description: 'Classical Music Ensemble',
+    type: 'website',
+    locale: 'en_US',
+    siteName: 'The Muse Duo',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'The Muse Duo',
+    description: 'Classical Music Ensemble',
+  },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#EE2E31',
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en" className="scroll-smooth">
+      <body className="min-h-screen bg-gradient-to-br from-white to-gray-50">
+        {children}
+      </body>
+    </html>
+  )
+}

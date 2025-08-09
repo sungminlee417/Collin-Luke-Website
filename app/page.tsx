@@ -3,6 +3,7 @@ import Navigation from "./components/Navigation";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import LoadingSkeleton from "./components/LoadingSkeleton";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 
 // Lazy load below-the-fold components for better performance
 const Concerts = dynamic(() => import("./components/Concerts"), { 
@@ -42,15 +43,41 @@ export default function Home() {
         Skip to main content
       </a>
       <main id="main-content" className="min-h-screen overflow-x-hidden">
-        <Navigation />
-        <Hero />
-        <About />
-        <Concerts />
-        <Recordings />
-        <Photos />
-        <Press />
-        <Contact />
-        <Footer />
+        <ErrorBoundary fallback={<div className="h-20 bg-gray-50 dark:bg-gray-900" />}>
+          <Navigation />
+        </ErrorBoundary>
+        
+        <ErrorBoundary fallback={<div className="h-screen bg-gray-50 dark:bg-gray-900" />}>
+          <Hero />
+        </ErrorBoundary>
+        
+        <ErrorBoundary fallback={<LoadingSkeleton title="about" className="about-section" />}>
+          <About />
+        </ErrorBoundary>
+        
+        <ErrorBoundary fallback={<LoadingSkeleton title="concerts" className="concerts-section" />}>
+          <Concerts />
+        </ErrorBoundary>
+        
+        <ErrorBoundary fallback={<LoadingSkeleton title="music" className="recordings-section" />}>
+          <Recordings />
+        </ErrorBoundary>
+        
+        <ErrorBoundary fallback={<LoadingSkeleton title="gallery" className="photos-section" />}>
+          <Photos />
+        </ErrorBoundary>
+        
+        <ErrorBoundary fallback={<LoadingSkeleton title="press coverage" className="press-section" />}>
+          <Press />
+        </ErrorBoundary>
+        
+        <ErrorBoundary fallback={<LoadingSkeleton title="contact information" className="contact-section" />}>
+          <Contact />
+        </ErrorBoundary>
+        
+        <ErrorBoundary fallback={<div className="h-32 bg-gray-50 dark:bg-gray-900" />}>
+          <Footer />
+        </ErrorBoundary>
       </main>
     </>
   );

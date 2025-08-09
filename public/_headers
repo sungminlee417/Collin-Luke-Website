@@ -1,0 +1,29 @@
+# Security headers for Netlify deployment
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: origin-when-cross-origin
+  X-DNS-Prefetch-Control: on
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  
+# Cache headers for static assets
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+  
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+  
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+  
+# Service worker
+/sw.js
+  Cache-Control: public, max-age=0, must-revalidate
+  
+# Manifest and other PWA files  
+/manifest.json
+  Cache-Control: public, max-age=86400
+  
+/robots.txt
+  Cache-Control: public, max-age=86400

@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://themuseduo.com/sitemap.xml
+
+# Crawl delay (optional - helps with server load)
+Crawl-delay: 1
+
+# Block specific paths if needed
+# Disallow: /admin/
+# Disallow: /_next/
+# Disallow: /api/
+
+# Allow search engines to index images
+Allow: /images/
+Allow: /fonts/

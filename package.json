@@ -24,7 +24,8 @@
     "react-swipeable": "^7.0.0",
     "react-youtube": "^10.1.0",
     "sharp": "^0.33.2",
-    "swiper": "^11.0.5"
+    "swiper": "^11.0.5",
+    "web-vitals": "^3.5.2"
   },
   "devDependencies": {
     "@types/node": "^20.11.5",

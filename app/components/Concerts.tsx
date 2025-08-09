@@ -22,11 +22,126 @@ interface Concert {
   moreInfoUrl?: string;
 }
 
+const ConcertSelector = React.memo(({ 
+  selectedConcerts, 
+  onSelectionChange 
+}: { 
+  selectedConcerts: string; 
+  onSelectionChange: (selection: string) => void; 
+}) => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  // Handle outside click to close dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (!target.closest(".dropdown-container")) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    if (isDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }
+  }, [isDropdownOpen]);
+
+  return (
+    <div className="relative dropdown-container">
+      <motion.button
+        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+        className="flex cursor-pointer items-center justify-center gap-3 p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+      >
+        <div className="flex items-center gap-3">
+          <div className="w-3 h-3 bg-gradient-to-r from-muse-red to-red-600 rounded-full animate-pulse" />
+          <h2 className="text-lg sm:text-xl lg:text-2xl font-light text-gray-900 dark:text-white truncate">
+            {selectedConcerts}
+          </h2>
+        </div>
+        <motion.span
+          className="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg transition-transform duration-300"
+          animate={{ rotate: isDropdownOpen ? 180 : 0 }}
+          whileHover={{ scale: 1.1 }}
+        >
+          <svg
+            className="w-5 h-5 text-gray-600 dark:text-gray-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </motion.span>
+      </motion.button>
+
+      {isDropdownOpen && (
+        <motion.div
+          className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 z-50 min-w-full"
+          initial={{ opacity: 0, y: -10, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -10, scale: 0.95 }}
+          transition={{ duration: 0.2 }}
+        >
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden backdrop-blur-sm">
+            <div className="p-2">
+              <motion.button
+                onClick={() => {
+                  onSelectionChange("Upcoming Concerts");
+                  setIsDropdownOpen(false);
+                }}
+                className={`w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
+                  selectedConcerts === "Upcoming Concerts"
+                    ? "bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-700"
+                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
+                }`}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                  Upcoming Concerts
+                </div>
+              </motion.button>
+
+              <motion.button
+                onClick={() => {
+                  onSelectionChange("Past Concerts");
+                  setIsDropdownOpen(false);
+                }}
+                className={`w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
+                  selectedConcerts === "Past Concerts"
+                    ? "bg-gradient-to-r from-gray-50 to-slate-50 dark:from-gray-800 dark:to-slate-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-600"
+                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
+                }`}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-gray-500 rounded-full" />
+                  Past Concerts
+                </div>
+              </motion.button>
+            </div>
+          </div>
+        </motion.div>
+      )}
+    </div>
+  );
+});
+
 const Concerts = () => {
   const [concerts, setConcerts] = useState<Concert[]>([]);
   const [selectedConcerts, setSelectedConcerts] = useState("Upcoming Concerts");
   const [currentPage, setCurrentPage] = useState(1);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const CONCERTS_PER_PAGE = 4;
 
   const openMap = (address: string): void => {
@@ -63,21 +178,23 @@ const Concerts = () => {
     return concertDate > currentDate;
   };
 
-  const upcomingConcerts = concerts.filter(isUpcoming);
-  const pastConcerts = concerts.filter((c) => !isUpcoming(c));
+  const upcomingConcerts = React.useMemo(() => concerts.filter(isUpcoming), [concerts]);
+  const pastConcerts = React.useMemo(() => concerts.filter((c) => !isUpcoming(c)), [concerts]);
 
   // Pagination logic for past concerts
   const totalPages = Math.ceil(pastConcerts.length / CONCERTS_PER_PAGE);
   const startIndex = (currentPage - 1) * CONCERTS_PER_PAGE;
-  const paginatedPastConcerts = pastConcerts.slice(
+  const paginatedPastConcerts = React.useMemo(() => pastConcerts.slice(
     startIndex,
     startIndex + CONCERTS_PER_PAGE
-  );
+  ), [pastConcerts, startIndex]);
 
-  const filteredConcerts =
+  const filteredConcerts = React.useMemo(() =>
     selectedConcerts === "Upcoming Concerts"
       ? upcomingConcerts
-      : paginatedPastConcerts;
+      : paginatedPastConcerts,
+    [selectedConcerts, upcomingConcerts, paginatedPastConcerts]
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -119,31 +236,15 @@ const Concerts = () => {
     setCurrentPage(1);
   }, [selectedConcerts]);
 
-  // Handle outside click to close dropdown
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Element;
-      if (!target.closest(".dropdown-container")) {
-        setIsDropdownOpen(false);
-      }
-    };
-
-    if (isDropdownOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }
-  }, [isDropdownOpen]);
-
-  const ConcertCard = ({
+  const ConcertCard = React.memo(({
     concert,
     index,
+    isUpcomingConcert,
   }: {
     concert: Concert;
     index: number;
+    isUpcomingConcert: boolean;
   }) => {
-    const isUpcomingConcert = isUpcoming(concert);
 
     return (
       <motion.div
@@ -311,7 +412,7 @@ const Concerts = () => {
                     whileTap={{ scale: 0.98 }}
                   >
                     <svg
-                      className="w-5 h-5"
+                      className="w-4 h-4 sm:w-5 sm:h-5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -332,11 +433,11 @@ const Concerts = () => {
         </div>
       </motion.div>
     );
-  };
+  });
 
   return (
-    <section className="concerts-section bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
-      <div className="container-custom section-padding">
+    <section className="concerts-section bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 overflow-hidden">
+      <div className="container-custom section-padding px-4 sm:px-6 lg:px-8 max-w-full">
         <div className="text-center mb-16">
           <motion.div
             className="inline-block mb-8"
@@ -345,92 +446,10 @@ const Concerts = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="relative dropdown-container">
-              <motion.button
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex cursor-pointer items-center justify-center gap-3 p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-gradient-to-r from-muse-red to-red-600 rounded-full animate-pulse" />
-                  <h2 className="text-2xl lg:text-3xl font-light text-gray-900 dark:text-white">
-                    {selectedConcerts}
-                  </h2>
-                </div>
-                <motion.span
-                  className="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg transition-transform duration-300"
-                  animate={{ rotate: isDropdownOpen ? 180 : 0 }}
-                  whileHover={{ scale: 1.1 }}
-                >
-                  <svg
-                    className="w-5 h-5 text-gray-600 dark:text-gray-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </motion.span>
-              </motion.button>
-
-              {isDropdownOpen && (
-                <motion.div
-                  className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 z-50 min-w-full"
-                  initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden backdrop-blur-sm">
-                    <div className="p-2">
-                      <motion.button
-                        onClick={() => {
-                          setSelectedConcerts("Upcoming Concerts");
-                          setIsDropdownOpen(false);
-                        }}
-                        className={`w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
-                          selectedConcerts === "Upcoming Concerts"
-                            ? "bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-700"
-                            : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
-                        }`}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        <div className="flex items-center gap-3">
-                          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                          Upcoming Concerts
-                        </div>
-                      </motion.button>
-
-                      <motion.button
-                        onClick={() => {
-                          setSelectedConcerts("Past Concerts");
-                          setIsDropdownOpen(false);
-                        }}
-                        className={`w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
-                          selectedConcerts === "Past Concerts"
-                            ? "bg-gradient-to-r from-gray-50 to-slate-50 dark:from-gray-800 dark:to-slate-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-600"
-                            : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
-                        }`}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        <div className="flex items-center gap-3">
-                          <div className="w-2 h-2 bg-gray-500 rounded-full" />
-                          Past Concerts
-                        </div>
-                      </motion.button>
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-            </div>
+            <ConcertSelector 
+              selectedConcerts={selectedConcerts}
+              onSelectionChange={setSelectedConcerts}
+            />
           </motion.div>
 
           <motion.p
@@ -461,18 +480,17 @@ const Concerts = () => {
             <>
               {filteredConcerts.map((concert, index) => (
                 <ConcertCard
-                  key={`${selectedConcerts}-${
-                    selectedConcerts === "Past Concerts" ? currentPage : 1
-                  }-${index}`}
+                  key={`${concert.venue}-${concert.startDate.day}-${concert.startDate.month}-${concert.startDate.year || 2024}`}
                   concert={concert}
                   index={index}
+                  isUpcomingConcert={isUpcoming(concert)}
                 />
               ))}
 
               {/* Pagination for Past Concerts */}
               {selectedConcerts === "Past Concerts" && totalPages > 1 && (
                 <motion.div
-                  className="flex justify-center items-center gap-4 mt-12"
+                  className="flex justify-center items-center gap-1 sm:gap-2 mt-8 px-2 sm:px-4"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
@@ -483,16 +501,15 @@ const Concerts = () => {
                       setCurrentPage((prev) => Math.max(prev - 1, 1))
                     }
                     disabled={currentPage === 1}
-                    className={`p-3 rounded-xl transition-all duration-300 ${
+                    className={`p-1.5 sm:p-2 md:p-3 rounded-lg sm:rounded-xl transition-all duration-300 flex-shrink-0 ${
                       currentPage === 1
                         ? "bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed"
                         : "bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-muse-red hover:text-white dark:hover:bg-red-600 shadow-lg hover:shadow-xl"
                     }`}
-                    whileHover={currentPage !== 1 ? { scale: 1.05 } : {}}
                     whileTap={currentPage !== 1 ? { scale: 0.95 } : {}}
                   >
                     <svg
-                      className="w-5 h-5"
+                      className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -507,24 +524,99 @@ const Concerts = () => {
                   </motion.button>
 
                   {/* Page Numbers */}
-                  <div className="flex items-center gap-2">
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                      (page) => (
-                        <motion.button
-                          key={page}
-                          onClick={() => setCurrentPage(page)}
-                          className={`w-12 h-12 rounded-xl font-medium transition-all duration-300 ${
-                            currentPage === page
-                              ? "bg-gradient-to-r from-muse-red to-red-600 text-white shadow-lg"
-                              : "bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 shadow-md hover:shadow-lg"
-                          }`}
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          {page}
-                        </motion.button>
-                      )
-                    )}
+                  <div className="flex items-center justify-center gap-0.5 sm:gap-1 md:gap-2 px-1 py-2">
+                    {(() => {
+                      const pages = [];
+                      
+                      if (totalPages <= 5) {
+                        // Show all pages if total is small
+                        for (let i = 1; i <= totalPages; i++) {
+                          pages.push(
+                            <motion.button
+                              key={i}
+                              onClick={() => setCurrentPage(i)}
+                              className={`w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-md sm:rounded-lg font-medium transition-all duration-300 text-xs sm:text-sm flex-shrink-0 ${
+                                currentPage === i
+                                  ? "bg-gradient-to-r from-muse-red to-red-600 text-white shadow-lg"
+                                  : "bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 shadow-md hover:shadow-lg"
+                              }`}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              {i}
+                            </motion.button>
+                          );
+                        }
+                      } else {
+                        // Always show first page
+                        pages.push(
+                          <motion.button
+                            key={1}
+                            onClick={() => setCurrentPage(1)}
+                            className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg font-medium transition-all duration-300 text-sm flex-shrink-0 ${
+                              currentPage === 1
+                                ? "bg-gradient-to-r from-muse-red to-red-600 text-white shadow-lg"
+                                : "bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 shadow-md hover:shadow-lg"
+                            }`}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                          >
+                            1
+                          </motion.button>
+                        );
+
+                        // Show ellipsis after first page if needed
+                        if (currentPage > 2) {
+                          pages.push(
+                            <span key="ellipsis1" className="px-1 text-gray-400 text-sm">
+                              ...
+                            </span>
+                          );
+                        }
+
+                        // Show only current page (more aggressive for mobile)
+                        if (currentPage > 1 && currentPage < totalPages) {
+                          pages.push(
+                            <motion.button
+                              key={currentPage}
+                              onClick={() => setCurrentPage(currentPage)}
+                              className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-md sm:rounded-lg font-medium transition-all duration-300 text-xs sm:text-sm flex-shrink-0 bg-gradient-to-r from-muse-red to-red-600 text-white shadow-lg"
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              {currentPage}
+                            </motion.button>
+                          );
+                        }
+
+                        // Show ellipsis before last page if needed
+                        if (currentPage < totalPages - 1) {
+                          pages.push(
+                            <span key="ellipsis2" className="px-1 text-gray-400 text-sm">
+                              ...
+                            </span>
+                          );
+                        }
+
+                        // Always show last page
+                        if (totalPages > 1) {
+                          pages.push(
+                            <motion.button
+                              key={totalPages}
+                              onClick={() => setCurrentPage(totalPages)}
+                              className={`w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-md sm:rounded-lg font-medium transition-all duration-300 text-xs sm:text-sm flex-shrink-0 ${
+                                currentPage === totalPages
+                                  ? "bg-gradient-to-r from-muse-red to-red-600 text-white shadow-lg"
+                                  : "bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 shadow-md hover:shadow-lg"
+                              }`}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              {totalPages}
+                            </motion.button>
+                          );
+                        }
+                      }
+                      
+                      return pages;
+                    })()}
                   </div>
 
                   {/* Next Button */}
@@ -533,18 +625,15 @@ const Concerts = () => {
                       setCurrentPage((prev) => Math.min(prev + 1, totalPages))
                     }
                     disabled={currentPage === totalPages}
-                    className={`p-3 rounded-xl transition-all duration-300 ${
+                    className={`p-1.5 sm:p-2 md:p-3 rounded-lg sm:rounded-xl transition-all duration-300 flex-shrink-0 ${
                       currentPage === totalPages
                         ? "bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed"
                         : "bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-muse-red hover:text-white dark:hover:bg-red-600 shadow-lg hover:shadow-xl"
                     }`}
-                    whileHover={
-                      currentPage !== totalPages ? { scale: 1.05 } : {}
-                    }
                     whileTap={currentPage !== totalPages ? { scale: 0.95 } : {}}
                   >
                     <svg
-                      className="w-5 h-5"
+                      className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"

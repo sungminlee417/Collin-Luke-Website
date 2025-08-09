@@ -73,7 +73,7 @@ const Recordings: React.FC = () => {
   }
 
   return (
-    <section className="recordings-section bg-gradient-to-b from-white to-gray-50">
+    <section className="recordings-section bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
       <div className="container-custom section-padding">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16 items-center">
           <motion.div
@@ -83,7 +83,7 @@ const Recordings: React.FC = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="heading-2 text-muse-red mb-4">Music</h2>
+            <h2 className="heading-2 text-muse-red dark:text-red-400 mb-4">Music</h2>
             <p className="text-gray-600 mb-8">
               Take a listen to some of our live performances and recordings!
             </p>
@@ -104,7 +104,7 @@ const Recordings: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <h3 className="font-normal text-gray-900">Experiments</h3>
+                    <h3 className="font-normal text-gray-900 dark:text-gray-100">Experiments</h3>
                     <p className="text-sm text-gray-600">Debut Album</p>
                     <p className="text-xs text-gray-500 mt-1">2022</p>
                   </div>
@@ -209,7 +209,7 @@ const Recordings: React.FC = () => {
                     />
                   </div>
                   <div className="mt-4 text-center">
-                    <h3 className="text-xl font-normal text-gray-900">
+                    <h3 className="text-xl font-normal text-gray-900 dark:text-gray-100">
                       {recordings[currentSlide - 1].name}
                     </h3>
                   </div>
@@ -222,14 +222,14 @@ const Recordings: React.FC = () => {
                   className="aspect-video bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl flex items-center justify-center"
                 >
                   <div className="text-center p-8">
-                    <svg className="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-16 h-16 mx-auto text-gray-400 dark:text-gray-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
                     </svg>
-                    <h3 className="text-lg font-normal text-gray-700 mb-2">Video Recordings</h3>
-                    <p className="text-gray-500 text-sm mb-4">
+                    <h3 className="text-lg font-normal text-gray-700 dark:text-gray-300 mb-2">Video Recordings</h3>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm mb-4">
                       Live performance recordings and studio sessions coming soon
                     </p>
-                    <p className="text-xs text-gray-400">
+                    <p className="text-xs text-gray-400 dark:text-gray-500">
                       Check our social media for the latest video content
                     </p>
                   </div>

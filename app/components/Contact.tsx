@@ -35,13 +35,13 @@ const Contact = () => {
             viewport={{ once: true }}
           >
             <div className="text-center lg:text-left mb-8">
-              <h2 className="heading-2 text-muse-red mb-4">Connect with us!</h2>
-              <p className="text-gray-600 text-lg mb-2">
+              <h2 className="heading-2 text-muse-red dark:text-red-400 mb-4">Connect with us!</h2>
+              <p className="text-gray-600 dark:text-gray-300 text-lg mb-2">
                 We'd love to hear from you
               </p>
               <motion.a
                 href="mailto:themuseduo@gmail.com"
-                className="inline-flex items-center gap-2 text-muse-red font-medium 
+                className="inline-flex items-center gap-2 text-muse-red dark:text-red-400 font-medium 
                          hover:text-red-700 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -64,7 +64,7 @@ const Contact = () => {
             >
               <div className="space-y-6">
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Subject
                   </label>
                   <input
@@ -79,7 +79,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Message
                   </label>
                   <textarea
@@ -129,7 +129,7 @@ const Contact = () => {
                 href="https://www.instagram.com/muse__duo/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-gray-100 rounded-full hover:bg-muse-red hover:text-white 
+                className="p-3 bg-gray-100 dark:bg-gray-700 rounded-full hover:bg-muse-red hover:text-white 
                          transition-all duration-300"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
@@ -143,7 +143,7 @@ const Contact = () => {
                 href="https://www.youtube.com/@themuseduo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-gray-100 rounded-full hover:bg-muse-red hover:text-white 
+                className="p-3 bg-gray-100 dark:bg-gray-700 rounded-full hover:bg-muse-red hover:text-white 
                          transition-all duration-300"
                 whileHover={{ scale: 1.1, rotate: -5 }}
                 whileTap={{ scale: 0.9 }}
@@ -157,7 +157,7 @@ const Contact = () => {
                 href="https://www.facebook.com/themuseduo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-gray-100 rounded-full hover:bg-muse-red hover:text-white 
+                className="p-3 bg-gray-100 dark:bg-gray-700 rounded-full hover:bg-muse-red hover:text-white 
                          transition-all duration-300"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
@@ -185,7 +185,7 @@ const Contact = () => {
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent dark:from-black/50 dark:to-black/10" />
             </div>
           </motion.div>
         </div>

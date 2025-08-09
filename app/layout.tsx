@@ -38,7 +38,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body className="min-h-screen bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+      <head>
+        <link
+          rel="preload"
+          href="/fonts/Candu-Condensed.otf"
+          as="font"
+          type="font/otf"
+          crossOrigin="anonymous"
+        />
+      </head>
+      <body className="min-h-screen">
         <ThemeProvider
           defaultTheme="system"
           storageKey="muse-duo-theme"

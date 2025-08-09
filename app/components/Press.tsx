@@ -26,7 +26,7 @@ const articles: Article[] = [
 
 const Press = () => {
   return (
-    <section className="press-section bg-white">
+    <section className="press-section bg-white dark:bg-gray-900">
       <div className="container-custom section-padding">
         <motion.div
           className="text-center mb-12"
@@ -35,8 +35,8 @@ const Press = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="heading-2 text-muse-red mb-4">Press</h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <h2 className="heading-2 text-muse-red dark:text-red-400 mb-4">Press</h2>
+          <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto">
             Read what critics and journalists are saying about The Muse Duo
           </p>
         </motion.div>
@@ -72,16 +72,16 @@ const Press = () => {
                     </time>
                   </div>
 
-                  <h3 className="text-2xl md:text-3xl font-normal text-gray-900 mb-2 group-hover:text-muse-red transition-colors duration-300">
+                  <h3 className="text-2xl md:text-3xl font-normal text-gray-900 dark:text-gray-100 mb-2 group-hover:text-muse-red dark:group-hover:text-red-400 transition-colors duration-300">
                     {article.title}
                   </h3>
 
-                  <p className="text-gray-600 mb-4">
-                    by <span className="font-normal text-gray-800">{article.author}</span>
+                  <p className="text-gray-600 dark:text-gray-400 mb-4">
+                    by <span className="font-normal text-gray-800 dark:text-gray-200">{article.author}</span>
                   </p>
 
                   {article.excerpt && (
-                    <p className="text-gray-600 mb-6 line-clamp-3">
+                    <p className="text-gray-600 dark:text-gray-400 mb-6 line-clamp-3">
                       {article.excerpt}
                     </p>
                   )}
@@ -90,7 +90,7 @@ const Press = () => {
                     href={article.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-muse-red font-medium 
+                    className="inline-flex items-center gap-2 text-muse-red dark:text-red-400 font-medium 
                              hover:gap-3 transition-all duration-300"
                     whileHover={{ x: 5 }}
                     whileTap={{ scale: 0.95 }}

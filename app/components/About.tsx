@@ -49,16 +49,16 @@ const About = () => {
                 />
               </motion.div>
 
-              <h2 className="heading-2 text-muse-red mb-6">The Muse Duo</h2>
+              <h2 className="heading-2 text-muse-red dark:text-red-400 mb-6">The Muse Duo</h2>
               
-              <div className="space-y-4 text-gray-700 leading-relaxed max-h-[500px] overflow-y-auto pr-4 
-                            scrollbar-thin scrollbar-thumb-muse-red/30 scrollbar-track-gray-100">
+              <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed max-h-[500px] overflow-y-auto pr-4 
+                            scrollbar-thin scrollbar-thumb-muse-red/30 scrollbar-track-gray-100 dark:scrollbar-track-gray-800">
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                   viewport={{ once: true }}
-                  className="text-lg font-normal text-gray-800"
+                  className="text-lg font-normal text-gray-800 dark:text-gray-200"
                 >
                   Originally formed at the Eastman School of Music, the Muse Duo
                   is a one-of-a-kind ensemble in the world of classical music.
@@ -118,7 +118,7 @@ const About = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.6 }}
                   viewport={{ once: true }}
-                  className="font-normal text-gray-800"
+                  className="font-normal text-gray-800 dark:text-gray-200"
                 >
                   Through unique instrumentation, a convincing blend of musical
                   personalities, and music which is experimental and accessible,

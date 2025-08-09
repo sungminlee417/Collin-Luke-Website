@@ -16,7 +16,7 @@ const Hero = () => {
           priority
           quality={90}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/20 to-white/40 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/20 to-white/40 dark:from-black/60 dark:via-black/50 dark:to-black/70 backdrop-blur-[1px]" />
       </div>
 
       <motion.div 
@@ -31,7 +31,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="relative"
         >
-          <div className="absolute inset-0 bg-white/60 blur-3xl rounded-full -z-10 scale-150" />
+          <div className="absolute inset-0 bg-white/80 dark:bg-white/95 blur-3xl rounded-full -z-10 scale-150" />
           <Image
             src="/images/landing-logo.png"
             alt="The Muse Duo Logo"
@@ -49,9 +49,9 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.8 }}
         >
           <div className="relative">
-            <div className="absolute inset-0 bg-white/80 blur-xl rounded-full scale-150" />
-            <p className="relative text-gray-800 dark:text-gray-200 text-lg md:text-xl font-medium tracking-wider uppercase 
-                         bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm px-6 py-2 rounded-full 
+            <div className="absolute inset-0 bg-white/80 dark:bg-gray-800/80 blur-xl rounded-full scale-150" />
+            <p className="relative text-gray-800 dark:text-white text-lg md:text-xl font-medium tracking-wider uppercase 
+                         bg-white/60 dark:bg-gray-800/70 backdrop-blur-sm px-6 py-2 rounded-full 
                          border border-white/40 dark:border-gray-600/40 shadow-lg">
               Classical Music Ensemble
             </p>

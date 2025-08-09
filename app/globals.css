@@ -6,9 +6,9 @@
   @font-face {
     font-family: 'Candu-Condensed';
     src: url('/fonts/Candu-Condensed.otf') format('opentype');
-    font-weight: normal;
+    font-weight: 100 900;
     font-style: normal;
-    font-display: swap;
+    font-display: block;
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   }
 
@@ -17,8 +17,10 @@
   }
 
   body {
-    @apply text-muse-red dark:text-red-400 font-candu overflow-x-hidden antialiased
-           bg-white dark:bg-gray-900 transition-colors duration-300;
+    @apply text-muse-red font-candu overflow-x-hidden antialiased
+           bg-gradient-to-br from-white to-gray-50 
+           dark:bg-gradient-to-br dark:from-gray-900 dark:to-gray-800
+           dark:text-red-300 transition-colors duration-300;
     animation: fade-in 2s;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -29,6 +31,9 @@
   /* Force font loading and prevent FOUT */
   .font-candu {
     font-family: 'Candu-Condensed', Impact, 'Arial Narrow', Arial, system-ui, sans-serif !important;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   ::selection {
@@ -116,14 +121,16 @@
   }
 
   .input-modern {
-    @apply w-full px-4 py-3 rounded-lg border border-gray-300 
-           focus:border-muse-red focus:ring-2 focus:ring-muse-red/20 
+    @apply w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600
+           bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100
+           focus:border-muse-red dark:focus:border-red-400 focus:ring-2 focus:ring-muse-red/20 dark:focus:ring-red-500/20
            transition-all duration-300 outline-none;
   }
 
   .textarea-modern {
-    @apply w-full px-4 py-3 rounded-lg border border-gray-300 
-           focus:border-muse-red focus:ring-2 focus:ring-muse-red/20 
+    @apply w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600
+           bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100
+           focus:border-muse-red dark:focus:border-red-400 focus:ring-2 focus:ring-muse-red/20 dark:focus:ring-red-500/20
            transition-all duration-300 outline-none resize-none;
   }
 
@@ -133,6 +140,11 @@
 
   .instagram-embed-container iframe {
     @apply w-full rounded-t-2xl;
+  }
+
+  /* Dark mode filter for Instagram embed iframe */
+  .dark .instagram-embed-container iframe {
+    filter: brightness(0.9) contrast(1.1);
   }
 }
 
@@ -162,6 +174,16 @@
 @media (max-width: 480px) {
   .hero-section {
     background-image: url("/images/IMG_4655.jpeg");
+  }
+}
+
+/* Mobile-specific font optimizations */
+@media screen and (max-width: 768px) {
+  body, .font-candu {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-variant-ligatures: none;
   }
 }
 

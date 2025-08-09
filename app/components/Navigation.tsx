@@ -72,23 +72,23 @@ const Navigation = () => {
                      h-14 w-14 sm:h-16 sm:w-16 rounded-2xl shadow-lg hover:shadow-xl 
                      transition-all duration-300 hover:scale-105 active:scale-95 
                      ${showMenu 
-                       ? 'bg-white border-2 border-white shadow-2xl' 
-                       : 'bg-white/90 backdrop-blur-md border border-gray-200'
+                       ? 'bg-white dark:bg-gray-800 border-2 border-white dark:border-gray-600 shadow-2xl' 
+                       : 'bg-white/90 dark:bg-gray-800/90 backdrop-blur-md border border-gray-200 dark:border-gray-600'
                      }`}
           aria-label="Toggle navigation menu"
         >
           <div className="relative w-6 h-5 sm:w-7 sm:h-6">
             <span
               className={`absolute left-0 top-0 h-0.5 w-full transition-all duration-300 
-                         ${showMenu ? 'bg-muse-red rotate-45 top-1/2 -translate-y-1/2' : 'bg-gray-800'}`}
+                         ${showMenu ? 'bg-muse-red rotate-45 top-1/2 -translate-y-1/2' : 'bg-gray-800 dark:bg-gray-200'}`}
             />
             <span
               className={`absolute left-0 top-1/2 -translate-y-1/2 h-0.5 w-full transition-all duration-300 
-                         ${showMenu ? 'bg-muse-red opacity-0' : 'bg-gray-800'}`}
+                         ${showMenu ? 'bg-muse-red opacity-0' : 'bg-gray-800 dark:bg-gray-200'}`}
             />
             <span
               className={`absolute left-0 bottom-0 h-0.5 w-full transition-all duration-300 
-                         ${showMenu ? 'bg-muse-red -rotate-45 bottom-1/2 translate-y-1/2' : 'bg-gray-800'}`}
+                         ${showMenu ? 'bg-muse-red -rotate-45 bottom-1/2 translate-y-1/2' : 'bg-gray-800 dark:bg-gray-200'}`}
             />
           </div>
         </button>

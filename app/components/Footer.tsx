@@ -47,7 +47,7 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="bg-gradient-to-b from-white to-gray-50 border-t border-gray-200">
+    <footer className="bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-t border-gray-200 dark:border-gray-700">
       <div className="container-custom py-12">
         <motion.div
           className="flex flex-col md:flex-row items-center justify-between gap-8"
@@ -70,8 +70,8 @@ const Footer = () => {
               />
             </motion.div>
             <div>
-              <p className="text-sm font-normal text-gray-800">The Muse Duo</p>
-              <p className="text-xs text-gray-500">© {year} All rights reserved</p>
+              <p className="text-sm font-normal text-gray-800 dark:text-gray-200">The Muse Duo</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">© {year} All rights reserved</p>
             </div>
           </div>
 
@@ -82,7 +82,7 @@ const Footer = () => {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-600 hover:text-muse-red transition-colors duration-300"
+                className="text-gray-600 dark:text-gray-400 hover:text-muse-red dark:hover:text-red-400 transition-colors duration-300"
                 aria-label={link.name}
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -104,7 +104,7 @@ const Footer = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
         >
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-600 dark:text-gray-400">
             Classical music reimagined for modern audiences
           </p>
         </motion.div>

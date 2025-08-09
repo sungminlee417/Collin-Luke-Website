@@ -1,9 +1,9 @@
 const concerts = [
   {
     startDate: {
-      day: 25,
-      month: "June",
-      year: 2023,
+      day: 15,
+      month: "February",
+      year: 2025,
     },
     venue: "Boca Museum of Art",
     time: "8:00PM EDT",
@@ -12,9 +12,9 @@ const concerts = [
   },
   {
     startDate: {
-      day: 6,
-      month: "July",
-      year: 2023,
+      day: 8,
+      month: "March",
+      year: 2025,
     },
     venue: "Off The Dock Chamber Festival",
     location: "623 E Ocean Blvd, Stuart, FL 34996, United States",
@@ -22,12 +22,12 @@ const concerts = [
   },
   {
     startDate: {
-      day: 23,
-      month: "July",
-      year: 2023,
+      day: 22,
+      month: "March",
+      year: 2025,
     },
     venue: "St. Mary's Episcopal Church",
-    time: "TBA",
+    time: "7:30PM",
     location: "623 E Ocean Blvd, Stuart, FL, 34994",
     moreInfoUrl: "https://stmarys-stuart.org/",
   },

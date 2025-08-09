@@ -101,8 +101,11 @@ const Recordings: React.FC = () => {
             </p>
 
             <div className="space-y-6">
-              <motion.div
-                className="card-modern p-6"
+              <motion.a
+                href="https://open.spotify.com/album/06Q4h44XDIYrpE0EbGAFMy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card-modern p-6 block cursor-pointer hover:shadow-xl"
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
@@ -122,20 +125,24 @@ const Recordings: React.FC = () => {
                     <p className="text-sm text-gray-600 truncate">
                       Debut Album
                     </p>
-                    <p className="text-xs text-gray-500 mt-1">2022</p>
+                    <p className="text-xs text-gray-500 mt-1">2023</p>
                   </div>
                 </div>
-              </motion.div>
+              </motion.a>
 
               <div className="space-y-4">
                 <div className="text-sm text-gray-600">
                   <p className="mb-2">Featured tracks from our debut album:</p>
                   <ul className="space-y-1 text-xs">
-                    <li>• "Opening Movements" - 4:32</li>
-                    <li>• "Interlude in G Minor" - 3:15</li>
-                    <li>• "Experiments Suite" - 6:48</li>
-                    <li>• "Closing Reflections" - 5:22</li>
+                    <li>• "a sense of loss" - 4:31</li>
+                    <li>• "Guitar Sonata, Movement I" - 3:37</li>
+                    <li>• "Point and Counter" - 2:55</li>
+                    <li>• "crUde prelUdes, 1" - 10:20</li>
+                    <li>• "Cereusle" - 9:28</li>
                   </ul>
+                  <p className="text-xs text-gray-500 mt-2">
+                    15 tracks • 51 minutes total
+                  </p>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -184,15 +191,22 @@ const Recordings: React.FC = () => {
                 <div className="pt-4 border-t border-gray-200">
                   <p className="text-xs text-gray-500 mb-2">Available on:</p>
                   <div className="flex flex-wrap gap-2">
-                    <span className="text-xs text-gray-600 px-2 py-1 bg-gray-100 rounded">
+                    <a
+                      href="https://open.spotify.com/album/06Q4h44XDIYrpE0EbGAFMy"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-gray-600 px-2 py-1 bg-gray-100 rounded hover:bg-green-500 hover:text-white transition-colors"
+                    >
                       Spotify
-                    </span>
-                    <span className="text-xs text-gray-600 px-2 py-1 bg-gray-100 rounded">
+                    </a>
+                    <a
+                      href="https://music.apple.com/us/album/experiments/1679950066"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-gray-600 px-2 py-1 bg-gray-100 rounded hover:bg-gray-800 hover:text-white transition-colors"
+                    >
                       Apple Music
-                    </span>
-                    <span className="text-xs text-gray-600 px-2 py-1 bg-gray-100 rounded">
-                      YouTube
-                    </span>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -208,19 +222,22 @@ const Recordings: React.FC = () => {
           >
             <AnimatePresence mode="wait">
               {currentSlide === 0 ? (
-                <motion.div
+                <motion.a
                   key="album"
+                  href="https://open.spotify.com/album/06Q4h44XDIYrpE0EbGAFMy"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5 }}
-                  className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl w-full max-w-full mx-auto"
+                  className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl w-full max-w-full mx-auto block cursor-pointer group"
                 >
                   <Image
                     src="/images/IMG_6718.jpg"
                     alt="Experiments Album Cover"
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 90vw, 66vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
@@ -229,8 +246,14 @@ const Recordings: React.FC = () => {
                     <p className="text-lg opacity-90">
                       The Muse Duo's Debut Album
                     </p>
+                    <p className="text-sm opacity-75 mt-1">
+                      Released April 2023
+                    </p>
+                    <p className="text-sm opacity-75 mt-2">
+                      Click to listen on Spotify
+                    </p>
                   </div>
-                </motion.div>
+                </motion.a>
               ) : recordings[currentSlide - 1] ? (
                 <motion.div
                   key={recordings[currentSlide - 1].id}

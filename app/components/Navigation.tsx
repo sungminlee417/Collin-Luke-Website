@@ -49,10 +49,10 @@ const Navigation = () => {
 
   return (
     <>
-      <div className={`fixed z-50 sm:top-8 sm:right-8 top-4 right-4 transition-all duration-300 ${
+      <div className={`fixed z-50 sm:top-8 sm:right-8 top-4 right-2 transition-all duration-300 ${
         scrolled ? 'sm:top-6' : ''
       }`}>
-        <div className="flex gap-3 items-center">
+        <div className="flex gap-2 sm:gap-3 items-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -70,7 +70,7 @@ const Navigation = () => {
           onClick={() => setShowMenu(!showMenu)}
           className={`group relative cursor-pointer flex flex-col justify-center items-center 
                      h-14 w-14 sm:h-16 sm:w-16 rounded-2xl shadow-lg hover:shadow-xl 
-                     transition-all duration-300 hover:scale-105 active:scale-95 
+                     transition-all duration-300 hover:scale-105 sm:hover:scale-105 hover:scale-[1.02] active:scale-95 
                      ${showMenu 
                        ? 'bg-white dark:bg-gray-800 border-2 border-white dark:border-gray-600 shadow-2xl' 
                        : 'bg-white/90 dark:bg-gray-800/90 backdrop-blur-md border border-gray-200 dark:border-gray-600'
@@ -119,8 +119,8 @@ const Navigation = () => {
             >
               <div className="relative h-full flex items-center justify-center p-8">
                 <div className="absolute inset-0 opacity-10 overflow-hidden">
-                  <div className="absolute top-20 -right-10 w-60 h-60 bg-white rounded-full blur-3xl" />
-                  <div className="absolute bottom-20 -left-10 w-80 h-80 bg-white rounded-full blur-3xl" />
+                  <div className="absolute top-20 right-0 w-40 h-40 md:w-60 md:h-60 bg-white rounded-full blur-3xl" />
+                  <div className="absolute bottom-20 left-0 w-48 h-48 md:w-80 md:h-80 bg-white rounded-full blur-3xl" />
                 </div>
                 
                 <ul className="relative flex flex-col gap-8 md:gap-10">
@@ -133,7 +133,7 @@ const Navigation = () => {
                       transition={{ delay: i * 0.1 }}
                     >
                       <button
-                        className="group relative text-white tracking-wide xl:text-6xl lg:text-5xl text-4xl 
+                        className="group relative text-white tracking-wide xl:text-6xl lg:text-5xl md:text-4xl text-3xl 
                                  font-medium transition-all duration-300 hover:translate-x-3"
                         onClick={() => scrollSmoothlyTo(`${section.containerName}-section`)}
                       >

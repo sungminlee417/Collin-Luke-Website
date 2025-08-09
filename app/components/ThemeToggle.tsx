@@ -61,7 +61,7 @@ export function ThemeToggle() {
                  text-gray-700 dark:text-gray-300 
                  hover:bg-white dark:hover:bg-gray-800
                  hover:shadow-md transition-all duration-300"
-      whileHover={{ scale: 1.05 }}
+      whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.95 }}
       aria-label={getLabel()}
       title={getLabel()}

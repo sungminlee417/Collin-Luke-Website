@@ -42,7 +42,7 @@ const Contact = () => {
               <motion.a
                 href="mailto:themuseduo@gmail.com"
                 className="inline-flex items-center gap-2 text-muse-red dark:text-red-400 font-medium 
-                         hover:text-red-700 transition-colors duration-300"
+                         hover:text-red-700 transition-colors duration-300 break-all sm:break-normal"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

@@ -15,16 +15,16 @@ const Concerts = () => {
 
   const ConcertCard = ({ concert, index }: { concert: typeof concerts[0], index: number }) => (
     <motion.div
-      className="card-modern p-6 hover-lift"
+      className="card-modern p-4 sm:p-6 hover-lift"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
     >
-      <div className="flex items-start gap-6">
-        <div className="flex-shrink-0 text-center">
-          <div className="bg-gradient-to-br from-muse-red to-red-600 text-white rounded-xl p-4 shadow-lg">
-            <div className="text-3xl font-bold">{concert.startDate.day}</div>
+      <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+        <div className="flex-shrink-0 text-center self-center sm:self-start">
+          <div className="bg-gradient-to-br from-muse-red to-red-600 text-white rounded-xl p-3 sm:p-4 shadow-lg">
+            <div className="text-2xl sm:text-3xl font-bold">{concert.startDate.day}</div>
             <div className="text-sm uppercase tracking-wider">{concert.startDate.month}</div>
             <div className="text-xs mt-1 opacity-90">{concert.startDate.year}</div>
           </div>
@@ -50,7 +50,7 @@ const Concerts = () => {
             <span className="text-sm">{concert.location}</span>
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
             {concert.ticketUrl && (
               <a
                 href={concert.ticketUrl}

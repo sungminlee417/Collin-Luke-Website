@@ -1,16 +1,16 @@
-import Navigation from './components/Navigation'
-import Hero from './components/Hero'
-import About from './components/About'
-import Concerts from './components/Concerts'
-import Recordings from './components/Recordings'
-import Photos from './components/Photos'
-import Press from './components/Press'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
+import Navigation from "./components/Navigation";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Concerts from "./components/Concerts";
+import Recordings from "./components/Recordings";
+import Photos from "./components/Photos";
+import Press from "./components/Press";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen overflow-x-hidden">
       <Navigation />
       <Hero />
       <About />
@@ -21,5 +21,5 @@ export default function Home() {
       <Contact />
       <Footer />
     </main>
-  )
+  );
 }

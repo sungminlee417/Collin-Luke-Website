@@ -51,26 +51,26 @@
   }
 
   .heading-1 {
-    @apply text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight;
+    @apply text-3xl md:text-5xl lg:text-6xl font-normal tracking-tight;
   }
 
   .heading-2 {
-    @apply text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight;
+    @apply text-2xl md:text-4xl lg:text-5xl font-normal tracking-tight;
   }
 
   .heading-3 {
-    @apply text-2xl md:text-3xl lg:text-4xl font-normal;
+    @apply text-xl md:text-3xl lg:text-4xl font-normal;
   }
 
   .btn-primary {
-    @apply px-8 py-3 bg-muse-red dark:bg-red-600 text-white rounded-full font-medium 
+    @apply px-4 sm:px-8 py-3 bg-muse-red dark:bg-red-600 text-white rounded-full font-medium 
            transition-all duration-300 hover:bg-red-700 dark:hover:bg-red-700 
            hover:shadow-lg hover:scale-105 sm:hover:scale-105 hover:scale-[1.02] active:scale-95 focus:outline-none 
            focus:ring-4 focus:ring-muse-red/30 dark:focus:ring-red-500/30;
   }
 
   .btn-secondary {
-    @apply px-8 py-3 border-2 border-muse-red dark:border-red-400 
+    @apply px-4 sm:px-8 py-3 border-2 border-muse-red dark:border-red-400 
            text-muse-red dark:text-red-400 rounded-full font-medium 
            transition-all duration-300 hover:bg-muse-red dark:hover:bg-red-600 
            hover:text-white hover:shadow-lg hover:scale-105 sm:hover:scale-105 hover:scale-[1.02] active:scale-95 

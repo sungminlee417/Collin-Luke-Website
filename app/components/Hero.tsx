@@ -37,7 +37,7 @@ const Hero = () => {
             alt="The Muse Duo Logo"
             width={400}
             height={200}
-            className="w-auto h-44 sm:h-52 md:h-60 lg:h-64 mx-auto drop-shadow-2xl"
+            className="max-w-[90vw] max-h-[40vh] w-auto h-auto object-contain mx-auto drop-shadow-2xl"
             priority
           />
         </motion.div>

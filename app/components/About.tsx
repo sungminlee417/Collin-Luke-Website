@@ -1,8 +1,8 @@
-'use client'
+"use client";
 
-import React from 'react'
-import Image from 'next/image'
-import { motion } from 'framer-motion'
+import React from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
 
 const About = () => {
   return (
@@ -39,7 +39,7 @@ const About = () => {
               <motion.div
                 className="absolute -top-4 -right-4 w-24 h-24 opacity-10"
                 animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               >
                 <Image
                   src="/images/icon.png"
@@ -49,10 +49,14 @@ const About = () => {
                 />
               </motion.div>
 
-              <h2 className="heading-2 text-muse-red dark:text-red-400 mb-6">The Muse Duo</h2>
-              
-              <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed max-h-[500px] overflow-y-auto pr-4 
-                            scrollbar-thin scrollbar-thumb-muse-red/30 scrollbar-track-gray-100 dark:scrollbar-track-gray-800">
+              <h2 className="heading-2 text-muse-red dark:text-red-400 mb-6">
+                The Muse Duo
+              </h2>
+
+              <div
+                className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed max-h-[500px] overflow-y-auto pr-4
+                            scrollbar-thin scrollbar-thumb-muse-red/30 scrollbar-track-gray-100 dark:scrollbar-track-gray-800"
+              >
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -128,7 +132,7 @@ const About = () => {
               </div>
 
               <motion.div
-                className="mt-8 flex gap-4 overflow-hidden"
+                className="mt-8 flex flex-col sm:flex-row gap-4 overflow-hidden"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.7 }}
@@ -136,10 +140,12 @@ const About = () => {
               >
                 <button
                   onClick={() => {
-                    document.querySelector('.concerts-section')?.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'start',
-                    })
+                    document
+                      .querySelector(".concerts-section")
+                      ?.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                      });
                   }}
                   className="btn-primary"
                 >
@@ -147,10 +153,12 @@ const About = () => {
                 </button>
                 <button
                   onClick={() => {
-                    document.querySelector('.recordings-section')?.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'start',
-                    })
+                    document
+                      .querySelector(".recordings-section")
+                      ?.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                      });
                   }}
                   className="btn-secondary"
                 >
@@ -162,7 +170,7 @@ const About = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default About
+export default About;

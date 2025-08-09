@@ -1,6 +1,8 @@
 backend:
-  name: git-gateway
-  branch: main # Branch to update (optional; defaults to master)
+  name: github
+  repo: your-username/The_Muse_Duo_Portfolio # Replace with your actual GitHub repo
+  branch: main
+  base_url: https://api.netlify.com
 
 # Uncomment below to enable drafts
 # publish_mode: editorial_workflow

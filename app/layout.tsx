@@ -46,7 +46,6 @@ export default function RootLayout({
           type="font/otf"
           crossOrigin="anonymous"
         />
-        <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
       </head>
       <body className="min-h-screen">
         <ThemeProvider

@@ -123,15 +123,15 @@ const Concerts = () => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
-      if (!target.closest('.dropdown-container')) {
+      if (!target.closest(".dropdown-container")) {
         setIsDropdownOpen(false);
       }
     };
 
     if (isDropdownOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
       return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
+        document.removeEventListener("mousedown", handleClickOutside);
       };
     }
   }, [isDropdownOpen]);
@@ -445,8 +445,8 @@ const Concerts = () => {
                 ? "Join us for an unforgettable evening of classical music at one of our upcoming performances."
                 : "No upcoming concerts at the moment. Stay tuned for future magical performances!"
               : filteredConcerts.length > 0
-              ? "🎭 Relive the magic of our past performances and see where we've shared our music."
-              : "📅 No past concerts found. Check out our upcoming events for future performances!"}
+              ? "Relive the magic of our past performances and see where we've shared our music."
+              : "No past concerts found. Check out our upcoming events for future performances!"}
           </motion.p>
         </div>
 

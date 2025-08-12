@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import { ThemeProvider } from './components/ThemeProvider'
 import { PerformanceWrapper } from './components/PerformanceWrapper'
+import { DataProvider } from './lib/dataContext'
 
 export const metadata: Metadata = {
   title: {
@@ -136,9 +137,11 @@ export default function RootLayout({
           defaultTheme="system"
           storageKey="muse-duo-theme"
         >
-          <PerformanceWrapper>
-            {children}
-          </PerformanceWrapper>
+          <DataProvider>
+            <PerformanceWrapper>
+              {children}
+            </PerformanceWrapper>
+          </DataProvider>
         </ThemeProvider>
       </body>
     </html>

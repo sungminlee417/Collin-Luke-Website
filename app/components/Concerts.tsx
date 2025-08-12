@@ -1,229 +1,47 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { collection, onSnapshot } from "firebase/firestore";
-import { db } from "../lib/firebase";
 
 interface Concert {
-  startDate: {
-    day: number;
-    month: string;
-    year?: number;
-  };
-  endDate?: {
-    day: number;
-    month: string;
-  };
+  title: string;
+  date: string;
   venue: string;
-  time?: string;
   location: string;
+  time?: string;
   ticketUrl?: string;
-  moreInfoUrl?: string;
+  status: 'upcoming' | 'past';
+  description?: string;
+  slug: string;
 }
-
-const ConcertSelector = React.memo(({ 
-  selectedConcerts, 
-  onSelectionChange 
-}: { 
-  selectedConcerts: string; 
-  onSelectionChange: (selection: string) => void; 
-}) => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  // Handle outside click to close dropdown
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Element;
-      if (!target.closest(".dropdown-container")) {
-        setIsDropdownOpen(false);
-      }
-    };
-
-    if (isDropdownOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }
-  }, [isDropdownOpen]);
-
-  return (
-    <div className="relative dropdown-container">
-      <motion.button
-        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-        className="flex cursor-pointer items-center justify-center gap-3 p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-      >
-        <div className="flex items-center gap-3">
-          <div className="w-3 h-3 bg-gradient-to-r from-muse-red to-red-600 rounded-full animate-pulse" />
-          <h2 className="text-lg sm:text-xl lg:text-2xl font-light text-gray-900 dark:text-white truncate">
-            {selectedConcerts}
-          </h2>
-        </div>
-        <motion.span
-          className="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg transition-transform duration-300"
-          animate={{ rotate: isDropdownOpen ? 180 : 0 }}
-          whileHover={{ scale: 1.1 }}
-        >
-          <svg
-            className="w-5 h-5 text-gray-600 dark:text-gray-400"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-        </motion.span>
-      </motion.button>
-
-      {isDropdownOpen && (
-        <motion.div
-          className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 z-50 min-w-full"
-          initial={{ opacity: 0, y: -10, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: -10, scale: 0.95 }}
-          transition={{ duration: 0.2 }}
-        >
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden backdrop-blur-sm">
-            <div className="p-2">
-              <motion.button
-                onClick={() => {
-                  onSelectionChange("Upcoming Concerts");
-                  setIsDropdownOpen(false);
-                }}
-                className={`w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
-                  selectedConcerts === "Upcoming Concerts"
-                    ? "bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-700"
-                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
-                }`}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  Upcoming Concerts
-                </div>
-              </motion.button>
-
-              <motion.button
-                onClick={() => {
-                  onSelectionChange("Past Concerts");
-                  setIsDropdownOpen(false);
-                }}
-                className={`w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
-                  selectedConcerts === "Past Concerts"
-                    ? "bg-gradient-to-r from-gray-50 to-slate-50 dark:from-gray-800 dark:to-slate-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-600"
-                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
-                }`}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-gray-500 rounded-full" />
-                  Past Concerts
-                </div>
-              </motion.button>
-            </div>
-          </div>
-        </motion.div>
-      )}
-    </div>
-  );
-});
 
 const Concerts = () => {
   const [concerts, setConcerts] = useState<Concert[]>([]);
-  const [selectedConcerts, setSelectedConcerts] = useState("Upcoming Concerts");
+  const [selectedTab, setSelectedTab] = useState<'upcoming' | 'past'>('upcoming');
   const [currentPage, setCurrentPage] = useState(1);
-  const CONCERTS_PER_PAGE = 4;
-
-  const openMap = (address: string): void => {
-    window.open(
-      `https://maps.google.com/maps?q=${encodeURIComponent(address)}`
-    );
-  };
-
-  function monthToIndex(month: string) {
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    return months.indexOf(month);
-  }
+  const CONCERTS_PER_PAGE = 6;
 
   const isUpcoming = (concert: Concert) => {
-    const currentDate = new Date();
-    const concertDate = new Date(
-      concert.startDate.year || 0,
-      monthToIndex(concert.startDate.month),
-      concert.startDate.day || 1
-    );
-    return concertDate > currentDate;
+    return new Date(concert.date) > new Date();
   };
 
-  const upcomingConcerts = React.useMemo(() => concerts.filter(isUpcoming), [concerts]);
-  const pastConcerts = React.useMemo(() => concerts.filter((c) => !isUpcoming(c)), [concerts]);
-
-  // Pagination logic for past concerts
-  const totalPages = Math.ceil(pastConcerts.length / CONCERTS_PER_PAGE);
+  const upcomingConcerts = concerts.filter(isUpcoming);
+  const pastConcerts = concerts.filter((c) => !isUpcoming(c));
+  
+  const allFilteredConcerts = selectedTab === 'upcoming' ? upcomingConcerts : pastConcerts;
+  
+  // Pagination logic
+  const totalPages = Math.ceil(allFilteredConcerts.length / CONCERTS_PER_PAGE);
   const startIndex = (currentPage - 1) * CONCERTS_PER_PAGE;
-  const paginatedPastConcerts = React.useMemo(() => pastConcerts.slice(
-    startIndex,
-    startIndex + CONCERTS_PER_PAGE
-  ), [pastConcerts, startIndex]);
-
-  const filteredConcerts = React.useMemo(() =>
-    selectedConcerts === "Upcoming Concerts"
-      ? upcomingConcerts
-      : paginatedPastConcerts,
-    [selectedConcerts, upcomingConcerts, paginatedPastConcerts]
-  );
+  const filteredConcerts = allFilteredConcerts.slice(startIndex, startIndex + CONCERTS_PER_PAGE);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const docRef = collection(db, "concerts/");
-        onSnapshot(docRef, (querySnapshot) => {
-          const concertsData = querySnapshot.docs.map((doc) => {
-            const data = doc.data() as Concert;
-            return data;
-          });
-          concertsData.sort((a, b) => {
-            const dateA = new Date(
-              a.startDate.year || 0,
-              monthToIndex(a.startDate.month),
-              a.startDate.day || 1
-            );
-            const dateB = new Date(
-              b.startDate.year || 0,
-              monthToIndex(b.startDate.month),
-              b.startDate.day || 1
-            );
-            return dateB.getTime() - dateA.getTime();
-          });
-          setConcerts(concertsData);
-          console.log(`Loaded ${concertsData.length} concerts from Firebase`);
-        });
+        const response = await fetch('/api/concerts');
+        const concertsData = await response.json();
+        setConcerts(concertsData);
       } catch (error) {
-        console.error("Firebase error:", error);
-        // Fallback to empty array if Firebase fails
+        console.error("Error loading concerts:", error);
         setConcerts([]);
       }
     };
@@ -231,478 +49,215 @@ const Concerts = () => {
     fetchData();
   }, []);
 
-  // Reset pagination when switching between upcoming/past concerts
+  // Reset to page 1 when switching tabs
   useEffect(() => {
     setCurrentPage(1);
-  }, [selectedConcerts]);
+  }, [selectedTab]);
 
-  const ConcertCard = React.memo(({
-    concert,
-    index,
-    isUpcomingConcert,
-  }: {
-    concert: Concert;
-    index: number;
-    isUpcomingConcert: boolean;
-  }) => {
-
-    return (
-      <motion.div
-        className="group relative overflow-hidden rounded-3xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl transition-all duration-500"
-        initial={{ opacity: 0, y: 50, scale: 0.95 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{
-          duration: 0.6,
-          delay: index * 0.1,
-          type: "spring",
-          stiffness: 100,
-        }}
-        whileHover={{ y: -5, scale: 1.02 }}
-        viewport={{ once: true }}
-      >
-        {/* Background gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-muse-red/5 dark:to-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-        {/* Status indicator */}
-        <div className="absolute top-4 right-4 z-10">
-          <div
-            className={`px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm ${
-              isUpcomingConcert
-                ? "bg-green-500/20 text-green-700 dark:text-green-400 border border-green-500/30"
-                : "bg-gray-500/20 text-gray-600 dark:text-gray-400 border border-gray-500/30"
-            }`}
-          >
-            {isUpcomingConcert ? "Upcoming" : "Past"}
-          </div>
-        </div>
-
-        <div className="p-6 sm:p-8">
-          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
-            {/* Date Display */}
-            <div className="flex-shrink-0">
-              <motion.div
-                className="relative bg-gradient-to-br from-muse-red via-red-500 to-red-600 text-white rounded-2xl p-4 shadow-xl overflow-hidden"
-                whileHover={{ scale: 1.05, rotate: 1 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent" />
-                <div className="relative text-center">
-                  <div className="text-3xl lg:text-4xl font-bold leading-none">
-                    {concert.startDate.day}
-                  </div>
-                  <div className="text-sm uppercase tracking-widest font-medium mt-1 opacity-90">
-                    {concert.startDate.month.slice(0, 3)}
-                  </div>
-                  <div className="text-xs mt-1 opacity-80">
-                    {concert.startDate.year}
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Concert Details */}
-            <div className="flex-grow space-y-4">
-              <div>
-                <h3 className="text-2xl lg:text-3xl font-light text-gray-900 dark:text-white mb-2 group-hover:text-muse-red dark:group-hover:text-red-400 transition-colors duration-300">
-                  {concert.venue}
-                </h3>
-
-                {concert.time && (
-                  <motion.div
-                    className="flex items-center gap-3 text-gray-600 dark:text-gray-400 mb-3"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                  >
-                    <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg">
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
-                    </div>
-                    <span className="font-medium">{concert.time}</span>
-                  </motion.div>
-                )}
-
-                <motion.div
-                  className="flex items-start gap-3 text-gray-600 dark:text-gray-400 mb-6"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg flex-shrink-0">
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                    </svg>
-                  </div>
-                  <span
-                    className="cursor-pointer hover:text-muse-red dark:hover:text-red-400 transition-colors duration-200 hover:underline decoration-2 underline-offset-2"
-                    onClick={() => openMap(concert.location)}
-                  >
-                    {concert.location}
-                  </span>
-                </motion.div>
-              </div>
-
-              {/* Action Buttons */}
-              <motion.div
-                className="flex flex-col sm:flex-row gap-3"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-              >
-                {concert.ticketUrl && (
-                  <motion.a
-                    href={concert.ticketUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group/btn relative inline-flex items-center justify-center gap-3 px-6 py-3 bg-gradient-to-r from-muse-red to-red-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-700" />
-                    <svg
-                      className="w-5 h-5 relative z-10"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"
-                      />
-                    </svg>
-                    <span className="relative z-10">Purchase Tickets</span>
-                  </motion.a>
-                )}
-                {concert.moreInfoUrl && (
-                  <motion.a
-                    href={concert.moreInfoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group/btn inline-flex items-center justify-center gap-3 px-6 py-3 border-2 border-muse-red dark:border-red-400 text-muse-red dark:text-red-400 rounded-xl font-medium hover:bg-muse-red dark:hover:bg-red-600 hover:text-white hover:border-transparent transition-all duration-300"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <svg
-                      className="w-4 h-4 sm:w-5 sm:h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                    <span>More Info</span>
-                  </motion.a>
-                )}
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </motion.div>
-    );
-  });
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return {
+      day: date.getDate(),
+      month: date.toLocaleDateString('en-US', { month: 'short' }),
+      year: date.getFullYear(),
+      time: date.toLocaleDateString('en-US', {
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric'
+      })
+    };
+  };
 
   return (
-    <section className="concerts-section bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 overflow-hidden">
-      <div className="container-custom section-padding px-4 sm:px-6 lg:px-8 max-w-full">
-        <div className="text-center mb-16">
-          <motion.div
-            className="inline-block mb-8"
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <ConcertSelector 
-              selectedConcerts={selectedConcerts}
-              onSelectionChange={setSelectedConcerts}
-            />
-          </motion.div>
-
-          <motion.p
-            className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            {selectedConcerts === "Upcoming Concerts"
-              ? filteredConcerts.length > 0
-                ? "Join us for an unforgettable evening of classical music at one of our upcoming performances."
-                : "No upcoming concerts at the moment. Stay tuned for future magical performances!"
-              : filteredConcerts.length > 0
-              ? "Relive the magic of our past performances and see where we've shared our music."
-              : "No past concerts found. Check out our upcoming events for future performances!"}
-          </motion.p>
+    <section className="concerts-section bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-950 dark:to-neutral-900">
+      <div className="container-custom section-padding">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h2 className="heading-2 text-muse-red dark:text-red-400 mb-6">Concerts</h2>
+          
+          {/* Tab Navigation */}
+          <div className="inline-flex bg-neutral-100 dark:bg-neutral-800 rounded-xl p-1">
+            <button
+              onClick={() => setSelectedTab('upcoming')}
+              className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 ${
+                selectedTab === 'upcoming'
+                  ? 'bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 shadow-sm'
+                  : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100'
+              }`}
+            >
+              Upcoming ({upcomingConcerts.length})
+            </button>
+            <button
+              onClick={() => setSelectedTab('past')}
+              className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 ${
+                selectedTab === 'past'
+                  ? 'bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 shadow-sm'
+                  : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100'
+              }`}
+            >
+              Past ({pastConcerts.length})
+            </button>
+          </div>
         </div>
 
-        <motion.div
-          className="grid gap-8 lg:gap-10"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-        >
+        {/* Concert List */}
+        <div className="max-w-4xl mx-auto">
           {filteredConcerts.length > 0 ? (
-            <>
-              {filteredConcerts.map((concert, index) => (
-                <ConcertCard
-                  key={`${concert.venue}-${concert.startDate.day}-${concert.startDate.month}-${concert.startDate.year || 2024}`}
-                  concert={concert}
-                  index={index}
-                  isUpcomingConcert={isUpcoming(concert)}
-                />
-              ))}
-
-              {/* Pagination for Past Concerts */}
-              {selectedConcerts === "Past Concerts" && totalPages > 1 && (
-                <motion.div
-                  className="flex justify-center items-center gap-1 sm:gap-2 mt-8 px-2 sm:px-4"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                >
-                  {/* Previous Button */}
-                  <motion.button
-                    onClick={() =>
-                      setCurrentPage((prev) => Math.max(prev - 1, 1))
-                    }
-                    disabled={currentPage === 1}
-                    className={`p-1.5 sm:p-2 md:p-3 rounded-lg sm:rounded-xl transition-all duration-300 flex-shrink-0 ${
-                      currentPage === 1
-                        ? "bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed"
-                        : "bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-muse-red hover:text-white dark:hover:bg-red-600 shadow-lg hover:shadow-xl"
-                    }`}
-                    whileTap={currentPage !== 1 ? { scale: 0.95 } : {}}
+            <div className="space-y-4">
+              {filteredConcerts.map((concert) => {
+                const dateInfo = formatDate(concert.date);
+                const isUpcomingConcert = isUpcoming(concert);
+                
+                return (
+                  <div
+                    key={concert.slug}
+                    className="bg-white dark:bg-neutral-900 rounded-2xl p-6 shadow-sm hover:shadow-md border border-neutral-200 dark:border-neutral-700 transition-all duration-300"
                   >
-                    <svg
-                      className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 19l-7-7 7-7"
-                      />
-                    </svg>
-                  </motion.button>
+                    <div className="flex flex-col md:flex-row md:items-center gap-4">
+                      {/* Date */}
+                      <div className="flex-shrink-0">
+                        <div className="bg-accent-500 text-white rounded-xl p-3 text-center min-w-[80px]">
+                          <div className="text-2xl font-bold">{dateInfo.day}</div>
+                          <div className="text-xs uppercase tracking-wide">{dateInfo.month}</div>
+                          <div className="text-xs opacity-90">{dateInfo.year}</div>
+                        </div>
+                      </div>
 
-                  {/* Page Numbers */}
-                  <div className="flex items-center justify-center gap-0.5 sm:gap-1 md:gap-2 px-1 py-2">
-                    {(() => {
-                      const pages = [];
-                      
-                      if (totalPages <= 5) {
-                        // Show all pages if total is small
-                        for (let i = 1; i <= totalPages; i++) {
-                          pages.push(
-                            <motion.button
-                              key={i}
-                              onClick={() => setCurrentPage(i)}
-                              className={`w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-md sm:rounded-lg font-medium transition-all duration-300 text-xs sm:text-sm flex-shrink-0 ${
-                                currentPage === i
-                                  ? "bg-gradient-to-r from-muse-red to-red-600 text-white shadow-lg"
-                                  : "bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 shadow-md hover:shadow-lg"
-                              }`}
-                              whileTap={{ scale: 0.95 }}
-                            >
-                              {i}
-                            </motion.button>
-                          );
-                        }
-                      } else {
-                        // Always show first page
-                        pages.push(
-                          <motion.button
-                            key={1}
-                            onClick={() => setCurrentPage(1)}
-                            className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg font-medium transition-all duration-300 text-sm flex-shrink-0 ${
-                              currentPage === 1
-                                ? "bg-gradient-to-r from-muse-red to-red-600 text-white shadow-lg"
-                                : "bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 shadow-md hover:shadow-lg"
-                            }`}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                          >
-                            1
-                          </motion.button>
-                        );
+                      {/* Content */}
+                      <div className="flex-grow">
+                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                          <div>
+                            <h3 className="text-xl font-medium text-neutral-900 dark:text-neutral-100 mb-1">
+                              {concert.title}
+                            </h3>
+                            <p className="text-neutral-600 dark:text-neutral-400 mb-1">
+                              {concert.venue}
+                            </p>
+                            <p className="text-sm text-neutral-500 dark:text-neutral-400">
+                              {concert.location}
+                            </p>
+                            {concert.time && (
+                              <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
+                                {concert.time}
+                              </p>
+                            )}
+                          </div>
 
-                        // Show ellipsis after first page if needed
-                        if (currentPage > 2) {
-                          pages.push(
-                            <span key="ellipsis1" className="px-1 text-gray-400 text-sm">
-                              ...
+                          {/* Actions */}
+                          <div className="flex items-center gap-3 mt-3 sm:mt-0">
+                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                              isUpcomingConcert
+                                ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+                                : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400'
+                            }`}>
+                              {isUpcomingConcert ? 'Upcoming' : 'Past'}
                             </span>
-                          );
-                        }
+                            
+                            {concert.ticketUrl && isUpcomingConcert && (
+                              <a
+                                href={concert.ticketUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn-primary text-sm px-4 py-2"
+                              >
+                                Tickets
+                              </a>
+                            )}
+                          </div>
+                        </div>
 
-                        // Show only current page (more aggressive for mobile)
-                        if (currentPage > 1 && currentPage < totalPages) {
-                          pages.push(
-                            <motion.button
-                              key={currentPage}
-                              onClick={() => setCurrentPage(currentPage)}
-                              className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-md sm:rounded-lg font-medium transition-all duration-300 text-xs sm:text-sm flex-shrink-0 bg-gradient-to-r from-muse-red to-red-600 text-white shadow-lg"
-                              whileTap={{ scale: 0.95 }}
-                            >
-                              {currentPage}
-                            </motion.button>
-                          );
-                        }
-
-                        // Show ellipsis before last page if needed
-                        if (currentPage < totalPages - 1) {
-                          pages.push(
-                            <span key="ellipsis2" className="px-1 text-gray-400 text-sm">
-                              ...
-                            </span>
-                          );
-                        }
-
-                        // Always show last page
-                        if (totalPages > 1) {
-                          pages.push(
-                            <motion.button
-                              key={totalPages}
-                              onClick={() => setCurrentPage(totalPages)}
-                              className={`w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-md sm:rounded-lg font-medium transition-all duration-300 text-xs sm:text-sm flex-shrink-0 ${
-                                currentPage === totalPages
-                                  ? "bg-gradient-to-r from-muse-red to-red-600 text-white shadow-lg"
-                                  : "bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 shadow-md hover:shadow-lg"
-                              }`}
-                              whileTap={{ scale: 0.95 }}
-                            >
-                              {totalPages}
-                            </motion.button>
-                          );
-                        }
-                      }
-                      
-                      return pages;
-                    })()}
+                        {concert.description && (
+                          <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700">
+                            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                              {concert.description}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   </div>
-
-                  {/* Next Button */}
-                  <motion.button
-                    onClick={() =>
-                      setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-                    }
-                    disabled={currentPage === totalPages}
-                    className={`p-1.5 sm:p-2 md:p-3 rounded-lg sm:rounded-xl transition-all duration-300 flex-shrink-0 ${
-                      currentPage === totalPages
-                        ? "bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed"
-                        : "bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-muse-red hover:text-white dark:hover:bg-red-600 shadow-lg hover:shadow-xl"
-                    }`}
-                    whileTap={currentPage !== totalPages ? { scale: 0.95 } : {}}
-                  >
-                    <svg
-                      className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </motion.button>
-                </motion.div>
-              )}
-
-              {/* Page Info */}
-              {selectedConcerts === "Past Concerts" && totalPages > 1 && (
-                <motion.div
-                  className="text-center mt-6"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                >
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
-                    Showing {startIndex + 1}-
-                    {Math.min(
-                      startIndex + CONCERTS_PER_PAGE,
-                      pastConcerts.length
-                    )}{" "}
-                    of {pastConcerts.length} past concerts
-                  </p>
-                </motion.div>
-              )}
-            </>
+                );
+              })}
+            </div>
           ) : (
-            <motion.div
-              className="text-center py-20"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="mb-6">
-                <svg
-                  className="w-20 h-20 mx-auto text-gray-300 dark:text-gray-600 mb-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
-                  />
+            <div className="text-center py-12">
+              <div className="text-neutral-400 dark:text-neutral-600 mb-4">
+                <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
                 </svg>
               </div>
-              <h3 className="text-xl font-light text-gray-500 dark:text-gray-400 mb-2">
-                {selectedConcerts === "Upcoming Concerts"
-                  ? "No upcoming concerts"
-                  : "No past concerts"}
+              <h3 className="text-lg font-medium text-neutral-500 dark:text-neutral-400 mb-2">
+                No {selectedTab} concerts
               </h3>
-              <p className="text-gray-400 dark:text-gray-500">
-                {selectedConcerts === "Upcoming Concerts"
-                  ? "Check back soon for new performance announcements"
-                  : "Our concert history will appear here"}
+              <p className="text-neutral-400 dark:text-neutral-500">
+                {selectedTab === 'upcoming' 
+                  ? 'Check back soon for new performance announcements' 
+                  : 'Our concert history will appear here'
+                }
               </p>
-            </motion.div>
+            </div>
           )}
-        </motion.div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center mt-8 gap-2">
+              <button
+                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+                className={`p-2 rounded-lg transition-all duration-200 ${
+                  currentPage === 1
+                    ? 'bg-neutral-100 dark:bg-neutral-800 text-neutral-400 cursor-not-allowed'
+                    : 'bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-accent-500 hover:text-white shadow-sm'
+                }`}
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+
+              {/* Page numbers */}
+              <div className="flex gap-1">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                  <button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    className={`px-3 py-2 rounded-lg font-medium transition-all duration-200 ${
+                      currentPage === page
+                        ? 'bg-accent-500 text-white'
+                        : 'bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700'
+                    }`}
+                  >
+                    {page}
+                  </button>
+                ))}
+              </div>
+
+              <button
+                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                disabled={currentPage === totalPages}
+                className={`p-2 rounded-lg transition-all duration-200 ${
+                  currentPage === totalPages
+                    ? 'bg-neutral-100 dark:bg-neutral-800 text-neutral-400 cursor-not-allowed'
+                    : 'bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-accent-500 hover:text-white shadow-sm'
+                }`}
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          )}
+
+          {/* Results count */}
+          {allFilteredConcerts.length > 0 && (
+            <div className="text-center mt-4">
+              <p className="text-sm text-neutral-500 dark:text-neutral-400">
+                Showing {startIndex + 1}-{Math.min(startIndex + CONCERTS_PER_PAGE, allFilteredConcerts.length)} of {allFilteredConcerts.length} {selectedTab} concerts
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );

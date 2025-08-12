@@ -3,65 +3,40 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { collection, onSnapshot } from "firebase/firestore";
-import { db } from "../lib/firebase";
+// import { getRecordings, type Recording } from "../lib/content";
 import ReactPlayer from "react-player/youtube";
 
-interface RecordingItem {
-  id: number;
-  name: string;
+interface Recording {
+  title: string;
+  composer?: string;
   url: string;
+  spotifyUrl?: string;
+  appleMusicUrl?: string;
+  description?: string;
+  dateRecorded?: string;
+  duration?: string;
+  thumbnail?: string;
+  order: number;
+  featured?: boolean;
+  album?: string;
+  slug: string;
 }
 
-// Fallback demo recordings when Firebase isn't available
-const demoRecordings: RecordingItem[] = [
-  {
-    id: 1,
-    name: "Sample Performance 1",
-    url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // placeholder
-  },
-  {
-    id: 2,
-    name: "Sample Performance 2",
-    url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // placeholder
-  },
-];
-
 const Recordings: React.FC = () => {
-  const [recordings, setRecordings] = useState<RecordingItem[]>(demoRecordings);
+  const [recordings, setRecordings] = useState<Recording[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [firebaseError, setFirebaseError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const docRef = collection(db, "video/");
-        onSnapshot(
-          docRef,
-          (querySnapshot) => {
-            const recordings = querySnapshot.docs.map((doc) => {
-              const data = doc.data() as RecordingItem;
-              return data;
-            });
-            console.log(`Loaded ${recordings.length} recordings from Firebase`);
-            if (recordings.length > 0) {
-              setRecordings(recordings);
-              setFirebaseError(false);
-            } else {
-              console.log(
-                "No recordings found in Firebase, using demo content"
-              );
-            }
-          },
-          (error) => {
-            console.error("Firebase error:", error);
-            setFirebaseError(true);
-          }
-        );
+        const response = await fetch('/api/recordings');
+        const recordingsData = await response.json();
+        setRecordings(recordingsData);
+        console.log(`Loaded ${recordingsData.length} recordings from API`);
       } catch (error) {
-        console.error("Firebase initialization error:", error);
-        setFirebaseError(true);
+        console.error("API loading error:", error);
+        setRecordings([]);
       }
     };
 
@@ -96,7 +71,7 @@ const Recordings: React.FC = () => {
             <h2 className="heading-2 text-muse-red dark:text-red-400 mb-4">
               Music
             </h2>
-            <p className="text-gray-600 mb-8">
+            <p className="text-gray-600 dark:text-gray-300 mb-8">
               Take a listen to some of our live performances and recordings!
             </p>
 
@@ -122,16 +97,16 @@ const Recordings: React.FC = () => {
                     <h3 className="font-normal text-gray-900 dark:text-gray-100 truncate">
                       Experiments
                     </h3>
-                    <p className="text-sm text-gray-600 truncate">
+                    <p className="text-sm text-gray-600 dark:text-gray-300 truncate">
                       Debut Album
                     </p>
-                    <p className="text-xs text-gray-500 mt-1">2023</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">2023</p>
                   </div>
                 </div>
               </motion.a>
 
               <div className="space-y-4">
-                <div className="text-sm text-gray-600">
+                <div className="text-sm text-gray-600 dark:text-gray-300">
                   <p className="mb-2">Featured tracks from our debut album:</p>
                   <ul className="space-y-1 text-xs">
                     <li>• "a sense of loss" - 4:31</li>
@@ -140,7 +115,7 @@ const Recordings: React.FC = () => {
                     <li>• "crUde prelUdes, 1" - 10:20</li>
                     <li>• "Cereusle" - 9:28</li>
                   </ul>
-                  <p className="text-xs text-gray-500 mt-2">
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
                     15 tracks • 51 minutes total
                   </p>
                 </div>
@@ -188,14 +163,14 @@ const Recordings: React.FC = () => {
                   </button>
                 </div>
 
-                <div className="pt-4 border-t border-gray-200">
-                  <p className="text-xs text-gray-500 mb-2">Available on:</p>
+                <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Available on:</p>
                   <div className="flex flex-wrap gap-2">
                     <a
                       href="https://open.spotify.com/album/06Q4h44XDIYrpE0EbGAFMy"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-gray-600 px-2 py-1 bg-gray-100 rounded hover:bg-green-500 hover:text-white transition-colors"
+                      className="text-xs text-gray-600 dark:text-gray-300 px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded hover:bg-green-500 hover:text-white transition-colors"
                     >
                       Spotify
                     </a>
@@ -203,7 +178,7 @@ const Recordings: React.FC = () => {
                       href="https://music.apple.com/us/album/experiments/1679950066"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-gray-600 px-2 py-1 bg-gray-100 rounded hover:bg-gray-800 hover:text-white transition-colors"
+                      className="text-xs text-gray-600 dark:text-gray-300 px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded hover:bg-gray-800 hover:text-white transition-colors"
                     >
                       Apple Music
                     </a>
@@ -256,7 +231,7 @@ const Recordings: React.FC = () => {
                 </motion.a>
               ) : recordings[currentSlide - 1] ? (
                 <motion.div
-                  key={recordings[currentSlide - 1].id}
+                  key={recordings[currentSlide - 1].slug}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
@@ -277,7 +252,7 @@ const Recordings: React.FC = () => {
                   </div>
                   <div className="mt-4 text-center">
                     <h3 className="text-xl font-normal text-gray-900 dark:text-gray-100">
-                      {recordings[currentSlide - 1].name}
+                      {recordings[currentSlide - 1].title}
                     </h3>
                   </div>
                 </motion.div>
@@ -286,7 +261,7 @@ const Recordings: React.FC = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="aspect-video bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl flex items-center justify-center"
+                  className="aspect-video bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-2xl flex items-center justify-center"
                 >
                   <div className="text-center p-8">
                     <svg
@@ -328,7 +303,7 @@ const Recordings: React.FC = () => {
                   className={`w-2 h-2 rounded-full transition-all duration-300 ${
                     currentSlide === index
                       ? "w-8 bg-muse-red"
-                      : "bg-gray-300 hover:bg-gray-400"
+                      : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500"
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />

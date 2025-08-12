@@ -1,7 +1,6 @@
 'use client'
 
 import { useTheme } from './ThemeProvider'
-import { motion } from 'framer-motion'
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme()
@@ -54,27 +53,23 @@ export function ThemeToggle() {
   }
 
   return (
-    <motion.button
+    <button
       onClick={toggleTheme}
-      className="p-2 rounded-lg bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm 
-                 border border-gray-200 dark:border-gray-700 shadow-sm
-                 text-gray-700 dark:text-gray-300 
-                 hover:bg-white dark:hover:bg-gray-800
-                 hover:shadow-md transition-all duration-300"
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.95 }}
+      className="h-16 w-16 rounded-3xl bg-white/70 dark:bg-neutral-900/70 backdrop-blur-2xl 
+                 border border-white/30 dark:border-neutral-700/30 shadow-2xl
+                 text-neutral-700 dark:text-neutral-300 
+                 hover:bg-white/90 dark:hover:bg-neutral-900/90
+                 hover:scale-110 active:scale-95 transition-all duration-500
+                 flex items-center justify-center"
       aria-label={getLabel()}
       title={getLabel()}
     >
-      <motion.div
+      <div
         key={theme}
-        initial={{ rotate: -180, opacity: 0 }}
-        animate={{ rotate: 0, opacity: 1 }}
-        exit={{ rotate: 180, opacity: 0 }}
-        transition={{ duration: 0.3 }}
+        className="transition-all duration-300"
       >
         {getIcon()}
-      </motion.div>
-    </motion.button>
+      </div>
+    </button>
   )
 }

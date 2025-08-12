@@ -7,7 +7,11 @@ const nextConfig = {
   // Performance optimizations
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
+    styledComponents: true,
   },
+  
+  // Enable compression
+  compress: true,
   
   // Bundle analyzer (uncomment to analyze bundle size)
   // ...(process.env.ANALYZE === 'true' && { bundleAnalyzer: { enabled: true } }),
@@ -15,8 +19,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
     formats: ['image/avif', 'image/webp'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+    deviceSizes: [480, 640, 750, 828, 1080, 1200, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 31536000, // 1 year
     remotePatterns: [
       {
         protocol: 'https',
@@ -38,8 +43,9 @@ const nextConfig = {
   
   // Experimental features for better performance
   experimental: {
-    optimizeCss: true,
     scrollRestoration: true,
+    serverComponentsExternalPackages: ['gray-matter'],
+    optimizePackageImports: ['framer-motion', 'react-player', 'swiper'],
   },
   
   // Webpack optimization

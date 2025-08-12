@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 
@@ -11,20 +11,47 @@ interface Article {
   link: string
   title: string
   excerpt?: string
+  slug: string
 }
 
-const articles: Article[] = [
-  {
-    author: 'Nancy E. McCarthy',
-    date: 'May 2, 2025',
-    image: '/images/IMG_0017.JPG',
-    link: 'https://www.lifeinthefingerlakes.com/two-of-a-kind-the-muse-duo/',
-    title: 'Two of a Kind: The Muse Duo',
-    excerpt: 'An in-depth look at the unique musical partnership and innovative performances of The Muse Duo.',
-  },
-]
+interface PressData {
+  title: string
+  subtitle?: string
+  articles: Article[]
+}
 
 const Press = () => {
+  const [pressData, setPressData] = useState<PressData | null>(null)
+
+  useEffect(() => {
+    const fetchPressData = async () => {
+      try {
+        const response = await fetch('/api/press')
+        const data = await response.json()
+        setPressData(data)
+      } catch (error) {
+        console.error('Error loading press data:', error)
+        // Fallback data
+        setPressData({
+          title: 'Press',
+          subtitle: 'Read what critics and journalists are saying about The Muse Duo',
+          articles: [
+            {
+              author: 'Nancy E. McCarthy',
+              date: 'May 2, 2025',
+              image: '/images/IMG_0017.JPG',
+              link: 'https://www.lifeinthefingerlakes.com/two-of-a-kind-the-muse-duo/',
+              title: 'Two of a Kind: The Muse Duo',
+              excerpt: 'An in-depth look at the unique musical partnership and innovative performances of The Muse Duo.',
+              slug: 'two-of-a-kind'
+            }
+          ]
+        })
+      }
+    }
+
+    fetchPressData()
+  }, [])
   return (
     <section className="press-section bg-white dark:bg-gray-900">
       <div className="container-custom section-padding">
@@ -35,16 +62,18 @@ const Press = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="heading-2 text-muse-red dark:text-red-400 mb-4">Press</h2>
+          <h2 className="heading-2 text-muse-red dark:text-red-400 mb-4">
+            {pressData?.title || 'Press'}
+          </h2>
           <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto">
-            Read what critics and journalists are saying about The Muse Duo
+            {pressData?.subtitle || 'Read what critics and journalists are saying about The Muse Duo'}
           </p>
         </motion.div>
 
         <div className="grid gap-8 max-w-4xl mx-auto">
-          {articles.map((article, index) => (
+          {(pressData?.articles || []).map((article, index) => (
             <motion.article
-              key={index}
+              key={article.slug || index}
               className="card-modern overflow-hidden group"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -107,7 +136,7 @@ const Press = () => {
           ))}
         </div>
 
-        {articles.length > 3 && (
+        {(pressData?.articles?.length || 0) > 3 && (
           <motion.div
             className="text-center mt-12"
             initial={{ opacity: 0 }}

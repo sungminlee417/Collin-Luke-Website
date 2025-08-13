@@ -71,7 +71,7 @@ const Concerts = () => {
 
   return (
     <section className="concerts-section bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-950 dark:to-neutral-900">
-      <div className="container-custom section-padding">
+      <div className="container-custom py-12 md:py-16 lg:py-20">
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="heading-2 text-muse-red dark:text-red-400 mb-6">Concerts</h2>

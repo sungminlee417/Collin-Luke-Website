@@ -41,12 +41,12 @@ const Hero = () => {
       className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Background Layer with Parallax */}
-      <motion.div className="absolute inset-0 z-0" style={{ y: y1 }}>
+      <motion.div className="absolute inset-0 -top-32 -bottom-32 z-0" style={{ y: y1 }}>
         <Image
           src="https://the-muse-duo.s3.us-west-1.amazonaws.com/landing.jpeg"
           alt="The Muse Duo Background"
           fill
-          className="object-cover object-center scale-110"
+          className="object-cover object-center"
           priority
           quality={90}
           onLoadingComplete={() => setIsLoaded(true)}

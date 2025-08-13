@@ -144,9 +144,9 @@ const Hero = () => {
 
       {/* Scroll Indicator - With opacity fade on scroll */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        className="absolute bottom-8 left-1/2 z-10"
+        initial={{ opacity: 0, y: 20, x: "-50%" }}
+        animate={{ opacity: 1, y: 0, x: "-50%" }}
         transition={{ duration: 0.8, delay: 3 }}
         style={{ opacity }}
       >

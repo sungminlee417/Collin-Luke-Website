@@ -52,21 +52,13 @@ const About = () => {
   }, []);
 
   return (
-    <section className="about-section relative" style={{ minHeight: "200vh" }}>
+    <section className="about-section relative md:min-h-[200vh]">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-neutral-50 via-white to-neutral-100 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-800" />
-      <div
-        className="container-custom section-padding relative z-10"
-        style={{ display: "flex", gap: "3rem" }}
-      >
-        {/* Image Section - Sticky */}
-        <div style={{ width: "40%" }}>
-          <div
-            style={{
-              position: "sticky",
-              top: "2rem",
-            }}
-          >
+      <div className="container-custom section-padding relative z-10 flex flex-col md:flex-row md:gap-12">
+        {/* Image Section - Normal flow on mobile, sticky on desktop */}
+        <div className="w-full md:w-2/5 mb-8 md:mb-0">
+          <div className="md:sticky md:top-8">
             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
               <Image
                 src={
@@ -101,7 +93,7 @@ const About = () => {
         </div>
 
         {/* Content to scroll */}
-        <div style={{ width: "60%", minHeight: "150vh" }}>
+        <div className="w-full md:w-3/5 md:min-h-[150vh]">
           <h2 className="heading-2 text-muse-red dark:text-red-400 mb-4">
             {aboutData?.title || "About"}
           </h2>

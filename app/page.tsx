@@ -42,7 +42,7 @@ export default function Home() {
       >
         Skip to main content
       </a>
-      <main id="main-content" className="min-h-screen overflow-x-hidden">
+      <main id="main-content" className="min-h-screen">
         <ErrorBoundary fallback={<div className="h-20 bg-gray-50 dark:bg-gray-900" />}>
           <Navigation />
         </ErrorBoundary>

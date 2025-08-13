@@ -1,41 +1,32 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { useData } from '../lib/dataContext';
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const Hero = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll();
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isLoaded, setIsLoaded] = useState(false);
-  const { data } = useData();
-  const heroData = data.hero || {
-    logo: '/images/landing-logo.png',
-    logoAlt: 'The Muse Duo Logo',
-    backgroundImage: 'https://the-muse-duo.s3.us-west-1.amazonaws.com/landing.jpeg',
-    backgroundAlt: 'The Muse Duo Background',
-    ctaText: 'Explore',
-    showCta: true,
-    logoWidth: 400,
-    logoHeight: 200,
-    contentAlignment: 'left',
-    overlayOpacity: 'medium'
-  };
 
-  const getOverlayClasses = () => {
-    switch (heroData?.overlayOpacity) {
-      case 'light':
-        return 'from-neutral-900/10 to-neutral-900/20'
-      case 'dark':
-        return 'from-neutral-900/40 to-neutral-900/60'
-      default: // medium
-        return 'from-neutral-900/20 to-neutral-900/40'
-    }
-  }
+  // Parallax effects
+  const y1 = useTransform(scrollY, [0, 800], [0, -200]);
+  const y2 = useTransform(scrollY, [0, 800], [0, -100]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
-  const getContentAlignment = () => {
-    return heroData?.contentAlignment === 'center' 
-      ? 'items-center justify-center text-center'
-      : 'items-start justify-start text-left pl-8 md:pl-16 lg:pl-24'
-  }
+  // Mouse tracking for subtle parallax
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({
+        x: (e.clientX - window.innerWidth / 2) / window.innerWidth,
+        y: (e.clientY - window.innerHeight / 2) / window.innerHeight,
+      });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   const scrollToAbout = () => {
     document.querySelector(".about-section")?.scrollIntoView({
@@ -45,76 +36,141 @@ const Hero = () => {
   };
 
   return (
-    <section className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Layer */}
-      <div className="absolute inset-0 z-0">
+    <section
+      ref={containerRef}
+      className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
+      {/* Background Layer with Parallax */}
+      <motion.div className="absolute inset-0 z-0" style={{ y: y1 }}>
         <Image
-          src={heroData?.backgroundImage || 'https://the-muse-duo.s3.us-west-1.amazonaws.com/landing.jpeg'}
-          alt={heroData?.backgroundAlt || 'The Muse Duo Background'}
+          src="https://the-muse-duo.s3.us-west-1.amazonaws.com/landing.jpeg"
+          alt="The Muse Duo Background"
           fill
-          className="object-cover object-center"
+          className="object-cover object-center scale-110"
           priority
           quality={90}
           onLoadingComplete={() => setIsLoaded(true)}
         />
 
         {/* Gradient Overlays for Depth */}
-        <div className={`absolute inset-0 bg-gradient-to-b ${getOverlayClasses()} via-transparent`} />
+        <div className="absolute inset-0 bg-gradient-to-b from-neutral-900/20 via-transparent to-neutral-900/40" />
         <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-neutral-900/30" />
-      </div>
 
+        {/* Animated grain texture overlay */}
+        <div className="absolute inset-0 opacity-20 mix-blend-multiply">
+          <div className="absolute inset-0 bg-gradient-to-br from-neutral-900/10 via-transparent to-accent-900/10 animate-shimmer" />
+        </div>
+      </motion.div>
+
+      {/* Floating Elements */}
+      <motion.div
+        className="absolute top-1/4 left-1/4 w-2 h-2 bg-accent-500/30 rounded-full"
+        style={{
+          x: mousePosition.x * 30,
+          y: mousePosition.y * 30,
+        }}
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.3, 0.7, 0.3],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      <motion.div
+        className="absolute top-3/4 right-1/3 w-1 h-1 bg-accent-400/40 rounded-full"
+        style={{
+          x: mousePosition.x * -20,
+          y: mousePosition.y * -20,
+        }}
+        animate={{
+          scale: [1, 1.5, 1],
+          opacity: [0.4, 0.8, 0.4],
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1,
+        }}
+      />
 
       {/* Main Content */}
-      <div className={`relative z-10 w-full h-full flex flex-col ${getContentAlignment()}`}>
-        {/* Logo and CTA container - keeps everything aligned */}
-        <div className="flex flex-col items-center mt-24 md:mt-32 lg:mt-40">
-          {/* Logo */}
-          <div className={`relative mb-8 transition-all duration-700 ${
-            isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-          }`}>
-            {/* Glow effect behind logo */}
-            <div className="absolute inset-0 bg-white/90 dark:bg-white/95 blur-3xl rounded-full scale-150 -z-10" />
+      <motion.div
+        className="relative z-10 flex flex-col items-center md:items-start text-center md:text-left px-6 max-w-6xl mx-auto md:ml-16 lg:ml-24"
+        style={{
+          opacity,
+          y: y2,
+          x: mousePosition.x * 10,
+        }}
+      >
+        {/* Logo with Advanced Animation */}
+        <motion.div
+          className="relative mb-12"
+          initial={{ scale: 0.8, opacity: 0, rotateY: -20 }}
+          animate={{
+            scale: isLoaded ? 1 : 0.8,
+            opacity: isLoaded ? 1 : 0,
+            rotateY: 0,
+          }}
+          transition={{
+            duration: 1.2,
+            delay: 0.3,
+            type: "spring",
+            stiffness: 100,
+            damping: 15,
+          }}
+        >
+          {/* Glow effect behind logo */}
+          <div className="absolute inset-0 bg-white/90 dark:bg-white/95 blur-3xl rounded-full scale-150 -z-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-accent-500/20 to-primary-500/20 blur-2xl rounded-full scale-125 -z-10 animate-glow" />
 
-            <Image
-              src={heroData?.logo || '/images/landing-logo.png'}
-              alt={heroData?.logoAlt || 'The Muse Duo Logo'}
-              width={heroData?.logoWidth || 400}
-              height={heroData?.logoHeight || 200}
-              className={`max-w-[90vw] md:max-w-[${heroData?.logoWidth || 400}px] max-h-[40vh] w-auto h-auto object-contain drop-shadow-2xl`}
-              priority
-            />
-          </div>
+          <Image
+            src="/images/landing-logo.png"
+            alt="The Muse Duo Logo"
+            width={400}
+            height={200}
+            className="max-w-[90vw] md:max-w-[400px] max-h-[40vh] w-auto h-auto object-contain drop-shadow-2xl"
+            priority
+          />
+        </motion.div>
 
-          {/* Scroll Indicator - perfectly centered under logo */}
-          {heroData?.showCta && (
-            <div className={`transition-all duration-1000 delay-1000 ${
-              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}>
-              <button
-                onClick={scrollToAbout}
-                className="flex flex-col items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-accent-500 dark:hover:text-accent-400 transition-all duration-300 hover:-translate-y-1 group"
-              >
-                <span className="text-xs font-medium tracking-wider uppercase group-hover:text-accent-500 dark:group-hover:text-accent-400">
-                  {heroData?.ctaText || 'Explore'}
-                </span>
-                <svg
-                  className="w-6 h-6 transform group-hover:translate-y-1 transition-transform duration-300"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                  />
-                </svg>
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
+        {/* Scroll Indicator */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 3 }}
+        >
+          <motion.button
+            onClick={scrollToAbout}
+            className="flex flex-col items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-accent-500 dark:hover:text-accent-400 transition-colors duration-300"
+            whileHover={{ y: -5 }}
+          >
+            <span className="text-xs font-medium tracking-wider uppercase">
+              Explore
+            </span>
+            <motion.svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              animate={{ y: [0, 5, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"
+              />
+            </motion.svg>
+          </motion.button>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

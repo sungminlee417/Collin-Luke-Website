@@ -13,15 +13,14 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */
   }
 
   body {
     @apply font-body overflow-x-hidden antialiased text-neutral-900
            bg-gradient-to-br from-neutral-50 via-white to-neutral-100
            dark:bg-gradient-to-br dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-800
-           dark:text-neutral-100 transition-all duration-700;
-    animation: fade-in 1.5s ease-out;
+           dark:text-neutral-100;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -308,6 +307,12 @@
   /* Container query utilities for responsive components */
   .container-inline-size {
     container-type: inline-size;
+  }
+  
+  /* Force sticky positioning class */
+  .force-sticky {
+    position: -webkit-sticky !important;
+    position: sticky !important;
   }
 }
 

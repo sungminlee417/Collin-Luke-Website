@@ -1,5 +1,5 @@
 ---
-title: Muse Duo and Sydney Carbo present 'Grafico de la Petenera'
+title: "Muse Duo and Sydney Carbo present 'Grafico de la Petenera'"
 date: 2025-09-27T19:30:00.000Z
 venue: Palm Beach Atlantic University
 location: 901 S Flagler Drive, West Palm Beach, FL 33401

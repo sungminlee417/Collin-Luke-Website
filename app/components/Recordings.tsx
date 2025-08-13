@@ -195,18 +195,29 @@ const Recordings: React.FC = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" custom={currentSlide}>
               {currentSlide === 0 ? (
                 <motion.a
                   key="album"
                   href="https://open.spotify.com/album/06Q4h44XDIYrpE0EbGAFMy"
                   target="_blank"
                   rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5 }}
-                  className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl w-full max-w-full mx-auto block cursor-pointer group"
+                  initial={{ opacity: 0, x: 300 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -300 }}
+                  transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 30 }}
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.2}
+                  onDragEnd={(e, { offset, velocity }) => {
+                    const swipe = Math.abs(offset.x) * velocity.x;
+                    if (swipe < -10000) {
+                      handleNextSlide();
+                    } else if (swipe > 10000) {
+                      handlePreviousSlide();
+                    }
+                  }}
+                  className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl w-full max-w-full mx-auto block cursor-pointer group touch-none"
                 >
                   <Image
                     src="/images/IMG_6718.jpg"
@@ -232,11 +243,22 @@ const Recordings: React.FC = () => {
               ) : recordings[currentSlide - 1] ? (
                 <motion.div
                   key={recordings[currentSlide - 1].slug}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5 }}
-                  className="relative"
+                  initial={{ opacity: 0, x: 300 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -300 }}
+                  transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 30 }}
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.2}
+                  onDragEnd={(e, { offset, velocity }) => {
+                    const swipe = Math.abs(offset.x) * velocity.x;
+                    if (swipe < -10000) {
+                      handleNextSlide();
+                    } else if (swipe > 10000) {
+                      handlePreviousSlide();
+                    }
+                  }}
+                  className="relative touch-none"
                 >
                   <div className="rounded-2xl overflow-hidden shadow-2xl bg-black aspect-video">
                     <ReactPlayer
@@ -258,10 +280,22 @@ const Recordings: React.FC = () => {
                 </motion.div>
               ) : (
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="aspect-video bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-2xl flex items-center justify-center"
+                  initial={{ opacity: 0, x: 300 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -300 }}
+                  transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 30 }}
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.2}
+                  onDragEnd={(e, { offset, velocity }) => {
+                    const swipe = Math.abs(offset.x) * velocity.x;
+                    if (swipe < -10000) {
+                      handleNextSlide();
+                    } else if (swipe > 10000) {
+                      handlePreviousSlide();
+                    }
+                  }}
+                  className="aspect-video bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-2xl flex items-center justify-center touch-none"
                 >
                   <div className="text-center p-8">
                     <svg

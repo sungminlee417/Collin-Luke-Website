@@ -41,7 +41,7 @@ const Hero = () => {
       className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Background Layer with Parallax */}
-      <motion.div className="absolute inset-0 -top-32 -bottom-32 z-0" style={{ y: y1 }}>
+      <motion.div className="absolute inset-0 -top-[50%] -bottom-[50%] z-0" style={{ y: y1 }}>
         <Image
           src="https://the-muse-duo.s3.us-west-1.amazonaws.com/landing.jpeg"
           alt="The Muse Duo Background"
@@ -61,6 +61,9 @@ const Hero = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-neutral-900/10 via-transparent to-accent-900/10 animate-shimmer" />
         </div>
       </motion.div>
+
+      {/* Solid background fallback to prevent seeing through */}
+      <div className="absolute inset-0 -z-10 bg-neutral-900"></div>
 
       {/* Floating Elements */}
       <motion.div
@@ -137,39 +140,40 @@ const Hero = () => {
             priority
           />
         </motion.div>
+      </motion.div>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 3 }}
+      {/* Scroll Indicator - With opacity fade on scroll */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 3 }}
+        style={{ opacity }}
+      >
+        <motion.button
+          onClick={scrollToAbout}
+          className="flex flex-col items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-accent-500 dark:hover:text-accent-400 transition-colors duration-300"
+          whileHover={{ y: -5 }}
         >
-          <motion.button
-            onClick={scrollToAbout}
-            className="flex flex-col items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-accent-500 dark:hover:text-accent-400 transition-colors duration-300"
-            whileHover={{ y: -5 }}
+          <span className="text-xs font-medium tracking-wider uppercase">
+            Explore
+          </span>
+          <motion.svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            animate={{ y: [0, 5, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <span className="text-xs font-medium tracking-wider uppercase">
-              Explore
-            </span>
-            <motion.svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              animate={{ y: [0, 5, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </motion.svg>
-          </motion.button>
-        </motion.div>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 14l-7 7m0 0l-7-7m7 7V3"
+            />
+          </motion.svg>
+        </motion.button>
       </motion.div>
     </section>
   );

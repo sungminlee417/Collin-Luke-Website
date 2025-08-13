@@ -188,7 +188,7 @@ const Navigation = () => {
                     onClick={() => scrollSmoothlyTo(`${section.section}-section`)}
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 + 0.2, duration: 0.4 }}
+                    transition={{ delay: i * 0.08, duration: 0.3, ease: "easeOut" }}
                   >
                     {section.label}
                   </motion.button>

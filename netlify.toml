@@ -3,7 +3,8 @@
   publish = "out"
 
 [build.environment]
-  NODE_VERSION = "18.17.0"
+  NODE_VERSION = "20.11.1"
+  NETLIFY_BUILD_IMAGE = "ubuntu-22.04"
 
 # Redirect for CMS admin
 [[redirects]]

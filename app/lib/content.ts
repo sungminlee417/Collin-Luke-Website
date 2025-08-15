@@ -10,6 +10,7 @@ export interface Concert {
   venue: string
   location: string
   time?: string
+  timezone?: string
   ticketUrl?: string
   status: 'upcoming' | 'past'
   featuredImage?: string

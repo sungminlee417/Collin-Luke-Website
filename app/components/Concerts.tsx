@@ -8,6 +8,7 @@ interface Concert {
   venue: string;
   location: string;
   time?: string;
+  timezone?: string;
   ticketUrl?: string;
   status: 'upcoming' | 'past';
   description?: string;
@@ -67,6 +68,16 @@ const Concerts = () => {
         year: 'numeric'
       })
     };
+  };
+
+  const formatTime = (dateString: string, timezone?: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true,
+      timeZone: timezone || 'UTC'
+    });
   };
 
   return (
@@ -137,11 +148,9 @@ const Concerts = () => {
                             <p className="text-sm text-neutral-500 dark:text-neutral-400">
                               {concert.location}
                             </p>
-                            {concert.time && (
-                              <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
-                                {concert.time}
-                              </p>
-                            )}
+                            <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
+                              {concert.time || formatTime(concert.date, concert.timezone)}
+                            </p>
                           </div>
 
                           {/* Actions */}

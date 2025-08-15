@@ -141,6 +141,21 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Date & Time", name: "date", widget: "datetime" }
+      - { 
+          label: "Timezone", 
+          name: "timezone", 
+          widget: "select",
+          options: [
+            "America/New_York",
+            "America/Chicago", 
+            "America/Denver",
+            "America/Los_Angeles",
+            "America/Phoenix",
+            "UTC"
+          ],
+          default: "America/New_York",
+          hint: "Select the timezone for the concert venue"
+        }
       - { label: "Venue", name: "venue", widget: "string" }
       - { label: "City, State", name: "location", widget: "string" }
       - {

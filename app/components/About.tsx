@@ -76,18 +76,6 @@ const About = () => {
 
               <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/40 via-transparent to-transparent" />
 
-              <div className="absolute bottom-6 left-6 bg-white/90 dark:bg-neutral-900/90 backdrop-blur-sm rounded-2xl p-4 shadow-xl">
-                <div className="space-y-2">
-                  <div className="text-sm text-neutral-600 dark:text-neutral-400 font-medium">
-                    Featured Artists
-                  </div>
-                  <div className="text-neutral-900 dark:text-neutral-100 font-medium">
-                    {aboutData?.artists
-                      ?.map((artist) => artist.name)
-                      .join(" • ") || "Collin Holloway • Luke Benedict"}
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

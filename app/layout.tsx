@@ -118,7 +118,7 @@ export default function RootLayout({
               sameAs: [
                 "https://www.instagram.com/muse__duo/",
                 "https://www.youtube.com/@themuseduo",
-                "https://open.spotify.com/artist/themuseduo",
+                "https://open.spotify.com/artist/45d3p8F6uaQqvaKg3Rbfra?si=qBAcQmosTgWx3hy5YHMnxA",
               ],
               member: [
                 {

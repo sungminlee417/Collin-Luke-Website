@@ -263,7 +263,7 @@ const Photos = () => {
                 </motion.a>
 
                 <motion.a
-                  href="https://open.spotify.com/artist/themuseduo"
+                  href="https://open.spotify.com/artist/45d3p8F6uaQqvaKg3Rbfra?si=qBAcQmosTgWx3hy5YHMnxA"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex flex-col items-center p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"

@@ -1,6 +1,10 @@
 [build]
   command = "npm run build"
+  publish = "dist"
   
 # Explicitly set publish to empty to override any cached settings
 [build.environment]
   NODE_VERSION = "20.11.1"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

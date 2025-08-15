@@ -141,7 +141,9 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen">
-        {children}
+        <ThemeProvider defaultTheme="system" storageKey="muse-duo-theme">
+          <DataProvider>{children}</DataProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

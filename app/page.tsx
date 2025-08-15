@@ -1,37 +1,84 @@
+import dynamic from 'next/dynamic'
+import Navigation from "./components/Navigation";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import LoadingSkeleton from "./components/LoadingSkeleton";
+import { ErrorBoundary } from "./components/ErrorBoundary";
+
+// Lazy load below-the-fold components for better performance
+const Concerts = dynamic(() => import("./components/Concerts"), { 
+  ssr: true,
+  loading: () => <LoadingSkeleton title="concerts" className="concerts-section" />
+});
+const Recordings = dynamic(() => import("./components/Recordings"), { 
+  ssr: true,
+  loading: () => <LoadingSkeleton title="music" className="recordings-section" />
+});
+const Photos = dynamic(() => import("./components/Photos"), { 
+  ssr: true,
+  loading: () => <LoadingSkeleton title="gallery" className="photos-section" />
+});
+const Press = dynamic(() => import("./components/Press"), { 
+  ssr: true,
+  loading: () => <LoadingSkeleton title="press coverage" className="press-section" />
+});
+const Contact = dynamic(() => import("./components/Contact"), { 
+  ssr: true,
+  loading: () => <LoadingSkeleton title="contact information" className="contact-section" />
+});
+const Footer = dynamic(() => import("./components/Footer"), { 
+  ssr: true,
+  loading: () => <LoadingSkeleton title="footer" className="footer-section" />
+});
+
 export default function Home() {
   return (
-    <div style={{ 
-      minHeight: '100vh', 
-      backgroundColor: '#f9fafb', 
-      color: '#111827',
-      padding: '40px 20px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      flexDirection: 'column',
-      fontFamily: 'system-ui, -apple-system, sans-serif'
-    }}>
-      <h1 style={{ 
-        fontSize: '3rem', 
-        marginBottom: '1rem',
-        fontWeight: 'bold',
-        color: '#EE2E31'
-      }}>
-        The Muse Duo
-      </h1>
-      <p style={{ fontSize: '1.25rem', marginBottom: '2rem', textAlign: 'center', maxWidth: '600px' }}>
-        Classical Music Ensemble - Testing deployment without providers and complex components
-      </p>
-      <div style={{ 
-        padding: '20px', 
-        backgroundColor: '#ffffff', 
-        border: '1px solid #e5e7eb',
-        borderRadius: '8px',
-        textAlign: 'center'
-      }}>
-        <p><strong>✅ Next.js is working!</strong></p>
-        <p>If you see this, the basic setup is correct.</p>
-      </div>
-    </div>
-  )
+    <>
+      <a 
+        href="#main-content" 
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 
+                   bg-muse-red text-white px-4 py-2 rounded-md z-50 
+                   focus:outline-none focus:ring-2 focus:ring-white"
+      >
+        Skip to main content
+      </a>
+      <main id="main-content" className="min-h-screen">
+        <ErrorBoundary fallback={<div className="h-20 bg-gray-50 dark:bg-gray-900" />}>
+          <Navigation />
+        </ErrorBoundary>
+        
+        <ErrorBoundary fallback={<div className="h-screen bg-gray-50 dark:bg-gray-900" />}>
+          <Hero />
+        </ErrorBoundary>
+        
+        <ErrorBoundary fallback={<LoadingSkeleton title="about" className="about-section" />}>
+          <About />
+        </ErrorBoundary>
+        
+        <ErrorBoundary fallback={<LoadingSkeleton title="concerts" className="concerts-section" />}>
+          <Concerts />
+        </ErrorBoundary>
+        
+        <ErrorBoundary fallback={<LoadingSkeleton title="music" className="recordings-section" />}>
+          <Recordings />
+        </ErrorBoundary>
+        
+        <ErrorBoundary fallback={<LoadingSkeleton title="gallery" className="photos-section" />}>
+          <Photos />
+        </ErrorBoundary>
+        
+        <ErrorBoundary fallback={<LoadingSkeleton title="press coverage" className="press-section" />}>
+          <Press />
+        </ErrorBoundary>
+        
+        <ErrorBoundary fallback={<LoadingSkeleton title="contact information" className="contact-section" />}>
+          <Contact />
+        </ErrorBoundary>
+        
+        <ErrorBoundary fallback={<div className="h-32 bg-gray-50 dark:bg-gray-900" />}>
+          <Footer />
+        </ErrorBoundary>
+      </main>
+    </>
+  );
 }

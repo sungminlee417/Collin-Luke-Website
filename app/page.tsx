@@ -11,11 +11,11 @@ const Concerts = dynamic(() => import("./components/Concerts"), {
   loading: () => <LoadingSkeleton title="concerts" className="concerts-section" />
 });
 const Recordings = dynamic(() => import("./components/Recordings"), { 
-  ssr: false,
+  ssr: true,
   loading: () => <LoadingSkeleton title="music" className="recordings-section" />
 });
 const Photos = dynamic(() => import("./components/Photos"), { 
-  ssr: false,
+  ssr: true,
   loading: () => <LoadingSkeleton title="gallery" className="photos-section" />
 });
 const Press = dynamic(() => import("./components/Press"), { 

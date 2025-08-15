@@ -1,0 +1,6 @@
+[build]
+  command = "npm run build"
+  
+# Explicitly set publish to empty to override any cached settings
+[build.environment]
+  NODE_VERSION = "20.11.1"

@@ -5,5 +5,6 @@ timezone: America/New_York
 venue: Pompano Beach Cultural Center
 location: 50 w Atlantic Blvd, Pompano Beach, FL
 moreInfoUrl: https://www.pompanobeacharts.org/events#venue=all-programs&category=performance
+ticketUrl: https://www.pompanobeacharts.org/events#venue=all-programs&category=performance
 status: upcoming
 ---

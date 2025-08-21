@@ -197,6 +197,16 @@
   .will-change-transform {
     will-change: transform;
   }
+
+  /* Shimmer animation for loading states */
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
   
   .will-change-opacity {
     will-change: opacity;

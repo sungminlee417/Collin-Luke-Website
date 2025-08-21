@@ -68,12 +68,9 @@ const Recordings: React.FC = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="heading-2 text-muse-red dark:text-red-400 mb-4">
+            <h2 className="heading-2 text-muse-red dark:text-red-400 mb-8">
               Music
             </h2>
-            <p className="text-gray-600 dark:text-gray-300 mb-8">
-              Take a listen to some of our live performances and recordings!
-            </p>
 
             <div className="space-y-6">
               <motion.a

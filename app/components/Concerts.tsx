@@ -97,7 +97,7 @@ const Concerts = () => {
                   : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100'
               }`}
             >
-              Upcoming ({upcomingConcerts.length})
+              Upcoming
             </button>
             <button
               onClick={() => setSelectedTab('past')}
@@ -107,7 +107,7 @@ const Concerts = () => {
                   : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100'
               }`}
             >
-              Past ({pastConcerts.length})
+              Past
             </button>
           </div>
         </div>

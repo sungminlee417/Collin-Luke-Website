@@ -30,6 +30,7 @@ interface GalleryData {
 const Photos = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [galleryData, setGalleryData] = useState<GalleryData | null>(null);
+  const [modalImageLoaded, setModalImageLoaded] = useState(false);
 
   useEffect(() => {
     const fetchGalleryData = async () => {
@@ -42,7 +43,6 @@ const Photos = () => {
         // Fallback data
         setGalleryData({
           title: 'Gallery',
-          subtitle: 'Capturing moments from our performances and behind the scenes',
           instagramUrl: 'https://www.instagram.com/muse__duo/',
           instagramHandle: '@muse__duo',
           images: [
@@ -101,12 +101,9 @@ const Photos = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="heading-2 text-muse-red dark:text-red-400 mb-4">
+            <h2 className="heading-2 text-muse-red dark:text-red-400 mb-8">
               {galleryData?.title || 'Gallery'}
             </h2>
-            <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto">
-              {galleryData?.subtitle || 'Capturing moments from our performances and behind the scenes'}
-            </p>
           </motion.div>
 
           {/* Gallery Carousel - Full Width */}
@@ -155,7 +152,10 @@ const Photos = () => {
                       className="relative aspect-[4/3] cursor-pointer group overflow-hidden rounded-xl"
                       whileHover={{ scale: 1.02 }}
                       transition={{ type: "spring", stiffness: 300 }}
-                      onClick={() => setSelectedImage(image.url)}
+                      onClick={() => {
+                        setSelectedImage(image.url);
+                        setModalImageLoaded(false);
+                      }}
                     >
                       <Image
                         src={image.url}
@@ -304,27 +304,43 @@ const Photos = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setSelectedImage(null)}
+            onClick={() => {
+              setSelectedImage(null);
+              setModalImageLoaded(false);
+            }}
           >
             <motion.div
-              className="relative max-w-5xl w-full aspect-[4/3]"
+              className="relative max-w-6xl w-full h-[90vh] flex items-center justify-center"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ type: "spring", damping: 25 }}
               onClick={(e) => e.stopPropagation()}
             >
+              {/* Loading skeleton */}
+              {!modalImageLoaded && (
+                <div className="absolute inset-0 bg-neutral-800 animate-pulse rounded-lg" />
+              )}
+              
               <Image
                 src={selectedImage}
                 alt="Enlarged gallery image"
                 fill
-                className="object-contain"
-                sizes="100vw"
+                className={`object-contain rounded-lg transition-opacity duration-300 ${
+                  modalImageLoaded ? 'opacity-100' : 'opacity-0'
+                }`}
+                sizes="90vw"
+                priority
+                onLoad={() => setModalImageLoaded(true)}
               />
+              
               <button
-                onClick={() => setSelectedImage(null)}
+                onClick={() => {
+                  setSelectedImage(null);
+                  setModalImageLoaded(false);
+                }}
                 className="absolute top-4 right-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full p-2
-                         hover:bg-white dark:hover:bg-gray-800 transition-colors duration-300"
+                         hover:bg-white dark:hover:bg-gray-800 transition-colors duration-300 z-10"
                 aria-label="Close image"
               >
                 <svg

@@ -48,9 +48,7 @@ export async function GET(request: Request) {
           logo: data.logo || '/images/icon.png',
           socialLinks: data.socialLinks || [
             { name: 'YouTube', href: 'https://www.youtube.com/@TheMuseDuo', order: 1 },
-            { name: 'Instagram', href: 'https://www.instagram.com/muse__duo/', order: 2 },
-            { name: 'Twitter', href: 'https://twitter.com/themuseduo', order: 3 },
-            { name: 'Facebook', href: 'https://www.facebook.com/themuseduo', order: 4 }
+            { name: 'Instagram', href: 'https://www.instagram.com/muse__duo/', order: 2 }
           ]
         })
       }
@@ -61,9 +59,7 @@ export async function GET(request: Request) {
         logo: '/images/icon.png',
         socialLinks: [
           { name: 'YouTube', href: 'https://www.youtube.com/@TheMuseDuo', order: 1 },
-          { name: 'Instagram', href: 'https://www.instagram.com/muse__duo/', order: 2 },
-          { name: 'Twitter', href: 'https://twitter.com/themuseduo', order: 3 },
-          { name: 'Facebook', href: 'https://www.facebook.com/themuseduo', order: 4 }
+          { name: 'Instagram', href: 'https://www.instagram.com/muse__duo/', order: 2 }
         ]
       })
     } else {

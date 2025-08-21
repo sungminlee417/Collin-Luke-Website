@@ -1,6 +1,5 @@
 ---
 title: About
-subtitle: Originally formed at the Eastman School of Music, the Muse Duo is a one-of-a-kind ensemble in the world of classical music. Comprised of the soloist and award-winning guitarist Collin Holloway and the dynamic pianist and composer Luke Benedict, the guitar and piano duo brings music that is eclectic and accessible to modern audiences.
 profileImage: https://the-muse-duo.s3.us-west-1.amazonaws.com/duo-without-instruments.jpeg
 profileImageAlt: The Muse Duo professional portrait
 artists:
@@ -9,6 +8,8 @@ artists:
   - name: Luke Benedict
     instrument: Piano & Composer
 ---
+
+Originally formed at the Eastman School of Music, the Muse Duo is a one-of-a-kind ensemble in the world of classical music. Comprised of the soloist and award-winning guitarist Collin Holloway and the dynamic pianist and composer Luke Benedict, the guitar and piano duo brings music that is eclectic and accessible to modern audiences.
 
 Just months after playing together for the first time, the duo embarked on a tour throughout the United States. Since then, the Muse Duo has performed in various venues and festivals, including the "Lynn New Music Festival", "Off the Dock Chamber Festival", and the "Shellpoint Young Artist Series".
 

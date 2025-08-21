@@ -35,7 +35,6 @@ export async function GET() {
     
     const galleryData = {
       title: 'Gallery',
-      subtitle: 'Capturing moments from our performances and behind the scenes',
       instagramUrl: 'https://www.instagram.com/muse__duo/',
       instagramHandle: '@muse__duo',
       images
@@ -48,7 +47,6 @@ export async function GET() {
     // Return fallback data
     return NextResponse.json({
       title: 'Gallery',
-      subtitle: 'Capturing moments from our performances and behind the scenes',
       instagramUrl: 'https://www.instagram.com/muse__duo/',
       instagramHandle: '@muse__duo',
       images: [

@@ -90,6 +90,23 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const storageKey = 'muse-duo-theme';
+                const theme = localStorage.getItem(storageKey) || 'system';
+                
+                if (theme === 'system') {
+                  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                  document.documentElement.classList.add(systemTheme);
+                } else {
+                  document.documentElement.classList.add(theme);
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
         <link
           rel="preload"
           href="/fonts/Candu-Condensed.otf"

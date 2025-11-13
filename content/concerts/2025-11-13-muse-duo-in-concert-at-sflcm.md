@@ -7,4 +7,4 @@ location: Hollywood, FL
 ticketUrl: https://www.sflcm.com/event-details/the-muse-duo-concert
 status: upcoming
 ---
-Experience a unique fusion of musical artistry with The Muse Duo—guitarist Collin Holloway and pianist/composer Luke Benedict. Originally formed at the Eastman School of Music, this award-winning ensemble has quickly made their mark on the modern classical music scene, captivating audiences across the United States with their innovative performances.
+

@@ -7,4 +7,4 @@ location: 97 E Genesee St, Skaneateles, NY 13152, United States
 ticketUrl: https://www.offthedockchamber.com/
 status: upcoming
 ---
-Guitarist Collin Holloway and Pianist/Composer Luke Benedict perform in the 2026 Off the Dock Chamber Festival as collaborative artists during the 2026 OTD Season. 
+Guitarist Collin Holloway and Pianist/Composer Luke Benedict perform in the 2026 Off the Dock Chamber Festival as collaborative artists. 

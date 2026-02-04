@@ -7,4 +7,4 @@ location: Vero Beach, FL, 32960
 ticketUrl: https://www.firstpresvero.org/
 status: upcoming
 ---
-Muse Duo presents programs that unite the depth and elegance of traditional chamber music with bold, contemporary works written specifically for guitar and piano. Their concerts pair cornerstone repertoire with original compositions by pianist-composer Luke Benedict, alongside newly commissioned works created especially for the Duo. The result is an engaging dialogue between tradition and innovation, creating music that feels both familiar and freshly alive.
+Muse Duo presents a program in Vero Beach that unites the elegance of traditional chamber music with bold, contemporary works written specifically for guitar and piano. This concert pairs cornerstone repertoire with original compositions by pianist-composer Luke Benedict, alongside newly commissioned works composed especially for the Duo. The result is an engaging dialogue between tradition and innovation, creating music that feels both familiar and freshly alive.

@@ -1,6 +1,6 @@
 ---
 title: Muse Duo @ Off the Dock Chamber Festival
-date: 2026-06-18T19:30:00.000-04:00
+date: 2026-06-20T19:00:00.000-04:00
 timezone: America/New_York
 venue: First Presbyterian Church of Skaneateles
 location: 97 E Genesee St, Skaneateles, NY 13152, United States

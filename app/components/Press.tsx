@@ -14,8 +14,8 @@ const Press = ({ articles }: PressProps) => {
   const { ref, inView } = useInView<HTMLDivElement>()
 
   return (
-    <section className="press-section bg-white dark:bg-gray-900">
-      <div className="container-custom section-padding">
+    <section className="press-section section section-white">
+      <div className="section-inner">
         <div
           ref={ref}
           className={`text-center mb-12 transition-all duration-700 ease-out ${
@@ -23,7 +23,7 @@ const Press = ({ articles }: PressProps) => {
           }`}
         >
           <h2 className="heading-2 text-muse-red dark:text-red-400 mb-4">Press</h2>
-          <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto">
+          <p className="text-neutral-600 dark:text-neutral-300 text-lg max-w-2xl mx-auto">
             Read what critics and journalists are saying about The Muse Duo
           </p>
         </div>
@@ -92,21 +92,21 @@ function PressCard({
             </time>
           </div>
 
-          <h3 className="text-2xl md:text-3xl font-normal text-gray-900 dark:text-gray-100 mb-2 group-hover:text-muse-red dark:group-hover:text-red-400 transition-colors duration-300">
+          <h3 className="text-2xl md:text-3xl font-normal text-neutral-900 dark:text-neutral-100 mb-2 group-hover:text-muse-red dark:group-hover:text-red-400 transition-colors duration-300">
             {article.title}
           </h3>
 
           {article.author && (
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
+            <p className="text-neutral-600 dark:text-neutral-400 mb-4">
               by{' '}
-              <span className="font-normal text-gray-800 dark:text-gray-200">
+              <span className="font-normal text-neutral-800 dark:text-neutral-200">
                 {article.author}
               </span>
             </p>
           )}
 
           {article.excerpt && (
-            <p className="text-gray-600 dark:text-gray-400 mb-6 line-clamp-3">
+            <p className="text-neutral-600 dark:text-neutral-400 mb-6 line-clamp-3">
               {article.excerpt}
             </p>
           )}

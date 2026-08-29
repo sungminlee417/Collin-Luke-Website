@@ -55,8 +55,8 @@ const Concerts = ({ concerts }: ConcertsProps) => {
   };
 
   return (
-    <section className="concerts-section bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-950 dark:to-neutral-900">
-      <div className="container-custom py-12 md:py-16 lg:py-20">
+    <section className="concerts-section section section-tint">
+      <div className="section-inner">
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="heading-2 text-muse-red dark:text-red-400 mb-6">Concerts</h2>
@@ -97,7 +97,7 @@ const Concerts = ({ concerts }: ConcertsProps) => {
                 return (
                   <div
                     key={concert.slug}
-                    className="bg-white dark:bg-neutral-900 rounded-2xl p-6 shadow-sm hover:shadow-md border border-neutral-200 dark:border-neutral-700 transition-all duration-300"
+                    className="card card-hover p-6"
                   >
                     <div className="flex flex-col md:flex-row md:items-center gap-4">
                       {/* Date */}

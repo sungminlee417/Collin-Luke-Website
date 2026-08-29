@@ -74,7 +74,16 @@ export default async function Home() {
         </ErrorBoundary>
 
         <ErrorBoundary fallback={<div className="min-h-[400px]" />}>
-          <Photos images={gallery} />
+          <Photos
+            images={gallery}
+            social={{
+              instagram: contact?.social?.instagram,
+              youtube: contact?.social?.youtube,
+              spotify: contact?.social?.spotify,
+              appleMusic: contact?.social?.appleMusic,
+              email: contact?.email,
+            }}
+          />
         </ErrorBoundary>
 
         <ErrorBoundary fallback={<div className="min-h-[400px]" />}>

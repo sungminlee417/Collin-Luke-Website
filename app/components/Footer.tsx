@@ -52,8 +52,8 @@ const Footer = ({ title, tagline, socialLinks }: FooterProps) => {
   }
 
   return (
-    <footer className="bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-t border-gray-200 dark:border-gray-700">
-      <div className="container-custom py-12">
+    <footer className="section-white border-t border-neutral-200 dark:border-neutral-800">
+      <div className="section-inner py-12">
         <div
           ref={row.ref}
           className={`flex flex-col md:flex-row items-center justify-between gap-8 transition-all duration-700 ease-out ${
@@ -71,10 +71,10 @@ const Footer = ({ title, tagline, socialLinks }: FooterProps) => {
               />
             </div>
             <div>
-              <p className="text-sm font-normal text-gray-800 dark:text-gray-200">
+              <p className="text-sm font-normal text-neutral-800 dark:text-neutral-200">
                 {title || 'The Muse Duo'}
               </p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">
+              <p className="text-xs text-neutral-500 dark:text-neutral-400">
                 © {year} All rights reserved
               </p>
             </div>
@@ -87,7 +87,7 @@ const Footer = ({ title, tagline, socialLinks }: FooterProps) => {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`text-gray-600 dark:text-gray-400 hover:text-muse-red dark:hover:text-red-400
+                className={`text-neutral-600 dark:text-neutral-400 hover:text-muse-red dark:hover:text-red-400
                             hover:scale-125 hover:rotate-6 active:scale-90
                             transition-all duration-300 ease-out ${
                               row.inView ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
@@ -103,12 +103,12 @@ const Footer = ({ title, tagline, socialLinks }: FooterProps) => {
 
         <div
           ref={tag.ref}
-          className={`mt-8 pt-8 border-t border-gray-200 text-center transition-opacity duration-700 ${
+          className={`mt-8 pt-8 border-t border-neutral-200 dark:border-neutral-800 text-center transition-opacity duration-700 ${
             tag.inView ? 'opacity-100' : 'opacity-0'
           }`}
           style={{ transitionDelay: '300ms' }}
         >
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">
             {tagline || 'Classical music reimagined for modern audiences'}
           </p>
         </div>

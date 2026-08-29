@@ -28,7 +28,7 @@ export class ErrorBoundary extends Component<Props, State> {
       if (this.props.fallback) return this.props.fallback
 
       return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 px-4 animate-[fadeIn_400ms_ease-out]">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800 px-4 animate-[fadeIn_400ms_ease-out]">
           <div className="text-center max-w-md">
             <div className="mb-8 animate-[popIn_400ms_cubic-bezier(0.34,1.56,0.64,1)_200ms_backwards]">
               <svg
@@ -42,11 +42,11 @@ export class ErrorBoundary extends Component<Props, State> {
               </svg>
             </div>
 
-            <h1 className="text-3xl font-light text-gray-900 dark:text-gray-100 mb-4 animate-[fadeIn_300ms_ease-out_300ms_backwards]">
+            <h1 className="text-3xl font-light text-neutral-900 dark:text-neutral-100 mb-4 animate-[fadeIn_300ms_ease-out_300ms_backwards]">
               Something went wrong
             </h1>
 
-            <p className="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed animate-[fadeIn_300ms_ease-out_400ms_backwards]">
+            <p className="text-neutral-600 dark:text-neutral-400 mb-8 leading-relaxed animate-[fadeIn_300ms_ease-out_400ms_backwards]">
               We apologize for the inconvenience. Please try refreshing the page or contact us if the problem persists.
             </p>
 
@@ -61,10 +61,10 @@ export class ErrorBoundary extends Component<Props, State> {
 
               {process.env.NODE_ENV === 'development' && this.state.error && (
                 <details className="mt-8 text-left">
-                  <summary className="cursor-pointer text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
+                  <summary className="cursor-pointer text-sm text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-300">
                     Show Error Details
                   </summary>
-                  <pre className="mt-4 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg text-xs text-gray-700 dark:text-gray-300 overflow-auto">
+                  <pre className="mt-4 p-4 bg-neutral-100 dark:bg-neutral-800 rounded-lg text-xs text-neutral-700 dark:text-neutral-300 overflow-auto">
                     {this.state.error.stack}
                   </pre>
                 </details>

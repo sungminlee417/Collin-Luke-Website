@@ -20,7 +20,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-player": "^2.12.0",
-    "react-social-media-embed": "^2.5.13",
     "sanity": "^3.99.0",
     "sharp": "^0.33.2",
     "styled-components": "^6.5.3"

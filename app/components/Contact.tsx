@@ -37,8 +37,8 @@ const Contact = ({ data }: ContactProps) => {
   };
 
   return (
-    <section className="contact-section relative">
-      <div className="container-custom section-padding">
+    <section className="contact-section section section-tint">
+      <div className="section-inner">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           <div
             ref={left.ref}
@@ -50,7 +50,7 @@ const Contact = ({ data }: ContactProps) => {
               <h2 className="heading-2 text-muse-red dark:text-red-400 mb-4">
                 {data?.title || "Connect with us!"}
               </h2>
-              <p className="text-gray-600 dark:text-gray-300 text-lg mb-2">
+              <p className="text-neutral-600 dark:text-neutral-300 text-lg mb-2">
                 {data?.subtitle || "We'd love to hear from you"}
               </p>
               <a
@@ -86,7 +86,7 @@ const Contact = ({ data }: ContactProps) => {
                 <div>
                   <label
                     htmlFor="subject"
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                    className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2"
                   >
                     Subject
                   </label>
@@ -104,7 +104,7 @@ const Contact = ({ data }: ContactProps) => {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                    className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2"
                   >
                     Message
                   </label>
@@ -177,7 +177,7 @@ const Contact = ({ data }: ContactProps) => {
                   href={data.social.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 bg-gray-100 dark:bg-gray-700 rounded-full hover:bg-muse-red hover:text-white
+                  className="p-3 bg-neutral-100 dark:bg-neutral-700 rounded-full hover:bg-muse-red hover:text-white
                              hover:scale-110 hover:rotate-6 active:scale-90 transition-all duration-300"
                   aria-label="Instagram"
                 >
@@ -191,7 +191,7 @@ const Contact = ({ data }: ContactProps) => {
                   href={data.social.youtube}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 bg-gray-100 dark:bg-gray-700 rounded-full hover:bg-muse-red hover:text-white
+                  className="p-3 bg-neutral-100 dark:bg-neutral-700 rounded-full hover:bg-muse-red hover:text-white
                              hover:scale-110 hover:-rotate-6 active:scale-90 transition-all duration-300"
                   aria-label="YouTube"
                 >

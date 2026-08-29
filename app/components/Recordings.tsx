@@ -38,8 +38,8 @@ const Recordings: React.FC<RecordingsProps> = ({ recordings }) => {
   const current = currentSlide === 0 ? null : recordings[currentSlide - 1];
 
   return (
-    <section className="recordings-section bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
-      <div className="container-custom section-padding px-4 sm:px-6 lg:px-8">
+    <section className="recordings-section section section-white">
+      <div className="section-inner">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16 items-center min-w-0">
           <div
             ref={left.ref}
@@ -67,19 +67,19 @@ const Recordings: React.FC<RecordingsProps> = ({ recordings }) => {
                     />
                   </div>
                   <div className="flex-1 min-w-0 text-center sm:text-left">
-                    <h3 className="font-normal text-gray-900 dark:text-gray-100 truncate">
+                    <h3 className="font-normal text-neutral-900 dark:text-neutral-100 truncate">
                       Experiments
                     </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-300 truncate">
+                    <p className="text-sm text-neutral-600 dark:text-neutral-300 truncate">
                       Debut Album
                     </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">2023</p>
+                    <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">2023</p>
                   </div>
                 </div>
               </a>
 
               <div className="space-y-4">
-                <div className="text-sm text-gray-600 dark:text-gray-300">
+                <div className="text-sm text-neutral-600 dark:text-neutral-300">
                   <p className="mb-2">Featured tracks from our debut album:</p>
                   <ul className="space-y-1 text-xs">
                     <li>• &ldquo;a sense of loss&rdquo; - 4:31</li>
@@ -88,7 +88,7 @@ const Recordings: React.FC<RecordingsProps> = ({ recordings }) => {
                     <li>• &ldquo;crUde prelUdes, 1&rdquo; - 10:20</li>
                     <li>• &ldquo;Cereusle&rdquo; - 9:28</li>
                   </ul>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                  <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-2">
                     15 tracks • 51 minutes total
                   </p>
                 </div>
@@ -136,8 +136,8 @@ const Recordings: React.FC<RecordingsProps> = ({ recordings }) => {
                   </button>
                 </div>
 
-                <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">
+                <div className="pt-4 border-t border-neutral-200 dark:border-neutral-700">
+                  <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-2">
                     Available on:
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -145,7 +145,7 @@ const Recordings: React.FC<RecordingsProps> = ({ recordings }) => {
                       href="https://open.spotify.com/album/06Q4h44XDIYrpE0EbGAFMy"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-gray-600 dark:text-gray-300 px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded hover:bg-green-500 hover:text-white transition-colors"
+                      className="text-xs text-neutral-600 dark:text-neutral-300 px-2 py-1 bg-neutral-100 dark:bg-neutral-700 rounded hover:bg-green-500 hover:text-white transition-colors"
                     >
                       Spotify
                     </a>
@@ -153,7 +153,7 @@ const Recordings: React.FC<RecordingsProps> = ({ recordings }) => {
                       href="https://music.apple.com/us/album/experiments/1679950066"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-gray-600 dark:text-gray-300 px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded hover:bg-gray-800 hover:text-white transition-colors"
+                      className="text-xs text-neutral-600 dark:text-neutral-300 px-2 py-1 bg-neutral-100 dark:bg-neutral-700 rounded hover:bg-neutral-800 hover:text-white transition-colors"
                     >
                       Apple Music
                     </a>
@@ -206,16 +206,16 @@ const Recordings: React.FC<RecordingsProps> = ({ recordings }) => {
                     />
                   </div>
                   <div className="mt-4 text-center">
-                    <h3 className="text-xl font-normal text-gray-900 dark:text-gray-100">
+                    <h3 className="text-xl font-normal text-neutral-900 dark:text-neutral-100">
                       {current.title}
                     </h3>
                   </div>
                 </div>
               ) : (
-                <div className="aspect-video bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-2xl flex items-center justify-center">
+                <div className="aspect-video bg-neutral-100 dark:bg-neutral-800 rounded-2xl flex items-center justify-center">
                   <div className="text-center p-8">
                     <svg
-                      className="w-16 h-16 mx-auto text-gray-400 dark:text-gray-500 mb-4"
+                      className="w-16 h-16 mx-auto text-neutral-400 dark:text-neutral-500 mb-4"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -227,13 +227,13 @@ const Recordings: React.FC<RecordingsProps> = ({ recordings }) => {
                         d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
                       />
                     </svg>
-                    <h3 className="text-lg font-normal text-gray-700 dark:text-gray-300 mb-2">
+                    <h3 className="text-lg font-normal text-neutral-700 dark:text-neutral-300 mb-2">
                       Video Recordings
                     </h3>
-                    <p className="text-gray-500 dark:text-gray-400 text-sm mb-4">
+                    <p className="text-neutral-500 dark:text-neutral-400 text-sm mb-4">
                       Live performance recordings and studio sessions coming soon
                     </p>
-                    <p className="text-xs text-gray-400 dark:text-gray-500">
+                    <p className="text-xs text-neutral-400 dark:text-neutral-500">
                       Check our social media for the latest video content
                     </p>
                   </div>
@@ -252,7 +252,7 @@ const Recordings: React.FC<RecordingsProps> = ({ recordings }) => {
                   className={`h-2 rounded-full transition-all duration-300 ${
                     currentSlide === index
                       ? "w-8 bg-muse-red"
-                      : "w-2 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500"
+                      : "w-2 bg-neutral-300 dark:bg-neutral-600 hover:bg-neutral-400 dark:hover:bg-neutral-500"
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />

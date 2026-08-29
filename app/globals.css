@@ -12,15 +12,10 @@
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   }
 
-  html {
-    /* scroll-behavior: smooth; */
-  }
-
   body {
-    @apply font-body overflow-x-hidden antialiased text-neutral-900
-           bg-gradient-to-br from-neutral-50 via-white to-neutral-100
-           dark:bg-gradient-to-br dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-800
-           dark:text-neutral-100;
+    @apply font-body overflow-x-hidden antialiased
+           text-neutral-900 dark:text-neutral-100
+           bg-neutral-50 dark:bg-neutral-950;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -29,8 +24,7 @@
     line-height: 1.6;
     font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   }
-  
-  /* Force font loading and prevent FOUT */
+
   .font-candu {
     font-family: 'Candu-Condensed', Impact, 'Arial Narrow', Arial, system-ui, sans-serif !important;
     -webkit-text-size-adjust: 100%;
@@ -44,168 +38,140 @@
 }
 
 @layer components {
-  .container-custom {
-    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  /* Layout primitives — use everywhere for consistent rhythm */
+  .section {
+    @apply py-16 md:py-24 lg:py-28;
   }
 
-  .section-padding {
-    @apply py-12 md:py-16 lg:py-20;
+  .section-inner {
+    @apply mx-auto max-w-6xl px-4 sm:px-6 lg:px-8;
   }
 
+  /* Two alternating tones. No gradients. */
+  .section-white {
+    @apply bg-white dark:bg-neutral-950;
+  }
+
+  .section-tint {
+    @apply bg-neutral-50 dark:bg-neutral-900;
+  }
+
+  /* Section header pattern — used by every section */
+  .section-eyebrow {
+    @apply text-xs md:text-sm font-medium tracking-[0.2em] uppercase
+           text-muse-red dark:text-red-400 mb-3;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-display font-light tracking-tight
+           text-neutral-900 dark:text-neutral-50;
+  }
+
+  .section-lead {
+    @apply mt-4 text-base md:text-lg text-neutral-600 dark:text-neutral-400
+           max-w-2xl;
+  }
+
+  /* Legacy heading utilities — kept for gradual migration but simplified */
   .heading-1 {
-    @apply text-4xl md:text-6xl lg:text-8xl font-display font-light tracking-tighter
-           bg-gradient-to-r from-neutral-900 via-accent-600 to-neutral-900 
-           dark:from-neutral-100 dark:via-accent-400 dark:to-neutral-100
-           bg-clip-text text-transparent leading-none;
+    @apply text-4xl md:text-6xl lg:text-7xl font-display font-light tracking-tighter
+           text-neutral-900 dark:text-neutral-50 leading-none;
   }
 
   .heading-2 {
-    @apply text-3xl md:text-5xl lg:text-7xl font-display font-light tracking-tight
-           text-neutral-900 dark:text-neutral-100;
+    @apply section-title;
   }
 
   .heading-3 {
-    @apply text-2xl md:text-4xl lg:text-5xl font-display font-light tracking-tight
-           text-neutral-800 dark:text-neutral-200;
+    @apply text-xl md:text-2xl font-display font-light tracking-tight
+           text-neutral-800 dark:text-neutral-100;
   }
 
   .heading-4 {
-    @apply text-xl md:text-2xl lg:text-3xl font-display font-medium tracking-tight
-           text-neutral-700 dark:text-neutral-300;
+    @apply text-lg md:text-xl font-display font-medium tracking-tight
+           text-neutral-700 dark:text-neutral-200;
   }
 
+  /* One card. Use everywhere. */
+  .card {
+    @apply bg-white dark:bg-neutral-900
+           border border-neutral-200 dark:border-neutral-800
+           rounded-2xl shadow-sm
+           transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply hover:shadow-md hover:border-neutral-300 dark:hover:border-neutral-700;
+  }
+
+  /* Legacy card alias — same as .card so old markup keeps working */
+  .card-modern {
+    @apply card;
+  }
+
+  /* Buttons */
   .btn-primary {
-    @apply px-8 py-4 bg-gradient-to-r from-accent-500 to-accent-600 
-           hover:from-accent-600 hover:to-accent-700 text-white font-medium
-           rounded-2xl shadow-lg shadow-accent-500/25 hover:shadow-xl hover:shadow-accent-500/40
-           transition-all duration-500 hover:-translate-y-1 hover:scale-105 active:scale-95 
-           focus:outline-none focus:ring-4 focus:ring-accent-500/30
-           backdrop-blur-sm border border-accent-500/20;
+    @apply inline-flex items-center justify-center gap-2
+           px-6 py-3 rounded-full
+           bg-muse-red text-white font-medium
+           hover:bg-red-700 active:scale-95
+           transition-all duration-200
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-muse-red/40 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral-950;
   }
 
   .btn-secondary {
-    @apply px-8 py-4 bg-white/10 dark:bg-neutral-800/50 
-           hover:bg-white/20 dark:hover:bg-neutral-700/50 
-           border border-neutral-300 dark:border-neutral-600
-           text-neutral-700 dark:text-neutral-300 font-medium
-           rounded-2xl backdrop-blur-sm
-           transition-all duration-500 hover:-translate-y-1 hover:scale-105 active:scale-95 
-           focus:outline-none focus:ring-4 focus:ring-neutral-500/30;
+    @apply inline-flex items-center justify-center gap-2
+           px-6 py-3 rounded-full
+           bg-neutral-100 dark:bg-neutral-800
+           text-neutral-800 dark:text-neutral-100 font-medium
+           border border-neutral-200 dark:border-neutral-700
+           hover:bg-neutral-200 dark:hover:bg-neutral-700 active:scale-95
+           transition-all duration-200
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400/40 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral-950;
   }
 
   .btn-ghost {
-    @apply px-6 py-3 text-neutral-600 dark:text-neutral-400 font-medium
-           hover:text-accent-600 dark:hover:text-accent-400
-           transition-all duration-300 hover:scale-105 active:scale-95
-           focus:outline-none;
+    @apply inline-flex items-center gap-2 px-3 py-2
+           text-neutral-600 dark:text-neutral-400 font-medium
+           hover:text-muse-red dark:hover:text-red-400
+           transition-colors duration-200
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-muse-red/40 rounded-md;
   }
 
-  .card-modern {
-    @apply bg-white/10 dark:bg-neutral-900/20 backdrop-blur-xl rounded-2xl 
-           border border-white/20 dark:border-neutral-700/30
-           shadow-2xl shadow-neutral-900/5 dark:shadow-black/20
-           hover:shadow-2xl hover:shadow-neutral-900/10 dark:hover:shadow-black/40
-           hover:bg-white/20 dark:hover:bg-neutral-800/30
-           transition-all duration-700 overflow-hidden 
-           hover:-translate-y-2 hover:scale-[1.02];
-  }
-
-  .card-glass {
-    @apply bg-white/5 dark:bg-black/10 backdrop-blur-2xl rounded-3xl 
-           border border-white/10 dark:border-white/5
-           shadow-xl shadow-black/5 dark:shadow-black/20
-           transition-all duration-500;
-  }
-
-  .card-elevated {
-    @apply bg-white dark:bg-neutral-900 rounded-2xl
-           shadow-xl shadow-neutral-900/10 dark:shadow-black/30
-           border border-neutral-200/50 dark:border-neutral-700/50
-           hover:shadow-2xl hover:shadow-neutral-900/20 dark:hover:shadow-black/50
-           transition-all duration-500 hover:-translate-y-1;
-  }
-
-  .glass-effect {
-    @apply backdrop-blur-xl bg-white/70 dark:bg-gray-900/60 
-           border border-white/30 dark:border-gray-700/30
-           shadow-lg dark:shadow-gray-900/20;
-  }
-
-  .text-gradient {
-    @apply bg-gradient-to-r from-muse-red to-red-700 bg-clip-text text-transparent;
-  }
-
-  .scrollbar-thin::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  .scrollbar-thumb-muse-red\/30::-webkit-scrollbar-thumb {
-    background-color: rgba(238, 46, 49, 0.3);
-    border-radius: 3px;
-  }
-
-  .scrollbar-track-gray-100::-webkit-scrollbar-track {
-    background-color: #f5f5f5;
-    border-radius: 3px;
-  }
-
-  .images-slider .swiper-slide {
-    @apply opacity-50 transition-opacity duration-300;
-  }
-
-  .images-slider .swiper-slide-thumb-active {
-    @apply opacity-100;
-  }
-
-  .nav-link {
-    @apply relative text-muse-gray hover:text-muse-red transition-colors duration-300
-           after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 
-           after:bg-muse-red after:transition-all after:duration-300 
-           hover:after:w-full;
-  }
-
+  /* Form fields */
   .input-modern {
-    @apply w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600
-           bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100
-           focus:border-muse-red dark:focus:border-red-400 focus:ring-2 focus:ring-muse-red/20 dark:focus:ring-red-500/20
-           transition-all duration-300 outline-none;
+    @apply w-full px-4 py-3 rounded-lg
+           border border-neutral-300 dark:border-neutral-700
+           bg-white dark:bg-neutral-900
+           text-neutral-900 dark:text-neutral-100
+           placeholder:text-neutral-400 dark:placeholder:text-neutral-500
+           focus:border-muse-red dark:focus:border-red-400
+           focus:ring-2 focus:ring-muse-red/20 dark:focus:ring-red-500/20
+           outline-none transition-colors duration-200;
   }
 
   .textarea-modern {
-    @apply w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600
-           bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100
-           focus:border-muse-red dark:focus:border-red-400 focus:ring-2 focus:ring-muse-red/20 dark:focus:ring-red-500/20
-           transition-all duration-300 outline-none resize-none;
+    @apply input-modern resize-none;
   }
 
-  .instagram-embed-container {
-    @apply flex-1;
-  }
-
-  .instagram-embed-container iframe {
-    @apply w-full rounded-t-2xl;
-  }
-
-  /* Dark mode filter for Instagram embed iframe */
+  /* Instagram embed dark-mode tint */
   .dark .instagram-embed-container iframe {
     filter: brightness(0.9) contrast(1.1);
+  }
+
+  /* Legacy — kept because Navigation uses .container-custom in a few places */
+  .container-custom {
+    @apply section-inner;
+  }
+  .section-padding {
+    @apply section;
   }
 }
 
 @layer utilities {
-  /* Performance optimizations for animations */
-  .will-change-transform {
-    will-change: transform;
-  }
-
-  /* Shimmer animation for loading states */
   @keyframes shimmer {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(100%);
-    }
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
   }
 
   @keyframes fadeIn {
@@ -222,32 +188,13 @@
     0%, 100% { transform: translateY(0); }
     50%      { transform: translateY(5px); }
   }
-  
-  .will-change-opacity {
-    will-change: opacity;
-  }
-  
-  .will-change-auto {
-    will-change: auto;
-  }
-  
-  .animate-on-scroll {
-    animation: slideUp 0.6s ease-out;
-  }
 
-  .hover-lift {
-    @apply transition-transform duration-300 hover:-translate-y-2;
-  }
+  .will-change-transform { will-change: transform; }
+  .will-change-opacity   { will-change: opacity; }
+  .will-change-auto      { will-change: auto; }
 
-  .text-balance {
-    text-wrap: balance;
-  }
-  
-  /* Accessibility utilities */
-  .focus-visible-only {
-    @apply outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-muse-red/50 focus-visible:ring-offset-2;
-  }
-  
+  .text-balance { text-wrap: balance; }
+
   .sr-only {
     position: absolute;
     width: 1px;
@@ -259,7 +206,7 @@
     white-space: nowrap;
     border: 0;
   }
-  
+
   .not-sr-only {
     position: static;
     width: auto;
@@ -270,83 +217,9 @@
     clip: auto;
     white-space: normal;
   }
-  
-  /* Touch-friendly sizes */
+
   .touch-target {
     @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
-  }
-  
-  /* Improved scrollbar for webkit browsers */
-  .scrollbar-thin {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(238, 46, 49, 0.3) transparent;
-  }
-  
-  .scrollbar-thin::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-  
-  .scrollbar-thin::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  
-  .scrollbar-thin::-webkit-scrollbar-thumb {
-    background-color: rgba(238, 46, 49, 0.3);
-    border-radius: 3px;
-    border: none;
-  }
-  
-  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(238, 46, 49, 0.5);
-  }
-  
-  /* Hide scrollbar but keep functionality */
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-  
-  /* Performance optimization for large lists */
-  .gpu-acceleration {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-  }
-  
-  /* Smooth scrolling with reduced motion support */
-  .smooth-scroll {
-    scroll-behavior: smooth;
-  }
-  
-  @media (prefers-reduced-motion: reduce) {
-    .smooth-scroll {
-      scroll-behavior: auto;
-    }
-  }
-  
-  /* Container query utilities for responsive components */
-  .container-inline-size {
-    container-type: inline-size;
-  }
-  
-  /* Force sticky positioning class */
-  .force-sticky {
-    position: -webkit-sticky !important;
-    position: sticky !important;
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
   }
 }
 
@@ -356,7 +229,6 @@
   }
 }
 
-/* Mobile-specific font optimizations */
 @media screen and (max-width: 768px) {
   body, .font-candu {
     -webkit-font-smoothing: antialiased;

@@ -83,11 +83,11 @@ const Navigation = ({ menuItems }: NavigationProps) => {
 
           <button
             onClick={() => setShowMenu((v) => !v)}
-            className={`group relative h-16 w-16 rounded-3xl transition-all duration-500 hover:scale-110 active:scale-95
+            className={`group relative h-12 w-12 sm:h-14 sm:w-14 rounded-2xl transition-all duration-500 hover:scale-110 active:scale-95
                         ${
                           scrolled
-                            ? 'bg-white/90 dark:bg-neutral-900/90 backdrop-blur-xl shadow-xl border border-neutral-200/50 dark:border-neutral-700/50'
-                            : 'bg-white/70 dark:bg-neutral-900/70 backdrop-blur-2xl shadow-2xl border border-white/30 dark:border-neutral-700/30'
+                            ? 'bg-white/90 dark:bg-neutral-900/90 backdrop-blur-xl shadow-lg border border-neutral-200/50 dark:border-neutral-700/50'
+                            : 'bg-white/70 dark:bg-neutral-900/70 backdrop-blur-2xl shadow-xl border border-white/30 dark:border-neutral-700/30'
                         }`}
             aria-label="Toggle navigation menu"
             aria-expanded={showMenu}

@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { motion, AnimatePresence } from "framer-motion";
 import type { Recording } from "../../sanity/lib/types";
+import { useInView } from "../lib/useInView";
 
 const ReactPlayer = dynamic(() => import("react-player/youtube"), {
   ssr: false,
@@ -22,44 +22,39 @@ interface RecordingsProps {
 const Recordings: React.FC<RecordingsProps> = ({ recordings }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const left = useInView<HTMLDivElement>();
+  const right = useInView<HTMLDivElement>();
 
   const handlePreviousSlide = () => {
-    setCurrentSlide((prevSlide) =>
-      prevSlide === 0 ? recordings.length : prevSlide - 1
-    );
+    setCurrentSlide((prev) => (prev === 0 ? recordings.length : prev - 1));
     setIsPlaying(false);
   };
 
   const handleNextSlide = () => {
-    setCurrentSlide((prevSlide) =>
-      prevSlide === recordings.length ? 0 : prevSlide + 1
-    );
+    setCurrentSlide((prev) => (prev === recordings.length ? 0 : prev + 1));
     setIsPlaying(false);
   };
+
+  const current = currentSlide === 0 ? null : recordings[currentSlide - 1];
 
   return (
     <section className="recordings-section bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
       <div className="container-custom section-padding px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16 items-center min-w-0">
-          <motion.div
-            className="lg:col-span-1"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+          <div
+            ref={left.ref}
+            className={`lg:col-span-1 transition-all duration-700 ease-out ${
+              left.inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+            }`}
           >
-            <h2 className="heading-2 text-muse-red dark:text-red-400 mb-8">
-              Music
-            </h2>
+            <h2 className="heading-2 text-muse-red dark:text-red-400 mb-8">Music</h2>
 
             <div className="space-y-6">
-              <motion.a
+              <a
                 href="https://open.spotify.com/album/06Q4h44XDIYrpE0EbGAFMy"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="card-modern p-6 block cursor-pointer hover:shadow-xl"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                className="card-modern p-6 block cursor-pointer hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
               >
                 <div className="flex flex-col sm:flex-row items-center sm:items-center gap-4 min-w-0">
                   <div className="relative w-20 h-20 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 flex-shrink-0 rounded-lg overflow-hidden shadow-md">
@@ -68,6 +63,7 @@ const Recordings: React.FC<RecordingsProps> = ({ recordings }) => {
                       alt="Experiments Album"
                       fill
                       className="object-cover"
+                      sizes="96px"
                     />
                   </div>
                   <div className="flex-1 min-w-0 text-center sm:text-left">
@@ -80,17 +76,17 @@ const Recordings: React.FC<RecordingsProps> = ({ recordings }) => {
                     <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">2023</p>
                   </div>
                 </div>
-              </motion.a>
+              </a>
 
               <div className="space-y-4">
                 <div className="text-sm text-gray-600 dark:text-gray-300">
                   <p className="mb-2">Featured tracks from our debut album:</p>
                   <ul className="space-y-1 text-xs">
-                    <li>• "a sense of loss" - 4:31</li>
-                    <li>• "Guitar Sonata, Movement I" - 3:37</li>
-                    <li>• "Point and Counter" - 2:55</li>
-                    <li>• "crUde prelUdes, 1" - 10:20</li>
-                    <li>• "Cereusle" - 9:28</li>
+                    <li>• &ldquo;a sense of loss&rdquo; - 4:31</li>
+                    <li>• &ldquo;Guitar Sonata, Movement I&rdquo; - 3:37</li>
+                    <li>• &ldquo;Point and Counter&rdquo; - 2:55</li>
+                    <li>• &ldquo;crUde prelUdes, 1&rdquo; - 10:20</li>
+                    <li>• &ldquo;Cereusle&rdquo; - 9:28</li>
                   </ul>
                   <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
                     15 tracks • 51 minutes total
@@ -141,7 +137,9 @@ const Recordings: React.FC<RecordingsProps> = ({ recordings }) => {
                 </div>
 
                 <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Available on:</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">
+                    Available on:
+                  </p>
                   <div className="flex flex-wrap gap-2">
                     <a
                       href="https://open.spotify.com/album/06Q4h44XDIYrpE0EbGAFMy"
@@ -163,38 +161,21 @@ const Recordings: React.FC<RecordingsProps> = ({ recordings }) => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="lg:col-span-2 min-w-0"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+          <div
+            ref={right.ref}
+            className={`lg:col-span-2 min-w-0 transition-all duration-700 ease-out ${
+              right.inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
+            }`}
           >
-            <AnimatePresence mode="wait" custom={currentSlide}>
+            <div key={currentSlide} className="animate-[fadeIn_300ms_ease-out]">
               {currentSlide === 0 ? (
-                <motion.a
-                  key="album"
+                <a
                   href="https://open.spotify.com/album/06Q4h44XDIYrpE0EbGAFMy"
                   target="_blank"
                   rel="noopener noreferrer"
-                  initial={{ opacity: 0, x: 300 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -300 }}
-                  transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 30 }}
-                  drag="x"
-                  dragConstraints={{ left: 0, right: 0 }}
-                  dragElastic={0.2}
-                  onDragEnd={(e, { offset, velocity }) => {
-                    const swipe = Math.abs(offset.x) * velocity.x;
-                    if (swipe < -10000) {
-                      handleNextSlide();
-                    } else if (swipe > 10000) {
-                      handlePreviousSlide();
-                    }
-                  }}
-                  className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl w-full max-w-full mx-auto block cursor-pointer group touch-none"
+                  className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl w-full max-w-full mx-auto block cursor-pointer group"
                 >
                   <Image
                     src="/images/IMG_6718.jpg"
@@ -206,74 +187,32 @@ const Recordings: React.FC<RecordingsProps> = ({ recordings }) => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
                     <h3 className="text-3xl font-normal mb-2">Experiments</h3>
-                    <p className="text-lg opacity-90">
-                      The Muse Duo's Debut Album
-                    </p>
-                    <p className="text-sm opacity-75 mt-1">
-                      Released April 2023
-                    </p>
-                    <p className="text-sm opacity-75 mt-2">
-                      Click to listen on Spotify
-                    </p>
+                    <p className="text-lg opacity-90">The Muse Duo&apos;s Debut Album</p>
+                    <p className="text-sm opacity-75 mt-1">Released April 2023</p>
+                    <p className="text-sm opacity-75 mt-2">Click to listen on Spotify</p>
                   </div>
-                </motion.a>
-              ) : recordings[currentSlide - 1] ? (
-                <motion.div
-                  key={recordings[currentSlide - 1].slug}
-                  initial={{ opacity: 0, x: 300 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -300 }}
-                  transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 30 }}
-                  drag="x"
-                  dragConstraints={{ left: 0, right: 0 }}
-                  dragElastic={0.2}
-                  onDragEnd={(e, { offset, velocity }) => {
-                    const swipe = Math.abs(offset.x) * velocity.x;
-                    if (swipe < -10000) {
-                      handleNextSlide();
-                    } else if (swipe > 10000) {
-                      handlePreviousSlide();
-                    }
-                  }}
-                  className="relative touch-none"
-                >
+                </a>
+              ) : current ? (
+                <div>
                   <div className="rounded-2xl overflow-hidden shadow-2xl bg-black aspect-video">
                     <ReactPlayer
-                      url={recordings[currentSlide - 1].url}
+                      url={current.url}
                       width="100%"
                       height="100%"
                       playing={isPlaying}
                       controls
                       onPlay={() => setIsPlaying(true)}
                       onPause={() => setIsPlaying(false)}
-                      className="react-player"
                     />
                   </div>
                   <div className="mt-4 text-center">
                     <h3 className="text-xl font-normal text-gray-900 dark:text-gray-100">
-                      {recordings[currentSlide - 1].title}
+                      {current.title}
                     </h3>
                   </div>
-                </motion.div>
+                </div>
               ) : (
-                <motion.div
-                  initial={{ opacity: 0, x: 300 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -300 }}
-                  transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 30 }}
-                  drag="x"
-                  dragConstraints={{ left: 0, right: 0 }}
-                  dragElastic={0.2}
-                  onDragEnd={(e, { offset, velocity }) => {
-                    const swipe = Math.abs(offset.x) * velocity.x;
-                    if (swipe < -10000) {
-                      handleNextSlide();
-                    } else if (swipe > 10000) {
-                      handlePreviousSlide();
-                    }
-                  }}
-                  className="aspect-video bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-2xl flex items-center justify-center touch-none"
-                >
+                <div className="aspect-video bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-2xl flex items-center justify-center">
                   <div className="text-center p-8">
                     <svg
                       className="w-16 h-16 mx-auto text-gray-400 dark:text-gray-500 mb-4"
@@ -292,16 +231,15 @@ const Recordings: React.FC<RecordingsProps> = ({ recordings }) => {
                       Video Recordings
                     </h3>
                     <p className="text-gray-500 dark:text-gray-400 text-sm mb-4">
-                      Live performance recordings and studio sessions coming
-                      soon
+                      Live performance recordings and studio sessions coming soon
                     </p>
                     <p className="text-xs text-gray-400 dark:text-gray-500">
                       Check our social media for the latest video content
                     </p>
                   </div>
-                </motion.div>
+                </div>
               )}
-            </AnimatePresence>
+            </div>
 
             <div className="mt-6 flex justify-center gap-2">
               {[...Array(recordings.length + 1)].map((_, index) => (
@@ -311,16 +249,16 @@ const Recordings: React.FC<RecordingsProps> = ({ recordings }) => {
                     setCurrentSlide(index);
                     setIsPlaying(false);
                   }}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  className={`h-2 rounded-full transition-all duration-300 ${
                     currentSlide === index
                       ? "w-8 bg-muse-red"
-                      : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500"
+                      : "w-2 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500"
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

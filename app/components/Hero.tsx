@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
 import { urlForImage } from "../../sanity/lib/image";
 import type { HeroData } from "../../sanity/lib/types";
 
@@ -11,35 +10,55 @@ interface HeroProps {
 }
 
 const Hero = ({ data }: HeroProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollY } = useScroll();
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isLoaded, setIsLoaded] = useState(false);
+  const bgRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [logoLoaded, setLogoLoaded] = useState(false);
   const [showBackground, setShowBackground] = useState(false);
 
-  const y1 = useTransform(scrollY, [0, 1000], [0, -100]);
-
   useEffect(() => {
     if (logoLoaded && imageLoaded && !showBackground) {
-      const timer = setTimeout(() => {
-        setShowBackground(true);
-        setIsLoaded(true);
-      }, 800);
+      const timer = setTimeout(() => setShowBackground(true), 800);
       return () => clearTimeout(timer);
     }
   }, [logoLoaded, imageLoaded, showBackground]);
 
+  // Scroll parallax + mouse-tracked content shift, coalesced into one rAF.
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX - window.innerWidth / 2) / window.innerWidth,
-        y: (e.clientY - window.innerHeight / 2) / window.innerHeight,
-      });
+    let raf = 0;
+    let scrollY = 0;
+    let mouseX = 0;
+
+    const apply = () => {
+      raf = 0;
+      const bgOffset = Math.max(-100, -scrollY / 10);
+      if (bgRef.current) {
+        bgRef.current.style.transform = `translate3d(0, ${bgOffset}px, 0)`;
+      }
+      if (contentRef.current) {
+        contentRef.current.style.transform = `translate3d(${mouseX * 5}px, 0, 0)`;
+      }
     };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    const schedule = () => {
+      if (!raf) raf = requestAnimationFrame(apply);
+    };
+
+    const onScroll = () => {
+      scrollY = window.scrollY;
+      schedule();
+    };
+    const onMouse = (e: MouseEvent) => {
+      mouseX = (e.clientX - window.innerWidth / 2) / window.innerWidth;
+      schedule();
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("mousemove", onMouse, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("mousemove", onMouse);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, []);
 
   const scrollToAbout = () => {
@@ -60,13 +79,10 @@ const Hero = ({ data }: HeroProps) => {
   const ctaText = data?.ctaText ?? "Explore";
 
   return (
-    <section
-      ref={containerRef}
-      className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden"
-    >
-      <motion.div
-        className="absolute inset-0 -top-[100px] -bottom-[100px] z-0"
-        style={{ y: y1 }}
+    <section className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden">
+      <div
+        ref={bgRef}
+        className="absolute inset-0 -top-[100px] -bottom-[100px] z-0 will-change-transform"
       >
         {!showBackground && (
           <div className="absolute inset-0 bg-gradient-to-br from-neutral-800 via-neutral-900 to-neutral-950">
@@ -80,9 +96,7 @@ const Hero = ({ data }: HeroProps) => {
             alt={data?.backgroundAlt ?? "The Muse Duo Background"}
             fill
             className={`object-cover object-center transition-all duration-[1500ms] ease-out ${
-              showBackground
-                ? "opacity-100 scale-100"
-                : "opacity-0 scale-105"
+              showBackground ? "opacity-100 scale-100" : "opacity-0 scale-105"
             }`}
             priority
             quality={90}
@@ -91,49 +105,39 @@ const Hero = ({ data }: HeroProps) => {
           />
         )}
 
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-b from-neutral-900/20 via-transparent to-neutral-900/40"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: showBackground ? 1 : 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
+        <div
+          className={`absolute inset-0 bg-gradient-to-b from-neutral-900/20 via-transparent to-neutral-900/40 transition-opacity duration-1000 ${
+            showBackground ? "opacity-100" : "opacity-0"
+          }`}
+          style={{ transitionDelay: "500ms" }}
         />
-        <motion.div
-          className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-neutral-900/30"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: showBackground ? 1 : 0 }}
-          transition={{ duration: 1, delay: 0.7 }}
+        <div
+          className={`absolute inset-0 bg-gradient-radial from-transparent via-transparent to-neutral-900/30 transition-opacity duration-1000 ${
+            showBackground ? "opacity-100" : "opacity-0"
+          }`}
+          style={{ transitionDelay: "700ms" }}
         />
-        <motion.div
-          className="absolute inset-0 opacity-20 mix-blend-multiply"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: showBackground ? 0.2 : 0 }}
-          transition={{ duration: 1, delay: 1 }}
+        <div
+          className={`absolute inset-0 mix-blend-multiply transition-opacity duration-1000 ${
+            showBackground ? "opacity-20" : "opacity-0"
+          }`}
+          style={{ transitionDelay: "1000ms" }}
         >
           <div className="absolute inset-0 bg-gradient-to-br from-neutral-900/10 via-transparent to-accent-900/10" />
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
-      <div className="absolute inset-0 -z-10 bg-neutral-900"></div>
+      <div className="absolute inset-0 -z-10 bg-neutral-900" />
 
-      <motion.div
-        className="relative z-10 flex flex-col items-center md:items-start text-center md:text-left px-6 max-w-6xl mx-auto md:ml-16 lg:ml-24"
-        style={{ x: mousePosition.x * 5 }}
+      <div
+        ref={contentRef}
+        className="relative z-10 flex flex-col items-center md:items-start text-center md:text-left px-6 max-w-6xl mx-auto md:ml-16 lg:ml-24 will-change-transform"
       >
-        <motion.div
-          className="relative mb-12"
-          initial={{ scale: 0.8, opacity: 0, rotateY: -20 }}
-          animate={{
-            scale: logoLoaded ? 1 : 0.8,
-            opacity: logoLoaded ? 1 : 0,
-            rotateY: 0,
-          }}
-          transition={{
-            duration: 1.2,
-            delay: 0.3,
-            type: "spring",
-            stiffness: 100,
-            damping: 15,
-          }}
+        <div
+          className={`relative mb-12 transition-all duration-[1200ms] ease-out ${
+            logoLoaded ? "opacity-100 scale-100 rotate-y-0" : "opacity-0 scale-90"
+          }`}
+          style={{ transitionDelay: "300ms" }}
         >
           <div className="absolute inset-0 bg-white/90 dark:bg-white/95 blur-3xl rounded-full scale-150 -z-10" />
           <div className="absolute inset-0 bg-gradient-to-r from-accent-500/20 to-primary-500/20 blur-2xl rounded-full scale-125 -z-10 animate-glow" />
@@ -147,31 +151,27 @@ const Hero = ({ data }: HeroProps) => {
             priority
             onLoad={() => setLogoLoaded(true)}
           />
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
       {data?.showCta !== false && (
-        <motion.div
-          className="absolute bottom-8 left-1/2 z-10"
-          initial={{ opacity: 0, y: 20, x: "-50%" }}
-          animate={{ opacity: 1, y: 0, x: "-50%" }}
-          transition={{ duration: 0.8, delay: 3 }}
+        <div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 opacity-0 animate-[fadeIn_800ms_ease-out_3s_forwards]"
         >
-          <motion.button
+          <button
             onClick={scrollToAbout}
-            className="flex flex-col items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-accent-500 dark:hover:text-accent-400 transition-colors duration-300"
-            whileHover={{ y: -5 }}
+            className="flex flex-col items-center gap-2 text-neutral-600 dark:text-neutral-400
+                       hover:text-accent-500 dark:hover:text-accent-400 hover:-translate-y-1
+                       transition-all duration-300"
           >
             <span className="text-xs font-medium tracking-wider uppercase">
               {ctaText}
             </span>
-            <motion.svg
-              className="w-6 h-6"
+            <svg
+              className="w-6 h-6 animate-[bounceY_2s_ease-in-out_infinite]"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
-              animate={{ y: [0, 5, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             >
               <path
                 strokeLinecap="round"
@@ -179,9 +179,9 @@ const Hero = ({ data }: HeroProps) => {
                 strokeWidth={2}
                 d="M19 14l-7 7m0 0l-7-7m7 7V3"
               />
-            </motion.svg>
-          </motion.button>
-        </motion.div>
+            </svg>
+          </button>
+        </div>
       )}
     </section>
   );

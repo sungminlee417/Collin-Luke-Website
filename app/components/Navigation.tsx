@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useEffect, useState, useMemo } from 'react'
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion'
 import { ThemeToggle } from './ThemeToggle'
 import type { MenuItem } from '../../sanity/lib/types'
 
@@ -21,8 +20,6 @@ interface NavigationProps {
 const Navigation = ({ menuItems }: NavigationProps) => {
   const [showMenu, setShowMenu] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [, setActiveSection] = useState('')
-  const { scrollY } = useScroll()
 
   const items = useMemo(
     () =>
@@ -32,82 +29,68 @@ const Navigation = ({ menuItems }: NavigationProps) => {
     [menuItems]
   )
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    setScrolled(latest > 50)
-  })
+  useEffect(() => {
+    let ticking = false
+    const onScroll = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 50)
+        ticking = false
+      })
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   useEffect(() => {
-    if (showMenu) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'unset'
-    }
+    document.body.style.overflow = showMenu ? 'hidden' : ''
     return () => {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = ''
     }
   }, [showMenu])
 
-  // Track active section
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = items.map(section => ({
-        name: section.section,
-        element: document.querySelector(`.${section.section}-section`)
-      }))
-
-      const scrollPosition = window.scrollY + window.innerHeight / 3
-
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i]
-        if (section.element) {
-          const rect = section.element.getBoundingClientRect()
-          const elementTop = rect.top + window.scrollY
-          
-          if (scrollPosition >= elementTop) {
-            setActiveSection(section.name)
-            break
-          }
-        }
-      }
+    if (!showMenu) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setShowMenu(false)
     }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [items])
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [showMenu])
 
   const scrollSmoothlyTo = (className: string) => {
     setShowMenu(false)
     setTimeout(() => {
-      const element = document.querySelector(`.${className}`)
-      element?.scrollIntoView({
-        block: 'start',
-        behavior: 'smooth',
-      })
+      document
+        .querySelector(`.${className}`)
+        ?.scrollIntoView({ block: 'start', behavior: 'smooth' })
     }, 300)
   }
 
   return (
     <>
-      {/* Navigation Button */}
-      <div className={`fixed z-50 transition-all duration-700 ${
-        scrolled 
-          ? 'top-4 right-4' 
-          : 'top-6 right-6'
-      }`}>
+      <div
+        className={`fixed z-50 transition-all duration-700 ${
+          scrolled ? 'top-4 right-4' : 'top-6 right-6'
+        }`}
+      >
         <div className="flex gap-3 items-center">
           <div className="transition-transform duration-200 hover:scale-110 active:scale-90">
             <ThemeToggle />
           </div>
-          
+
           <button
-            onClick={() => setShowMenu(!showMenu)}
-            className={`group relative h-16 w-16 rounded-3xl transition-all duration-500
-                       ${scrolled 
-                         ? 'bg-white/90 dark:bg-neutral-900/90 backdrop-blur-xl shadow-xl border border-neutral-200/50 dark:border-neutral-700/50' 
-                         : 'bg-white/70 dark:bg-neutral-900/70 backdrop-blur-2xl shadow-2xl border border-white/30 dark:border-neutral-700/30'
-                       }
-                       hover:scale-110 active:scale-95`}
+            onClick={() => setShowMenu((v) => !v)}
+            className={`group relative h-16 w-16 rounded-3xl transition-all duration-500 hover:scale-110 active:scale-95
+                        ${
+                          scrolled
+                            ? 'bg-white/90 dark:bg-neutral-900/90 backdrop-blur-xl shadow-xl border border-neutral-200/50 dark:border-neutral-700/50'
+                            : 'bg-white/70 dark:bg-neutral-900/70 backdrop-blur-2xl shadow-2xl border border-white/30 dark:border-neutral-700/30'
+                        }`}
             aria-label="Toggle navigation menu"
+            aria-expanded={showMenu}
           >
             <div className="relative w-6 h-6 mx-auto">
               <span
@@ -130,64 +113,40 @@ const Navigation = ({ menuItems }: NavigationProps) => {
         </div>
       </div>
 
-      {/* Navigation Menu */}
-      <AnimatePresence>
-        {showMenu && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              className="fixed inset-0 bg-neutral-900/80 backdrop-blur-md z-40"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={() => setShowMenu(false)}
-            />
-            
-            {/* Navigation Panel */}
-            <motion.nav
-              className="fixed inset-0 z-40 flex items-center justify-center"
-              initial={{ clipPath: "circle(0% at calc(100% - 4rem) 4rem)" }}
-              animate={{ clipPath: "circle(150% at calc(100% - 4rem) 4rem)" }}
-              exit={{ clipPath: "circle(0% at calc(100% - 4rem) 4rem)" }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              onClick={(e) => e.stopPropagation()}
+      <div
+        className={`fixed inset-0 z-40 bg-neutral-900/80 backdrop-blur-md transition-opacity duration-300 ${
+          showMenu ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={() => setShowMenu(false)}
+        aria-hidden={!showMenu}
+      />
+
+      <nav
+        className="fixed inset-0 z-40 flex items-center justify-center transition-[clip-path] duration-500 ease-in-out"
+        style={{
+          clipPath: showMenu
+            ? 'circle(150% at calc(100% - 4rem) 4rem)'
+            : 'circle(0% at calc(100% - 4rem) 4rem)',
+          pointerEvents: showMenu ? 'auto' : 'none',
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-accent-500 via-accent-600 to-accent-700" />
+
+        <div className="relative z-10 flex flex-col items-center gap-4 max-w-lg mx-auto px-8">
+          {items.map((section, i) => (
+            <button
+              key={section.section}
+              className={`text-white font-display font-light text-2xl md:text-3xl tracking-wide
+                          hover:text-white/80 hover:translate-x-2 transition-all duration-300 ease-out
+                          ${showMenu ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}
+              style={{ transitionDelay: showMenu ? `${i * 80}ms` : '0ms' }}
+              onClick={() => scrollSmoothlyTo(`${section.section}-section`)}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-accent-500 via-accent-600 to-accent-700" />
-              
-
-              {/* Menu Items */}
-              <div className="relative z-10 flex flex-col items-center gap-4 max-w-lg mx-auto px-8">
-                {items.map((section, i) => (
-                  <motion.button
-                    key={section.section}
-                    className="text-white font-display font-light text-2xl md:text-3xl tracking-wide hover:text-white/80 transition-all duration-300 hover:translate-x-2"
-                    onClick={() => scrollSmoothlyTo(`${section.section}-section`)}
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.08, duration: 0.3, ease: "easeOut" }}
-                  >
-                    {section.label}
-                  </motion.button>
-                ))}
-              </div>
-            </motion.nav>
-          </>
-        )}
-      </AnimatePresence>
-
-      {/* Keyboard navigation */}
-      {showMenu && (
-        <div
-          onKeyDown={(e) => {
-            if (e.key === 'Escape') {
-              setShowMenu(false)
-            }
-          }}
-          tabIndex={-1}
-          className="sr-only"
-        />
-      )}
+              {section.label}
+            </button>
+          ))}
+        </div>
+      </nav>
     </>
   )
 }

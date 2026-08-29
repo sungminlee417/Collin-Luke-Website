@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import { urlForImage } from "../../sanity/lib/image";
@@ -11,7 +11,6 @@ interface AboutProps {
 }
 
 const About = ({ data }: AboutProps) => {
-  const contentRef = useRef<HTMLDivElement>(null);
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const profileUrl = data?.profileImage
@@ -55,7 +54,7 @@ const About = ({ data }: AboutProps) => {
           </div>
         </div>
 
-        <div className="w-full md:w-3/5" ref={contentRef}>
+        <div className="w-full md:w-3/5">
           <h2 className="heading-2 text-muse-red dark:text-red-400 mb-8">
             {data?.title || "About"}
           </h2>

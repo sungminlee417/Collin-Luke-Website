@@ -1,55 +1,36 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion'
 import { ThemeToggle } from './ThemeToggle'
+import type { MenuItem } from '../../sanity/lib/types'
 
-interface MenuItem {
-  label: string;
-  section: string;
-  order: number;
+const DEFAULT_SECTIONS: MenuItem[] = [
+  { label: 'About', section: 'about', order: 1 },
+  { label: 'Concerts', section: 'concerts', order: 2 },
+  { label: 'Music', section: 'recordings', order: 3 },
+  { label: 'Gallery', section: 'photos', order: 4 },
+  { label: 'Press', section: 'press', order: 5 },
+  { label: 'Contact', section: 'contact', order: 6 },
+]
+
+interface NavigationProps {
+  menuItems?: MenuItem[]
 }
 
-interface NavigationData {
-  menuItems: MenuItem[];
-  showLogo: boolean;
-}
-
-const Navigation = () => {
+const Navigation = ({ menuItems }: NavigationProps) => {
   const [showMenu, setShowMenu] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [, setActiveSection] = useState('')
-  const [navigationData, setNavigationData] = useState<NavigationData | null>(null)
   const { scrollY } = useScroll()
 
-  // Default sections as fallback
-  const defaultSections = [
-    { label: 'About', section: 'about', order: 1 },
-    { label: 'Concerts', section: 'concerts', order: 2 },
-    { label: 'Music', section: 'recordings', order: 3 },
-    { label: 'Gallery', section: 'photos', order: 4 },
-    { label: 'Press', section: 'press', order: 5 },
-    { label: 'Contact', section: 'contact', order: 6 },
-  ]
-
-  useEffect(() => {
-    const fetchNavigationData = async () => {
-      try {
-        const response = await fetch('/api/settings?type=navigation');
-        const data = await response.json();
-        setNavigationData(data);
-      } catch (error) {
-        console.error('Error loading navigation data:', error);
-        // Use fallback data
-        setNavigationData({
-          menuItems: defaultSections,
-          showLogo: false
-        });
-      }
-    };
-
-    fetchNavigationData();
-  }, []);
+  const items = useMemo(
+    () =>
+      (menuItems && menuItems.length > 0 ? menuItems : DEFAULT_SECTIONS)
+        .slice()
+        .sort((a, b) => a.order - b.order),
+    [menuItems]
+  )
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 50)
@@ -68,10 +49,8 @@ const Navigation = () => {
 
   // Track active section
   useEffect(() => {
-    if (!navigationData) return;
-    
     const handleScroll = () => {
-      const sections = navigationData.menuItems.map(section => ({
+      const sections = items.map(section => ({
         name: section.section,
         element: document.querySelector(`.${section.section}-section`)
       }))
@@ -92,9 +71,9 @@ const Navigation = () => {
       }
     }
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [navigationData])
+  }, [items])
 
   const scrollSmoothlyTo = (className: string) => {
     setShowMenu(false)
@@ -179,9 +158,7 @@ const Navigation = () => {
 
               {/* Menu Items */}
               <div className="relative z-10 flex flex-col items-center gap-4 max-w-lg mx-auto px-8">
-                {(navigationData?.menuItems || defaultSections)
-                  .sort((a, b) => a.order - b.order)
-                  .map((section, i) => (
+                {items.map((section, i) => (
                   <motion.button
                     key={section.section}
                     className="text-white font-display font-light text-2xl md:text-3xl tracking-wide hover:text-white/80 transition-all duration-300 hover:translate-x-2"

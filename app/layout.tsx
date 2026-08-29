@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { ThemeProvider } from "./components/ThemeProvider";
-import { DataProvider } from "./lib/dataContext";
 
 export const metadata: Metadata = {
   title: {
@@ -114,10 +113,14 @@ export default function RootLayout({
           type="font/otf"
           crossOrigin="anonymous"
         />
-        <link rel="preload" href="/images/IMG_4655.jpeg" as="image" />
         <link
           rel="dns-prefetch"
-          href="https://the-muse-duo.s3.us-west-1.amazonaws.com"
+          href="https://cdn.sanity.io"
+        />
+        <link
+          rel="preconnect"
+          href="https://cdn.sanity.io"
+          crossOrigin="anonymous"
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <script
@@ -159,7 +162,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen">
         <ThemeProvider defaultTheme="system" storageKey="muse-duo-theme">
-          <DataProvider>{children}</DataProvider>
+          {children}
         </ThemeProvider>
       </body>
     </html>

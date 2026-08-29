@@ -1,22 +1,13 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import type { Concert } from "../../sanity/lib/types";
 
-interface Concert {
-  title: string;
-  date: string;
-  venue: string;
-  location: string;
-  time?: string;
-  timezone?: string;
-  ticketUrl?: string;
-  status: 'upcoming' | 'past';
-  description?: string;
-  slug: string;
+interface ConcertsProps {
+  concerts: Concert[];
 }
 
-const Concerts = () => {
-  const [concerts, setConcerts] = useState<Concert[]>([]);
+const Concerts = ({ concerts }: ConcertsProps) => {
   const [selectedTab, setSelectedTab] = useState<'upcoming' | 'past'>('upcoming');
   const [currentPage, setCurrentPage] = useState(1);
   const CONCERTS_PER_PAGE = 6;
@@ -27,30 +18,13 @@ const Concerts = () => {
 
   const upcomingConcerts = concerts.filter(isUpcoming);
   const pastConcerts = concerts.filter((c) => !isUpcoming(c));
-  
+
   const allFilteredConcerts = selectedTab === 'upcoming' ? upcomingConcerts : pastConcerts;
-  
-  // Pagination logic
+
   const totalPages = Math.ceil(allFilteredConcerts.length / CONCERTS_PER_PAGE);
   const startIndex = (currentPage - 1) * CONCERTS_PER_PAGE;
   const filteredConcerts = allFilteredConcerts.slice(startIndex, startIndex + CONCERTS_PER_PAGE);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/api/concerts');
-        const concertsData = await response.json();
-        setConcerts(concertsData);
-      } catch (error) {
-        console.error("Error loading concerts:", error);
-        setConcerts([]);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  // Reset to page 1 when switching tabs
   useEffect(() => {
     setCurrentPage(1);
   }, [selectedTab]);
@@ -149,7 +123,7 @@ const Concerts = () => {
                               {concert.location}
                             </p>
                             <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
-                              {concert.time || formatTime(concert.date, concert.timezone)}
+                              {formatTime(concert.date, concert.timezone)}
                             </p>
                           </div>
 

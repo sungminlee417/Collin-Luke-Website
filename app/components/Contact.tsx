@@ -1,60 +1,30 @@
 "use client";
 
-import React, { FormEvent, useState, useEffect } from "react";
+import React, { FormEvent, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { urlForImage } from "../../sanity/lib/image";
+import type { ContactData } from "../../sanity/lib/types";
 
-interface Social {
-  instagram?: string;
-  youtube?: string;
-  spotify?: string;
-  appleMusic?: string;
+interface ContactProps {
+  data: ContactData | null;
 }
 
-interface ContactData {
-  title: string;
-  subtitle?: string;
-  email: string;
-  social: Social;
-  contactImage?: string;
-}
-
-const Contact = () => {
+const Contact = ({ data }: ContactProps) => {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [contactData, setContactData] = useState<ContactData | null>(null);
 
-  useEffect(() => {
-    const fetchContactData = async () => {
-      try {
-        const response = await fetch("/api/contact");
-        const data = await response.json();
-        setContactData(data);
-      } catch (error) {
-        console.error("Error loading contact data:", error);
-        // Fallback data
-        setContactData({
-          title: "Connect with us!",
-          subtitle: "We'd love to hear from you",
-          email: "themuseduo@gmail.com",
-          social: {
-            instagram: "https://www.instagram.com/muse__duo/",
-            youtube: "https://www.youtube.com/@themuseduo",
-          },
-        });
-      }
-    };
-
-    fetchContactData();
-  }, []);
+  const contactImageUrl = data?.contactImage
+    ? urlForImage(data.contactImage).width(1200).quality(85).url()
+    : null;
 
   const handleSendMailSubmit = (e: FormEvent): void => {
     e.preventDefault();
     setIsSubmitting(true);
 
     setTimeout(() => {
-      const email = contactData?.email || "themuseduo@gmail.com";
+      const email = data?.email || "themuseduo@gmail.com";
       window.location.href = `mailto:${email}?subject=${encodeURIComponent(
         subject || ""
       )}&body=${encodeURIComponent(message || "")}`;
@@ -77,13 +47,13 @@ const Contact = () => {
           >
             <div className="text-center lg:text-left mb-8">
               <h2 className="heading-2 text-muse-red dark:text-red-400 mb-4">
-                {contactData?.title || "Connect with us!"}
+                {data?.title || "Connect with us!"}
               </h2>
               <p className="text-gray-600 dark:text-gray-300 text-lg mb-2">
-                {contactData?.subtitle || "We'd love to hear from you"}
+                {data?.subtitle || "We'd love to hear from you"}
               </p>
               <motion.a
-                href={`mailto:${contactData?.email || "themuseduo@gmail.com"}`}
+                href={`mailto:${data?.email || "themuseduo@gmail.com"}`}
                 className="inline-flex items-center gap-2 text-muse-red dark:text-red-400 font-medium
                          hover:text-red-700 transition-colors duration-300 break-all sm:break-normal"
                 whileHover={{ scale: 1.05 }}
@@ -102,7 +72,7 @@ const Contact = () => {
                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
-                {contactData?.email || "themuseduo@gmail.com"}
+                {data?.email || "themuseduo@gmail.com"}
               </motion.a>
             </div>
 
@@ -205,9 +175,9 @@ const Contact = () => {
             </motion.form>
 
             <div className="mt-8 flex flex-wrap gap-4 justify-center lg:justify-start">
-              {contactData?.social?.instagram && (
+              {data?.social?.instagram && (
                 <motion.a
-                  href={contactData.social.instagram}
+                  href={data.social.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-gray-100 dark:bg-gray-700 rounded-full hover:bg-muse-red hover:text-white
@@ -225,9 +195,9 @@ const Contact = () => {
                   </svg>
                 </motion.a>
               )}
-              {contactData?.social?.youtube && (
+              {data?.social?.youtube && (
                 <motion.a
-                  href={contactData.social.youtube}
+                  href={data.social.youtube}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-gray-100 dark:bg-gray-700 rounded-full hover:bg-muse-red hover:text-white
@@ -256,13 +226,16 @@ const Contact = () => {
             viewport={{ once: true }}
           >
             <div className="relative h-[400px] md:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden group">
-              <Image
-                src={contactData?.contactImage ?? ""}
-                alt="Contact Image"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
+              {contactImageUrl && (
+                <Image
+                  src={contactImageUrl}
+                  alt="Contact Image"
+                  fill
+                  loading="lazy"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent dark:from-black/50 dark:to-black/10" />
             </div>
           </motion.div>

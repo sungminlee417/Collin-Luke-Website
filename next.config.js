@@ -22,7 +22,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'the-muse-duo.s3.us-west-1.amazonaws.com',
+        hostname: 'cdn.sanity.io',
       },
       {
         protocol: 'https',
@@ -41,8 +41,8 @@ const nextConfig = {
   // Experimental features for better performance
   experimental: {
     scrollRestoration: true,
-    serverComponentsExternalPackages: ['gray-matter'],
-    optimizePackageImports: ['framer-motion', 'react-player', 'swiper'],
+    optimizePackageImports: ['framer-motion', 'react-player', 'swiper', '@sanity/image-url'],
+    serverComponentsExternalPackages: ['@sanity/client'],
   },
   
   // Webpack optimization

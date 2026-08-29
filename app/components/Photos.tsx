@@ -1,94 +1,62 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import { InstagramEmbed } from "react-social-media-embed";
+import { urlForImage } from "../../sanity/lib/image";
+import type { GalleryImage } from "../../sanity/lib/types";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-interface GalleryImage {
-  url: string;
-  alt: string;
-  caption?: string;
-  order: number;
-  slug: string;
-}
+const InstagramEmbed = dynamic(
+  () => import("react-social-media-embed").then((m) => m.InstagramEmbed),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full aspect-square bg-neutral-100 dark:bg-neutral-800 rounded-lg animate-pulse" />
+    ),
+  }
+);
 
-interface GalleryData {
-  title: string;
-  subtitle?: string;
+interface PhotosProps {
   images: GalleryImage[];
-  instagramUrl?: string;
-  instagramHandle?: string;
 }
 
-const Photos = () => {
+const INSTAGRAM_URL = "https://www.instagram.com/muse__duo/";
+
+const Photos = ({ images }: PhotosProps) => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [galleryData, setGalleryData] = useState<GalleryData | null>(null);
   const [modalImageLoaded, setModalImageLoaded] = useState(false);
+  const [showInstagram, setShowInstagram] = useState(false);
+  const instagramRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const fetchGalleryData = async () => {
-      try {
-        const response = await fetch('/api/gallery');
-        const data = await response.json();
-        setGalleryData(data);
-      } catch (error) {
-        console.error('Error loading gallery data:', error);
-        // Fallback data
-        setGalleryData({
-          title: 'Gallery',
-          instagramUrl: 'https://www.instagram.com/muse__duo/',
-          instagramHandle: '@muse__duo',
-          images: [
-            {
-              url: "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-1.jpeg",
-              alt: "Gallery image 1",
-              order: 1,
-              slug: "gallery-1"
-            },
-            {
-              url: "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-7.jpeg",
-              alt: "Gallery image 7",
-              order: 2,
-              slug: "gallery-7"
-            },
-            {
-              url: "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-8.jpeg",
-              alt: "Gallery image 8",
-              order: 3,
-              slug: "gallery-8"
-            },
-            {
-              url: "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-11.jpeg",
-              alt: "Gallery image 11",
-              order: 4,
-              slug: "gallery-11"
-            },
-            {
-              url: "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-14.jpg",
-              alt: "Gallery image 14",
-              order: 5,
-              slug: "gallery-14"
-            },
-            {
-              url: "https://the-muse-duo.s3.us-west-1.amazonaws.com/muse-duo-gallery-15.jpg",
-              alt: "Gallery image 15",
-              order: 6,
-              slug: "gallery-15"
-            }
-          ]
-        });
-      }
-    };
-
-    fetchGalleryData();
+    if (!instagramRef.current) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setShowInstagram(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    observer.observe(instagramRef.current);
+    return () => observer.disconnect();
   }, []);
+
+  const galleryImages = images.map((img) => ({
+    id: img._id,
+    url: urlForImage(img.image).width(1200).quality(80).url(),
+    fullUrl: urlForImage(img.image).width(2400).quality(90).url(),
+    alt: img.alt,
+    caption: img.caption,
+  }));
 
   return (
     <>
@@ -102,7 +70,7 @@ const Photos = () => {
             viewport={{ once: true }}
           >
             <h2 className="heading-2 text-muse-red dark:text-red-400 mb-8">
-              {galleryData?.title || 'Gallery'}
+              Gallery
             </h2>
           </motion.div>
 
@@ -146,14 +114,14 @@ const Photos = () => {
                   "--swiper-pagination-color": "#EE2E31",
                 } as React.CSSProperties}
               >
-                {(galleryData?.images || []).map((image, index) => (
-                  <SwiperSlide key={image.slug || index}>
+                {galleryImages.map((image, index) => (
+                  <SwiperSlide key={image.id || index}>
                     <motion.div
                       className="relative aspect-[4/3] cursor-pointer group overflow-hidden rounded-xl"
                       whileHover={{ scale: 1.02 }}
                       transition={{ type: "spring", stiffness: 300 }}
                       onClick={() => {
-                        setSelectedImage(image.url);
+                        setSelectedImage(image.fullUrl);
                         setModalImageLoaded(false);
                       }}
                     >
@@ -161,6 +129,7 @@ const Photos = () => {
                         src={image.url}
                         alt={image.alt}
                         fill
+                        loading="lazy"
                         className="object-cover transition-transform duration-500 group-hover:scale-110"
                         sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, (max-width: 1280px) 30vw, 25vw"
                       />
@@ -208,12 +177,13 @@ const Photos = () => {
                 </p>
               </div>
               
-              <div className="flex justify-center">
+              <div className="flex justify-center" ref={instagramRef}>
                 <div className="w-full max-w-md">
-                  <InstagramEmbed 
-                    url="https://www.instagram.com/muse__duo/" 
-                    width="100%"
-                  />
+                  {showInstagram ? (
+                    <InstagramEmbed url={INSTAGRAM_URL} width="100%" />
+                  ) : (
+                    <div className="w-full aspect-square bg-neutral-100 dark:bg-neutral-800 rounded-lg animate-pulse" />
+                  )}
                 </div>
               </div>
             </div>
@@ -231,7 +201,7 @@ const Photos = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <motion.a
-                  href={galleryData?.instagramUrl || "https://www.instagram.com/muse__duo/"}
+                  href={INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex flex-col items-center p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"

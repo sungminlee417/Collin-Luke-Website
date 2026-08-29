@@ -1,47 +1,27 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
-// import { getRecordings, type Recording } from "../lib/content";
-import ReactPlayer from "react-player/youtube";
+import type { Recording } from "../../sanity/lib/types";
 
-interface Recording {
-  title: string;
-  composer?: string;
-  url: string;
-  spotifyUrl?: string;
-  appleMusicUrl?: string;
-  description?: string;
-  dateRecorded?: string;
-  duration?: string;
-  thumbnail?: string;
-  order: number;
-  featured?: boolean;
-  album?: string;
-  slug: string;
+const ReactPlayer = dynamic(() => import("react-player/youtube"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full flex items-center justify-center bg-black">
+      <div className="w-12 h-12 rounded-full border-2 border-white/30 border-t-white animate-spin" />
+    </div>
+  ),
+});
+
+interface RecordingsProps {
+  recordings: Recording[];
 }
 
-const Recordings: React.FC = () => {
-  const [recordings, setRecordings] = useState<Recording[]>([]);
+const Recordings: React.FC<RecordingsProps> = ({ recordings }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/api/recordings');
-        const recordingsData = await response.json();
-        setRecordings(recordingsData);
-        console.log(`Loaded ${recordingsData.length} recordings from API`);
-      } catch (error) {
-        console.error("API loading error:", error);
-        setRecordings([]);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   const handlePreviousSlide = () => {
     setCurrentSlide((prevSlide) =>

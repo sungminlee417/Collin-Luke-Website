@@ -1,50 +1,30 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useMemo } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import type { SocialLink } from '../../sanity/lib/types'
 
-interface SocialLink {
-  name: string
-  href: string
-  order: number
-}
+const DEFAULT_SOCIAL: SocialLink[] = [
+  { name: 'YouTube', href: 'https://www.youtube.com/@TheMuseDuo', order: 1 },
+  { name: 'Instagram', href: 'https://www.instagram.com/muse__duo/', order: 2 },
+]
 
-interface FooterData {
-  title: string
-  subtitle?: string
+interface FooterProps {
+  title?: string
   tagline?: string
-  logo?: string
-  socialLinks: SocialLink[]
+  socialLinks?: SocialLink[]
 }
 
-const Footer = () => {
+const Footer = ({ title, tagline, socialLinks }: FooterProps) => {
   const year = new Date().getFullYear()
-  const [footerData, setFooterData] = useState<FooterData | null>(null)
-
-  useEffect(() => {
-    const fetchFooterData = async () => {
-      try {
-        const response = await fetch('/api/settings?type=footer')
-        const data = await response.json()
-        setFooterData(data)
-      } catch (error) {
-        console.error('Error loading footer data:', error)
-        // Fallback data
-        setFooterData({
-          title: 'The Muse Duo',
-          tagline: 'Classical music reimagined for modern audiences',
-          logo: '/images/icon.png',
-          socialLinks: [
-            { name: 'YouTube', href: 'https://www.youtube.com/@TheMuseDuo', order: 1 },
-            { name: 'Instagram', href: 'https://www.instagram.com/muse__duo/', order: 2 }
-          ]
-        })
-      }
-    }
-
-    fetchFooterData()
-  }, [])
+  const links = useMemo(
+    () =>
+      (socialLinks && socialLinks.length > 0 ? socialLinks : DEFAULT_SOCIAL)
+        .slice()
+        .sort((a, b) => a.order - b.order),
+    [socialLinks]
+  )
 
   const getSocialIcon = (name: string) => {
     switch (name.toLowerCase()) {
@@ -85,7 +65,7 @@ const Footer = () => {
               transition={{ duration: 0.5 }}
             >
               <Image
-                src={footerData?.logo || "/images/icon.png"}
+                src="/images/icon.png"
                 alt="Muse Duo Icon"
                 width={40}
                 height={40}
@@ -94,16 +74,14 @@ const Footer = () => {
             </motion.div>
             <div>
               <p className="text-sm font-normal text-gray-800 dark:text-gray-200">
-                {footerData?.title || 'The Muse Duo'}
+                {title || 'The Muse Duo'}
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400">© {year} All rights reserved</p>
             </div>
           </div>
 
           <nav className="flex items-center gap-6">
-            {(footerData?.socialLinks || [])
-              .sort((a, b) => a.order - b.order)
-              .map((link, index) => (
+            {links.map((link, index) => (
               <motion.a
                 key={link.name}
                 href={link.href}
@@ -132,7 +110,7 @@ const Footer = () => {
           viewport={{ once: true }}
         >
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            {footerData?.tagline || 'Classical music reimagined for modern audiences'}
+            {tagline || 'Classical music reimagined for modern audiences'}
           </p>
         </motion.div>
       </div>

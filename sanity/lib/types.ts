@@ -104,6 +104,19 @@ export interface SocialLink {
   order: number
 }
 
+export type CampaignPlacement = 'concerts' | 'recordings' | 'gallery' | 'press'
+
+export interface Campaign {
+  slug: string
+  title: string
+  description?: string
+  url: string
+  buttonLabel?: string
+  placement: CampaignPlacement
+  active: boolean
+  order: number
+}
+
 export interface SiteSettings {
   title: string
   description?: string

@@ -2,6 +2,7 @@ import concert from './concert'
 import recording from './recording'
 import galleryImage from './galleryImage'
 import pressArticle from './pressArticle'
+import campaign from './campaign'
 import hero from './hero'
 import about from './about'
 import contact from './contact'
@@ -14,6 +15,7 @@ export const schemaTypes = [
   recording,
   galleryImage,
   pressArticle,
+  campaign,
   contact,
   siteSettings,
 ]

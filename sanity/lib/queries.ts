@@ -93,3 +93,14 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings" && _id == "siteS
   footerTagline,
   footerSocialLinks
 }`
+
+export const campaignsQuery = groq`*[_type == "campaign" && active == true] | order(order asc){
+  "slug": slug.current,
+  title,
+  description,
+  url,
+  buttonLabel,
+  placement,
+  active,
+  order
+}`

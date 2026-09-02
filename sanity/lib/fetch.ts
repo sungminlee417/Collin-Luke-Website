@@ -8,6 +8,7 @@ import {
   galleryQuery,
   pressQuery,
   siteSettingsQuery,
+  campaignsQuery,
 } from './queries'
 import type {
   HeroData,
@@ -18,6 +19,7 @@ import type {
   GalleryImage,
   PressArticle,
   SiteSettings,
+  Campaign,
 } from './types'
 
 // The Sanity webhook (-> /api/revalidate) invalidates Next's page cache on
@@ -35,3 +37,5 @@ export const getGallery = () => client.fetch<GalleryImage[]>(galleryQuery, {}, f
 export const getPress = () => client.fetch<PressArticle[]>(pressQuery, {}, fetchOptions)
 export const getSiteSettings = () =>
   client.fetch<SiteSettings | null>(siteSettingsQuery, {}, fetchOptions)
+export const getCampaigns = () =>
+  client.fetch<Campaign[]>(campaignsQuery, {}, fetchOptions)

@@ -17,7 +17,9 @@ import {
   getGallery,
   getPress,
   getSiteSettings,
+  getCampaigns,
 } from "../sanity/lib/fetch";
+import type { CampaignPlacement } from "../sanity/lib/types";
 
 export const revalidate = 60
 
@@ -31,6 +33,7 @@ export default async function Home() {
     gallery,
     press,
     settings,
+    campaigns,
   ] = await Promise.all([
     getHero(),
     getAbout(),
@@ -40,7 +43,11 @@ export default async function Home() {
     getGallery(),
     getPress(),
     getSiteSettings(),
+    getCampaigns(),
   ])
+
+  const campaignsAt = (placement: CampaignPlacement) =>
+    campaigns.filter((c) => c.placement === placement)
 
   return (
     <>
@@ -66,7 +73,7 @@ export default async function Home() {
         </ErrorBoundary>
 
         <ErrorBoundary fallback={<div className="min-h-[400px]" />}>
-          <Concerts concerts={concerts} />
+          <Concerts concerts={concerts} campaigns={campaignsAt("concerts")} />
         </ErrorBoundary>
 
         <ErrorBoundary fallback={<div className="min-h-[400px]" />}>

@@ -22,6 +22,7 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem('recording').title('Recordings'),
       S.documentTypeListItem('galleryImage').title('Gallery Images'),
       S.documentTypeListItem('pressArticle').title('Press Articles'),
+      S.documentTypeListItem('campaign').title('Campaigns'),
     ])
 
 export const singletonTypes = new Set<string>(SINGLETONS.map((s) => s.type))

@@ -1,13 +1,15 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import type { Concert } from "../../sanity/lib/types";
+import type { Campaign, Concert } from "../../sanity/lib/types";
+import CampaignCard from "./CampaignCard";
 
 interface ConcertsProps {
   concerts: Concert[];
+  campaigns?: Campaign[];
 }
 
-const Concerts = ({ concerts }: ConcertsProps) => {
+const Concerts = ({ concerts, campaigns = [] }: ConcertsProps) => {
   const [selectedTab, setSelectedTab] = useState<'upcoming' | 'past'>('upcoming');
   const [currentPage, setCurrentPage] = useState(1);
   const CONCERTS_PER_PAGE = 6;
@@ -238,6 +240,14 @@ const Concerts = ({ concerts }: ConcertsProps) => {
               <p className="text-sm text-neutral-500 dark:text-neutral-400">
                 Showing {startIndex + 1}-{Math.min(startIndex + CONCERTS_PER_PAGE, allFilteredConcerts.length)} of {allFilteredConcerts.length} {selectedTab} concerts
               </p>
+            </div>
+          )}
+
+          {campaigns.length > 0 && (
+            <div className="mt-12 space-y-4">
+              {campaigns.map((campaign, i) => (
+                <CampaignCard key={campaign.slug} campaign={campaign} delayMs={i * 100} />
+              ))}
             </div>
           )}
         </div>

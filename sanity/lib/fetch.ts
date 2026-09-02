@@ -20,17 +20,20 @@ import type {
   SiteSettings,
 } from './types'
 
-const REVALIDATE = 60 // fallback; the Netlify build hook (fired by Sanity) triggers a full rebuild on edits
+// Long fallback — Sanity webhook -> /api/revalidate handles real-time freshness
+// via revalidateTag(). This value only kicks in if the webhook fails.
+const REVALIDATE = 3600
 
-async function sanityFetch<T>(query: string): Promise<T> {
-  return client.fetch<T>(query, {}, { next: { revalidate: REVALIDATE } })
+async function sanityFetch<T>(query: string, tags: string[]): Promise<T> {
+  return client.fetch<T>(query, {}, { next: { revalidate: REVALIDATE, tags } })
 }
 
-export const getHero = () => sanityFetch<HeroData | null>(heroQuery)
-export const getAbout = () => sanityFetch<AboutData | null>(aboutQuery)
-export const getContact = () => sanityFetch<ContactData | null>(contactQuery)
-export const getConcerts = () => sanityFetch<Concert[]>(concertsQuery)
-export const getRecordings = () => sanityFetch<Recording[]>(recordingsQuery)
-export const getGallery = () => sanityFetch<GalleryImage[]>(galleryQuery)
-export const getPress = () => sanityFetch<PressArticle[]>(pressQuery)
-export const getSiteSettings = () => sanityFetch<SiteSettings | null>(siteSettingsQuery)
+export const getHero = () => sanityFetch<HeroData | null>(heroQuery, ['hero'])
+export const getAbout = () => sanityFetch<AboutData | null>(aboutQuery, ['about'])
+export const getContact = () => sanityFetch<ContactData | null>(contactQuery, ['contact'])
+export const getConcerts = () => sanityFetch<Concert[]>(concertsQuery, ['concert'])
+export const getRecordings = () => sanityFetch<Recording[]>(recordingsQuery, ['recording'])
+export const getGallery = () => sanityFetch<GalleryImage[]>(galleryQuery, ['galleryImage'])
+export const getPress = () => sanityFetch<PressArticle[]>(pressQuery, ['pressArticle'])
+export const getSiteSettings = () =>
+  sanityFetch<SiteSettings | null>(siteSettingsQuery, ['siteSettings'])

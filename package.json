@@ -14,6 +14,7 @@
     "@sanity/client": "^8.4.0",
     "@sanity/image-url": "^2.1.1",
     "@sanity/vision": "^3.99.0",
+    "@sanity/webhook": "^4.0.4",
     "@tailwindcss/typography": "^0.5.10",
     "next": "^14.2.31",
     "next-sanity": "^9.12.3",

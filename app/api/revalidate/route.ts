@@ -1,33 +1,51 @@
-import { revalidateTag } from 'next/cache'
+import { isValidSignature, SIGNATURE_HEADER_NAME } from '@sanity/webhook'
+import { revalidatePath } from 'next/cache'
 import { NextResponse, type NextRequest } from 'next/server'
-import { parseBody } from 'next-sanity/webhook'
 
-// Sanity fires this endpoint whenever a document is published, updated, or deleted.
-//
-// Configure the webhook at https://sanity.io/manage/project/<id>/api → Webhooks:
-//   URL:        https://<your-domain>/api/revalidate
-//   Trigger on: Create, Update, Delete
-//   Filter:     !(_id in path("drafts.**")) && _type in ["hero","about","contact","concert","recording","galleryImage","pressArticle","siteSettings"]
-//   Projection: {_type}
-//   Secret:     value of SANITY_REVALIDATE_SECRET (same secret in Netlify env vars)
+// Types whose content lives in the root layout (nav, footer, etc.).
+// Editing these invalidates the layout so every page picks up the change.
+const LAYOUT_TYPES = new Set(['siteSettings'])
 
+// All other document types fall through to a whole-page revalidate.
+// The site is a single-page scroll, so revalidatePath("/") covers every
+// section (hero, about, concerts, recordings, gallery, press, contact).
 export async function POST(req: NextRequest) {
-  try {
-    const { body, isValidSignature } = await parseBody<{ _type: string }>(
-      req,
-      process.env.SANITY_REVALIDATE_SECRET
+  const secret = process.env.SANITY_REVALIDATE_SECRET
+  if (!secret) {
+    return NextResponse.json(
+      { error: 'SANITY_REVALIDATE_SECRET is not configured on the server.' },
+      { status: 500 }
     )
-
-    if (!isValidSignature) {
-      return NextResponse.json({ message: 'Invalid signature' }, { status: 401 })
-    }
-    if (!body?._type) {
-      return NextResponse.json({ message: 'Missing _type in body' }, { status: 400 })
-    }
-
-    revalidateTag(body._type)
-    return NextResponse.json({ revalidated: true, tag: body._type, now: Date.now() })
-  } catch (err) {
-    return NextResponse.json({ message: (err as Error).message }, { status: 500 })
   }
+
+  const signature = req.headers.get(SIGNATURE_HEADER_NAME)
+  if (!signature) {
+    return NextResponse.json({ error: 'Missing signature header.' }, { status: 401 })
+  }
+
+  const rawBody = await req.text()
+  const valid = await isValidSignature(rawBody, signature, secret)
+  if (!valid) {
+    return NextResponse.json({ error: 'Invalid signature.' }, { status: 401 })
+  }
+
+  let body: { _type?: string }
+  try {
+    body = JSON.parse(rawBody)
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON body.' }, { status: 400 })
+  }
+
+  const type = body._type
+  if (!type) {
+    return NextResponse.json({ error: 'Missing _type in payload.' }, { status: 400 })
+  }
+
+  if (LAYOUT_TYPES.has(type)) {
+    revalidatePath('/', 'layout')
+    return NextResponse.json({ revalidated: true, scope: 'layout', type })
+  }
+
+  revalidatePath('/')
+  return NextResponse.json({ revalidated: true, path: '/', type })
 }

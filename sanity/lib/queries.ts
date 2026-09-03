@@ -6,11 +6,7 @@ export const heroQuery = groq`*[_type == "hero" && _id == "hero"][0]{
   backgroundImage,
   backgroundAlt,
   ctaText,
-  showCta,
-  logoWidth,
-  logoHeight,
-  contentAlignment,
-  overlayOpacity
+  showCta
 }`
 
 export const aboutQuery = groq`*[_type == "about" && _id == "about"][0]{
@@ -50,15 +46,8 @@ export const recordingsQuery = groq`*[_type == "recording"] | order(order asc){
   title,
   url,
   composer,
-  description,
-  dateRecorded,
   duration,
-  thumbnail,
-  order,
-  featured,
-  album,
-  spotifyUrl,
-  appleMusicUrl
+  order
 }`
 
 export const galleryQuery = groq`*[_type == "galleryImage"] | order(order asc){

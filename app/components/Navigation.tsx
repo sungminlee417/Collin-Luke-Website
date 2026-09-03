@@ -20,6 +20,7 @@ interface NavigationProps {
 const Navigation = ({ menuItems }: NavigationProps) => {
   const [showMenu, setShowMenu] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
 
   const items = useMemo(
     () =>
@@ -35,7 +36,7 @@ const Navigation = ({ menuItems }: NavigationProps) => {
       if (ticking) return
       ticking = true
       requestAnimationFrame(() => {
-        setScrolled(window.scrollY > 50)
+        setScrolled(window.scrollY > 80)
         ticking = false
       })
     }
@@ -60,93 +61,187 @@ const Navigation = ({ menuItems }: NavigationProps) => {
     return () => window.removeEventListener('keydown', onKey)
   }, [showMenu])
 
-  const scrollSmoothlyTo = (className: string) => {
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = items.map((s) => ({
+        name: s.section,
+        el: document.querySelector<HTMLElement>(`.${s.section}-section`),
+      }))
+      const y = window.scrollY + window.innerHeight / 3
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const s = sections[i]
+        if (s.el && y >= s.el.offsetTop) {
+          setActiveSection(s.name)
+          break
+        }
+      }
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [items])
+
+  const scrollTo = (section: string) => {
     setShowMenu(false)
     setTimeout(() => {
       document
-        .querySelector(`.${className}`)
-        ?.scrollIntoView({ block: 'start', behavior: 'smooth' })
+        .querySelector(`.${section}-section`)
+        ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }, 300)
   }
 
   return (
     <>
+      {/* Soft gradient behind the transparent nav so white text always reads over any hero image */}
       <div
-        className={`fixed z-50 transition-all duration-700 ${
-          scrolled ? 'top-4 right-4' : 'top-6 right-6'
+        className={`fixed top-0 left-0 right-0 z-30 h-28 pointer-events-none transition-opacity duration-500 bg-gradient-to-b from-black/50 to-transparent ${
+          scrolled ? 'opacity-0' : 'opacity-100'
         }`}
-      >
-        <div className="flex gap-3 items-center">
-          <div className="transition-transform duration-200 hover:scale-110 active:scale-90">
-            <ThemeToggle />
-          </div>
-
-          <button
-            onClick={() => setShowMenu((v) => !v)}
-            className={`group relative h-12 w-12 sm:h-14 sm:w-14 rounded-2xl transition-all duration-500 hover:scale-110 active:scale-95
-                        ${
-                          scrolled
-                            ? 'bg-white/90 dark:bg-neutral-900/90 backdrop-blur-xl shadow-lg border border-neutral-200/50 dark:border-neutral-700/50'
-                            : 'bg-white/70 dark:bg-neutral-900/70 backdrop-blur-2xl shadow-xl border border-white/30 dark:border-neutral-700/30'
-                        }`}
-            aria-label="Toggle navigation menu"
-            aria-expanded={showMenu}
-          >
-            <div className="relative w-6 h-6 mx-auto">
-              <span
-                className={`absolute left-0 h-0.5 w-full bg-neutral-700 dark:bg-neutral-300 rounded-full transition-all duration-300 ${
-                  showMenu ? 'top-1/2 -translate-y-1/2 rotate-45' : 'top-1/4'
-                }`}
-              />
-              <span
-                className={`absolute left-0 top-1/2 -translate-y-1/2 h-0.5 w-full bg-neutral-700 dark:bg-neutral-300 rounded-full transition-all duration-200 ${
-                  showMenu ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
-                }`}
-              />
-              <span
-                className={`absolute left-0 h-0.5 w-full bg-neutral-700 dark:bg-neutral-300 rounded-full transition-all duration-300 ${
-                  showMenu ? 'bottom-1/2 translate-y-1/2 -rotate-45' : 'bottom-1/4'
-                }`}
-              />
-            </div>
-          </button>
-        </div>
-      </div>
-
-      <div
-        className={`fixed inset-0 z-40 bg-neutral-900/80 backdrop-blur-md transition-opacity duration-300 ${
-          showMenu ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
-        onClick={() => setShowMenu(false)}
-        aria-hidden={!showMenu}
+        aria-hidden
       />
 
-      <nav
-        className="fixed inset-0 z-40 flex items-center justify-center transition-[clip-path] duration-500 ease-in-out"
-        style={{
-          clipPath: showMenu
-            ? 'circle(150% at calc(100% - 4rem) 4rem)'
-            : 'circle(0% at calc(100% - 4rem) 4rem)',
-          pointerEvents: showMenu ? 'auto' : 'none',
-        }}
+      {/* Top nav bar — visible always, tightens on scroll */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-40 border-b transition-[background-color,padding,border-color,backdrop-filter] duration-500 ${
+          scrolled
+            ? 'bg-white/85 dark:bg-neutral-950/85 backdrop-blur-xl border-neutral-200/60 dark:border-neutral-800/60 py-3'
+            : 'bg-transparent border-transparent py-6 [text-shadow:0_2px_10px_rgba(0,0,0,0.5)]'
+        }`}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-accent-500 via-accent-600 to-accent-700" />
+        <div className="section-inner flex items-center justify-between">
+          {/* Wordmark */}
+          <button
+            onClick={() =>
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }
+            className={`font-display font-light tracking-tight transition-all duration-500 ${
+              scrolled
+                ? 'text-xl text-neutral-900 dark:text-neutral-50'
+                : 'text-2xl text-white'
+            }`}
+            title="Back to top"
+          >
+            Muse Duo
+          </button>
 
-        <div className="relative z-10 flex flex-col items-center gap-4 max-w-lg mx-auto px-8">
-          {items.map((section, i) => (
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-7 lg:gap-9">
+            {items.map((item) => {
+              const isActive = activeSection === item.section
+              return (
+                <button
+                  key={item.section}
+                  onClick={() => scrollTo(item.section)}
+                  className={`relative text-[13px] tracking-[0.05em] font-medium transition-colors duration-200 ${
+                    scrolled
+                      ? isActive
+                        ? 'text-red-700 dark:text-red-400'
+                        : 'text-neutral-700 dark:text-neutral-300 hover:text-red-700 dark:hover:text-red-400'
+                      : isActive
+                      ? 'text-white'
+                      : 'text-white/85 hover:text-white'
+                  }`}
+                >
+                  {item.label}
+                  {isActive && (
+                    <span
+                      className={`absolute -bottom-1.5 left-0 right-0 h-px ${
+                        scrolled ? 'bg-red-700 dark:bg-red-400' : 'bg-white'
+                      }`}
+                    />
+                  )}
+                </button>
+              )
+            })}
+            {/* Separator + theme toggle, inheriting nav color state */}
+            <span
+              className={`w-px h-4 transition-colors duration-500 ${
+                scrolled
+                  ? 'bg-neutral-300 dark:bg-neutral-700'
+                  : 'bg-white/30'
+              }`}
+              aria-hidden
+            />
+            <ThemeToggle
+              className={
+                scrolled
+                  ? 'text-neutral-700 dark:text-neutral-300 hover:text-muse-red dark:hover:text-red-400'
+                  : 'text-white/85 hover:text-white'
+              }
+            />
+          </nav>
+
+          {/* Mobile hamburger */}
+          <div className="flex md:hidden items-center gap-2">
+            <ThemeToggle
+              className={
+                scrolled
+                  ? 'text-neutral-700 dark:text-neutral-300'
+                  : 'text-white'
+              }
+            />
             <button
-              key={section.section}
-              className={`text-white font-display font-light text-2xl md:text-3xl tracking-wide
-                          hover:text-white/80 hover:translate-x-2 transition-all duration-300 ease-out
-                          ${showMenu ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}
-              style={{ transitionDelay: showMenu ? `${i * 80}ms` : '0ms' }}
-              onClick={() => scrollSmoothlyTo(`${section.section}-section`)}
+              onClick={() => setShowMenu(true)}
+              className={`w-10 h-10 flex flex-col items-center justify-center gap-1.5 ${
+                scrolled
+                  ? 'text-neutral-900 dark:text-neutral-50'
+                  : 'text-white'
+              }`}
+              aria-label="Open menu"
+              aria-expanded={showMenu}
             >
-              {section.label}
+              <span className="w-6 h-px bg-current" />
+              <span className="w-6 h-px bg-current" />
             </button>
-          ))}
+          </div>
         </div>
-      </nav>
+      </header>
+
+      {/* Mobile overlay menu */}
+      <div
+        className={`fixed inset-0 z-50 md:hidden transition-opacity duration-300 ${
+          showMenu ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <div
+          className="absolute inset-0 bg-neutral-950/95 backdrop-blur-xl"
+          onClick={() => setShowMenu(false)}
+        />
+        <div className="relative h-full flex flex-col">
+          <div className="flex justify-end p-6">
+            <button
+              onClick={() => setShowMenu(false)}
+              className="w-10 h-10 text-white flex items-center justify-center"
+              aria-label="Close menu"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <nav className="flex-1 flex flex-col justify-center px-8 gap-2">
+            {items.map((item, i) => (
+              <button
+                key={item.section}
+                onClick={() => scrollTo(item.section)}
+                className={`text-left font-display font-light text-4xl text-white/90 hover:text-white active:text-red-400 transition-colors py-2 ${
+                  showMenu ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
+                }`}
+                style={{
+                  transition: `opacity 400ms ease-out ${i * 60}ms, transform 400ms ease-out ${i * 60}ms, color 200ms`,
+                }}
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
+          {/* Theme toggle at the bottom of the mobile menu so users don't have to close it */}
+          <div className="p-8 border-t border-white/10 flex items-center justify-between text-white/70">
+            <span className="text-xs tracking-[0.25em] uppercase">Appearance</span>
+            <ThemeToggle className="text-white/80 hover:text-white" />
+          </div>
+        </div>
+      </div>
     </>
   )
 }

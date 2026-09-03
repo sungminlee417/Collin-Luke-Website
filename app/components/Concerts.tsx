@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import type { Campaign, Concert } from "../../sanity/lib/types";
 import CampaignCard from "./CampaignCard";
 
@@ -10,247 +10,186 @@ interface ConcertsProps {
 }
 
 const Concerts = ({ concerts, campaigns = [] }: ConcertsProps) => {
-  const [selectedTab, setSelectedTab] = useState<'upcoming' | 'past'>('upcoming');
-  const [currentPage, setCurrentPage] = useState(1);
-  const CONCERTS_PER_PAGE = 6;
+  const [showPast, setShowPast] = useState(false);
 
-  const isUpcoming = (concert: Concert) => {
-    return new Date(concert.date) > new Date();
-  };
+  const now = new Date();
+  const isUpcoming = (c: Concert) => new Date(c.date) > now;
+  const upcoming = concerts
+    .filter(isUpcoming)
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  const past = concerts
+    .filter((c) => !isUpcoming(c))
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-  const upcomingConcerts = concerts.filter(isUpcoming);
-  const pastConcerts = concerts.filter((c) => !isUpcoming(c));
+  const list = showPast ? past : upcoming;
+  const empty = list.length === 0;
 
-  const allFilteredConcerts = selectedTab === 'upcoming' ? upcomingConcerts : pastConcerts;
-
-  const totalPages = Math.ceil(allFilteredConcerts.length / CONCERTS_PER_PAGE);
-  const startIndex = (currentPage - 1) * CONCERTS_PER_PAGE;
-  const filteredConcerts = allFilteredConcerts.slice(startIndex, startIndex + CONCERTS_PER_PAGE);
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [selectedTab]);
-
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
+  const fmtDate = (iso: string, tz?: string | null) => {
+    const d = new Date(iso);
+    const opts = tz ? { timeZone: tz } : {};
     return {
-      day: date.getDate(),
-      month: date.toLocaleDateString('en-US', { month: 'short' }),
-      year: date.getFullYear(),
-      time: date.toLocaleDateString('en-US', {
-        weekday: 'long',
-        month: 'long',
-        day: 'numeric',
-        year: 'numeric'
-      })
+      day: d.toLocaleDateString("en-US", { day: "2-digit", ...opts }),
+      month: d.toLocaleDateString("en-US", { month: "short", ...opts }),
+      year: d.toLocaleDateString("en-US", { year: "numeric", ...opts }),
+      time: d.toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
+        ...opts,
+      }),
     };
-  };
-
-  const formatTime = (dateString: string, timezone?: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleTimeString('en-US', {
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true,
-      timeZone: timezone || 'UTC'
-    });
   };
 
   return (
     <section className="concerts-section section section-tint">
       <div className="section-inner">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="heading-2 text-muse-red dark:text-red-400 mb-6">Concerts</h2>
-          
-          {/* Tab Navigation */}
-          <div className="inline-flex bg-neutral-100 dark:bg-neutral-800 rounded-xl p-1">
+        {/* Editorial header */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-10 mb-12 md:mb-16">
+          <div>
+            <div className="eyebrow mb-6">Schedule</div>
+            <h2 className="display-section">
+              {showPast ? "Past performances" : "Upcoming"}
+            </h2>
+          </div>
+
+          {/* Toggle: upcoming ↔ past */}
+          <div className="flex items-center gap-1 rounded-full bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 p-1 self-start md:self-end">
             <button
-              onClick={() => setSelectedTab('upcoming')}
-              className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 ${
-                selectedTab === 'upcoming'
-                  ? 'bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 shadow-sm'
-                  : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100'
+              onClick={() => setShowPast(false)}
+              className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors duration-200 ${
+                !showPast
+                  ? "bg-red-700 text-white"
+                  : "text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100"
               }`}
             >
               Upcoming
+              {upcoming.length > 0 && (
+                <span className={`ml-2 text-xs ${!showPast ? 'text-white/85' : 'text-neutral-500 dark:text-neutral-400'}`}>
+                  {upcoming.length}
+                </span>
+              )}
             </button>
             <button
-              onClick={() => setSelectedTab('past')}
-              className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 ${
-                selectedTab === 'past'
-                  ? 'bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 shadow-sm'
-                  : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100'
+              onClick={() => setShowPast(true)}
+              className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors duration-200 ${
+                showPast
+                  ? "bg-red-700 text-white"
+                  : "text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100"
               }`}
             >
               Past
+              {past.length > 0 && (
+                <span className={`ml-2 text-xs ${showPast ? 'text-white/85' : 'text-neutral-500 dark:text-neutral-400'}`}>
+                  {past.length}
+                </span>
+              )}
             </button>
           </div>
         </div>
 
-        {/* Concert List */}
-        <div className="max-w-4xl mx-auto">
-          {filteredConcerts.length > 0 ? (
-            <div className="space-y-4">
-              {filteredConcerts.map((concert) => {
-                const dateInfo = formatDate(concert.date);
-                const isUpcomingConcert = isUpcoming(concert);
-                
-                return (
-                  <div
-                    key={concert.slug}
-                    className="card card-hover p-6"
-                  >
-                    <div className="flex flex-col md:flex-row md:items-center gap-4">
-                      {/* Date */}
-                      <div className="flex-shrink-0">
-                        <div className="bg-accent-500 text-white rounded-xl p-3 text-center min-w-[80px]">
-                          <div className="text-2xl font-bold">{dateInfo.day}</div>
-                          <div className="text-xs uppercase tracking-wide">{dateInfo.month}</div>
-                          <div className="text-xs opacity-90">{dateInfo.year}</div>
+        {/* Concert list */}
+        {empty ? (
+          <div className="py-16 text-center border-t border-neutral-200 dark:border-neutral-800">
+            <p className="text-neutral-500 dark:text-neutral-400">
+              {showPast
+                ? "Past concerts will appear here."
+                : "New performance announcements coming soon."}
+            </p>
+          </div>
+        ) : (
+          <ul
+            key={showPast ? "past" : "upcoming"}
+            className="border-t border-neutral-200 dark:border-neutral-800 animate-[fadeIn_350ms_ease-out]"
+          >
+            {list.map((c) => {
+              const d = fmtDate(c.date, c.timezone);
+              return (
+                <li
+                  key={c.slug}
+                  className="group border-b border-neutral-200 dark:border-neutral-800"
+                >
+                  <div className="grid grid-cols-12 gap-4 md:gap-6 py-6 md:py-8 items-center">
+                    {/* Date */}
+                    <div className="col-span-3 md:col-span-2">
+                      <div className="font-display font-light leading-none">
+                        <div className="text-3xl md:text-5xl text-neutral-900 dark:text-neutral-50">
+                          {d.day}
                         </div>
-                      </div>
-
-                      {/* Content */}
-                      <div className="flex-grow">
-                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
-                          <div>
-                            <h3 className="text-xl font-medium text-neutral-900 dark:text-neutral-100 mb-1">
-                              {concert.title}
-                            </h3>
-                            <p className="text-neutral-600 dark:text-neutral-400 mb-1">
-                              {concert.venue}
-                            </p>
-                            <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                              {concert.location}
-                            </p>
-                            <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
-                              {formatTime(concert.date, concert.timezone)}
-                            </p>
-                          </div>
-
-                          {/* Actions */}
-                          <div className="flex items-center gap-3 mt-3 sm:mt-0">
-                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                              isUpcomingConcert
-                                ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
-                                : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400'
-                            }`}>
-                              {isUpcomingConcert ? 'Upcoming' : 'Past'}
-                            </span>
-                            
-                            {concert.ticketUrl && isUpcomingConcert && (
-                              <a
-                                href={concert.ticketUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="btn-primary text-sm px-4 py-2"
-                              >
-                                Tickets
-                              </a>
-                            )}
-                          </div>
+                        <div className="mt-1 md:mt-2 text-xs md:text-sm tracking-wider uppercase text-neutral-500 dark:text-neutral-400">
+                          {d.month} {d.year}
                         </div>
-
-                        {concert.description && (
-                          <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700">
-                            <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                              {concert.description}
-                            </p>
-                          </div>
-                        )}
                       </div>
                     </div>
+
+                    {/* Venue + location */}
+                    <div className="col-span-9 md:col-span-7 min-w-0">
+                      <h3 className="font-display font-light text-xl md:text-2xl lg:text-3xl text-neutral-900 dark:text-neutral-50 leading-tight group-hover:text-muse-red dark:group-hover:text-red-400 transition-colors duration-200">
+                        {c.title}
+                      </h3>
+                      <div className="mt-1 md:mt-2 flex flex-wrap gap-x-3 gap-y-1 text-sm text-neutral-600 dark:text-neutral-400">
+                        <span>{c.venue}</span>
+                        <span className="text-neutral-300 dark:text-neutral-700" aria-hidden>·</span>
+                        <span>{c.location}</span>
+                        <span className="text-neutral-300 dark:text-neutral-700" aria-hidden>·</span>
+                        <span>{d.time}</span>
+                      </div>
+                      {c.description && (
+                        <p className="mt-3 text-sm text-neutral-500 dark:text-neutral-400 line-clamp-2 max-w-2xl">
+                          {c.description}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Action */}
+                    <div className="col-span-12 md:col-span-3 md:text-right">
+                      {!showPast && (c.ticketUrl || c.moreInfoUrl) ? (
+                        <div className="flex md:flex-col md:items-end gap-x-4 gap-y-1">
+                          {c.ticketUrl && (
+                            <a
+                              href={c.ticketUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 text-sm font-medium text-red-700 dark:text-red-400
+                                         hover:gap-3 transition-all duration-200"
+                            >
+                              Tickets
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                              </svg>
+                            </a>
+                          )}
+                          {c.moreInfoUrl && (
+                            <a
+                              href={c.moreInfoUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400
+                                         hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
+                            >
+                              More info
+                            </a>
+                          )}
+                        </div>
+                      ) : (
+                        <span className="text-xs tracking-widest uppercase text-neutral-400 dark:text-neutral-600">
+                          {showPast ? "Past" : "Save the date"}
+                        </span>
+                      )}
+                    </div>
                   </div>
-                );
-              })}
-            </div>
-          ) : (
-            <div className="text-center py-12">
-              <div className="text-neutral-400 dark:text-neutral-600 mb-4">
-                <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-medium text-neutral-500 dark:text-neutral-400 mb-2">
-                No {selectedTab} concerts
-              </h3>
-              <p className="text-neutral-400 dark:text-neutral-500">
-                {selectedTab === 'upcoming' 
-                  ? 'Check back soon for new performance announcements' 
-                  : 'Our concert history will appear here'
-                }
-              </p>
-            </div>
-          )}
+                </li>
+              );
+            })}
+          </ul>
+        )}
 
-          {/* Pagination */}
-          {totalPages > 1 && (
-            <div className="flex justify-center items-center mt-8 gap-2">
-              <button
-                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                disabled={currentPage === 1}
-                className={`p-2 rounded-lg transition-all duration-200 ${
-                  currentPage === 1
-                    ? 'bg-neutral-100 dark:bg-neutral-800 text-neutral-400 cursor-not-allowed'
-                    : 'bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-accent-500 hover:text-white shadow-sm'
-                }`}
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-
-              {/* Page numbers */}
-              <div className="flex gap-1">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                  <button
-                    key={page}
-                    onClick={() => setCurrentPage(page)}
-                    className={`px-3 py-2 rounded-lg font-medium transition-all duration-200 ${
-                      currentPage === page
-                        ? 'bg-accent-500 text-white'
-                        : 'bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700'
-                    }`}
-                  >
-                    {page}
-                  </button>
-                ))}
-              </div>
-
-              <button
-                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                disabled={currentPage === totalPages}
-                className={`p-2 rounded-lg transition-all duration-200 ${
-                  currentPage === totalPages
-                    ? 'bg-neutral-100 dark:bg-neutral-800 text-neutral-400 cursor-not-allowed'
-                    : 'bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-accent-500 hover:text-white shadow-sm'
-                }`}
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          )}
-
-          {/* Results count */}
-          {allFilteredConcerts.length > 0 && (
-            <div className="text-center mt-4">
-              <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                Showing {startIndex + 1}-{Math.min(startIndex + CONCERTS_PER_PAGE, allFilteredConcerts.length)} of {allFilteredConcerts.length} {selectedTab} concerts
-              </p>
-            </div>
-          )}
-
-          {campaigns.length > 0 && (
-            <div className="mt-12 space-y-4">
-              {campaigns.map((campaign, i) => (
-                <CampaignCard key={campaign.slug} campaign={campaign} delayMs={i * 100} />
-              ))}
-            </div>
-          )}
-        </div>
+        {/* Campaigns below */}
+        {campaigns.length > 0 && (
+          <div className="mt-16 space-y-4">
+            {campaigns.map((campaign, i) => (
+              <CampaignCard key={campaign.slug} campaign={campaign} delayMs={i * 100} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

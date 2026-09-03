@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Image from 'next/image'
-import { urlForImage } from '../../sanity/lib/image'
+import { urlForImage, sanityLoader } from '../../sanity/lib/image'
 import type { PressArticle } from '../../sanity/lib/types'
 import { useInView } from '../lib/useInView'
 
@@ -11,126 +11,103 @@ interface PressProps {
 }
 
 const Press = ({ articles }: PressProps) => {
-  const { ref, inView } = useInView<HTMLDivElement>()
-
   return (
     <section className="press-section section section-white">
       <div className="section-inner">
-        <div
-          ref={ref}
-          className={`text-center mb-12 transition-all duration-700 ease-out ${
-            inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-          }`}
-        >
-          <h2 className="heading-2 text-muse-red dark:text-red-400 mb-4">Press</h2>
-          <p className="text-neutral-600 dark:text-neutral-300 text-lg max-w-2xl mx-auto">
-            Read what critics and journalists are saying about The Muse Duo
-          </p>
+        <div className="mb-12 md:mb-16 max-w-3xl">
+          <div className="eyebrow mb-6">Press</div>
+          <h2 className="display-section">Reviews</h2>
         </div>
 
-        <div className="grid gap-8 max-w-4xl mx-auto">
-          {articles.map((article, index) => {
-            const imageUrl = article.image
-              ? urlForImage(article.image).width(800).quality(80).url()
-              : null
-
-            return (
-              <PressCard
-                key={article.slug || index}
-                article={article}
-                imageUrl={imageUrl}
-                delayMs={index * 100}
-              />
-            )
-          })}
-        </div>
+        {articles.length === 0 ? (
+          <div className="py-16 border-t border-neutral-200 dark:border-neutral-800 text-center">
+            <p className="text-neutral-500 dark:text-neutral-400">
+              Press features will appear here.
+            </p>
+          </div>
+        ) : (
+          <ul className="space-y-16 md:space-y-24">
+            {articles.map((article, i) => (
+              <PressItem key={article.slug || i} article={article} index={i} />
+            ))}
+          </ul>
+        )}
       </div>
     </section>
   )
 }
 
-function PressCard({
-  article,
-  imageUrl,
-  delayMs,
-}: {
-  article: PressArticle
-  imageUrl: string | null
-  delayMs: number
-}) {
-  const { ref, inView } = useInView<HTMLElement>()
+function PressItem({ article, index }: { article: PressArticle; index: number }) {
+  const { ref, inView } = useInView<HTMLLIElement>()
+  const imageUrl = article.image ? urlForImage(article.image).url() : null
+  const reverse = index % 2 === 1
 
   return (
-    <article
+    <li
       ref={ref}
-      className={`card-modern overflow-hidden group transition-all duration-700 ease-out ${
+      className={`grid grid-cols-12 gap-6 md:gap-10 lg:gap-14 items-center transition-all duration-700 ease-out ${
         inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
-      style={{ transitionDelay: `${delayMs}ms` }}
     >
-      <div className="grid md:grid-cols-3 gap-6">
-        <div className="md:col-span-1">
-          <div className="relative h-64 md:h-full overflow-hidden">
-            {imageUrl && (
-              <Image
-                src={imageUrl}
-                alt={article.title}
-                fill
-                loading="lazy"
-                className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 33vw"
-              />
-            )}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30" />
+      {/* Image */}
+      {imageUrl && (
+        <div
+          className={`col-span-12 md:col-span-5 ${
+            reverse ? 'md:col-start-8 md:row-start-1' : ''
+          }`}
+        >
+          <div className="relative aspect-[4/5] overflow-hidden rounded-sm">
+            <Image
+              src={imageUrl}
+              alt={article.title}
+              fill
+              loader={sanityLoader}
+              quality={78}
+              loading="lazy"
+              className="object-cover object-top"
+              sizes="(max-width: 768px) 100vw, 40vw"
+            />
           </div>
         </div>
+      )}
 
-        <div className="md:col-span-2 p-6 md:p-8">
-          <div className="mb-4">
-            <time className="text-sm text-muse-gray uppercase tracking-wider font-medium">
-              {article.date}
-            </time>
-          </div>
-
-          <h3 className="text-2xl md:text-3xl font-normal text-neutral-900 dark:text-neutral-100 mb-2 group-hover:text-muse-red dark:group-hover:text-red-400 transition-colors duration-300">
-            {article.title}
-          </h3>
-
-          {article.author && (
-            <p className="text-neutral-600 dark:text-neutral-400 mb-4">
-              by{' '}
-              <span className="font-normal text-neutral-800 dark:text-neutral-200">
-                {article.author}
-              </span>
-            </p>
-          )}
-
-          {article.excerpt && (
-            <p className="text-neutral-600 dark:text-neutral-400 mb-6 line-clamp-3">
-              {article.excerpt}
-            </p>
-          )}
-
-          <a
-            href={article.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-muse-red dark:text-red-400 font-medium
-                       hover:gap-3 hover:translate-x-1 transition-all duration-300 active:scale-95"
-          >
-            Read Full Article
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
-          </a>
+      {/* Editorial content */}
+      <div
+        className={`col-span-12 md:col-span-7 ${
+          reverse ? 'md:col-start-1 md:row-start-1' : ''
+        } ${imageUrl ? '' : 'md:col-span-12'}`}
+      >
+        <div className="flex items-center gap-3 text-xs tracking-[0.25em] uppercase text-neutral-500 dark:text-neutral-400 mb-6">
+          <span className="w-8 h-px bg-neutral-300 dark:bg-neutral-700" />
+          {article.date && <span>{article.date}</span>}
+          {article.date && article.author && <span className="text-neutral-300 dark:text-neutral-700">·</span>}
+          {article.author && <span>{article.author}</span>}
         </div>
+
+        <h3 className="font-display font-light text-3xl md:text-4xl lg:text-5xl leading-[1.1] text-neutral-900 dark:text-neutral-50 mb-6">
+          {article.title}
+        </h3>
+
+        {article.excerpt && (
+          <blockquote className="border-l-2 border-muse-red pl-6 mb-8 text-lg md:text-xl italic font-light text-neutral-700 dark:text-neutral-300 leading-relaxed">
+            &ldquo;{article.excerpt}&rdquo;
+          </blockquote>
+        )}
+
+        <a
+          href={article.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 text-sm font-medium text-red-700 dark:text-red-400
+                     hover:gap-3 transition-all duration-200"
+        >
+          Read the full article
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
       </div>
-    </article>
+    </li>
   )
 }
 

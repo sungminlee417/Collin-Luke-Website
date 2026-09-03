@@ -1,79 +1,72 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { ThemeProvider } from "./components/ThemeProvider";
+import { getSiteSettings, getContact } from "../sanity/lib/fetch";
+import { urlForImage, sanityLoader } from "../sanity/lib/image";
 
-export const metadata: Metadata = {
-  title: {
-    default: "The Muse Duo - Classical Music Ensemble",
-    template: "%s | The Muse Duo",
-  },
-  description:
-    "The Muse Duo is a classical music ensemble bringing exceptional piano and guitar performances to audiences worldwide. Experience our unique blend of classical and contemporary music.",
-  keywords: [
-    "classical music",
-    "duo",
-    "ensemble",
-    "piano",
-    "guitar",
-    "concerts",
-    "recordings",
-    "live performance",
-    "chamber music",
-    "contemporary classical",
-  ],
-  authors: [{ name: "The Muse Duo", url: "https://themuseduo.com" }],
-  creator: "The Muse Duo",
-  publisher: "The Muse Duo",
-  category: "music",
-  classification: "entertainment",
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://themuseduo.com"
-  ),
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    siteName: "The Muse Duo",
-    title: "The Muse Duo - Classical Music Ensemble",
-    description:
-      "Experience exceptional classical music performances by The Muse Duo - a unique piano and guitar ensemble.",
-    url: "/",
-    images: [
-      {
-        url: "/images/IMG_6718.jpg",
-        width: 1200,
-        height: 630,
-        alt: "The Muse Duo - Classical Music Ensemble",
-        type: "image/jpeg",
-      },
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://themuseduo.com";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings();
+  const title = settings?.title || "The Muse Duo - Classical Music Ensemble";
+  const description =
+    settings?.description ||
+    "The Muse Duo is a guitar and piano duo redefining classical chamber music through bold, original repertoire.";
+  const seoImageUrl = settings?.seoImage
+    ? sanityLoader({ src: urlForImage(settings.seoImage).url(), width: 1200, quality: 85 })
+    : "/images/IMG_6718.jpg";
+
+  return {
+    title: { default: title, template: `%s | ${settings?.title || "The Muse Duo"}` },
+    description,
+    keywords: [
+      "classical music",
+      "chamber music",
+      "guitar and piano duo",
+      "Muse Duo",
+      "Collin Holloway",
+      "Luke Benedict",
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@themuseduo",
-    creator: "@themuseduo",
-    title: "The Muse Duo - Classical Music Ensemble",
-    description:
-      "Experience exceptional classical music performances by The Muse Duo - a unique piano and guitar ensemble.",
-    images: ["/images/IMG_6718.jpg"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    authors: [{ name: "The Muse Duo", url: SITE_URL }],
+    creator: "The Muse Duo",
+    publisher: "The Muse Duo",
+    category: "music",
+    metadataBase: new URL(SITE_URL),
+    alternates: { canonical: "/" },
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      siteName: settings?.title || "The Muse Duo",
+      title,
+      description,
+      url: "/",
+      images: [{ url: seoImageUrl, width: 1200, height: 630, alt: title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [seoImageUrl],
+    },
+    robots: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
-  },
-  verification: {
-    google: process.env.GOOGLE_SITE_VERIFICATION,
-  },
-};
+    verification: {
+      google: process.env.GOOGLE_SITE_VERIFICATION,
+    },
+    icons: settings?.favicon
+      ? [{ rel: "icon", url: urlForImage(settings.favicon).width(64).url() }]
+      : undefined,
+  };
+}
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -81,11 +74,19 @@ export const viewport: Viewport = {
   themeColor: "#EE2E31",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const [settings, contact] = await Promise.all([getSiteSettings(), getContact()]);
+  const social = contact?.social || {};
+  const sameAs = [social.instagram, social.youtube, social.spotify, social.appleMusic, social.facebook]
+    .filter((u): u is string => !!u);
+  const seoImageUrl = settings?.seoImage
+    ? sanityLoader({ src: urlForImage(settings.seoImage).url(), width: 1200, quality: 85 })
+    : `${SITE_URL}/images/IMG_6718.jpg`;
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -95,7 +96,6 @@ export default function RootLayout({
               try {
                 const storageKey = 'muse-duo-theme';
                 const theme = localStorage.getItem(storageKey) || 'system';
-                
                 if (theme === 'system') {
                   const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
                   document.documentElement.classList.add(systemTheme);
@@ -113,49 +113,26 @@ export default function RootLayout({
           type="font/otf"
           crossOrigin="anonymous"
         />
-        <link
-          rel="dns-prefetch"
-          href="https://cdn.sanity.io"
-        />
-        <link
-          rel="preconnect"
-          href="https://cdn.sanity.io"
-          crossOrigin="anonymous"
-        />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://cdn.sanity.io" />
+        <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="anonymous" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "MusicGroup",
-              name: "The Muse Duo",
+              name: settings?.title || "The Muse Duo",
               description:
-                "Classical music ensemble specializing in piano and guitar performances",
+                settings?.description ||
+                "Classical music ensemble specializing in guitar and piano performances",
               genre: ["Classical", "Chamber Music", "Contemporary Classical"],
-              url: "https://themuseduo.com",
-              image: "https://themuseduo.com/images/IMG_6718.jpg",
-              sameAs: [
-                "https://www.instagram.com/muse__duo/",
-                "https://www.youtube.com/@themuseduo",
-                "https://open.spotify.com/artist/45d3p8F6uaQqvaKg3Rbfra?si=qBAcQmosTgWx3hy5YHMnxA",
-              ],
+              url: SITE_URL,
+              image: seoImageUrl,
+              sameAs,
               member: [
-                {
-                  "@type": "Person",
-                  name: "Pianist",
-                },
-                {
-                  "@type": "Person",
-                  name: "Guitarist",
-                },
+                { "@type": "Person", name: "Collin Holloway", roleName: "Guitar" },
+                { "@type": "Person", name: "Luke Benedict", roleName: "Piano" },
               ],
-              musicAlbum: {
-                "@type": "MusicAlbum",
-                name: "Experiments",
-                datePublished: "2023-04-01",
-                url: "https://open.spotify.com/album/06Q4h44XDIYrpE0EbGAFMy",
-              },
             }),
           }}
         />

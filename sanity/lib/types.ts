@@ -7,10 +7,6 @@ export interface HeroData {
   backgroundAlt?: string
   ctaText?: string
   showCta?: boolean
-  logoWidth?: number
-  logoHeight?: number
-  contentAlignment?: 'left' | 'center'
-  overlayOpacity?: 'light' | 'medium' | 'dark'
 }
 
 export interface Artist {
@@ -32,7 +28,7 @@ export interface ContactData {
   subtitle?: string
   email: string
   phone?: string
-  management?: { name?: string; email?: string; phone?: string }
+  management?: { name?: string; email?: string }
   social?: {
     instagram?: string
     youtube?: string
@@ -47,7 +43,7 @@ export interface Concert {
   slug: string
   title: string
   date: string
-  timezone?: string
+  timezone?: string | null
   venue: string
   location: string
   ticketUrl?: string
@@ -61,15 +57,8 @@ export interface Recording {
   title: string
   url: string
   composer?: string
-  description?: string
-  dateRecorded?: string
   duration?: string
-  thumbnail?: Image
   order: number
-  featured?: boolean
-  album?: string
-  spotifyUrl?: string
-  appleMusicUrl?: string
 }
 
 export interface GalleryImage {

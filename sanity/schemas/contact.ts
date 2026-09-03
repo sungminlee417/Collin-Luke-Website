@@ -12,14 +12,18 @@ export default defineType({
       type: 'string',
       validation: (Rule) => Rule.required().email(),
     }),
-    defineField({ name: 'phone', type: 'string' }),
+    defineField({
+      name: 'phone',
+      type: 'string',
+      description: 'Optional. Shown under the email as a secondary contact.',
+    }),
     defineField({
       name: 'management',
       type: 'object',
+      description: 'Optional. Shown as a "Management" block below the primary contact.',
       fields: [
         { name: 'name', type: 'string' },
         { name: 'email', type: 'string' },
-        { name: 'phone', type: 'string' },
       ],
     }),
     defineField({

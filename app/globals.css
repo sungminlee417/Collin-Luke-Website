@@ -40,11 +40,48 @@
 @layer components {
   /* Layout primitives — use everywhere for consistent rhythm */
   .section {
-    @apply py-16 md:py-24 lg:py-28;
+    @apply py-20 md:py-28 lg:py-36;
   }
 
   .section-inner {
     @apply mx-auto max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Editorial header pattern: eyebrow + big display title + optional lead */
+  .eyebrow {
+    @apply inline-flex items-center gap-3
+           text-xs font-semibold tracking-[0.25em] uppercase
+           text-red-700 dark:text-red-400;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply w-8 h-px bg-red-700 dark:bg-red-400;
+  }
+
+  .display-hero {
+    @apply font-display font-light tracking-[-0.02em] leading-[0.92]
+           text-6xl sm:text-7xl md:text-8xl lg:text-[8.5rem] xl:text-[10rem]
+           text-neutral-900 dark:text-neutral-50;
+  }
+
+  .display-section {
+    @apply font-display font-light tracking-[-0.02em] leading-[0.95]
+           text-4xl sm:text-5xl md:text-6xl lg:text-7xl
+           text-neutral-900 dark:text-neutral-50;
+  }
+
+  .lead {
+    @apply text-base md:text-lg text-neutral-600 dark:text-neutral-400
+           leading-relaxed max-w-2xl;
+  }
+
+  .meta {
+    @apply text-xs md:text-sm tracking-wider uppercase
+           text-neutral-500 dark:text-neutral-400;
+  }
+
+  .rule {
+    @apply block w-full h-px bg-neutral-200 dark:bg-neutral-800;
   }
 
   /* Two alternating tones. No gradients. */
